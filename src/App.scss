@@ -1,0 +1,85 @@
+@font-face {
+  font-family: SVN Gotham;
+  src: url("./assets/fonts/SVN-Gotham_regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: SVN Gotham;
+  src: url("./assets/fonts/SVN-Gotham_Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+}
+img,
+picture,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+}
+input,
+select,
+textarea {
+  background-color: transparent;
+  outline: none;
+}
+button {
+  cursor: pointer;
+  background-color: transparent;
+  outline: none;
+  border: 0;
+}
+
+ul,
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+html {
+  font-family: SVN Gotham;
+  font-size: 62.5%;
+}
+
+body {
+  min-height: 100vh;
+  font-weight: 400;
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+:root {
+  --black: #1c1c1c;
+  --white: #fff;
+  --content-width: 1170px;
+}
+
+#wrapper {
+  width: 100%;
+  background-color: var(--white);
+}
+
+.container {
+  width: 100%;
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 0 1rem;
+}

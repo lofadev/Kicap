@@ -1,0 +1,16 @@
+.top_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-transform: uppercase;
+  padding: 10px 0;
+
+  &-text {
+    font-weight: 500;
+    letter-spacing: 0.2rem;
+  }
+
+  &-logo {
+    width: 14rem;
+  }
+}
