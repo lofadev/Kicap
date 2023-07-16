@@ -1,0 +1,25 @@
+.hero_slider {
+  max-width: 1680px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+
+  .slick-dots {
+    position: absolute;
+    bottom: 10px;
+
+    li button:before {
+      font-size: 8px;
+      color: var(--light-gray);
+      opacity: 1;
+    }
+
+    li.slick-active button:before {
+      color: tomato;
+    }
+  }
+
+  &-img {
+    user-select: none;
+  }
+}
