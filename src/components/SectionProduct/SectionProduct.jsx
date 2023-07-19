@@ -1,6 +1,11 @@
 import "./SectionProduct.scss";
+import products from "../../../data.js";
+import { useEffect } from "react";
 
 const SectionProduct = () => {
+  useEffect(() => {
+    console.log(products);
+  }, []);
   return (
     <section className="section_product">
       <div className="container">
