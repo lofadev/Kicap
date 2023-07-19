@@ -32,6 +32,7 @@ const HeroSlider = () => {
     arrows: false,
     autoplay: true,
     autoplaySpeed: 5000,
+    pauseOnFocus: true,
   };
   return (
     <section className="hero_slider">
