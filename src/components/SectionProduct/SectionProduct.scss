@@ -1,11 +1,3 @@
-@keyframes fadeIn {
-  from {
-    opacity: 0.3;
-  }
-  to {
-    opacity: 1;
-  }
-}
 .section_product {
   padding-top: 40px;
 
@@ -33,18 +25,17 @@
 
 .product_block {
   .slick-slide {
-    width: 280px !important;
+    // width: 280px !important;
+    padding: 0 5px;
   }
 
-  .slick-slide + .slick-slide {
-    margin-left: 10px;
-  }
+  // .slick-slide + .slick-slide {
+  //   margin-left: 10px;
+  // }
+}
 
-  .product_card {
-    cursor: pointer;
-    &-image-front,
-    &-image-back {
-      animation: fadeIn 0.25s linear;
-    }
-  }
+.btn-more {
+  margin-top: 15px;
+  margin-left: 50%;
+  transform: translateX(-50%);
 }
