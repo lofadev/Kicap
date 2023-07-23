@@ -1,0 +1,19 @@
+.feature-product_block {
+  background: url("../../assets/imgs/ant_product_bg.webp") no-repeat center bottom;
+  background-size: cover;
+  padding: 40px 0 25px 0;
+  text-align: center;
+  height: 615px;
+}
+
+.shop-the-look {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  min-height: 490px;
+
+  &-product {
+    width: 270px;
+    margin: 0 80px;
+  }
+}

@@ -3,6 +3,7 @@ import products from "../data";
 import Header from "./components/Header/Header";
 import HeroSlider from "./components/HeroSlider/HeroSlider";
 import SectionProduct from "./components/SectionProduct/SectionProduct";
+import FeatureProductBlock from "./components/FeatureProductBlock/FeatureProductBlock";
 
 function App() {
   const [productState, setProductState] = useState(products);
@@ -18,25 +19,10 @@ function App() {
     <div className="wrapper">
       <Header></Header>
       <HeroSlider></HeroSlider>
-      <SectionProduct
-        products={productState}
-        title="Sản phẩm"
-        strongTitle="mới"
-        txtButton="Xem tất cả . Sản phẩm mới"
-      ></SectionProduct>
-      <SectionProduct
-        products={keyboardCustom}
-        title="Bàn phím cơ"
-        strongTitle="custom"
-        txtButton="Xem tất cả . Bàn phím cơ custom"
-        arrows
-      ></SectionProduct>
-      <SectionProduct
-        products={productState}
-        title="Bộ sưu tạp keycap"
-        strongTitle="Cherry"
-        txtButton="Xem tất cả . Bộ sưu tập keycap cherry"
-      ></SectionProduct>
+      <SectionProduct products={productState} title="Sản phẩm" strongTitle="mới"></SectionProduct>
+      <SectionProduct products={keyboardCustom} title="Bàn phím cơ" strongTitle="custom" arrows></SectionProduct>
+      <SectionProduct products={productState} title="Bộ sưu tạp keycap" strongTitle="Cherry"></SectionProduct>
+      <FeatureProductBlock></FeatureProductBlock>
     </div>
   );
 }

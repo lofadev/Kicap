@@ -1,26 +1,5 @@
 .section_product {
   padding-top: 40px;
-
-  .title_blog {
-    text-align: center;
-    margin-bottom: 30px;
-    font-size: 2.6rem;
-    line-height: 3rem;
-    font-weight: 400;
-    text-transform: uppercase;
-    letter-spacing: 2.4px;
-
-    & a {
-      transition: all 0.2s linear;
-      &:hover {
-        color: var(--light-gray);
-      }
-    }
-
-    strong {
-      font-weight: 500;
-    }
-  }
 }
 
 .product_block {

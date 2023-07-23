@@ -4,7 +4,7 @@ import "./SectionProduct.scss";
 import Button from "../Button/Button";
 import ProductCard from "../ProductCard/ProductCard";
 
-const SectionProduct = ({ products, title, strongTitle, txtButton, dots = false, arrows = false }) => {
+const SectionProduct = ({ products, title, strongTitle, dots = false, arrows = false }) => {
   const settings = {
     arrows: arrows,
     dots: dots,
@@ -14,10 +14,12 @@ const SectionProduct = ({ products, title, strongTitle, txtButton, dots = false,
     slidesToScroll: 8,
   };
 
+  const txtButton = title && strongTitle ? `Xem tất cả . ${title} ${strongTitle}` : "Xem tất cả";
+
   return (
     <section className="section_product">
       <div className="container">
-        <h2 className="title_blog">
+        <h2 className="product_title">
           <a href="">
             {title} <strong>{strongTitle}</strong>
           </a>
