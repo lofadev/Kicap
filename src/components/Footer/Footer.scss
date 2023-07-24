@@ -1,0 +1,27 @@
+.footer {
+  margin-top: 55px;
+  &-main {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  &-col {
+    padding: 0 10px;
+    font-weight: 400;
+    font-size: 13px;
+  }
+
+  &-logo {
+    padding: 13px 0;
+    text-align: center;
+
+    a {
+      display: inline-block;
+    }
+
+    img {
+      width: 120px;
+      height: auto;
+    }
+  }
+}
