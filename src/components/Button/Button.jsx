@@ -1,7 +1,7 @@
 import Proptypes from "prop-types";
 import "./Button.scss";
 
-const Button = ({ type, children, primary = false, secondary = false, className }) => {
+const Button = ({ type, children, primary = false, secondary = false, className = "" }) => {
   const commonProps = {
     className: `${className} ${primary ? "btn-primary" : ""} ${secondary ? "btn-secondary" : ""}`,
     children,
@@ -19,7 +19,7 @@ Button.propTypes = {
   children: Proptypes.node.isRequired,
   primary: Proptypes.bool,
   secondary: Proptypes.bool,
-  className: Proptypes.string.isRequired,
+  className: Proptypes.string,
 };
 
 export default Button;

@@ -63,6 +63,7 @@ select,
 textarea {
   background-color: transparent;
   outline: none;
+  border: none;
 }
 button {
   cursor: pointer;
@@ -84,6 +85,7 @@ a {
 html {
   font-family: "../src/assets/fonts/SVN-Gotham";
   font-size: 62.5%;
+  text-rendering: optimizeLegibility;
 }
 
 body {

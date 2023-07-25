@@ -1,6 +1,8 @@
 .footer {
   margin-top: 55px;
   &-main {
+    padding-bottom: 20px;
+    margin: 0 -10px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
   }
@@ -22,6 +24,135 @@
     img {
       width: 120px;
       height: auto;
+    }
+  }
+
+  &-span {
+    display: inline-block;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+
+  &-title {
+    font-size: 12px;
+    padding: 13px 0;
+    text-transform: uppercase;
+    letter-spacing: 1.4px;
+    line-height: 22px;
+    font-weight: 500;
+    margin-bottom: 15px;
+    position: relative;
+  }
+
+  &-menu {
+    font-size: 14px;
+
+    li:first-child {
+      margin-top: 0;
+    }
+
+    li {
+      position: relative;
+      color: #1c1c1c;
+      margin: 7px 0;
+      font-size: 13px;
+      letter-spacing: 1px;
+      padding-left: 20px;
+      word-break: break-word;
+      line-height: 24px;
+    }
+
+    li svg {
+      display: inline-block;
+      font-size: 13px;
+      position: absolute;
+      top: 6px;
+      left: 0;
+    }
+
+    li > a {
+      text-transform: uppercase;
+      color: #1c1c1c;
+      font-size: 12px;
+      letter-spacing: 1px;
+      transition: all 0.2s linear;
+
+      &:hover {
+        color: var(--light-gray);
+      }
+    }
+  }
+
+  &-menu.had-click {
+    li {
+      line-height: 25px;
+      padding: 0;
+      margin-top: 0;
+    }
+  }
+
+  &-text {
+    letter-spacing: 0.5px;
+    font-size: 12px;
+    line-height: 20.5px;
+  }
+
+  &-subcrible {
+    height: 40px;
+    line-height: 40px;
+    font-size: 12px;
+    width: 100%;
+    padding: 0 10px;
+    outline: none;
+    background-color: #f0f0f0;
+    border: 1px solid transparent;
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  &-btn {
+    width: 100%;
+  }
+
+  #footer-form {
+    margin: 15px 0;
+  }
+
+  &-payment {
+    padding-top: 7px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+  }
+
+  &-social {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    margin-left: 16px;
+
+    img {
+      width: 40px;
+    }
+  }
+
+  &-logo-bct img {
+    width: 175px;
+  }
+
+  &-copyright {
+    border-top: 1px solid #ebebeb;
+    padding-bottom: 30px;
+
+    h3 {
+      text-align: center;
+      padding: 9px;
+      font-size: 12px;
+      color: #1c1c1c;
+      font-weight: 500;
+      line-height: 13px;
     }
   }
 }

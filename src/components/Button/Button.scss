@@ -33,9 +33,8 @@
     z-index: -1;
     -webkit-transition: -webkit-transform 0.45s cubic-bezier(0.785, 0.135, 0.15, 0.86);
     transition: transform 0.45s cubic-bezier(0.785, 0.135, 0.15, 0.86),
-      -webkit-transform 0.45s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+      -webkit-transform 0.45s cubic-bezier(0.785, 0.135, 0.15, 0.86), width 0.3s cubic-bezier(0.77, 0, 0.175, 1);
     background-color: #1c1c1c;
-    transition: width 0.3s cubic-bezier(0.77, 0, 0.175, 1);
   }
 
   &:hover::before {
