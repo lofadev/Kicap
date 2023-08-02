@@ -1,32 +1,35 @@
-import { useEffect, useState } from "react";
-import products from "../data";
-import Header from "./components/Header/Header";
-import HeroSlider from "./components/HeroSlider/HeroSlider";
-import SectionProduct from "./components/SectionProduct/SectionProduct";
-import FeatureProductBlock from "./components/FeatureProductBlock/FeatureProductBlock";
-import Footer from "./components/Footer/Footer";
+import { Fragment } from "react";
+import { Route, Routes } from "react-router-dom";
+import DefaultLayout from "./layouts/DefaultLayout";
+import { publicRoutes } from "./routes";
 
 function App() {
-  const [productState, setProductState] = useState(products);
-  const [keyboardCustom, setKeyboardCustom] = useState(products);
-
-  useEffect(() => {
-    const newProduct = productState.filter((item) => item.id <= 4);
-
-    setProductState(newProduct);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
   return (
-    <div className="wrapper">
-      <Header></Header>
-      <HeroSlider></HeroSlider>
-      <SectionProduct products={productState} title="Sản phẩm" strongTitle="mới"></SectionProduct>
-      <SectionProduct products={keyboardCustom} title="Bàn phím cơ" strongTitle="custom" arrows></SectionProduct>
-      <SectionProduct products={productState} title="Bộ sưu tập keycap" strongTitle="Cherry"></SectionProduct>
-      <FeatureProductBlock></FeatureProductBlock>
-      <SectionProduct products={productState} title="Switch" strongTitle="Cho bàn phím cơ"></SectionProduct>
-      <SectionProduct products={productState} title="Phụ kiện cho" strongTitle="Bàn phím cơ"></SectionProduct>
-      <Footer></Footer>
+    <div className="app">
+      <Routes>
+        {publicRoutes.map((route, index) => {
+          const Page = route.component;
+          let Layout = DefaultLayout;
+
+          if (route.layout) {
+            Layout = route.layout;
+          } else if (route.layout === null) {
+            Layout = Fragment;
+          }
+
+          return (
+            <Route
+              key={index}
+              path={route.path}
+              element={
+                <Layout>
+                  <Page />
+                </Layout>
+              }
+            />
+          );
+        })}
+      </Routes>
     </div>
   );
 }

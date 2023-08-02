@@ -13,7 +13,7 @@ import "./Footer.scss";
 
 const Footer = () => {
   return (
-    <div className="footer">
+    <footer className="footer">
       <div className="container">
         <div className="footer-main">
           <div className="footer-col">
@@ -126,7 +126,7 @@ const Footer = () => {
           <h3>© Copyright 2021 | Kicap | All Rights Reserved</h3>
         </div>
       </div>
-    </div>
+    </footer>
   );
 };
 

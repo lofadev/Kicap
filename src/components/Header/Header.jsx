@@ -57,64 +57,66 @@ const Header = () => {
     setIsActive(id);
   };
   return (
-    <div className="container">
-      <div className="top_header">
-        <div className="top_header-text">
-          <span>Hotline tư vấn: </span>
-          <a href="tel:0369161095">0369161095</a>
+    <header className="header">
+      <div className="container">
+        <div className="top_header">
+          <div className="top_header-text">
+            <span>Hotline tư vấn: </span>
+            <a href="tel:0369161095">0369161095</a>
+          </div>
+
+          <div className="top_header-logo">
+            <a href="">
+              <img src={Logo} alt="" />
+            </a>
+          </div>
+
+          <div className="top_header-right">
+            <ul className="top_header-features">
+              <li className="top_header-account">
+                <a href="#">Tài khoản</a>
+              </li>
+
+              <li className="top_header-cart">
+                <a href="">
+                  Giỏ hàng <img src={Cart} alt="" />
+                  <span className="top_header-count_item">0</span>
+                </a>
+              </li>
+
+              <li className="top_header-search">
+                <a href="">
+                  <img src={Search} alt="" />
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
 
-        <div className="top_header-logo">
-          <a href="">
-            <img src={Logo} alt="" />
-          </a>
-        </div>
-
-        <div className="top_header-right">
-          <ul className="top_header-features">
-            <li className="top_header-account">
-              <a href="#">Tài khoản</a>
-            </li>
-
-            <li className="top_header-cart">
-              <a href="">
-                Giỏ hàng <img src={Cart} alt="" />
-                <span className="top_header-count_item">0</span>
-              </a>
-            </li>
-
-            <li className="top_header-search">
-              <a href="">
-                <img src={Search} alt="" />
-              </a>
-            </li>
+        <nav className="nav">
+          <ul className="nav-menu">
+            {menu.map((item) => (
+              <li key={item.id} className="nav-items">
+                <Link
+                  onClick={() => handleClickMenuItem(item.id)}
+                  className={`nav-link ${item.id === isActive ? "active" : ""}`}
+                  to="/"
+                >
+                  {item.name}
+                  {item.hasChild ? (
+                    <span>
+                      <FaAngleDown></FaAngleDown>
+                    </span>
+                  ) : (
+                    <></>
+                  )}
+                </Link>
+              </li>
+            ))}
           </ul>
-        </div>
+        </nav>
       </div>
-
-      <nav className="nav">
-        <ul className="nav-menu">
-          {menu.map((item) => (
-            <li key={item.id} className="nav-items">
-              <Link
-                onClick={() => handleClickMenuItem(item.id)}
-                className={`nav-link ${item.id === isActive ? "active" : ""}`}
-                to="/"
-              >
-                {item.name}
-                {item.hasChild ? (
-                  <span>
-                    <FaAngleDown></FaAngleDown>
-                  </span>
-                ) : (
-                  <></>
-                )}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </nav>
-    </div>
+    </header>
   );
 };
 

@@ -30,6 +30,12 @@ const FeatureProductBlock = () => {
               <ProductCard data={data}></ProductCard>
             </div>
           </div>
+          <div className="shop-the-look">
+            <img src={Star} alt="" />
+            <div className="shop-the-look-product">
+              <ProductCard data={data}></ProductCard>
+            </div>
+          </div>
         </Slider>
       </div>
     </div>
