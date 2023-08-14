@@ -17,6 +17,28 @@ const menu = [
     id: 2,
     name: "Keycap bộ",
     hasChild: true,
+    children: [
+      {
+        id: 1,
+        name: "Keycap Cherry",
+      },
+      {
+        id: 2,
+        name: "Keycap xuyên led",
+      },
+      {
+        id: 3,
+        name: "Keycap SA",
+      },
+      {
+        id: 4,
+        name: "Keycap XDA",
+      },
+      {
+        id: 5,
+        name: "Keycap OEM",
+      },
+    ],
   },
   {
     id: 3,
@@ -37,6 +59,37 @@ const menu = [
     id: 6,
     name: "Sản phẩm",
     hasChild: true,
+    children: [
+      {
+        id: 1,
+        name: "Keycap bộ",
+        subtitle: [
+          {
+            name: "Silent forest",
+          },
+        ],
+      },
+      {
+        id: 2,
+        name: "Keycap lẻ",
+      },
+      {
+        id: 3,
+        name: "Đèn decor",
+      },
+      {
+        id: 4,
+        name: "Bàn phím cơ",
+      },
+      {
+        id: 5,
+        name: "Switch",
+      },
+      {
+        id: 6,
+        name: "Phụ kiện",
+      },
+    ],
   },
   {
     id: 7,
