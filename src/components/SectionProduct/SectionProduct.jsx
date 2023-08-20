@@ -4,15 +4,16 @@ import "./SectionProduct.scss";
 import Button from "../Button/Button";
 import ProductCard from "../ProductCard/ProductCard";
 
-const SectionProduct = ({ products, title, strongTitle, dots = false, arrows = false }) => {
+const SectionProduct = ({ products, title, strongTitle, dots = false, arrows = false, max = 10 }) => {
   const settings = {
     arrows: arrows,
     dots: dots,
     infinite: false,
     speed: 500,
     slidesToShow: 4,
-    slidesToScroll: 8,
+    slidesToScroll: 1,
   };
+  const maxLen = parseInt(max);
 
   const txtButton = title && strongTitle ? `Xem tất cả . ${title} ${strongTitle}` : "Xem tất cả";
 
@@ -26,9 +27,11 @@ const SectionProduct = ({ products, title, strongTitle, dots = false, arrows = f
         </h2>
         <div className="product_block">
           <Slider {...settings}>
-            {products.map((item) => (
-              <ProductCard key={item.id} data={item}></ProductCard>
-            ))}
+            {products.map((item, index) => {
+              if (index < maxLen) {
+                return <ProductCard key={item.id} data={item}></ProductCard>;
+              }
+            })}
           </Slider>
         </div>
 
@@ -47,6 +50,7 @@ SectionProduct.propTypes = {
   txtButton: Proptypes.node,
   dots: Proptypes.bool,
   arrows: Proptypes.bool,
+  max: Proptypes.string,
 };
 
 export default SectionProduct;

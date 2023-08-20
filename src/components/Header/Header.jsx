@@ -17,28 +17,7 @@ const menu = [
     id: 2,
     name: "Keycap bộ",
     hasChild: true,
-    children: [
-      {
-        id: 1,
-        name: "Keycap Cherry",
-      },
-      {
-        id: 2,
-        name: "Keycap xuyên led",
-      },
-      {
-        id: 3,
-        name: "Keycap SA",
-      },
-      {
-        id: 4,
-        name: "Keycap XDA",
-      },
-      {
-        id: 5,
-        name: "Keycap OEM",
-      },
-    ],
+    children: ["Keycap Cherry", "Keycap xuyên led", "Keycap SA", "Keycap XDA", "Keycap OEM"],
   },
   {
     id: 3,
@@ -59,35 +38,37 @@ const menu = [
     id: 6,
     name: "Sản phẩm",
     hasChild: true,
+    hasMega: true,
     children: [
       {
         id: 1,
-        name: "Keycap bộ",
-        subtitle: [
-          {
-            name: "Silent forest",
-          },
-        ],
+        title: "Keycap bộ",
+        subtitle: ["Silent forest", "SA Harry Potter", "Keycap Polar Day"],
       },
       {
         id: 2,
-        name: "Keycap lẻ",
+        title: "Keycap lẻ",
+        subtitle: ["PIKACHU ALU", "CARD VGA", "CỜ ĐẢNG BÚA LIỀM"],
       },
       {
         id: 3,
-        name: "Đèn decor",
+        title: "Đèn decor",
+        subtitle: ["", "", ""],
       },
       {
         id: 4,
-        name: "Bàn phím cơ",
+        title: "Bàn phím cơ",
+        subtitle: ["Monsgeek M1W", "FL CMK75", "Finalkey V81 Plus"],
       },
       {
         id: 5,
-        name: "Switch",
+        title: "Switch",
+        subtitle: ["WS Morandi", "KTT Matcha", "Akko Cream Yellow Pro"],
       },
       {
         id: 6,
-        name: "Phụ kiện",
+        title: "Phụ kiện",
+        subtitle: ["Túi đựng bàn phím", "Dụng cụ thay keycap", "Chổi quét phím"],
       },
     ],
   },
@@ -100,6 +81,7 @@ const menu = [
     id: 8,
     name: "Về kicap",
     hasChild: true,
+    children: ["Giới thiệu", "Liên hệ", "Chính sách bảo hành", "Chính sách đổi trả"],
   },
 ];
 
@@ -149,7 +131,7 @@ const Header = () => {
         <nav className="nav">
           <ul className="nav-menu">
             {menu.map((item) => (
-              <li key={item.id} className="nav-items">
+              <li key={item.id} className={`nav-items ${item.hasChild && !item.hasMega ? "has-childs" : ""}`}>
                 <Link
                   onClick={() => handleClickMenuItem(item.id)}
                   className={`nav-link ${item.id === isActive ? "active" : ""}`}
@@ -164,6 +146,37 @@ const Header = () => {
                     <></>
                   )}
                 </Link>
+                {item.hasChild && !item.hasMega ? (
+                  <ul className="dropdown-menu">
+                    {item.children.map((itemChild, index) => (
+                      <li key={index} className="dropdown-items">
+                        <Link to="/">{itemChild}</Link>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  ""
+                )}
+                {item.hasChild && item.hasMega ? (
+                  <div className="mega-menu">
+                    {item.children.map((item) => (
+                      <div key={item.id} className="mega-items">
+                        <Link to="/" className="mega-title">
+                          {item.title}
+                        </Link>
+                        <ul>
+                          {item.subtitle.map((subItem, index) => (
+                            <li key={index}>
+                              <Link to="/">{subItem}</Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  ""
+                )}
               </li>
             ))}
           </ul>
