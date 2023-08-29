@@ -1,8 +1,8 @@
 const routes = {
   home: "/",
   cart: "/cart",
-  news: "/tin-tuc",
   introduce: "/gioi-thieu",
+  news: "/:title",
 };
 
 export default routes;

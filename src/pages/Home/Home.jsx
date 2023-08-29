@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
-import products from "../../../data";
+import { products, news } from "../../../data";
 import FeatureProductBlock from "../../components/FeatureProductBlock/FeatureProductBlock";
 import HeroSlider from "../../components/HeroSlider/HeroSlider";
 import SectionProduct from "../../components/SectionProduct/SectionProduct";
+import SectionNews from "../../components/SectionNews/SectionNews";
 
 const Home = () => {
   const [productState] = useState(products);
+  const [newsState] = useState(news);
   const [newProducts, setNewProducts] = useState([]);
   const [keyboardCustoms, setKeyboardCustoms] = useState([]);
   const [keycaps, setKeycaps] = useState([]);
@@ -45,7 +47,7 @@ const Home = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
-    <div>
+    <>
       <HeroSlider></HeroSlider>
       <SectionProduct max="4" products={newProducts} title="Sản phẩm" strongTitle="mới"></SectionProduct>
       <SectionProduct products={keyboardCustoms} title="Bàn phím cơ" strongTitle="custom" arrows></SectionProduct>
@@ -53,7 +55,8 @@ const Home = () => {
       <FeatureProductBlock></FeatureProductBlock>
       <SectionProduct max="4" products={switchs} title="Switch" strongTitle="Cho bàn phím cơ"></SectionProduct>
       <SectionProduct max="4" products={accessorys} title="Phụ kiện cho" strongTitle="Bàn phím cơ"></SectionProduct>
-    </div>
+      <SectionNews max="4" news={newsState} title="Tin tức" strongTitle="Kicap"></SectionNews>
+    </>
   );
 };
 

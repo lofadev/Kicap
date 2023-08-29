@@ -118,6 +118,13 @@ body {
   display: none !important;
 }
 
+.required {
+  color: red;
+  font-size: 1.6rem;
+  position: relative;
+  top: 3px;
+}
+
 .product_title {
   text-align: center;
   margin-bottom: 30px;
