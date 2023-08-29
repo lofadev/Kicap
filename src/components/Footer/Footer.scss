@@ -10,7 +10,7 @@
   &-col {
     padding: 0 10px;
     font-weight: 400;
-    font-size: 13px;
+    font-size: 1.3rem;
   }
 
   &-logo {
@@ -29,12 +29,12 @@
 
   &-span {
     display: inline-block;
-    font-size: 14px;
+    font-size: 1.4rem;
     margin-bottom: 10px;
   }
 
   &-title {
-    font-size: 12px;
+    font-size: 1.2rem;
     padding: 13px 0;
     text-transform: uppercase;
     letter-spacing: 1.4px;
@@ -45,7 +45,7 @@
   }
 
   &-menu {
-    font-size: 14px;
+    font-size: 1.4rem;
 
     li:first-child {
       margin-top: 0;
@@ -55,7 +55,7 @@
       position: relative;
       color: #1c1c1c;
       margin: 7px 0;
-      font-size: 13px;
+      font-size: 1.3rem;
       letter-spacing: 1px;
       padding-left: 20px;
       word-break: break-word;
@@ -64,7 +64,7 @@
 
     li svg {
       display: inline-block;
-      font-size: 13px;
+      font-size: 1.3rem;
       position: absolute;
       top: 6px;
       left: 0;
@@ -73,7 +73,7 @@
     li > a {
       text-transform: uppercase;
       color: #1c1c1c;
-      font-size: 12px;
+      font-size: 1.2rem;
       letter-spacing: 1px;
       transition: all 0.2s linear;
 
@@ -93,14 +93,14 @@
 
   &-text {
     letter-spacing: 0.5px;
-    font-size: 12px;
+    font-size: 1.2rem;
     line-height: 20.5px;
   }
 
   &-subcrible {
     height: 40px;
     line-height: 40px;
-    font-size: 12px;
+    font-size: 1.2rem;
     width: 100%;
     padding: 0 10px;
     outline: none;
@@ -149,7 +149,7 @@
     h3 {
       text-align: center;
       padding: 9px;
-      font-size: 12px;
+      font-size: 1.2rem;
       color: #1c1c1c;
       font-weight: 500;
       line-height: 13px;

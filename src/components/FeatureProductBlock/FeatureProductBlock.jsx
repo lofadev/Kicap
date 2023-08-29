@@ -2,7 +2,7 @@ import Slider from "react-slick";
 import Star from "../../assets/imgs/star.webp";
 import ProductCard from "../ProductCard/ProductCard";
 import "./FeatureProductBlock.scss";
-import products from "../../../data";
+import { products } from "../../../data";
 
 const FeatureProductBlock = () => {
   const data = products[0];

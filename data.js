@@ -78,7 +78,9 @@ import img39 from "./src/assets/imgs/img39.jpg";
 import img39_1 from "./src/assets/imgs/img39_1.jpg";
 import img40 from "./src/assets/imgs/img40.png";
 import img40_1 from "./src/assets/imgs/img40_1.png";
-const products = [
+import new4 from "./src/assets/imgs/news_4.webp";
+
+export const products = [
   {
     id: 1,
     image1: img1,
@@ -481,4 +483,1037 @@ const products = [
   },
 ];
 
-export default products;
+export const news = [
+  {
+    id: 1,
+    nammKeyboard: "INFI75",
+    title: "HƯỚNG DẪN SỬ DỤNG BÀN PHÍM CƠ INFI75",
+    createdAt: "16/06/2023",
+    paragraph: [
+      [
+        {
+          data: "Cảm ơn các bạn đã lựa chọn ",
+          isText: true,
+        },
+        {
+          data: "INFI75",
+          isStrong: true,
+        },
+        {
+          data: " - bàn phím có âm gõ stock hay nhất tầm giá!",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "Dưới đây là phần hướng dẫn sử dụng chiếc bàn phím ",
+          isText: true,
+        },
+        {
+          data: "INFI75",
+          isStrong: true,
+        },
+        {
+          data: " chi tiết nhất!",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "I. Cài đặt phầm mềm, driver",
+          isHeading: true,
+        },
+      ],
+      [
+        {
+          data: "INFI75 hỗ trợ phần mềm chính hãng INFIVERSE, các bạn có thể tải ở đây:",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "Bản switch TTC Xizi: ",
+          isText: true,
+        },
+        {
+          data: "Driver TTC",
+          isLink: true,
+          url: "https://drive.google.com/file/d/1ZjVTXmaEN3zkaYM_9Yppz9rNuYMGnENn/view",
+        },
+      ],
+      [
+        {
+          data: "Bản switch Kailh: ",
+          isText: true,
+        },
+        {
+          data: "Driver Kailh",
+          isLink: true,
+          url: "https://drive.google.com/file/d/1DAb1LQT3YpixD_ZFUFNZSPQCTl_cmrh9/view",
+        },
+      ],
+      [
+        {
+          data: "Lưu ý: hiện tại phần mềm đang có chút lỗi ở phiên bản mới nhất, mọi người không update firmware nhé!",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "Cài đặt phần mềm xong bạn hãy kết nối bàn phím với máy tính thông qua dây cáp.",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "Phần mềm hỗ trợ keymap, chỉnh ảnh màn hình TFT, upload ảnh GIF.",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "II. Điều chỉnh chế độ kết nối với các thiết bị",
+          isHeading: true,
+        },
+      ],
+      [
+        {
+          data: "Kết nối Bluetooth (gạt công tắc ở mặt sau bàn phím sang bên phải phía có không có núm xoay):",
+          isStrong: true,
+        },
+      ],
+      [
+        {
+          data: "1 Nhấn và giữ phím FN + Q trong 3-5 giây đến khi đèn nút Q nháy nhanh.",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "2 Mở thiết bị cần kết nối Bluetooth (chẳng hạn như điện thoại di động, máy vi tính).",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "3 Thiết bị đã được kết nối và quá trình ghép nối hoàn tất.",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "4 Kết nối với thiết bị thứ hai (ví dụ: điện thoại). Nếu thiết bị thứ nhất (ví dụ laptop) được kết nối với phím Q, hãy giữ FN + W trong vài giây và đèn báo của chữ W nhấp nháy nhanh. Sau đó lặp lại các bước (2) và (3).",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "5 Kết nối thiết bị thứ ba (ví dụ: máy tính bảng) và giữ phím kết hợp FN + E trong vài giây cho đến khi đèn báo E nhấp nháy trong khoảng thời gian ngắn. Sau đó lặp lại các bước (2) và (3).",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "6 Bây giờ hãy bật bluetooth của ba thiết bị được kết nối cùng một lúc và chuyển kết nối thiết bị bằng cách nhấn FN + Q/W/E (khi chuyển thiết bị chỉ ấn Fn Q/W/E một lần, ",
+          isText: true,
+        },
+        {
+          data: "KHÔNG",
+          isStrong: true,
+        },
+        {
+          data: " phải ấn giữ như lúc ghép nối)",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "Kết nối Wireless 2.4G (gạt công tắc ở mặt dưới bàn phím sang bên trái):",
+          isStrong: true,
+        },
+      ],
+      [
+        {
+          data: "N",
+          isStrong: true,
+        },
+        {
+          data: "hấn và giữ phím FN + R trong 3-5s để kích hoạt chế độ kết nối, cắm đầu USB vào máy tính, đèn báo hết nháy là kết nối đã thành công.",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "Hãng thiết kế chỗ để đầu thu wireless ở ngay dưới tấm badge bên cạnh nút điều hướng (được cố định bởi lực hút nam châm)",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "Sau khi tìm được đầu cắm receiver, bạn hãy cắm đầu thu vào cổng USB máy tính là có thể sử dụng được rồi.",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "Kết nối bằng dây (gạt công tắc ở mặt dưới bàn phím về vị trí giữa):",
+          isStrong: true,
+        },
+      ],
+      [
+        {
+          data: "Cắm dây và sử dụng.",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "III. Các tổ hợp phím tắt thường dùng",
+          isHeading: true,
+        },
+      ],
+      [
+        {
+          data: "FN + ESC giữ trong 5s: reset lại cài đặt mặc định của nhà sản xuất",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "FN + WIN (bên trái): Khoá hoặc mở khoá phím WIN",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "FN + [: Chuyển đổi chế độ LED",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "FN + điều hướng lên: Tăng độ sáng LED",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "FN + điều hướng xuống: Giảm độ sáng LED",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "FN + điều hướng trái: Thay đổi màu LED",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "FN + điều hướng phải: Tăng tốc độ nháy LED",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "FN + Page up: Home",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "FN + Page down: End",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "FN + P: Bật/tắt chế độ tiết kiệm pin",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "Cảm ơn các bạn đã đọc bài viết này!",
+          isText: true,
+        },
+      ],
+    ],
+    tags: ["banphimco", "infi75"],
+    image: new4,
+  },
+  {
+    id: 2,
+    nammKeyboard: "INFI75",
+    title: "HƯỚNG DẪN SỬ DỤNG BÀN PHÍM CƠ INFI75",
+    createdAt: "16/06/2023",
+    paragraph: [
+      [
+        {
+          data: "Cảm ơn các bạn đã lựa chọn ",
+          isText: true,
+        },
+        {
+          data: "INFI75",
+          isStrong: true,
+        },
+        {
+          data: " - bàn phím có âm gõ stock hay nhất tầm giá!",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "Dưới đây là phần hướng dẫn sử dụng chiếc bàn phím ",
+          isText: true,
+        },
+        {
+          data: "INFI75",
+          isStrong: true,
+        },
+        {
+          data: " chi tiết nhất!",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "I. Cài đặt phầm mềm, driver",
+          isHeading: true,
+        },
+      ],
+      [
+        {
+          data: "INFI75 hỗ trợ phần mềm chính hãng INFIVERSE, các bạn có thể tải ở đây:",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "Bản switch TTC Xizi: ",
+          isText: true,
+        },
+        {
+          data: "Driver TTC",
+          isLink: true,
+          url: "https://drive.google.com/file/d/1ZjVTXmaEN3zkaYM_9Yppz9rNuYMGnENn/view",
+        },
+      ],
+      [
+        {
+          data: "Bản switch Kailh: ",
+          isText: true,
+        },
+        {
+          data: "Driver Kailh",
+          isLink: true,
+          url: "https://drive.google.com/file/d/1DAb1LQT3YpixD_ZFUFNZSPQCTl_cmrh9/view",
+        },
+      ],
+      [
+        {
+          data: "Lưu ý: hiện tại phần mềm đang có chút lỗi ở phiên bản mới nhất, mọi người không update firmware nhé!",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "Cài đặt phần mềm xong bạn hãy kết nối bàn phím với máy tính thông qua dây cáp.",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "Phần mềm hỗ trợ keymap, chỉnh ảnh màn hình TFT, upload ảnh GIF.",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "II. Điều chỉnh chế độ kết nối với các thiết bị",
+          isHeading: true,
+        },
+      ],
+      [
+        {
+          data: "Kết nối Bluetooth (gạt công tắc ở mặt sau bàn phím sang bên phải phía có không có núm xoay):",
+          isStrong: true,
+        },
+      ],
+      [
+        {
+          data: "① Nhấn và giữ phím FN + Q trong 3-5 giây đến khi đèn nút Q nháy nhanh.",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "② Mở thiết bị cần kết nối Bluetooth (chẳng hạn như điện thoại di động, máy vi tính).",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "③ Thiết bị đã được kết nối và quá trình ghép nối hoàn tất.",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "④ Kết nối với thiết bị thứ hai (ví dụ: điện thoại). Nếu thiết bị thứ nhất (ví dụ laptop) được kết nối với phím Q, hãy giữ FN + W trong vài giây và đèn báo của chữ W nhấp nháy nhanh. Sau đó lặp lại các bước ② và ③.",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "⑤ Kết nối thiết bị thứ ba (ví dụ: máy tính bảng) và giữ phím kết hợp FN + E trong vài giây cho đến khi đèn báo E nhấp nháy trong khoảng thời gian ngắn. Sau đó lặp lại các bước (2) và (3).",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "⑥ Bây giờ hãy bật bluetooth của ba thiết bị được kết nối cùng một lúc và chuyển kết nối thiết bị bằng cách nhấn FN + Q/W/E (khi chuyển thiết bị chỉ ấn Fn Q/W/E một lần, ",
+          isText: true,
+        },
+        {
+          data: "KHÔNG",
+          isStrong: true,
+        },
+        {
+          data: " phải ấn giữ như lúc ghép nối)",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "Kết nối Wireless 2.4G (gạt công tắc ở mặt dưới bàn phím sang bên trái):",
+          isStrong: true,
+        },
+      ],
+      [
+        {
+          data: "N",
+          isStrong: true,
+        },
+        {
+          data: "hấn và giữ phím FN + R trong 3-5s để kích hoạt chế độ kết nối, cắm đầu USB vào máy tính, đèn báo hết nháy là kết nối đã thành công.",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "Hãng thiết kế chỗ để đầu thu wireless ở ngay dưới tấm badge bên cạnh nút điều hướng (được cố định bởi lực hút nam châm)",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "Sau khi tìm được đầu cắm receiver, bạn hãy cắm đầu thu vào cổng USB máy tính là có thể sử dụng được rồi.",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "Kết nối bằng dây (gạt công tắc ở mặt dưới bàn phím về vị trí giữa):",
+          isStrong: true,
+        },
+      ],
+      [
+        {
+          data: "Cắm dây và sử dụng.",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "III. Các tổ hợp phím tắt thường dùng",
+          isHeading: true,
+        },
+      ],
+      [
+        {
+          data: "FN + ESC giữ trong 5s: reset lại cài đặt mặc định của nhà sản xuất",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "FN + WIN (bên trái): Khoá hoặc mở khoá phím WIN",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "FN + [: Chuyển đổi chế độ LED",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "FN + điều hướng lên: Tăng độ sáng LED",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "FN + điều hướng xuống: Giảm độ sáng LED",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "FN + điều hướng trái: Thay đổi màu LED",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "FN + điều hướng phải: Tăng tốc độ nháy LED",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "FN + Page up: Home",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "FN + Page down: End",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "FN + P: Bật/tắt chế độ tiết kiệm pin",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "Cảm ơn các bạn đã đọc bài viết này!",
+          isText: true,
+        },
+      ],
+    ],
+    tags: ["banphimco", "infi75"],
+    image: new4,
+  },
+  {
+    id: 3,
+    nammKeyboard: "INFI75",
+    title: "HƯỚNG DẪN SỬ DỤNG BÀN PHÍM CƠ INFI75",
+    createdAt: "16/06/2023",
+    paragraph: [
+      [
+        {
+          data: "Cảm ơn các bạn đã lựa chọn ",
+          isText: true,
+        },
+        {
+          data: "INFI75",
+          isStrong: true,
+        },
+        {
+          data: " - bàn phím có âm gõ stock hay nhất tầm giá!",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "Dưới đây là phần hướng dẫn sử dụng chiếc bàn phím ",
+          isText: true,
+        },
+        {
+          data: "INFI75",
+          isStrong: true,
+        },
+        {
+          data: " chi tiết nhất!",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "I. Cài đặt phầm mềm, driver",
+          isHeading: true,
+        },
+      ],
+      [
+        {
+          data: "INFI75 hỗ trợ phần mềm chính hãng INFIVERSE, các bạn có thể tải ở đây:",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "Bản switch TTC Xizi: ",
+          isText: true,
+        },
+        {
+          data: "Driver TTC",
+          isLink: true,
+          url: "https://drive.google.com/file/d/1ZjVTXmaEN3zkaYM_9Yppz9rNuYMGnENn/view",
+        },
+      ],
+      [
+        {
+          data: "Bản switch Kailh: ",
+          isText: true,
+        },
+        {
+          data: "Driver Kailh",
+          isLink: true,
+          url: "https://drive.google.com/file/d/1DAb1LQT3YpixD_ZFUFNZSPQCTl_cmrh9/view",
+        },
+      ],
+      [
+        {
+          data: "Lưu ý: hiện tại phần mềm đang có chút lỗi ở phiên bản mới nhất, mọi người không update firmware nhé!",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "Cài đặt phần mềm xong bạn hãy kết nối bàn phím với máy tính thông qua dây cáp.",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "Phần mềm hỗ trợ keymap, chỉnh ảnh màn hình TFT, upload ảnh GIF.",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "II. Điều chỉnh chế độ kết nối với các thiết bị",
+          isHeading: true,
+        },
+      ],
+      [
+        {
+          data: "Kết nối Bluetooth (gạt công tắc ở mặt sau bàn phím sang bên phải phía có không có núm xoay):",
+          isStrong: true,
+        },
+      ],
+      [
+        {
+          data: "① Nhấn và giữ phím FN + Q trong 3-5 giây đến khi đèn nút Q nháy nhanh.",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "② Mở thiết bị cần kết nối Bluetooth (chẳng hạn như điện thoại di động, máy vi tính).",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "③ Thiết bị đã được kết nối và quá trình ghép nối hoàn tất.",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "④ Kết nối với thiết bị thứ hai (ví dụ: điện thoại). Nếu thiết bị thứ nhất (ví dụ laptop) được kết nối với phím Q, hãy giữ FN + W trong vài giây và đèn báo của chữ W nhấp nháy nhanh. Sau đó lặp lại các bước ② và ③.",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "⑤ Kết nối thiết bị thứ ba (ví dụ: máy tính bảng) và giữ phím kết hợp FN + E trong vài giây cho đến khi đèn báo E nhấp nháy trong khoảng thời gian ngắn. Sau đó lặp lại các bước (2) và (3).",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "⑥ Bây giờ hãy bật bluetooth của ba thiết bị được kết nối cùng một lúc và chuyển kết nối thiết bị bằng cách nhấn FN + Q/W/E (khi chuyển thiết bị chỉ ấn Fn Q/W/E một lần, ",
+          isText: true,
+        },
+        {
+          data: "KHÔNG",
+          isStrong: true,
+        },
+        {
+          data: " phải ấn giữ như lúc ghép nối)",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "Kết nối Wireless 2.4G (gạt công tắc ở mặt dưới bàn phím sang bên trái):",
+          isStrong: true,
+        },
+      ],
+      [
+        {
+          data: "N",
+          isStrong: true,
+        },
+        {
+          data: "hấn và giữ phím FN + R trong 3-5s để kích hoạt chế độ kết nối, cắm đầu USB vào máy tính, đèn báo hết nháy là kết nối đã thành công.",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "Hãng thiết kế chỗ để đầu thu wireless ở ngay dưới tấm badge bên cạnh nút điều hướng (được cố định bởi lực hút nam châm)",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "Sau khi tìm được đầu cắm receiver, bạn hãy cắm đầu thu vào cổng USB máy tính là có thể sử dụng được rồi.",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "Kết nối bằng dây (gạt công tắc ở mặt dưới bàn phím về vị trí giữa):",
+          isStrong: true,
+        },
+      ],
+      [
+        {
+          data: "Cắm dây và sử dụng.",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "III. Các tổ hợp phím tắt thường dùng",
+          isHeading: true,
+        },
+      ],
+      [
+        {
+          data: "FN + ESC giữ trong 5s: reset lại cài đặt mặc định của nhà sản xuất",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "FN + WIN (bên trái): Khoá hoặc mở khoá phím WIN",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "FN + [: Chuyển đổi chế độ LED",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "FN + điều hướng lên: Tăng độ sáng LED",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "FN + điều hướng xuống: Giảm độ sáng LED",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "FN + điều hướng trái: Thay đổi màu LED",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "FN + điều hướng phải: Tăng tốc độ nháy LED",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "FN + Page up: Home",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "FN + Page down: End",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "FN + P: Bật/tắt chế độ tiết kiệm pin",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "Cảm ơn các bạn đã đọc bài viết này!",
+          isText: true,
+        },
+      ],
+    ],
+    tags: ["banphimco", "infi75"],
+    image: new4,
+  },
+  {
+    id: 4,
+    nammKeyboard: "INFI75",
+    title: "HƯỚNG DẪN SỬ DỤNG BÀN PHÍM CƠ INFI75",
+    createdAt: "16/06/2023",
+    paragraph: [
+      [
+        {
+          data: "Cảm ơn các bạn đã lựa chọn ",
+          isText: true,
+        },
+        {
+          data: "INFI75",
+          isStrong: true,
+        },
+        {
+          data: " - bàn phím có âm gõ stock hay nhất tầm giá!",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "Dưới đây là phần hướng dẫn sử dụng chiếc bàn phím ",
+          isText: true,
+        },
+        {
+          data: "INFI75",
+          isStrong: true,
+        },
+        {
+          data: " chi tiết nhất!",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "I. Cài đặt phầm mềm, driver",
+          isHeading: true,
+        },
+      ],
+      [
+        {
+          data: "INFI75 hỗ trợ phần mềm chính hãng INFIVERSE, các bạn có thể tải ở đây:",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "Bản switch TTC Xizi: ",
+          isText: true,
+        },
+        {
+          data: "Driver TTC",
+          isLink: true,
+          url: "https://drive.google.com/file/d/1ZjVTXmaEN3zkaYM_9Yppz9rNuYMGnENn/view",
+        },
+      ],
+      [
+        {
+          data: "Bản switch Kailh: ",
+          isText: true,
+        },
+        {
+          data: "Driver Kailh",
+          isLink: true,
+          url: "https://drive.google.com/file/d/1DAb1LQT3YpixD_ZFUFNZSPQCTl_cmrh9/view",
+        },
+      ],
+      [
+        {
+          data: "Lưu ý: hiện tại phần mềm đang có chút lỗi ở phiên bản mới nhất, mọi người không update firmware nhé!",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "Cài đặt phần mềm xong bạn hãy kết nối bàn phím với máy tính thông qua dây cáp.",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "Phần mềm hỗ trợ keymap, chỉnh ảnh màn hình TFT, upload ảnh GIF.",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "II. Điều chỉnh chế độ kết nối với các thiết bị",
+          isHeading: true,
+        },
+      ],
+      [
+        {
+          data: "Kết nối Bluetooth (gạt công tắc ở mặt sau bàn phím sang bên phải phía có không có núm xoay):",
+          isStrong: true,
+        },
+      ],
+      [
+        {
+          data: "① Nhấn và giữ phím FN + Q trong 3-5 giây đến khi đèn nút Q nháy nhanh.",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "② Mở thiết bị cần kết nối Bluetooth (chẳng hạn như điện thoại di động, máy vi tính).",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "③ Thiết bị đã được kết nối và quá trình ghép nối hoàn tất.",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "④ Kết nối với thiết bị thứ hai (ví dụ: điện thoại). Nếu thiết bị thứ nhất (ví dụ laptop) được kết nối với phím Q, hãy giữ FN + W trong vài giây và đèn báo của chữ W nhấp nháy nhanh. Sau đó lặp lại các bước ② và ③.",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "⑤ Kết nối thiết bị thứ ba (ví dụ: máy tính bảng) và giữ phím kết hợp FN + E trong vài giây cho đến khi đèn báo E nhấp nháy trong khoảng thời gian ngắn. Sau đó lặp lại các bước (2) và (3).",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "⑥ Bây giờ hãy bật bluetooth của ba thiết bị được kết nối cùng một lúc và chuyển kết nối thiết bị bằng cách nhấn FN + Q/W/E (khi chuyển thiết bị chỉ ấn Fn Q/W/E một lần, ",
+          isText: true,
+        },
+        {
+          data: "KHÔNG",
+          isStrong: true,
+        },
+        {
+          data: " phải ấn giữ như lúc ghép nối)",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "Kết nối Wireless 2.4G (gạt công tắc ở mặt dưới bàn phím sang bên trái):",
+          isStrong: true,
+        },
+      ],
+      [
+        {
+          data: "N",
+          isStrong: true,
+        },
+        {
+          data: "hấn và giữ phím FN + R trong 3-5s để kích hoạt chế độ kết nối, cắm đầu USB vào máy tính, đèn báo hết nháy là kết nối đã thành công.",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "Hãng thiết kế chỗ để đầu thu wireless ở ngay dưới tấm badge bên cạnh nút điều hướng (được cố định bởi lực hút nam châm)",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "Sau khi tìm được đầu cắm receiver, bạn hãy cắm đầu thu vào cổng USB máy tính là có thể sử dụng được rồi.",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "Kết nối bằng dây (gạt công tắc ở mặt dưới bàn phím về vị trí giữa):",
+          isStrong: true,
+        },
+      ],
+      [
+        {
+          data: "Cắm dây và sử dụng.",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "III. Các tổ hợp phím tắt thường dùng",
+          isHeading: true,
+        },
+      ],
+      [
+        {
+          data: "FN + ESC giữ trong 5s: reset lại cài đặt mặc định của nhà sản xuất",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "FN + WIN (bên trái): Khoá hoặc mở khoá phím WIN",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "FN + [: Chuyển đổi chế độ LED",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "FN + điều hướng lên: Tăng độ sáng LED",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "FN + điều hướng xuống: Giảm độ sáng LED",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "FN + điều hướng trái: Thay đổi màu LED",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "FN + điều hướng phải: Tăng tốc độ nháy LED",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "FN + Page up: Home",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "FN + Page down: End",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "FN + P: Bật/tắt chế độ tiết kiệm pin",
+          isText: true,
+        },
+      ],
+      [
+        {
+          data: "Cảm ơn các bạn đã đọc bài viết này!",
+          isText: true,
+        },
+      ],
+    ],
+    tags: ["banphimco", "infi75"],
+    image: new4,
+  },
+];

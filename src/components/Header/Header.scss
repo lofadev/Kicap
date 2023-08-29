@@ -133,6 +133,8 @@
     background-color: #fff;
     color: #1c1c1c;
     box-shadow: rgba(99, 99, 99, 0.2) 2px 2px 8px 2px;
+    opacity: 0;
+    z-index: -1;
   }
 
   .dropdown-menu {
@@ -207,8 +209,6 @@
 
 @keyframes fadeIn {
   from {
-    opacity: 0;
-    z-index: -1;
     transform: translateY(40px);
   }
   to {
