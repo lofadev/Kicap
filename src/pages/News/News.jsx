@@ -3,6 +3,7 @@ import { GoChevronLeft, GoChevronRight } from "react-icons/go";
 import { Link } from "react-router-dom";
 import { news } from "../../../data";
 import "./News.scss";
+import FormGroup from "../../components/FormGroup/FormGroup";
 
 const News = () => {
   const [newState, setNewState] = useState({});
@@ -79,6 +80,23 @@ const News = () => {
               <GoChevronRight></GoChevronRight>
             </Link>
           </div>
+        </div>
+
+        {/* article comment */}
+        <div className="article-comment">
+          <form action="submit" className="form-cmt">
+            <h5 className="form-title">Viết bình luận của bạn</h5>
+            <p className="form-note">
+              Địa chỉ email của bạn sẽ được bảo mật. Các trường bắt buộc được đánh dấu
+              <span className="required"> *</span>
+            </p>
+
+            <div className="form-main">
+              <FormGroup type="text" labelName="Nội dung" required></FormGroup>
+              <FormGroup type="input" labelName="Họ tên" required></FormGroup>
+              <FormGroup type="input" labelName="Email" required></FormGroup>
+            </div>
+          </form>
         </div>
       </div>
     </div>
