@@ -6,19 +6,21 @@
   cursor: pointer;
 
   &-image {
-    padding: 10px 0;
+    --height: 300px;
+    --padding: 10px;
+    padding: var(--padding) 0;
     position: relative;
-    height: 300px;
+    height: var(--height);
+    overflow: hidden;
   }
 
   &-image-front,
   &-image-back {
     width: 100%;
-    height: 100%;
+    height: calc(100% - calc(var(--padding) * 2));
     object-fit: cover;
     position: absolute;
-    height: auto;
-    top: 10px;
+    top: var(--padding);
     left: 0;
     transition: all 0.25s linear;
   }

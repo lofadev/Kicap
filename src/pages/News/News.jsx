@@ -2,26 +2,27 @@ import { useEffect, useState } from "react";
 import { GoChevronLeft, GoChevronRight } from "react-icons/go";
 import { Link } from "react-router-dom";
 import { news } from "../../../data";
+import ArticleTag from "../../components/ArticleTag/ArticleTag";
+import FormComment from "../../components/FormComment/FormComment";
 import "./News.scss";
-import FormGroup from "../../components/FormGroup/FormGroup";
 
 const News = () => {
-  const [newState, setNewState] = useState({});
+  const [newsState, setNewsState] = useState({});
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
-    setNewState(news[0]);
+    setNewsState(news[0]);
   });
   return (
     <div className="article">
       <div className="container">
-        <h1 className="title-head">{newState.title}</h1>
+        <h1 className="title-head">{newsState.title}</h1>
         <div className="postby">
-          Đăng bởi <b>Kicap</b> vào lúc {newState.createdAt}
+          Đăng bởi <b>Kicap</b> vào lúc {newsState.createdAt}
         </div>
         <div className="article-details">
-          {Object.keys(newState).length !== 0 &&
-            newState.paragraph.map((child, index) => (
+          {Object.keys(newsState).length !== 0 &&
+            newsState.paragraph.map((child, index) => (
               <p className="paragraph" key={index}>
                 {child.map((item, index) => {
                   return item.isText ? (
@@ -49,24 +50,16 @@ const News = () => {
         </div>
 
         {/* tag */}
-        <div className="tag-article">
-          <span className="tag-head">Tags: </span>
-          {Object.keys(newState).length !== 0 &&
-            newState.tags.map((item, index) => {
-              return (
-                <Link title={item} to={"/"} key={index} className="tag-link">
-                  {item}
-                </Link>
-              );
-            })}
-        </div>
+        {Object.keys(newsState).length !== 0 && newsState.tags.length > 0 && (
+          <ArticleTag newsState={newsState}></ArticleTag>
+        )}
 
         {/* article toolbar */}
         <div className="article-toolbar">
           <div className="article-toolbar-left">
             <span className="article-toolbar-head">Bạn đang xem: </span>
-            <span className="article-toolbar-title" title={newState.title}>
-              {newState.title}
+            <span className="article-toolbar-title" title={newsState.title}>
+              {newsState.title}
             </span>
           </div>
           <div className="article-toolbar-right">
@@ -83,21 +76,7 @@ const News = () => {
         </div>
 
         {/* article comment */}
-        <div className="article-comment">
-          <form action="submit" className="form-cmt">
-            <h5 className="form-title">Viết bình luận của bạn</h5>
-            <p className="form-note">
-              Địa chỉ email của bạn sẽ được bảo mật. Các trường bắt buộc được đánh dấu
-              <span className="required"> *</span>
-            </p>
-
-            <div className="form-main">
-              <FormGroup type="text" labelName="Nội dung" required></FormGroup>
-              <FormGroup type="input" labelName="Họ tên" required></FormGroup>
-              <FormGroup type="input" labelName="Email" required></FormGroup>
-            </div>
-          </form>
-        </div>
+        <FormComment></FormComment>
       </div>
     </div>
   );

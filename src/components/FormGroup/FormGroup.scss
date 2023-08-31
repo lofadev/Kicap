@@ -1,4 +1,13 @@
 .form {
+  &-main {
+    margin: 0 -10px;
+  }
+
+  &-group {
+    padding: 0 10px;
+    padding-bottom: 8px;
+  }
+
   &-control {
     display: block;
     width: 100%;
@@ -16,5 +25,9 @@
     -webkit-appearance: none;
     -moz-appearance: none;
     border: 1px solid #e6e6e6;
+  }
+
+  textarea {
+    height: 135px;
   }
 }

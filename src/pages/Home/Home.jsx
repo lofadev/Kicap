@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { products, news } from "../../../data";
+import { news, products } from "../../../data";
 import FeatureProductBlock from "../../components/FeatureProductBlock/FeatureProductBlock";
 import HeroSlider from "../../components/HeroSlider/HeroSlider";
-import SectionProduct from "../../components/SectionProduct/SectionProduct";
 import SectionNews from "../../components/SectionNews/SectionNews";
+import SectionProduct from "../../components/SectionProduct/SectionProduct";
 
 const Home = () => {
   const [productState] = useState(products);
@@ -46,6 +46,7 @@ const Home = () => {
     setAccessorys(accessorysArr);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   return (
     <>
       <HeroSlider></HeroSlider>

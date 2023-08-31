@@ -21,11 +21,14 @@ const ProductCard = ({ data }) => {
           <img className={`product_card-image-front`} src={data.image1} alt="" />
           <img className={`product_card-image-back`} src={data.image2} alt="" />
         </div>
-        <h4 className="product_card-type">{data.type}</h4>
-        <h3 className="product_card-title">{data.title}</h3>
-        <div className="product_card-price">
-          <strong>{formattedSalePrice}</strong>
-          {data.salePercent && <span>{formattedPrice}</span>}
+
+        <div className="product-card-main">
+          <h4 className="product_card-type">{data.type}</h4>
+          <h3 className="product_card-title">{data.title}</h3>
+          <div className="product_card-price">
+            <strong>{formattedSalePrice}</strong>
+            {data.salePercent && <span>{formattedPrice}</span>}
+          </div>
         </div>
 
         <div className="product_card-actions">

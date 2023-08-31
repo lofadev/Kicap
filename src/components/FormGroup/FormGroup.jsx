@@ -1,10 +1,10 @@
-import "./FormGroup.scss";
 import Proptypes from "prop-types";
+import "./FormGroup.scss";
 
-const FormGroup = ({ type, labelName, required = false }) => {
+const FormGroup = ({ type, labelName, required = false, className = "" }) => {
   const Element = type == "text" ? "textarea" : "input";
   return (
-    <div className="form-group">
+    <div className={`form-group ${className}`}>
       <label htmlFor="">
         {labelName} {required && <span className="required">*</span>}
       </label>
@@ -17,6 +17,7 @@ FormGroup.propTypes = {
   type: Proptypes.string.isRequired,
   labelName: Proptypes.string.isRequired,
   required: Proptypes.bool,
+  className: Proptypes.string,
 };
 
 export default FormGroup;
