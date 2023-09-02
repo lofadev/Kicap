@@ -1,18 +1,24 @@
 import { useEffect, useState } from "react";
 import { GoChevronLeft, GoChevronRight } from "react-icons/go";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import unidecode from "unidecode";
 import { news } from "../../../data";
 import ArticleTag from "../../components/ArticleTag/ArticleTag";
 import FormComment from "../../components/FormComment/FormComment";
 import "./News.scss";
 
 const News = () => {
-  const [newsState, setNewsState] = useState({});
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => {
-    setNewsState(news[0]);
+  const { title } = useParams();
+  const [newsState] = useState(() => {
+    return news.find((newsItem) => {
+      return unidecode(newsItem.title.toLowerCase()).split(" ").join("-") === title;
+    });
   });
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [title]);
+
   return (
     <div className="article">
       <div className="container">

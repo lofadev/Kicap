@@ -2,7 +2,8 @@ const routes = {
   home: "/",
   cart: "/cart",
   introduce: "/gioi-thieu",
-  news: "/:title",
+  product_details: "/product/:title",
+  news: "/news/:title",
 };
 
 export default routes;

@@ -1,93 +1,335 @@
-import img1 from "./src/assets/imgs/img1.jpg";
 import img1_1 from "./src/assets/imgs/img1_1.jpg";
-import img2 from "./src/assets/imgs/img2.jpg";
+import img1_2 from "./src/assets/imgs/img1_2.jpg";
+import img1_3 from "./src/assets/imgs/img1_3.jpg";
+import img1_4 from "./src/assets/imgs/img1_4.jpg";
+import img1_5 from "./src/assets/imgs/img1_5.jpg";
+
 import img2_1 from "./src/assets/imgs/img2_1.jpg";
-import img3 from "./src/assets/imgs/img3.png";
+import img2_2 from "./src/assets/imgs/img2_2.jpg";
+import img2_3 from "./src/assets/imgs/img2_3.jpg";
+import img2_4 from "./src/assets/imgs/img2_4.jpg";
+import img2_5 from "./src/assets/imgs/img2_5.jpg";
+import img2_6 from "./src/assets/imgs/img2_6.jpg";
+import img2_7 from "./src/assets/imgs/img2_7.jpg";
+
 import img3_1 from "./src/assets/imgs/img3_1.jpg";
-import img4 from "./src/assets/imgs/img4.jpg";
+import img3_2 from "./src/assets/imgs/img3_2.jpg";
+import img3_3 from "./src/assets/imgs/img3_3.jpg";
+import img3_4 from "./src/assets/imgs/img3_4.jpg";
+import img3_5 from "./src/assets/imgs/img3_5.jpg";
+
 import img4_1 from "./src/assets/imgs/img4_1.jpg";
-import img5 from "./src/assets/imgs/img5.jpg";
+import img4_2 from "./src/assets/imgs/img4_2.jpg";
+import img4_3 from "./src/assets/imgs/img4_3.jpg";
+import img4_4 from "./src/assets/imgs/img4_4.jpg";
+import img4_5 from "./src/assets/imgs/img4_5.jpg";
+
 import img5_1 from "./src/assets/imgs/img5_1.jpg";
-import img6 from "./src/assets/imgs/img6.png";
+import img5_2 from "./src/assets/imgs/img5_2.jpg";
+import img5_3 from "./src/assets/imgs/img5_3.jpg";
+
 import img6_1 from "./src/assets/imgs/img6_1.jpg";
-import img7 from "./src/assets/imgs/img7.jpg";
+import img6_2 from "./src/assets/imgs/img6_2.jpg";
+import img6_3 from "./src/assets/imgs/img6_3.jpg";
+import img6_4 from "./src/assets/imgs/img6_4.jpg";
+import img6_5 from "./src/assets/imgs/img6_5.jpg";
+import img6_6 from "./src/assets/imgs/img6_6.jpg";
+
 import img7_1 from "./src/assets/imgs/img7_1.jpg";
-import img8 from "./src/assets/imgs/img8.jpg";
+import img7_10 from "./src/assets/imgs/img7_10.jpg";
+import img7_11 from "./src/assets/imgs/img7_11.jpg";
+import img7_2 from "./src/assets/imgs/img7_2.jpg";
+import img7_3 from "./src/assets/imgs/img7_3.jpg";
+import img7_4 from "./src/assets/imgs/img7_4.jpg";
+import img7_5 from "./src/assets/imgs/img7_5.jpg";
+import img7_6 from "./src/assets/imgs/img7_6.jpg";
+import img7_7 from "./src/assets/imgs/img7_7.jpg";
+import img7_8 from "./src/assets/imgs/img7_8.jpg";
+import img7_9 from "./src/assets/imgs/img7_9.jpg";
+
 import img8_1 from "./src/assets/imgs/img8_1.jpg";
-import img9 from "./src/assets/imgs/img9.png";
-import img9_1 from "./src/assets/imgs/img9_1.png";
-import img10 from "./src/assets/imgs/img10.png";
-import img10_1 from "./src/assets/imgs/img10_1.png";
-import img11 from "./src/assets/imgs/img11.png";
+import img8_2 from "./src/assets/imgs/img8_2.jpg";
+import img8_3 from "./src/assets/imgs/img8_3.jpg";
+import img8_4 from "./src/assets/imgs/img8_4.jpg";
+import img8_5 from "./src/assets/imgs/img8_5.jpg";
+import img8_6 from "./src/assets/imgs/img8_6.jpg";
+import img8_7 from "./src/assets/imgs/img8_7.jpg";
+
+import img9_1 from "./src/assets/imgs/img9_1.jpg";
+import img9_10 from "./src/assets/imgs/img9_10.jpg";
+import img9_11 from "./src/assets/imgs/img9_11.jpg";
+import img9_12 from "./src/assets/imgs/img9_12.jpg";
+import img9_2 from "./src/assets/imgs/img9_2.jpg";
+import img9_3 from "./src/assets/imgs/img9_3.jpg";
+import img9_4 from "./src/assets/imgs/img9_4.jpg";
+import img9_5 from "./src/assets/imgs/img9_5.jpg";
+import img9_6 from "./src/assets/imgs/img9_6.jpg";
+import img9_7 from "./src/assets/imgs/img9_7.jpg";
+import img9_8 from "./src/assets/imgs/img9_8.jpg";
+import img9_9 from "./src/assets/imgs/img9_9.jpg";
+
+import img10_1 from "./src/assets/imgs/img10_1.jpg";
+import img10_10 from "./src/assets/imgs/img10_10.jpg";
+import img10_11 from "./src/assets/imgs/img10_11.jpg";
+import img10_12 from "./src/assets/imgs/img10_12.jpg";
+import img10_2 from "./src/assets/imgs/img10_2.jpg";
+import img10_3 from "./src/assets/imgs/img10_3.jpg";
+import img10_4 from "./src/assets/imgs/img10_4.jpg";
+import img10_5 from "./src/assets/imgs/img10_5.jpg";
+import img10_6 from "./src/assets/imgs/img10_6.jpg";
+import img10_7 from "./src/assets/imgs/img10_7.jpg";
+import img10_8 from "./src/assets/imgs/img10_8.jpg";
+import img10_9 from "./src/assets/imgs/img10_9.jpg";
+
 import img11_1 from "./src/assets/imgs/img11_1.jpg";
-import img12 from "./src/assets/imgs/img12.png";
-import img12_1 from "./src/assets/imgs/img12_1.png";
-import img13 from "./src/assets/imgs/img13.jpg";
+import img11_2 from "./src/assets/imgs/img11_2.jpg";
+import img11_3 from "./src/assets/imgs/img11_3.jpg";
+import img11_4 from "./src/assets/imgs/img11_4.jpg";
+import img11_5 from "./src/assets/imgs/img11_5.jpg";
+import img11_6 from "./src/assets/imgs/img11_6.jpg";
+import img11_7 from "./src/assets/imgs/img11_7.jpg";
+
+import img12_1 from "./src/assets/imgs/img12_1.jpg";
+import img12_2 from "./src/assets/imgs/img12_2.jpg";
+import img12_3 from "./src/assets/imgs/img12_3.jpg";
+import img12_4 from "./src/assets/imgs/img12_4.jpg";
+import img12_5 from "./src/assets/imgs/img12_5.jpg";
+import img12_6 from "./src/assets/imgs/img12_6.jpg";
+
 import img13_1 from "./src/assets/imgs/img13_1.jpg";
-import img14 from "./src/assets/imgs/img14.jpg";
+import img13_2 from "./src/assets/imgs/img13_2.jpg";
+import img13_3 from "./src/assets/imgs/img13_3.jpg";
+import img13_4 from "./src/assets/imgs/img13_4.jpg";
+import img13_5 from "./src/assets/imgs/img13_5.jpg";
+import img13_6 from "./src/assets/imgs/img13_6.jpg";
+import img13_7 from "./src/assets/imgs/img13_7.jpg";
+import img13_8 from "./src/assets/imgs/img13_8.jpg";
+
 import img14_1 from "./src/assets/imgs/img14_1.jpg";
-import img15 from "./src/assets/imgs/img15.jpg";
+import img14_2 from "./src/assets/imgs/img14_2.jpg";
+import img14_3 from "./src/assets/imgs/img14_3.jpg";
+import img14_4 from "./src/assets/imgs/img14_4.jpg";
+import img14_5 from "./src/assets/imgs/img14_5.jpg";
+import img14_6 from "./src/assets/imgs/img14_6.jpg";
+
 import img15_1 from "./src/assets/imgs/img15_1.jpg";
-import img16 from "./src/assets/imgs/img16.jpg";
+import img15_2 from "./src/assets/imgs/img15_2.jpg";
+import img15_3 from "./src/assets/imgs/img15_3.jpg";
+import img15_4 from "./src/assets/imgs/img15_4.jpg";
+import img15_5 from "./src/assets/imgs/img15_5.jpg";
+import img15_6 from "./src/assets/imgs/img15_6.jpg";
+import img15_7 from "./src/assets/imgs/img15_7.jpg";
+
 import img16_1 from "./src/assets/imgs/img16_1.jpg";
-import img17 from "./src/assets/imgs/img17.png";
-import img17_1 from "./src/assets/imgs/img17_1.png";
-import img18 from "./src/assets/imgs/img18.jpg";
+import img16_2 from "./src/assets/imgs/img16_2.jpg";
+
+import img17_1 from "./src/assets/imgs/img17_1.jpg";
+import img17_2 from "./src/assets/imgs/img17_2.jpg";
+import img17_3 from "./src/assets/imgs/img17_3.jpg";
+import img17_4 from "./src/assets/imgs/img17_4.jpg";
+import img17_5 from "./src/assets/imgs/img17_5.jpg";
+import img17_6 from "./src/assets/imgs/img17_6.jpg";
+
 import img18_1 from "./src/assets/imgs/img18_1.jpg";
-import img19 from "./src/assets/imgs/img19.jpg";
-import img19_1 from "./src/assets/imgs/img19_1.png";
-import img20 from "./src/assets/imgs/img20.jpg";
+import img18_2 from "./src/assets/imgs/img18_2.jpg";
+import img18_3 from "./src/assets/imgs/img18_3.jpg";
+import img18_4 from "./src/assets/imgs/img18_4.jpg";
+import img18_5 from "./src/assets/imgs/img18_5.jpg";
+
+import img19_1 from "./src/assets/imgs/img19_1.jpg";
+import img19_2 from "./src/assets/imgs/img19_2.jpg";
+import img19_3 from "./src/assets/imgs/img19_3.jpg";
+import img19_4 from "./src/assets/imgs/img19_4.jpg";
+import img19_5 from "./src/assets/imgs/img19_5.jpg";
+import img19_6 from "./src/assets/imgs/img19_6.jpg";
+import img19_7 from "./src/assets/imgs/img19_7.jpg";
+import img19_8 from "./src/assets/imgs/img19_8.jpg";
+import img19_9 from "./src/assets/imgs/img19_9.jpg";
+
 import img20_1 from "./src/assets/imgs/img20_1.jpg";
-import img21 from "./src/assets/imgs/img21.jpg";
+import img20_2 from "./src/assets/imgs/img20_2.jpg";
+import img20_3 from "./src/assets/imgs/img20_3.jpg";
+import img20_4 from "./src/assets/imgs/img20_4.jpg";
+import img20_5 from "./src/assets/imgs/img20_5.jpg";
+import img20_6 from "./src/assets/imgs/img20_6.jpg";
+import img20_7 from "./src/assets/imgs/img20_7.jpg";
+import img20_8 from "./src/assets/imgs/img20_8.jpg";
+
 import img21_1 from "./src/assets/imgs/img21_1.jpg";
-import img22 from "./src/assets/imgs/img22.jpg";
+import img21_2 from "./src/assets/imgs/img21_2.jpg";
+import img21_3 from "./src/assets/imgs/img21_3.jpg";
+import img21_4 from "./src/assets/imgs/img21_4.jpg";
+import img21_5 from "./src/assets/imgs/img21_5.jpg";
+import img21_6 from "./src/assets/imgs/img21_6.jpg";
+import img21_7 from "./src/assets/imgs/img21_7.jpg";
+
 import img22_1 from "./src/assets/imgs/img22_1.jpg";
-import img23 from "./src/assets/imgs/img23.jpg";
+import img22_2 from "./src/assets/imgs/img22_2.jpg";
+import img22_3 from "./src/assets/imgs/img22_3.jpg";
+import img22_4 from "./src/assets/imgs/img22_4.jpg";
+import img22_5 from "./src/assets/imgs/img22_5.jpg";
+import img22_6 from "./src/assets/imgs/img22_6.jpg";
+import img22_7 from "./src/assets/imgs/img22_7.jpg";
+import img22_8 from "./src/assets/imgs/img22_8.jpg";
+import img22_9 from "./src/assets/imgs/img22_9.jpg";
+
 import img23_1 from "./src/assets/imgs/img23_1.jpg";
-import img24 from "./src/assets/imgs/img24.jpg";
+import img23_2 from "./src/assets/imgs/img23_2.jpg";
+import img23_3 from "./src/assets/imgs/img23_3.jpg";
+import img23_4 from "./src/assets/imgs/img23_4.jpg";
+import img23_5 from "./src/assets/imgs/img23_5.jpg";
+import img23_6 from "./src/assets/imgs/img23_6.jpg";
+import img23_7 from "./src/assets/imgs/img23_7.jpg";
+import img23_8 from "./src/assets/imgs/img23_8.jpg";
+
 import img24_1 from "./src/assets/imgs/img24_1.jpg";
-import img25 from "./src/assets/imgs/img25.jpg";
+import img24_2 from "./src/assets/imgs/img24_2.jpg";
+import img24_3 from "./src/assets/imgs/img24_3.jpg";
+import img24_4 from "./src/assets/imgs/img24_4.jpg";
+import img24_5 from "./src/assets/imgs/img24_5.jpg";
+import img24_6 from "./src/assets/imgs/img24_6.jpg";
+import img24_7 from "./src/assets/imgs/img24_7.jpg";
+
 import img25_1 from "./src/assets/imgs/img25_1.jpg";
-import img26 from "./src/assets/imgs/img26.jpg";
+import img25_2 from "./src/assets/imgs/img25_2.jpg";
+import img25_3 from "./src/assets/imgs/img25_3.jpg";
+import img25_4 from "./src/assets/imgs/img25_4.jpg";
+import img25_5 from "./src/assets/imgs/img25_5.jpg";
+import img25_6 from "./src/assets/imgs/img25_6.jpg";
+import img25_7 from "./src/assets/imgs/img25_7.jpg";
+
 import img26_1 from "./src/assets/imgs/img26_1.jpg";
-import img27 from "./src/assets/imgs/img27.jpg";
+import img26_2 from "./src/assets/imgs/img26_2.jpg";
+import img26_3 from "./src/assets/imgs/img26_3.jpg";
+import img26_4 from "./src/assets/imgs/img26_4.jpg";
+import img26_5 from "./src/assets/imgs/img26_5.jpg";
+
 import img27_1 from "./src/assets/imgs/img27_1.jpg";
-import img28 from "./src/assets/imgs/img28.jpg";
+import img27_2 from "./src/assets/imgs/img27_2.jpg";
+import img27_3 from "./src/assets/imgs/img27_3.jpg";
+import img27_4 from "./src/assets/imgs/img27_4.jpg";
+
 import img28_1 from "./src/assets/imgs/img28_1.jpg";
-import img29 from "./src/assets/imgs/img29.jpg";
+import img28_10 from "./src/assets/imgs/img28_10.jpg";
+import img28_11 from "./src/assets/imgs/img28_11.jpg";
+import img28_2 from "./src/assets/imgs/img28_2.jpg";
+import img28_3 from "./src/assets/imgs/img28_3.jpg";
+import img28_4 from "./src/assets/imgs/img28_4.jpg";
+import img28_5 from "./src/assets/imgs/img28_5.jpg";
+import img28_6 from "./src/assets/imgs/img28_6.jpg";
+import img28_7 from "./src/assets/imgs/img28_7.jpg";
+import img28_8 from "./src/assets/imgs/img28_8.jpg";
+import img28_9 from "./src/assets/imgs/img28_9.jpg";
+
 import img29_1 from "./src/assets/imgs/img29_1.jpg";
-import img30 from "./src/assets/imgs/img30.png";
-import img30_1 from "./src/assets/imgs/img30_1.png";
-import img31 from "./src/assets/imgs/img31.png";
+import img29_2 from "./src/assets/imgs/img29_2.jpg";
+import img29_3 from "./src/assets/imgs/img29_3.jpg";
+import img29_4 from "./src/assets/imgs/img29_4.jpg";
+import img29_5 from "./src/assets/imgs/img29_5.jpg";
+import img29_6 from "./src/assets/imgs/img29_6.jpg";
+
+import img30_1 from "./src/assets/imgs/img30_1.jpg";
+import img30_2 from "./src/assets/imgs/img30_2.jpg";
+import img30_3 from "./src/assets/imgs/img30_3.jpg";
+import img30_4 from "./src/assets/imgs/img30_4.jpg";
+import img30_5 from "./src/assets/imgs/img30_5.jpg";
+
 import img31_1 from "./src/assets/imgs/img31_1.jpg";
-import img32 from "./src/assets/imgs/img32.jpg";
+import img31_2 from "./src/assets/imgs/img31_2.jpg";
+import img31_3 from "./src/assets/imgs/img31_3.jpg";
+import img31_4 from "./src/assets/imgs/img31_4.jpg";
+import img31_5 from "./src/assets/imgs/img31_5.jpg";
+import img31_6 from "./src/assets/imgs/img31_6.jpg";
+import img31_7 from "./src/assets/imgs/img31_7.jpg";
+import img31_8 from "./src/assets/imgs/img31_8.jpg";
+import img31_9 from "./src/assets/imgs/img31_9.jpg";
+
 import img32_1 from "./src/assets/imgs/img32_1.jpg";
-import img33 from "./src/assets/imgs/img33.png";
-import img33_1 from "./src/assets/imgs/img33_1.png";
-import img34 from "./src/assets/imgs/img34.png";
-import img34_1 from "./src/assets/imgs/img34_1.png";
-import img35 from "./src/assets/imgs/img35.png";
-import img35_1 from "./src/assets/imgs/img35_1.png";
-import img36 from "./src/assets/imgs/img36.png";
-import img36_1 from "./src/assets/imgs/img36_1.png";
-import img37 from "./src/assets/imgs/img37.png";
-import img37_1 from "./src/assets/imgs/img37_1.png";
-import img38 from "./src/assets/imgs/img38.png";
-import img38_1 from "./src/assets/imgs/img38_1.png";
-import img39 from "./src/assets/imgs/img39.jpg";
+import img32_2 from "./src/assets/imgs/img32_2.jpg";
+import img32_3 from "./src/assets/imgs/img32_3.jpg";
+import img32_4 from "./src/assets/imgs/img32_4.jpg";
+import img32_5 from "./src/assets/imgs/img32_5.jpg";
+
+import img33_1 from "./src/assets/imgs/img33_1.jpg";
+import img33_2 from "./src/assets/imgs/img33_2.jpg";
+
+import img34_1 from "./src/assets/imgs/img34_1.jpg";
+import img34_10 from "./src/assets/imgs/img34_10.jpg";
+import img34_11 from "./src/assets/imgs/img34_11.jpg";
+import img34_12 from "./src/assets/imgs/img34_12.jpg";
+import img34_13 from "./src/assets/imgs/img34_13.jpg";
+import img34_14 from "./src/assets/imgs/img34_14.jpg";
+import img34_15 from "./src/assets/imgs/img34_15.jpg";
+import img34_16 from "./src/assets/imgs/img34_16.jpg";
+import img34_17 from "./src/assets/imgs/img34_17.jpg";
+import img34_18 from "./src/assets/imgs/img34_18.jpg";
+import img34_2 from "./src/assets/imgs/img34_2.jpg";
+import img34_3 from "./src/assets/imgs/img34_3.jpg";
+import img34_4 from "./src/assets/imgs/img34_4.jpg";
+import img34_5 from "./src/assets/imgs/img34_5.jpg";
+import img34_6 from "./src/assets/imgs/img34_6.jpg";
+import img34_7 from "./src/assets/imgs/img34_7.jpg";
+import img34_8 from "./src/assets/imgs/img34_8.jpg";
+import img34_9 from "./src/assets/imgs/img34_9.jpg";
+
+import img35_1 from "./src/assets/imgs/img35_1.jpg";
+import img35_2 from "./src/assets/imgs/img35_2.jpg";
+import img35_3 from "./src/assets/imgs/img35_3.jpg";
+import img35_4 from "./src/assets/imgs/img35_4.jpg";
+import img35_5 from "./src/assets/imgs/img35_5.jpg";
+import img35_6 from "./src/assets/imgs/img35_6.jpg";
+import img35_7 from "./src/assets/imgs/img35_7.jpg";
+
+import img36_1 from "./src/assets/imgs/img36_1.jpg";
+import img36_2 from "./src/assets/imgs/img36_2.jpg";
+import img36_3 from "./src/assets/imgs/img36_3.jpg";
+import img36_4 from "./src/assets/imgs/img36_4.jpg";
+import img36_5 from "./src/assets/imgs/img36_5.jpg";
+import img36_6 from "./src/assets/imgs/img36_6.jpg";
+import img36_7 from "./src/assets/imgs/img36_7.jpg";
+import img36_8 from "./src/assets/imgs/img36_8.jpg";
+
+import img37_1 from "./src/assets/imgs/img37_1.jpg";
+import img37_2 from "./src/assets/imgs/img37_2.jpg";
+import img37_3 from "./src/assets/imgs/img37_3.jpg";
+import img37_4 from "./src/assets/imgs/img37_4.jpg";
+import img37_5 from "./src/assets/imgs/img37_5.jpg";
+import img37_6 from "./src/assets/imgs/img37_6.jpg";
+
+import img38_1 from "./src/assets/imgs/img38_1.jpg";
+import img38_2 from "./src/assets/imgs/img38_2.jpg";
+import img38_3 from "./src/assets/imgs/img38_3.jpg";
+import img38_4 from "./src/assets/imgs/img38_4.jpg";
+import img38_5 from "./src/assets/imgs/img38_5.jpg";
+import img38_6 from "./src/assets/imgs/img38_6.jpg";
+import img38_7 from "./src/assets/imgs/img38_7.jpg";
+
 import img39_1 from "./src/assets/imgs/img39_1.jpg";
-import img40 from "./src/assets/imgs/img40.png";
-import img40_1 from "./src/assets/imgs/img40_1.png";
-import new1 from "./src/assets/imgs/news_1.png";
-import new2 from "./src/assets/imgs/news_2.png";
-import new3 from "./src/assets/imgs/news_3.png";
-import new4 from "./src/assets/imgs/news_4.png";
+import img39_2 from "./src/assets/imgs/img39_2.jpg";
+import img39_3 from "./src/assets/imgs/img39_3.jpg";
+import img39_4 from "./src/assets/imgs/img39_4.jpg";
+import img39_5 from "./src/assets/imgs/img39_5.jpg";
+import img39_6 from "./src/assets/imgs/img39_6.jpg";
+import img39_7 from "./src/assets/imgs/img39_7.jpg";
+
+import img40_1 from "./src/assets/imgs/img40_1.jpg";
+import img40_2 from "./src/assets/imgs/img40_2.jpg";
+import img40_3 from "./src/assets/imgs/img40_3.jpg";
+import img40_4 from "./src/assets/imgs/img40_4.jpg";
+import img40_5 from "./src/assets/imgs/img40_5.jpg";
+import img40_6 from "./src/assets/imgs/img40_6.jpg";
+import img40_7 from "./src/assets/imgs/img40_7.jpg";
+import img40_8 from "./src/assets/imgs/img40_8.jpg";
+import new1 from "./src/assets/imgs/news_1.jpg";
+import new2 from "./src/assets/imgs/news_2.jpg";
+import new3 from "./src/assets/imgs/news_3.jpg";
+import new4 from "./src/assets/imgs/news_4.jpg";
 
 export const products = [
   {
     id: 1,
-    image1: img1,
-    image2: img1_1,
+    images: [img1_1, img1_2, img1_3, img1_4, img1_5],
+    sku: "Đang cập nhật",
     title: "Bộ keycap xda commando",
     price: 499000,
     salePercent: 14,
@@ -96,8 +338,8 @@ export const products = [
   },
   {
     id: 2,
-    image1: img2,
-    image2: img2_1,
+    images: [img2_1, img2_2, img2_3, img2_4, img2_5, img2_6, img2_7],
+    sku: "Đang cập nhật",
     title: "BỘ KEYCAP SA DANDELION",
     price: 1200000,
     salePercent: null,
@@ -106,8 +348,8 @@ export const products = [
   },
   {
     id: 3,
-    image1: img3,
-    image2: img3_1,
+    images: [img3_1, img3_2, img3_3, img3_4, img3_5],
+    sku: "Đang cập nhật",
     title: "SWITCH WUQUE STUDIO",
     price: 9400,
     salePercent: null,
@@ -116,8 +358,8 @@ export const products = [
   },
   {
     id: 4,
-    image1: img4,
-    image2: img4_1,
+    images: [img4_1, img4_2, img4_3, img4_4, img4_5],
+    sku: "Đang cập nhật",
     title: "BỘ KEYCAP PS DESIGN",
     price: 800000,
     salePercent: 6,
@@ -126,8 +368,8 @@ export const products = [
   },
   {
     id: 5,
-    image1: img5,
-    image2: img5_1,
+    images: [img5_1, img5_2, img5_3],
+    sku: "Đang cập nhật",
     title: "SWITCH JELLY STRAWBERRY V2",
     price: 7500,
     salePercent: 20,
@@ -136,8 +378,8 @@ export const products = [
   },
   {
     id: 6,
-    image1: img6,
-    image2: img6_1,
+    images: [img6_1, img6_2, img6_3, img6_4, img6_5, img6_6],
+    sku: "Đang cập nhật",
     title: "BÀN PHÍM CƠ TÙY CHỈNH KIT GMK67 - ZOUYA",
     price: 1050000,
     salePercent: 19,
@@ -146,8 +388,8 @@ export const products = [
   },
   {
     id: 7,
-    image1: img7,
-    image2: img7_1,
+    images: [img7_1, img7_2, img7_3, img7_4, img7_5, img7_6, img7_7, img7_8, img7_9, img7_10, img7_11],
+    sku: "Đang cập nhật",
     title: "BỘ KEYCAP CMK BOW/WOB/RED",
     price: 400000,
     salePercent: 12,
@@ -156,8 +398,8 @@ export const products = [
   },
   {
     id: 8,
-    image1: img8,
-    image2: img8_1,
+    images: [img8_1, img8_2, img8_3, img8_4, img8_5, img8_6, img8_7],
+    sku: "Đang cập nhật",
     title: "BỘ KEYCAP NAHIDA GRASS GOD",
     price: 890000,
     salePercent: 14,
@@ -166,8 +408,8 @@ export const products = [
   },
   {
     id: 9,
-    image1: img9,
-    image2: img9_1,
+    images: [img9_1, img9_2, img9_3, img9_4, img9_5, img9_6, img9_7, img9_8, img9_9, img9_10, img9_11, img9_12],
+    sku: "Đang cập nhật",
     title: "BÀN PHÍM CƠ TÙY CHỈNH KIT V65 R2",
     price: 2400000,
     salePercent: null,
@@ -176,8 +418,21 @@ export const products = [
   },
   {
     id: 10,
-    image1: img10,
-    image2: img10_1,
+    images: [
+      img10_1,
+      img10_2,
+      img10_3,
+      img10_4,
+      img10_5,
+      img10_6,
+      img10_7,
+      img10_8,
+      img10_9,
+      img10_10,
+      img10_11,
+      img10_12,
+    ],
+    sku: "Đang cập nhật",
     title: "BỘ KEYCAP CMK MODERN DOLCH LIGHT - RETRO",
     price: 400000,
     salePercent: null,
@@ -186,8 +441,8 @@ export const products = [
   },
   {
     id: 11,
-    image1: img11,
-    image2: img11_1,
+    images: [img11_1, img11_2, img11_3, img11_4, img11_5, img11_6, img11_7],
+    sku: "Đang cập nhật",
     title: "SWITCH AKKO CREAM YELLOW/BLUE V3",
     price: 7000,
     salePercent: 26,
@@ -196,8 +451,8 @@ export const products = [
   },
   {
     id: 12,
-    image1: img12,
-    image2: img12_1,
+    images: [img12_1, img12_2, img12_3, img12_4, img12_5, img12_6],
+    sku: "Đang cập nhật",
     title: "BÀN PHÍM CƠ GP75 FL-ESPORTS",
     price: 2350000,
     salePercent: null,
@@ -206,8 +461,8 @@ export const products = [
   },
   {
     id: 13,
-    image1: img13,
-    image2: img13_1,
+    images: [img13_1, img13_2, img13_3, img13_4, img13_5, img13_6, img13_7, img13_8],
+    sku: "Đang cập nhật",
     title: "BỘ KEYCAP CMK MODERN DOLCH",
     price: 450000,
     salePercent: 16,
@@ -216,8 +471,8 @@ export const products = [
   },
   {
     id: 14,
-    image1: img14,
-    image2: img14_1,
+    images: [img14_1, img14_2, img14_3, img14_4, img14_5, img14_6],
+    sku: "Đang cập nhật",
     title: "BỘ KEYCAP XDA EMILIA",
     price: 500000,
     salePercent: 20,
@@ -226,8 +481,8 @@ export const products = [
   },
   {
     id: 15,
-    image1: img15,
-    image2: img15_1,
+    images: [img15_1, img15_2, img15_3, img15_4, img15_5, img15_6, img15_7],
+    sku: "Đang cập nhật",
     title: "BỘ KEYCAP CHERRY RICE SHOWER",
     price: 830000,
     salePercent: 10,
@@ -236,8 +491,8 @@ export const products = [
   },
   {
     id: 16,
-    image1: img16,
-    image2: img16_1,
+    images: [img16_1, img16_2],
+    sku: "Đang cập nhật",
     title: "SWITCH KTT MATCHA - TACTILE",
     price: 10000,
     salePercent: 10,
@@ -246,8 +501,8 @@ export const products = [
   },
   {
     id: 17,
-    image1: img17,
-    image2: img17_1,
+    images: [img17_1, img17_2, img17_3, img17_4, img17_5, img17_6],
+    sku: "Đang cập nhật",
     title: "BÀN PHÍM CƠ CUSTOM MONSGEEK M3 NHÔM CNC",
     price: 1800000,
     salePercent: null,
@@ -256,8 +511,8 @@ export const products = [
   },
   {
     id: 18,
-    image1: img18,
-    image2: img18_1,
+    images: [img18_1, img18_2, img18_3, img18_4, img18_5],
+    sku: "Đang cập nhật",
     title: "BỘ KEYCAP BOCCHI THE ROCK",
     price: 850000,
     salePercent: 8,
@@ -266,8 +521,8 @@ export const products = [
   },
   {
     id: 19,
-    image1: img19,
-    image2: img19_1,
+    images: [img19_1, img19_2, img19_3, img19_4, img19_5, img19_6, img19_7, img19_8, img19_9],
+    sku: "Đang cập nhật",
     title: "BÀN PHÍM CƠ KIT LMK81 - ZUOYA",
     price: 2300000,
     salePercent: null,
@@ -276,8 +531,8 @@ export const products = [
   },
   {
     id: 20,
-    image1: img20,
-    image2: img20_1,
+    images: [img20_1, img20_2, img20_3, img20_4, img20_5, img20_6, img20_7, img20_8],
+    sku: "Đang cập nhật",
     title: "SWITCH GATERON PURE BERRY X MODERN GREY LINEAR SWITCH",
     price: 525000,
     salePercent: 14,
@@ -286,8 +541,8 @@ export const products = [
   },
   {
     id: 21,
-    image1: img21,
-    image2: img21_1,
+    images: [img21_1, img21_2, img21_3, img21_4, img21_5, img21_6, img21_7],
+    sku: "Đang cập nhật",
     title: "BỘ KEYCAP NEWTOY X WUKDS 1970",
     price: 1200000,
     salePercent: 12,
@@ -296,8 +551,8 @@ export const products = [
   },
   {
     id: 22,
-    image1: img22,
-    image2: img22_1,
+    images: [img22_1, img22_2, img22_3, img22_4, img22_5, img22_6, img22_7, img22_8, img22_9],
+    sku: "Đang cập nhật",
     title: "BỘ KEYCAP RETRO 1980",
     price: 800000,
     salePercent: 6,
@@ -306,8 +561,8 @@ export const products = [
   },
   {
     id: 23,
-    image1: img23,
-    image2: img23_1,
+    images: [img23_1, img23_2, img23_3, img23_4, img23_5, img23_6, img23_7, img23_8],
+    sku: "Đang cập nhật",
     title: "BỘ KEYCAP CMK RESONANCE",
     price: 650000,
     salePercent: 8,
@@ -316,8 +571,8 @@ export const products = [
   },
   {
     id: 24,
-    image1: img24,
-    image2: img24_1,
+    images: [img24_1, img24_2, img24_3, img24_4, img24_5, img24_6, img24_7],
+    sku: "Đang cập nhật",
     title: "BỘ KEYCAP CMK RESONANCE",
     price: 520000,
     salePercent: 4,
@@ -326,8 +581,8 @@ export const products = [
   },
   {
     id: 25,
-    image1: img25,
-    image2: img25_1,
+    images: [img25_1, img25_2, img25_3, img25_4, img25_5, img25_6, img25_7],
+    sku: "Đang cập nhật",
     title: "BỘ KEYCAP QUANTUM COMPUTER",
     price: 800000,
     salePercent: 13,
@@ -336,8 +591,8 @@ export const products = [
   },
   {
     id: 26,
-    image1: img26,
-    image2: img26_1,
+    images: [img26_1, img26_2, img26_3, img26_4, img26_5],
+    sku: "Đang cập nhật",
     title: "BỘ KEYCAP THẢO THẦN NAHIDA",
     price: 600000,
     salePercent: 8,
@@ -346,8 +601,8 @@ export const products = [
   },
   {
     id: 27,
-    image1: img27,
-    image2: img27_1,
+    images: [img27_1, img27_2, img27_3, img27_4],
+    sku: "Đang cập nhật",
     title: "BỘ KEYCAP SA EGYPT [PRE-ORDER]",
     price: 1290000,
     salePercent: 7,
@@ -356,8 +611,8 @@ export const products = [
   },
   {
     id: 28,
-    image1: img28,
-    image2: img28_1,
+    images: [img28_1, img28_2, img28_3, img28_4, img28_5, img28_6, img28_7, img28_8, img28_9, img28_10, img28_11],
+    sku: "Đang cập nhật",
     title: "BỘ KEYCAP MG RAINBOW",
     price: 850000,
     salePercent: 24,
@@ -366,8 +621,8 @@ export const products = [
   },
   {
     id: 29,
-    image1: img29,
-    image2: img29_1,
+    images: [img29_1, img29_2, img29_3, img29_4, img29_5, img29_6],
+    sku: "Đang cập nhật",
     title: "BỘ KEYCAP VIRTUAL WAR ORIGIN",
     price: 550000,
     salePercent: 18,
@@ -376,8 +631,8 @@ export const products = [
   },
   {
     id: 30,
-    image1: img30,
-    image2: img30_1,
+    images: [img30_1, img30_2, img30_3, img30_4, img30_5],
+    sku: "Đang cập nhật",
     title: "BỘ KEYCAP P5 PERSONA5",
     price: 900000,
     salePercent: 11,
@@ -386,8 +641,8 @@ export const products = [
   },
   {
     id: 31,
-    image1: img31,
-    image2: img31_1,
+    images: [img31_1, img31_2, img31_3, img31_4, img31_5, img31_6, img31_7, img31_8, img31_9],
+    sku: "Đang cập nhật",
     title: "[HÀNG SẮP VỀ] BÀN PHÍM CƠ KIT FINALKEY V81 PLUS",
     price: 2700000,
     salePercent: 7,
@@ -396,8 +651,8 @@ export const products = [
   },
   {
     id: 32,
-    image1: img32,
-    image2: img32_1,
+    images: [img32_1, img32_2, img32_3, img32_4, img32_5],
+    sku: "Đang cập nhật",
     title: "BỘ KEYCAP SA COLOURFUL DREAM",
     price: 1100000,
     salePercent: null,
@@ -406,8 +661,8 @@ export const products = [
   },
   {
     id: 33,
-    image1: img33,
-    image2: img33_1,
+    images: [img33_1, img33_2],
+    sku: "Đang cập nhật",
     title: "PLATE NHÔM CHO BÀN PHÍM CƠ",
     price: 270000,
     salePercent: null,
@@ -416,8 +671,27 @@ export const products = [
   },
   {
     id: 34,
-    image1: img34,
-    image2: img34_1,
+    images: [
+      img34_1,
+      img34_2,
+      img34_3,
+      img34_4,
+      img34_5,
+      img34_6,
+      img34_7,
+      img34_8,
+      img34_9,
+      img34_10,
+      img34_11,
+      img34_12,
+      img34_13,
+      img34_14,
+      img34_15,
+      img34_16,
+      img34_17,
+      img34_18,
+    ],
+    sku: "Đang cập nhật",
     title: "BÀN PHÍM CƠ CUSTOM INFIVERSE INFI75",
     price: 2500000,
     salePercent: null,
@@ -426,8 +700,8 @@ export const products = [
   },
   {
     id: 35,
-    image1: img35,
-    image2: img35_1,
+    images: [img35_1, img35_2, img35_3, img35_4, img35_5, img35_6, img35_7],
+    sku: "Đang cập nhật",
     title: "SWITCH WS MORANDI",
     price: 10500,
     salePercent: 10,
@@ -436,8 +710,8 @@ export const products = [
   },
   {
     id: 36,
-    image1: img36,
-    image2: img36_1,
+    images: [img36_1, img36_2, img36_3, img36_4, img36_5, img36_6, img36_7, img36_8],
+    sku: "Đang cập nhật",
     title: "BỘ KEYCAP CHOCOLATE DONUT",
     price: 699000,
     salePercent: null,
@@ -446,8 +720,8 @@ export const products = [
   },
   {
     id: 37,
-    image1: img37,
-    image2: img37_1,
+    images: [img37_1, img37_2, img37_3, img37_4, img37_5, img37_6],
+    sku: "Đang cập nhật",
     title: "BÀN PHÍM CƠ CMK75 | FL-ESPORTS",
     price: 2550000,
     salePercent: 14,
@@ -456,8 +730,8 @@ export const products = [
   },
   {
     id: 38,
-    image1: img38,
-    image2: img38_1,
+    images: [img38_1, img38_2, img38_3, img38_4, img38_5, img38_6, img38_7],
+    sku: "Đang cập nhật",
     title: "BỘ KEYCAP SILENT FOREST",
     price: 780000,
     salePercent: null,
@@ -466,8 +740,8 @@ export const products = [
   },
   {
     id: 39,
-    image1: img39,
-    image2: img39_1,
+    images: [img39_1, img39_2, img39_3, img39_4, img39_5, img39_6, img39_7],
+    sku: "Đang cập nhật",
     title: "TÚI ĐỰNG BÀN PHÍM, CHỐNG SỐC, CHỐNG XƯỚC",
     price: 80000,
     salePercent: 14,
@@ -476,8 +750,8 @@ export const products = [
   },
   {
     id: 40,
-    image1: img40,
-    image2: img40_1,
+    images: [img40_1, img40_2, img40_3, img40_4, img40_5, img40_6, img40_7, img40_8],
+    sku: "Đang cập nhật",
     title: "BỘ KEYCAP CHERRY DORAEMON",
     price: 525000,
     salePercent: 5,

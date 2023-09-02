@@ -29,7 +29,7 @@ const SectionProduct = ({ products, title, strongTitle, dots = false, arrows = f
           <Slider {...settings}>
             {products.map((item, index) => {
               if (index < maxLen) {
-                return <ProductCard key={item.id} data={item}></ProductCard>;
+                return <ProductCard key={item.id} product={item}></ProductCard>;
               }
             })}
           </Slider>

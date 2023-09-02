@@ -16,7 +16,7 @@ const NewsCard = ({ newItem }) => {
   });
   return (
     <div className="news-card">
-      <Link to={`/${titleParam}`}>
+      <Link to={`/news/${titleParam}`}>
         <div className="news-card-img">
           <img src={newItem.image} alt="" />
         </div>
