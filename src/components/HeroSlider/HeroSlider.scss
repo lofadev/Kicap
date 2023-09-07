@@ -7,16 +7,42 @@
 
   .slick-dots {
     position: absolute;
-    bottom: 10px;
+    bottom: 20px;
 
-    li button:before {
-      font-size: 8px;
-      color: var(--light-gray);
-      opacity: 1;
+    li {
+      width: 7px;
+      height: 7px;
+      margin: 0 3px;
     }
 
-    li.slick-active button:before {
-      color: tomato;
+    li button {
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      line-height: unset;
+    }
+
+    li button:before {
+      opacity: 1;
+      line-height: unset;
+      width: 100%;
+      height: 100%;
+      font-size: 7px;
+    }
+
+    li button:before {
+      color: transparent;
+      background-color: #fff;
+      border-radius: 100rem;
+    }
+
+    li.slick-active {
+      width: 20px;
+      transition: all 0.1s linear;
+    }
+
+    li.slick-active button::before {
+      background-color: #c9d6df;
     }
   }
 

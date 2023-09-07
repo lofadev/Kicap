@@ -19,6 +19,7 @@ function App() {
 
           return (
             <Route
+              exact
               key={index}
               path={route.path}
               element={

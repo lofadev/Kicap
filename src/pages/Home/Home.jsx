@@ -15,6 +15,7 @@ const Home = () => {
   const [accessorys, setAccessorys] = useState([]);
 
   useEffect(() => {
+    document.title = "Kicap - More inspirational";
     const newProductsArr = [];
     const keyboardCustomsArr = [];
     const keycapsArr = [];
@@ -34,7 +35,7 @@ const Home = () => {
         keycapsArr.push(productState[i]);
       } else if (productState[i].type == "switch") {
         switchsArr.push(productState[i]);
-      } else if (productState[i].type == "phụ kiện" || productState[i].type == "phụ kiện bàn phím") {
+      } else if (productState[i].type == "phụ kiện bàn phím") {
         accessorysArr.push(productState[i]);
       }
       newProductsArr.push(productState[i]);

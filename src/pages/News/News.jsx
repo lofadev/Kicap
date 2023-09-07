@@ -17,7 +17,8 @@ const News = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [title]);
+    document.title = newsState.title;
+  }, [title, newsState]);
 
   return (
     <div className="article">

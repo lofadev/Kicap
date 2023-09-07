@@ -74,7 +74,7 @@ const Footer = () => {
               mods phím cơ uy tín, chất lượng.
             </p>
             <form id="footer-form">
-              <input type="text" placeholder="Email của bạn" className="footer-subcrible" />
+              <input type="text" placeholder="Email của bạn" className="footer-subcrible" name="email" />
               <Button type="button" primary className="footer-btn">
                 Đăng ký
               </Button>

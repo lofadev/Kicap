@@ -1,0 +1,56 @@
+.select-swatch {
+  &-items {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  .field-name {
+    display: inline-block;
+    font-weight: 500;
+    color: #1c1c1c;
+    letter-spacing: 0.5px;
+    margin: 0.1em 0;
+    min-width: 100px;
+    line-height: 24px;
+  }
+  .select-swap {
+    display: flex;
+    align-items: center;
+  }
+
+  .swatch-element {
+    -webkit-transform: translateZ(0);
+    -webkit-font-smoothing: antialiased;
+    margin: 0px 5px 5px 0;
+    position: relative;
+
+    input {
+      display: none;
+    }
+
+    input:checked + label {
+      border-color: #1c1c1c;
+    }
+
+    input:checked + .has-thumb img {
+      opacity: 1;
+    }
+  }
+
+  .has-thumb {
+    position: relative;
+    padding: 6px 10px;
+    width: auto !important;
+    border: 1px solid #f5f5f5;
+    cursor: pointer;
+    transition: all 0.1s linear;
+
+    img {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      opacity: 0;
+      transition: all 0.1s linear;
+    }
+  }
+}

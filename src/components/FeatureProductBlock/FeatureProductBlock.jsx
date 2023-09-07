@@ -16,7 +16,7 @@ const FeatureProductBlock = () => {
   };
 
   return (
-    <div className="feature-product_block">
+    <section className="feature-product_block">
       <div className="container">
         <h2 className="product_title">
           <a href="">
@@ -38,7 +38,7 @@ const FeatureProductBlock = () => {
           </div>
         </Slider>
       </div>
-    </div>
+    </section>
   );
 };
 

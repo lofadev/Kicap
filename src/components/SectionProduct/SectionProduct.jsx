@@ -5,6 +5,7 @@ import Button from "../Button/Button";
 import ProductCard from "../ProductCard/ProductCard";
 
 const SectionProduct = ({ products, title, strongTitle, dots = false, arrows = false, max = 10 }) => {
+  let dragging = false;
   const settings = {
     arrows: arrows,
     dots: dots,
@@ -12,6 +13,8 @@ const SectionProduct = ({ products, title, strongTitle, dots = false, arrows = f
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
+    beforeChange: () => (dragging = true),
+    afterChange: () => (dragging = false),
   };
   const maxLen = parseInt(max);
 
@@ -29,7 +32,13 @@ const SectionProduct = ({ products, title, strongTitle, dots = false, arrows = f
           <Slider {...settings}>
             {products.map((item, index) => {
               if (index < maxLen) {
-                return <ProductCard key={item.id} product={item}></ProductCard>;
+                return (
+                  <ProductCard
+                    onClick={(e) => dragging && e.preventDefault()}
+                    key={item.id}
+                    product={item}
+                  ></ProductCard>
+                );
               }
             })}
           </Slider>
