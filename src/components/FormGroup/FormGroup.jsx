@@ -1,14 +1,14 @@
 import Proptypes from "prop-types";
 import "./FormGroup.scss";
 
-const FormGroup = ({ type, labelName, required = false, className = "" }) => {
+const FormGroup = ({ type, labelName, required = false, className = "", placeholder = labelName, labelFor }) => {
   const Element = type == "text" ? "textarea" : "input";
   return (
     <div className={`form-group ${className}`}>
-      <label htmlFor="">
+      <label htmlFor={labelFor}>
         {labelName} {required && <span className="required">*</span>}
       </label>
-      <Element name="content" id="" placeholder={labelName} className="form-control"></Element>
+      <Element id={labelFor} placeholder={placeholder} className="form-control"></Element>
     </div>
   );
 };
@@ -18,6 +18,8 @@ FormGroup.propTypes = {
   labelName: Proptypes.string.isRequired,
   required: Proptypes.bool,
   className: Proptypes.string,
+  placeholder: Proptypes.string,
+  labelFor: Proptypes.string.isRequired,
 };
 
 export default FormGroup;

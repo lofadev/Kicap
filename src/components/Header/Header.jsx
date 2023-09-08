@@ -17,7 +17,13 @@ const menu = [
     id: 2,
     name: "Keycap bộ",
     hasChild: true,
-    children: ["Keycap Cherry", "Keycap xuyên led", "Keycap SA", "Keycap XDA", "Keycap OEM"],
+    children: [
+      { id: 1, title: "Keycap Cherry", navigator: "/keycap-cherry" },
+      { id: 2, title: "Keycap xuyên led", navigator: "/keycap-xuyen-led" },
+      { id: 3, title: "Keycap SA", navigator: "/keycap-sa" },
+      { id: 4, title: "Keycap XDA", navigator: "/keycap-xda" },
+      { id: 5, title: "Keycap OEM", navigator: "/keycap-oem" },
+    ],
   },
   {
     id: 3,
@@ -81,7 +87,12 @@ const menu = [
     id: 8,
     name: "Về kicap",
     hasChild: true,
-    children: ["Giới thiệu", "Liên hệ", "Chính sách bảo hành", "Chính sách đổi trả"],
+    children: [
+      { id: 1, title: "Giới thiệu", navigator: "/gioi-thieu" },
+      { id: 2, title: "Liên hệ", navigator: "/lien-he" },
+      { id: 3, title: "Chính sách bảo hành", navigator: "/chinh-sach-bao-hanh" },
+      { id: 4, title: "Chính sách đổi trả", navigator: "/chinh-sach-doi-tra-hang-hoan-tien" },
+    ],
   },
 ];
 
@@ -150,7 +161,7 @@ const Header = () => {
                   <ul className="dropdown-menu">
                     {item.children.map((itemChild, index) => (
                       <li key={index} className="dropdown-items">
-                        <Link to="/">{itemChild}</Link>
+                        <Link to={itemChild.navigator}>{itemChild.title}</Link>
                       </li>
                     ))}
                   </ul>

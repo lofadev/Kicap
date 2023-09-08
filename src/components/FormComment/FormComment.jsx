@@ -13,9 +13,9 @@ const FormComment = () => {
         </p>
 
         <div className="form-main">
-          <FormGroup type="text" labelName="Nội dung" required></FormGroup>
-          <FormGroup className={"w-half"} type="input" labelName="Họ tên" required></FormGroup>
-          <FormGroup className={"w-half"} type="input" labelName="Email" required></FormGroup>
+          <FormGroup type="text" labelName="Nội dung" required labelFor="content"></FormGroup>
+          <FormGroup className={"w-half"} type="input" labelName="Họ tên" required labelFor="fullname"></FormGroup>
+          <FormGroup className={"w-half"} type="input" labelName="Email" required labelFor="email"></FormGroup>
           <div className="clear"></div>
         </div>
 

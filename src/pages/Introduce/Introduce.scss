@@ -1,0 +1,39 @@
+.introduce {
+  letter-spacing: 0.25px;
+
+  &-top {
+    text-align: center;
+    font-weight: 300;
+  }
+  &-head {
+    margin-top: 20px;
+    font-weight: 500;
+    font-size: 3.6rem;
+    color: var(--black);
+    margin-bottom: 10px;
+    line-height: 50px;
+  }
+
+  &-desc {
+    margin-bottom: 15px;
+    line-height: 24px;
+  }
+
+  &-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 0 46px;
+    column-gap: 22px;
+  }
+
+  &-more {
+    p {
+      font-size: 1.4rem;
+      margin-bottom: 15px;
+      font-weight: 300;
+      line-height: 24px;
+    }
+  }
+}

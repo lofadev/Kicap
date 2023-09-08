@@ -1,0 +1,69 @@
+.contact {
+  &-main {
+    width: 650px;
+    height: auto;
+    padding: 0 10px;
+    margin: 0 auto;
+    margin-top: 30px;
+  }
+
+  &-head {
+    font-size: 2.6rem;
+    line-height: 28px;
+    margin: 0;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 2.4px;
+    text-align: center;
+  }
+
+  &-desc {
+    font-size: 14px;
+    line-height: 24px;
+    color: #333;
+    letter-spacing: 0.5px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    text-align: center;
+    font-weight: 300;
+  }
+
+  form {
+    .form-group {
+      margin-bottom: 20px;
+      padding: 0;
+      padding-bottom: 8px;
+    }
+
+    label {
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      font-size: 12px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    input {
+      background: #f7f7f7;
+      height: 50px;
+      padding: 0 15px;
+      font-weight: 300;
+      outline: none;
+    }
+
+    textarea {
+      padding: 0 15px;
+      padding-top: 10px;
+      font-weight: 300;
+      background-color: #f7f7f7;
+    }
+
+    .btn-send-message {
+      width: 100%;
+      height: 50px;
+      font-weight: 500;
+      padding: 0 28px;
+      font-size: 1.3rem;
+    }
+  }
+}
