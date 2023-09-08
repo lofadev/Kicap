@@ -1,0 +1,27 @@
+.policy-content {
+  font-weight: 300;
+  padding-top: 20px;
+  padding-bottom: 10px;
+
+  p {
+    color: #363f4d;
+    margin-bottom: 15px;
+    font-weight: 300;
+    line-height: 24px;
+    letter-spacing: 0.25px;
+  }
+  strong {
+    font-weight: 500;
+    font-size: 1.6rem;
+  }
+
+  a {
+    cursor: pointer;
+    color: #0657a3;
+    transition: all 0.2s linear;
+
+    &:hover {
+      color: var(--light-gray);
+    }
+  }
+}

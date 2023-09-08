@@ -35,7 +35,7 @@ const Home = () => {
         keycapsArr.push(productState[i]);
       } else if (productState[i].type == "switch") {
         switchsArr.push(productState[i]);
-      } else if (productState[i].type == "phụ kiện bàn phím") {
+      } else if (productState[i].type == "phụ kiện") {
         accessorysArr.push(productState[i]);
       }
       newProductsArr.push(productState[i]);
