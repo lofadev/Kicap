@@ -824,7 +824,7 @@ export const products = [
   },
   {
     id: 33,
-    type: "phụ kiện bàn phím",
+    type: "phụ kiện",
     images: [img33_1, img33_2],
     title: "Plate nhôm cho bàn phím cơ",
     sku: ["PVN578", "PVN579", "PVN580"],
@@ -933,7 +933,7 @@ export const products = [
   },
   {
     id: 39,
-    type: "phụ kiện bàn phím",
+    type: "phụ kiện",
     images: [img39_1, img39_2, img39_3, img39_4, img39_5, img39_6, img39_7],
     title: "Túi đựng bàn phím, chống sốc, chống xước",
     sku: ["PVN620", "PVN621"],
@@ -2274,5 +2274,525 @@ export const news = [
     ],
     tags: ["hướng dẫn sử dụng", "phần mềm", "spark67"],
     image: new4,
+  },
+];
+
+export const policys = [
+  {
+    id: 1,
+    title: "Chính sách bảo hành",
+    navigate: "chinh-sach-bao-hanh",
+    data: [
+      [
+        {
+          p: "Kicap",
+          isStrong: true,
+        },
+        {
+          p: " bảo hành qua số điện thoại đặt hàng của quý khách. Kể từ khi xuất kho, hệ thống sẽ tự tạo phiếu bảo hành cho sản phẩm của quý khách theo thời gian bảo hành đã thông báo trên website (trừ các sản phẩm không sử dụng điện như keycap, núm xoay, dụng sụ mods, switch, v.v.v)",
+          isText: true,
+        },
+      ],
+      [
+        {
+          p: "A. Địa điểm bảo hành:",
+          isStrong: true,
+        },
+      ],
+      [
+        {
+          p: "- Toàn bộ sản phẩm được phân phối và bán lẻ bởi Kicap đều được bảo hành tại địa chỉ của Kicap",
+          isText: true,
+        },
+      ],
+      [
+        {
+          p: "- Đối với những đơn hàng mua hàng từ xa, quý khách vui lòng gọi điện, nhắn tin qua Fanpage, Shopee, Zalo để được Kicap hỗ trợ xác định tình trạng sản phẩm",
+          isText: true,
+        },
+      ],
+      [
+        {
+          p: "- Với các trường hợp bảo hành từ xa, quy trình bảo hành thực hiện như sau:",
+          isText: true,
+        },
+      ],
+      [
+        {
+          p: "+ Quý khách vui lòng đóng gói kỹ sản phẩm để đảm bảo an toàn khi vận chuyển hàng. Kicap sẽ không chịu trách nhiệm khi có các lỗi phát sinh do quá trình vận chuyển.",
+          isText: true,
+        },
+      ],
+      [
+        {
+          p: "+ Bên ngoài kiện hàng vui lòng ghi Tên, SĐT và Địa chỉ của quý khách để shop tiện liên lạc và gửi hàng lại.",
+          isText: true,
+        },
+      ],
+      [
+        {
+          p: "- Gửi sản phẩm về địa chỉ của Kicap. Chi phí chuyển phát chiều gửi đi quý khách vui lòng tự thanh toán.",
+          isText: true,
+        },
+      ],
+      [
+        {
+          p: "- Sau khi bảo hành xong, Kicap sẽ liên hệ gửi lại sản phẩm về địa chỉ mà quý khách cung cấp. Chi phí vận chuyển chiều gửi lại do Kicap thanh toán",
+          isText: true,
+        },
+      ],
+      [
+        {
+          p: "B. Những trường hợp sau không được bảo hành:",
+          isStrong: true,
+        },
+      ],
+      [
+        {
+          p: "- Các sản phẩm không còn nguyên tem niêm phong, tem QC, có hiện tượng bị tháo rời để tự ý can thiệp vào kết cấu bên trong của sản phẩm.",
+          isText: true,
+        },
+      ],
+      [
+        {
+          p: "- Sử dụng nguồn sạc điện trực tiếp đối với các thiết bị không dây, dẫn tới hỏng hóc linh kiện và chức năng sử dụng pin của bàn phím",
+          isText: true,
+        },
+      ],
+      [
+        {
+          p: "- Hư hỏng do tác động vật lý của người tiêu dùng như rơi vỡ, va chạm, vào nước, ẩm thấp, chập cháy.",
+          isText: true,
+        },
+      ],
+      [
+        {
+          p: "- Hư hỏng do thiên tai, động vật, công trùng và do con người gây ra;",
+          isText: true,
+        },
+      ],
+      [
+        {
+          p: "- Hiện tượng rỉ sét do yếu tố thời tiết, độ ẩm, thói quen người dùng đều không được bảo hành;",
+          isText: true,
+        },
+      ],
+      [
+        {
+          p: "- Hết thời hạn bảo hành kể từ ngày nhận được hàng;",
+          isText: true,
+        },
+      ],
+      [
+        {
+          p: "- Khách hàng tự ý can thiệp vào firmware của sản phẩm.",
+          isText: true,
+        },
+      ],
+      [
+        {
+          p: "C. Các trường hợp khác sẽ được bảo hành theo tiêu chuẩn của nhà sản xuất.",
+          isStrong: true,
+        },
+      ],
+      [
+        {
+          p: "- Cụ thể với bàn phím cơ sẽ được bảo hành các lỗi phát sinh do nhà sản xuất mà không phải do người dùng: Hỏng mạch, chết led, lỗi kết nối.",
+          isText: true,
+        },
+      ],
+      [
+        {
+          p: "- Các sản phẩm không sử dụng điện như Keycap, Switch, Keypuller, Swich Puller, Lube Station... đều không bảo hành",
+          isText: true,
+        },
+      ],
+    ],
+  },
+  {
+    id: 2,
+    title: "Chính sách kiểm hàng",
+    navigate: "chinh-sach-kiem-hang",
+    data: [
+      [
+        {
+          p: "Cám ơn quý khách đã quan tâm và truy cập vào website. Để thuận lợi cho quá trình sử dụng, phản hồi khiếu nại về sản phẩm, quý khách vui lòng quay video mở hộp sản phẩm ngay khi nhận được hàng.",
+          isText: true,
+        },
+      ],
+      [
+        {
+          p: "Khi phát hiện bất cứ vấn đề gì liên quan đến hình thức và số lượng cũng như chất lượng sản phẩm không giống như trên website mô tả, quý khách hãy liên hệ ngay cho Kicap qua hotline chăm sóc khách hàng 0369.161.095 để được giải quyết nhanh nhất.",
+          isText: true,
+        },
+      ],
+      [
+        {
+          p: "Thời gian gửi các nội dung và phản hồi khiếu nại muộn nhất là 24h kể từ ngày quý khách nhận được hàng thành công.",
+          isText: true,
+        },
+      ],
+    ],
+  },
+  {
+    id: 3,
+    title: "Chính sách đổi trả hàng hoàn tiền",
+    navigate: "chinh-sach-doi-tra-hang-hoan-tien",
+    data: [
+      [
+        {
+          p: "A. Chính sách đổi hàng",
+          isStrong: true,
+        },
+      ],
+      [
+        {
+          p: "- Kicap chỉ hỗ trợ đổi hàng trong trường hợp sản phẩm của quý khách được mua tại Kicap và còn nguyên tem mac và hình thức như mới trong thời gian tối đa 3 ngày kể từ khi nhận hàng.",
+          isText: true,
+        },
+      ],
+      [
+        {
+          p: "- Đối với các trường hợp sản phẩm lỗi (có video mở hộp khi nhận hàng), Kicap hỗ trợ đổi trả trực tiếp cho quý khách sản phẩm mới trong 15 ngày đầu tiên sử dụng, chỉ áp dụng với các sản phẩm trong danh mục bảo hành. Tham khảo chính sách bảo hành của Kicap.",
+          isText: true,
+        },
+      ],
+      [
+        {
+          p: "B. Chính sách trả hàng hoàn tiền",
+          isStrong: true,
+        },
+      ],
+      [
+        {
+          p: "- Kicap hỗ trợ trả hàng hoàn tiền cho quý khách đối với bất cứ đơn hàng nào mà quý khách không hài lòng về chất lượng sản phẩm với điều kiện sản phẩm của quý khách còn nguyên tem mác, chưa rơi vỡ hay can thiệp vào bên trong phần cứng và phầm mềm của sản phẩm.",
+          isText: true,
+        },
+      ],
+      [
+        {
+          p: "- Hình thức hoàn tiền: Kicap sẽ chuyển khoản lại cho quý khách ngay khi nhận được hàng.",
+          isText: true,
+        },
+      ],
+      [
+        {
+          p: "- Đối với các đơn hàng ở xa, quý khách xin vui lòng thanh toán phí vận chuyển khi gửi trả hàng lại cho Kicap.",
+          isText: true,
+        },
+      ],
+    ],
+  },
+  {
+    id: 4,
+    title: "Chính sách thanh toán",
+    navigate: "chinh-sach-thanh-toan",
+    data: [
+      [
+        {
+          p: "1 - Giao hàng và thanh toán bằng tiền mặt tại nhà:",
+          isStrong: true,
+        },
+      ],
+      [
+        {
+          p: "- Các yêu cầu giao hàng tại nhà cần có thông tin chính xác về người nhận, địa chỉ, số điện thoại. Một số trường hợp nhạy cảm như: giá trị đơn hàng lớn, thời gian giao hàng buổi tối, địa chỉ giao hàng trong ngõ, khu vực xa trung tâm.. Nhân viên bán hàng sẽ kiểm tra và thoả thuận thêm, thống nhất cách thức giao hàng cụ thể.",
+          isText: true,
+        },
+      ],
+      [
+        {
+          p: "2 - Thanh toán chuyển khoản ngân hàng - giao hàng qua dịch vụ chuyển phát nhanh:",
+          isStrong: true,
+        },
+      ],
+      [
+        {
+          p: "- Với các địa chỉ không thuộc phạm vi nêu trên, khách hàng có thể thanh toán trước 100% giá trị sản phẩm qua một trong các tài khoản của KICAP.",
+          isText: true,
+        },
+      ],
+      [
+        {
+          p: "- Ngay sau khi nhận được tiền thanh toán qua chuyển khoản, nhân viên tư vấn sẽ gọi điện thông báo trực tiếp tới khách hàng và hẹn ngày giờ giao hàng. Tuỳ theo địa chỉ của khách hàng mà thời gian giao hàng có thể từ 12 đến 72 giờ.",
+          isText: true,
+        },
+      ],
+      [
+        {
+          p: "- Trong trường hợp giao hàng chậm trễ mà không báo trước, khách hàng có thể huỷ đơn hàng và KICAP sẽ hoàn trả toàn bộ số tiền mà khách hàng đã trả trong thời gian 07 ngày.",
+          isText: true,
+        },
+      ],
+      [
+        {
+          p: "- Sản phẩm có giá trị bao gồm thuế Giá trị gia tăng trên 20 triệu VNĐ, theo Luật thuế GTGT do Nhà nước ban hành cần thanh toán chuyển khoản. Khách hàng có thể gọi cho nhân viên để được tư vấn chi tiết tại đây.",
+          isText: true,
+        },
+      ],
+      [
+        {
+          p: "3 - Giao hàng và thanh toán trực tiếp tại Showroom/Đại lý của KICAP:",
+          isStrong: true,
+        },
+      ],
+      [
+        {
+          p: "- Khách hàng có thể yêu cầu giữ hàng tại store Kicap.",
+          isText: true,
+        },
+      ],
+      [
+        {
+          p: "- Sản phẩm sẽ được chuẩn bị đầy đủ sau không quá 04 giờ, và được giữ lại tại cửa hàng không quá 12 giờ kể từ khi nhân viên tư vấn bán hàng xác nhận đơn đặt hàng của khách hàng.",
+          isText: true,
+        },
+      ],
+      [
+        {
+          p: "4 - Phí vận chuyển + phí bảo hiểm sản phẩm:",
+          isStrong: true,
+        },
+      ],
+      [
+        {
+          p: "- Phí vận chuyển: Miễn phí toàn quốc nếu là đươn hàng 800k trở lên, tính phí đối với các mặt hàng khác hoặc tùy theo thỏa thuận.",
+          isText: true,
+        },
+      ],
+      [
+        {
+          p: "- Phí bảo hiểm sản phẩm: Đối với các sản phẩm khi chuyển hàng thông qua bên thứ 3 là công ty có ký hợp đồng vận chuyển với KICAP, khách hàng thanh toán khoản phí bảo hiểm sản phẩm tùy theo giá trị của sản phẩm. Trong quá trình vận chuyển nếu xảy ra hỏng hóc, mất mát, khách hàng sẽ được đền bù 100% giá trị sản phẩm tại thời điểm xuất bán nếu đóng bảo hiểm.",
+          isText: true,
+        },
+      ],
+      [
+        {
+          p: "5 - Các trường hợp khác:",
+          isStrong: true,
+        },
+      ],
+      [
+        {
+          p: "- Khách hàng có yêu cầu chuyển hàng qua bên thứ 3 khác như nhà xe, người quen, hoặc đơn vị vận chuyển không ký hợp đồng trực tiếp với KICAP. Chi phí và mọi rủi ro trong quá trình vận chuyển do khách hàng chịu. Khi nhân viên giao hàng KICAP bàn giao sản phẩm cho bên thứ 3, thì khách hàng và đối tác vận chuyển của khách hàng cần xác nhận bằng điện thoại, tin nhắn SMS hoặc trên phiếu xuất hàng của KICAP.",
+          isText: true,
+        },
+      ],
+    ],
+  },
+  {
+    id: 5,
+    title: "Chính sách bảo mật",
+    navigate: "chinh-sach-bao-mat",
+    data: [
+      [
+        {
+          p: "1. Mục đích và phạm vi thu thập",
+          isStrong: true,
+        },
+      ],
+      [
+        {
+          p: "Cảm ơn Quý khách đã truy cập vào website của chúng tôi, để sử dụng dịch vụ tại website, Quý khách có thể được yêu cầu đăng ký thông tin cá nhân với chúng tôi như:",
+          isText: true,
+        },
+      ],
+      [
+        {
+          p: "- Họ và tên, địa chỉ liên lạc",
+          isText: true,
+        },
+      ],
+      [
+        {
+          p: "- Email, số điện thoại di dộng",
+          isText: true,
+        },
+      ],
+      [
+        {
+          p: "Chúng tôi cũng có thể thu thập thông tin về số lần viếng thăm website của chúng tôi bao gồm số trang Quý khách xem, số links Quý khách click và các thông tin khác liên quan đến việc kết nối đến địa chỉ chỉ kcap.vn...",
+          isText: true,
+        },
+      ],
+      [
+        {
+          p: "2. Phạm vi sử dụng thông tin",
+          isStrong: true,
+        },
+      ],
+      [
+        {
+          p: "Kicap.vn thu thập và sử dụng thông tin cá nhân với mục đích phù hợp và hoàn toàn tuân thủ “chính sách bảo mật” này. Chúng tôi chỉ sử dụng thông tin của Quý khách trong nội bộ công ty hoặc có thể công bố cho bên thứ 3 như các đại lý, các nhà cung cấp dịch vụ khác nhằm cung cấp dịch vụ tốt nhất, tối ưu nhất cho Quý khách.",
+          isText: true,
+        },
+      ],
+      [
+        {
+          p: "Khi cần thiết chúng tôi có thể sử dụng những thông tin này để liên hệ trực tiếp với Quý khách như gửi thư ngỏ, đơn đặt hàng, thư cảm ơn, thôn tin về kỹ thuật và bảo mật, thông tin về khuyến mại, thông tin về sản phẩm dịch vụ mới...",
+          isText: true,
+        },
+      ],
+      [
+        {
+          p: "3. Thời gian lưu trữ thông tin",
+          isStrong: true,
+        },
+      ],
+      [
+        {
+          p: "Các thông tin của Quý khách hàng sẽ được lưu trữ  trong hệ thống nội bộ của công ty chúng tôi cho đến khi Quý khách có yêu cầu hủy bỏ các thông tin đã cung cấp.",
+          isText: true,
+        },
+      ],
+      [
+        {
+          p: "4. Địa chỉ của đơn vị thụ thập và quản lý thông tin cá nhân",
+          isStong: true,
+        },
+      ],
+      [
+        {
+          p: "Hộ Kinh Doanh KICAP",
+          isText: true,
+        },
+      ],
+      [
+        {
+          p: "Địa chỉ: 33A, 575 Kim Mã, phường Ngọc Khánh, Ba Đình, Hà Nội",
+          isText: true,
+        },
+      ],
+      [
+        {
+          p: "Điện thoại: 0369.161.095",
+          isText: true,
+        },
+      ],
+      [
+        {
+          p: "5. Phương tiện và công cụ để người dùng tiếp cận và chỉnh sửa dữ liệu cá nhân",
+          isStrong: true,
+        },
+      ],
+      [
+        {
+          p: "Quý khách muốn chỉnh sửa thông tin cá nhân của mình vui lòng liên hệ tổng đài chăm sóc khách hàng của chúng tôi qua số điện thoại:  0369.161.095 hoặc qua địa chỉ email: ",
+          isText: true,
+        },
+        {
+          p: "kicap.vn@gmail.com",
+          isLink: true,
+          to: "kicap.vn@gmail.com",
+        },
+      ],
+      [
+        {
+          p: "6. Cam kết bảo mật thông tin cá nhân khách hàng",
+          isStrong: true,
+        },
+      ],
+      [
+        {
+          p: "Chúng tôi cam kết bảo mật thông tin của Quý khách hàng bằng mọi hình thức có thể theo chính bảo vệ thông tin cá nhân của chúng tôi.",
+          isText: true,
+        },
+      ],
+      [
+        {
+          p: "Chúng tôi tuyệt đối không chia sẻ thông tin của Quý khách cho bất cứ công ty hay bên thứ 3 nào khác ngoại trừ các đại lý và các nhà cung cấp liên quan đến việc cung cấp dịch vụ cho Quý khách hàng.",
+          isText: true,
+        },
+      ],
+    ],
+  },
+  {
+    id: 6,
+    title: "Chính sách vận chuyển",
+    navigate: "chinh-sach-van-chuyen",
+    data: [
+      [
+        {
+          p: "I. Chính sách vận chuyển",
+          isStrong: true,
+        },
+      ],
+      [
+        {
+          p: "- Giao hàng miễn phí trên toàn quốc đối với sản phẩm trên 800 nghìn đồng",
+          isText: true,
+        },
+      ],
+      [
+        {
+          p: "Đối với khách hàng ở ngoại tỉnh hoặc có yêu cầu chuyển phát thì chúng tôi sẽ chuyển phát nhanh đến tận nơi cho khách hàng.",
+          isText: true,
+        },
+      ],
+      [
+        {
+          p: "- Giao hàng có phí vận chuyển với các đơn dưới 800 nghìn đồng, đồng giá 30K",
+          isText: true,
+        },
+      ],
+      [
+        {
+          p: "II. Hiệu lực",
+          isStrong: true,
+        },
+      ],
+      [
+        {
+          p: "Chính sách này không áp dụng đối với hàng hóa là quà tặng, hàng khuyến mại. Các chương trình khuyến mại không áp dụng đồng thời (nhưng không bao gồm khuyến mại ở mục I của chính sách này), ưu tiên khuyến mại lớn nhất dành cho khách hàng tại thời điểm giao dịch.",
+          isText: true,
+        },
+      ],
+      [
+        {
+          p: "III. Thời gian giao hàng",
+          isStrong: true,
+        },
+      ],
+      [
+        {
+          p: "Thời gian giao hàng tại Nội thành Hà Nội từ 3-10 giờ đồng hồ tính từ thời điểm xác nhận đơn hàng với khách hàng.",
+          isText: true,
+        },
+      ],
+      [
+        {
+          p: "Thời gian giao hàng COD ở các tỉnh, thành phố sẽ tuỳ thuộc vào từng địa chỉ của khách hàng, bộ phận xử lý đơn hàng sẽ báo cụ thể với khách hàng (Trung bình khoảng 2 - 5 ngày làm việc)",
+          isText: true,
+        },
+      ],
+      [
+        {
+          p: "Trong trường hợp khách hàng cần vận chuyển HỎA TỐC thì quý khách vui lòng trao đổi với nhân viên bán hàng sẽ tư vấn cụ thể.",
+          isText: true,
+        },
+      ],
+      [
+        {
+          p: "Các trường hợp đặc biệt, khách hàng vui lòng liên hệ với hotline 0369161095",
+          isText: true,
+        },
+      ],
+      [
+        {
+          p: "Lưu ý: ",
+          isStrong: true,
+        },
+        {
+          p: "Vào thời gian cao điểm (lễ, tết), hoặc tùy theo một số điều kiện khách quan (như thiên tai, hỏng hóc phương tiện, v.v...), chúng tôi không thể giao hàng ngay nên sẽ thỏa thuận thời gian giao hàng cụ thể cho quý khách.",
+          isText: true,
+        },
+      ],
+      [
+        {
+          p: "Xin chân thành cảm ơn quý khách hàng đã tin cậy và sử dụng dịch vụ của chúng tôi!",
+          isText: true,
+        },
+      ],
+    ],
   },
 ];

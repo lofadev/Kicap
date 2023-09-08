@@ -3,9 +3,8 @@ import Contact from "../pages/Contact/Contact.jsx";
 import Home from "../pages/Home/Home.jsx";
 import Introduce from "../pages/Introduce/Introduce.jsx";
 import News from "../pages/News/News.jsx";
+import Policy from "../pages/Policy/Policy.jsx";
 import ProductDetails from "../pages/ProductDetails/ProductDetails.jsx";
-import ReturnPolicy from "../pages/ReturnPolicy/ReturnPolicy.jsx";
-import WarrantyPolicy from "../pages/WarrantyPolicy/WarrantyPolicy.jsx";
 
 const publicRoutes = [
   {
@@ -29,12 +28,8 @@ const publicRoutes = [
     component: Contact,
   },
   {
-    path: config.routes.warranty_policy,
-    component: WarrantyPolicy,
-  },
-  {
-    path: config.routes.return_policy,
-    component: ReturnPolicy,
+    path: config.routes.policy,
+    component: Policy,
   },
 ];
 

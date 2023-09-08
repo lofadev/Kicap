@@ -1,15 +1,16 @@
 import { FaCertificate, FaEnvelope, FaMapMarkerAlt, FaPhoneAlt } from "react-icons/fa";
+import Facebook from "../../assets/imgs/facebook-icon.png";
 import Logo from "../../assets/imgs/logo.png";
-
+import LogoBCT from "../../assets/imgs/logo_bct.png";
 import PaymentMasterCard from "../../assets/imgs/payment_mastercard.svg";
 import PaymentPaypal from "../../assets/imgs/payment_paypal.svg";
 import PaymentVisa from "../../assets/imgs/payment_visa.svg";
-import Facebook from "../../assets/imgs/facebook-icon.png";
-import Youtube from "../../assets/imgs/youtube-icon.png";
 import Shopee from "../../assets/imgs/shopee-icon.png";
-import LogoBCT from "../../assets/imgs/logo_bct.png";
+import Youtube from "../../assets/imgs/youtube-icon.png";
 import Button from "../Button/Button";
+import { policys } from "../../../data";
 import "./Footer.scss";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -46,24 +47,13 @@ const Footer = () => {
             <h3 className="footer-title">Chính sách khách hàng</h3>
 
             <ul className="footer-menu had-click">
-              <li>
-                <a href="">Chính sách bảo hành</a>
-              </li>
-              <li>
-                <a href="">Chính sách kiểm hàng</a>
-              </li>
-              <li>
-                <a href="">Chính sách đổi trả hàng hoàn tiền</a>
-              </li>
-              <li>
-                <a href="">Chính sách thanh toán</a>
-              </li>
-              <li>
-                <a href="">Chính sách bảo mật</a>
-              </li>
-              <li>
-                <a href="">Chính sách vận chuyển</a>
-              </li>
+              {policys.map((policy) => {
+                return (
+                  <li key={policy.id}>
+                    <Link to={`/policy/${policy.navigate}`}>{policy.title}</Link>
+                  </li>
+                );
+              })}
             </ul>
           </div>
 
