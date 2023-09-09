@@ -1,10 +1,10 @@
 import { FaAngleDown } from "react-icons/fa6";
-import { Link, useLocation } from "react-router-dom";
-
-import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 import Cart from "../../assets/imgs/add-to-basket.svg";
 import Logo from "../../assets/imgs/logo.png";
 import Search from "../../assets/imgs/search.svg";
+import FormSearch from "../FormSearch/FormSearch";
 import "./Header.scss";
 
 const menu = [
@@ -106,6 +106,7 @@ const menu = [
 
 const Header = () => {
   const [isActive, setIsActive] = useState(1);
+  const [searchActive, setSearchActive] = useState(false);
 
   const location = useLocation();
 
@@ -113,6 +114,10 @@ const Header = () => {
     setIsActive(id);
   };
 
+  const handleToggleInSearch = (prev) => {
+    setSearchActive(!prev);
+  };
+  
   useEffect(() => {
     const isActiveMenu = menu.some((item) => {
       return item.navigate === location.pathname;
@@ -122,6 +127,8 @@ const Header = () => {
 
   return (
     <header className="header">
+      <div className={`overlay ${searchActive ? "search-active" : ""}`} onClick={handleToggleInSearch}></div>
+      <FormSearch onClick={handleToggleInSearch} searchActive={searchActive} />
       <div className="container">
         <div className="top_header">
           <div className="top_header-text">
@@ -148,10 +155,8 @@ const Header = () => {
                 </a>
               </li>
 
-              <li className="top_header-search">
-                <a href="">
-                  <img src={Search} alt="" />
-                </a>
+              <li className="top_header-search" onClick={() => handleToggleInSearch()}>
+                <img src={Search} alt="" />
               </li>
             </ul>
           </div>
