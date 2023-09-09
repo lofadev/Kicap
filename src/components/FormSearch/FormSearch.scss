@@ -1,0 +1,49 @@
+.form-search {
+  position: relative;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 0;
+  overflow: hidden;
+  z-index: 9999;
+  transition: all 0.2s;
+
+  .input-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 500px;
+
+    .form-control {
+      padding: 0 20px;
+      border: none;
+      line-height: 23px;
+      letter-spacing: 0.25px;
+      font-weight: 300;
+      font-size: 1.6rem;
+      border-bottom: 1px solid transparent;
+      transition: all 0.2s linear;
+
+      &:focus {
+        border-color: var(--black);
+      }
+    }
+    &-btn img {
+      width: 16px;
+    }
+  }
+
+  .close-search {
+    position: absolute;
+    right: 20px;
+
+    svg {
+      font-size: 2.6rem;
+    }
+  }
+
+  &.active {
+    height: 70px;
+  }
+}
