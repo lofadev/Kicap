@@ -1,6 +1,6 @@
 import { FaAngleDown } from "react-icons/fa6";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Cart from "../../assets/imgs/add-to-basket.svg";
 import Logo from "../../assets/imgs/logo.png";
 import Search from "../../assets/imgs/search.svg";
@@ -12,38 +12,44 @@ const menu = [
     id: 1,
     name: "Trang chủ",
     hasChild: false,
+    navigate: "/",
   },
   {
     id: 2,
     name: "Keycap bộ",
     hasChild: true,
+    navigate: "/keycap-bo",
     children: [
-      { id: 1, title: "Keycap Cherry", navigator: "/keycap-cherry" },
-      { id: 2, title: "Keycap xuyên led", navigator: "/keycap-xuyen-led" },
-      { id: 3, title: "Keycap SA", navigator: "/keycap-sa" },
-      { id: 4, title: "Keycap XDA", navigator: "/keycap-xda" },
-      { id: 5, title: "Keycap OEM", navigator: "/keycap-oem" },
+      { id: 1, title: "Keycap Cherry", navigate: "/keycap-cherry" },
+      { id: 2, title: "Keycap xuyên led", navigate: "/keycap-xuyen-led" },
+      { id: 3, title: "Keycap SA", navigate: "/keycap-sa" },
+      { id: 4, title: "Keycap XDA", navigate: "/keycap-xda" },
+      { id: 5, title: "Keycap OEM", navigate: "/keycap-oem" },
     ],
   },
   {
     id: 3,
     name: "Mods phím",
     hasChild: false,
+    navigate: "/mods-ban-phim-co",
   },
   {
     id: 4,
     name: "Pre-order",
     hasChild: false,
+    navigate: "/pre-order",
   },
   {
     id: 5,
     name: "Decor",
     hasChild: false,
+    navigate: "/den-decor",
   },
   {
     id: 6,
     name: "Sản phẩm",
     hasChild: true,
+    navigate: "/collections/all",
     hasMega: true,
     children: [
       {
@@ -82,16 +88,18 @@ const menu = [
     id: 7,
     name: "Blog",
     hasChild: false,
+    navigate: "/tin-tuc",
   },
   {
     id: 8,
     name: "Về kicap",
     hasChild: true,
+    navigate: "/gioi-thieu",
     children: [
-      { id: 1, title: "Giới thiệu", navigator: "/gioi-thieu" },
-      { id: 2, title: "Liên hệ", navigator: "/lien-he" },
-      { id: 3, title: "Chính sách bảo hành", navigator: "/chinh-sach-bao-hanh" },
-      { id: 4, title: "Chính sách đổi trả", navigator: "/chinh-sach-doi-tra-hang-hoan-tien" },
+      { id: 1, title: "Giới thiệu", navigate: "/gioi-thieu" },
+      { id: 2, title: "Liên hệ", navigate: "/lien-he" },
+      { id: 3, title: "Chính sách bảo hành", navigate: "/policy/chinh-sach-bao-hanh" },
+      { id: 4, title: "Chính sách đổi trả", navigate: "/policy/chinh-sach-doi-tra-hang-hoan-tien" },
     ],
   },
 ];
@@ -100,12 +108,23 @@ const Header = () => {
   const [isActive, setIsActive] = useState(1);
   const [searchActive, setSearchActive] = useState(false);
 
+  const location = useLocation();
+
   const handleClickMenuItem = (id) => {
     setIsActive(id);
   };
+
   const handleToggleInSearch = (prev) => {
     setSearchActive(!prev);
   };
+  
+  useEffect(() => {
+    const isActiveMenu = menu.some((item) => {
+      return item.navigate === location.pathname;
+    });
+    if (!isActiveMenu) setIsActive(0);
+  }, [location]);
+
   return (
     <header className="header">
       <div className={`overlay ${searchActive ? "search-active" : ""}`} onClick={handleToggleInSearch}></div>
@@ -150,7 +169,7 @@ const Header = () => {
                 <Link
                   onClick={() => handleClickMenuItem(item.id)}
                   className={`nav-link ${item.id === isActive ? "active" : ""}`}
-                  to="/"
+                  to={item.navigate}
                 >
                   {item.name}
                   {item.hasChild ? (
@@ -165,7 +184,7 @@ const Header = () => {
                   <ul className="dropdown-menu">
                     {item.children.map((itemChild, index) => (
                       <li key={index} className="dropdown-items">
-                        <Link to={itemChild.navigator}>{itemChild.title}</Link>
+                        <Link to={itemChild.navigate}>{itemChild.title}</Link>
                       </li>
                     ))}
                   </ul>
