@@ -1,6 +1,5 @@
 import { FaAngleDown } from "react-icons/fa6";
 import { Link } from "react-router-dom";
-
 import { useState } from "react";
 import Cart from "../../assets/imgs/add-to-basket.svg";
 import Logo from "../../assets/imgs/logo.png";
