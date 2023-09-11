@@ -110,7 +110,7 @@ const ProductDetails = () => {
 
   return (
     <>
-      <SectionBreadCrumb type="product" child={productState.title} category={productState.type}></SectionBreadCrumb>
+      <SectionBreadCrumb parent={productState.type} child={productState.title}></SectionBreadCrumb>
       <section className="product">
         <div className="container">
           <div className="product-details">

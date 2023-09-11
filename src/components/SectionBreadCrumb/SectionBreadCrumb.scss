@@ -11,8 +11,10 @@
   }
 
   .bread-crumb-group {
+    margin-right: 4px;
     transition: all 0.2s linear;
     cursor: pointer;
+    text-transform: capitalize;
     &:hover {
       color: var(--light-gray);
       font-weight: 500;
@@ -20,6 +22,7 @@
   }
 
   .arrow-right {
+    margin-left: 4px;
     position: relative;
     top: 2px;
     svg {

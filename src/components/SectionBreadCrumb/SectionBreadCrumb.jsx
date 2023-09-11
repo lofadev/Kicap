@@ -1,22 +1,15 @@
 import Proptypes from "prop-types";
-import { useEffect, useState } from "react";
-import "./SectionBreadCrumb.scss";
 import { FaAngleRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import unidecode from "unidecode";
+import "./SectionBreadCrumb.scss";
 
-const SectionBreadCrumb = ({ type, child, category }) => {
-  const [parentState, setParentState] = useState(null);
-
-  const categoryParam = unidecode(category.toLowerCase())
+const SectionBreadCrumb = ({ parent = null, child = null }) => {
+  const parentParam = unidecode(parent.toLowerCase())
     .split(" ")
     .map((word) => word.replace(/[^\w\s-]/g, ""))
     .filter((word) => word !== "-")
     .join("-");
-  useEffect(() => {
-    if (type === "news") setParentState("Tin tức");
-    else if (type === "product") setParentState(category);
-  }, [type, category]);
 
   return (
     <div className="bread-crumb">
@@ -24,24 +17,24 @@ const SectionBreadCrumb = ({ type, child, category }) => {
         <h3>
           <Link to={"/"}>
             <span className="bread-crumb-group">
-              Trang chủ{" "}
+              Trang chủ
               <span className="arrow-right">
                 <FaAngleRight />
               </span>
             </span>
           </Link>
 
-          {parentState && (
-            <Link to={`/${categoryParam}`}>
-              <span className="bread-crumb-group">
-                {parentState}{" "}
+          <Link to={`/${parentParam}`}>
+            <span className="bread-crumb-group">
+              {parent}
+              {child && (
                 <span className="arrow-right">
                   <FaAngleRight />
                 </span>
-              </span>
-            </Link>
-          )}
-          <span className="current-active">{child}</span>
+              )}
+            </span>
+          </Link>
+          {child && <span className="current-active">{child}</span>}
         </h3>
       </div>
     </div>
@@ -49,9 +42,8 @@ const SectionBreadCrumb = ({ type, child, category }) => {
 };
 
 SectionBreadCrumb.propTypes = {
-  type: Proptypes.string.isRequired,
+  parent: Proptypes.string.isRequired,
   child: Proptypes.string.isRequired,
-  category: Proptypes.string,
 };
 
 export default SectionBreadCrumb;

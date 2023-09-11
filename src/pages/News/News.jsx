@@ -23,7 +23,7 @@ const News = () => {
 
   return (
     <>
-      <SectionBreadCrumb type="news" child={newsState.title}></SectionBreadCrumb>
+      <SectionBreadCrumb parent="tin tức" child={newsState.title}></SectionBreadCrumb>
       <div className="article">
         <div className="container">
           <h1 className="title-head">{newsState.title}</h1>
