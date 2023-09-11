@@ -3,9 +3,31 @@
   margin: 0;
   border-bottom: 1px solid #f5f5f5;
   border-top: 1px solid #f5f5f5;
+  font-weight: 300;
 
   h3 {
     line-height: 24px;
     font-size: 1.4rem;
+  }
+
+  .bread-crumb-group {
+    transition: all 0.2s linear;
+    cursor: pointer;
+    &:hover {
+      color: var(--light-gray);
+      font-weight: 500;
+    }
+  }
+
+  .arrow-right {
+    position: relative;
+    top: 2px;
+    svg {
+      display: inline-block;
+    }
+  }
+
+  .current-active {
+    color: var(--light-gray);
   }
 }

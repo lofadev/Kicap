@@ -966,7 +966,7 @@ export const products = [
 export const news = [
   {
     id: 1,
-    title: "HƯỚNG DẪN SỬ DỤNG BÀN PHÍM CƠ INFI75",
+    title: "Hướng dẫn sử dụng bàn phím cơ infi75",
     createdAt: "16/06/2023",
     paragraph: [
       [
@@ -1223,7 +1223,7 @@ export const news = [
   },
   {
     id: 2,
-    title: "HƯỚNG DẪN SỬ DỤNG BÀN PHÍM CƠ CMK75",
+    title: "Hướng dẫn sử dụng bàn phím cơ cmk75",
     createdAt: "25/06/2023",
     paragraph: [
       [
@@ -1682,7 +1682,7 @@ export const news = [
   },
   {
     id: 3,
-    title: "HƯỚNG DẪN SỬ DỤNG BÀN PHÍM CƠ M71",
+    title: "Hướng dẫn sử dụng bàn phím cơ m71",
     createdAt: "05/08/2023",
     paragraph: [
       [
@@ -1950,7 +1950,7 @@ export const news = [
   },
   {
     id: 4,
-    title: "HƯỚNG DẪN SỬ DỤNG VÀ CÀI ĐẶT PHẦN MỀM CHO SHARK67",
+    title: "Hướng dẫn sử dụng và cài đặt phần mềm cho shark67",
     createdAt: "26/08/2023",
     paragraph: [
       [
