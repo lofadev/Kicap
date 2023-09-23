@@ -1,11 +1,11 @@
-import { Fragment } from "react";
-import { Route, Routes } from "react-router-dom";
-import DefaultLayout from "./layouts/DefaultLayout";
-import { publicRoutes } from "./routes";
+import { Fragment } from 'react';
+import { Route, Routes } from 'react-router-dom';
+import DefaultLayout from './layouts/DefaultLayout';
+import { publicRoutes } from './routes';
 
 function App() {
   return (
-    <div className="app">
+    <div className='app'>
       <Routes>
         {publicRoutes.map((route, index) => {
           const Page = route.component;

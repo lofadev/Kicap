@@ -1,34 +1,34 @@
 @font-face {
-  font-family: "../src/assets/fonts/SVN-Gotham";
-  src: url("../src/assets/fonts/SVN-GothamBook.eot");
-  src: url("../src/assets/fonts/SVN-GothamBook.eot?#iefix") format("embedded-opentype"),
-    url("../src/assets/fonts/SVN-GothamBook.woff2") format("woff2"),
-    url("../src/assets/fonts/SVN-GothamBook.woff") format("woff"),
-    url("../src/assets/fonts/SVN-GothamBook.ttf") format("truetype");
+  font-family: '../src/assets/fonts/SVN-Gotham';
+  src: url('../src/assets/fonts/SVN-GothamBook.eot');
+  src: url('../src/assets/fonts/SVN-GothamBook.eot?#iefix') format('embedded-opentype'),
+    url('../src/assets/fonts/SVN-GothamBook.woff2') format('woff2'),
+    url('../src/assets/fonts/SVN-GothamBook.woff') format('woff'),
+    url('../src/assets/fonts/SVN-GothamBook.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "../src/assets/fonts/SVN-Gotham";
-  src: url("../src/assets/fonts/SVN-Gotham.eot");
-  src: url("../src/assets/fonts/SVN-Gotham.eot?#iefix") format("embedded-opentype"),
-    url("../src/assets/fonts/SVN-Gotham.woff2") format("woff2"),
-    url("../src/assets/fonts/SVN-Gotham.woff") format("woff"),
-    url("../src/assets/fonts/SVN-Gotham.ttf") format("truetype");
+  font-family: '../src/assets/fonts/SVN-Gotham';
+  src: url('../src/assets/fonts/SVN-Gotham.eot');
+  src: url('../src/assets/fonts/SVN-Gotham.eot?#iefix') format('embedded-opentype'),
+    url('../src/assets/fonts/SVN-Gotham.woff2') format('woff2'),
+    url('../src/assets/fonts/SVN-Gotham.woff') format('woff'),
+    url('../src/assets/fonts/SVN-Gotham.ttf') format('truetype');
   font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "../src/assets/fonts/SVN-Gotham";
-  src: url("../src/assets/fonts/SVN-GothamBold.eot");
-  src: url("../src/assets/fonts/SVN-GothamBold.eot?#iefix") format("embedded-opentype"),
-    url("../src/assets/fonts/SVN-GothamBold.woff2") format("woff2"),
-    url("../src/assets/fonts/SVN-GothamBold.woff") format("woff"),
-    url("../src/assets/fonts/SVN-GothamBold.ttf") format("truetype");
+  font-family: '../src/assets/fonts/SVN-Gotham';
+  src: url('../src/assets/fonts/SVN-GothamBold.eot');
+  src: url('../src/assets/fonts/SVN-GothamBold.eot?#iefix') format('embedded-opentype'),
+    url('../src/assets/fonts/SVN-GothamBold.woff2') format('woff2'),
+    url('../src/assets/fonts/SVN-GothamBold.woff') format('woff'),
+    url('../src/assets/fonts/SVN-GothamBold.ttf') format('truetype');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -83,7 +83,7 @@ a {
 }
 
 html {
-  font-family: "../src/assets/fonts/SVN-Gotham";
+  font-family: '../src/assets/fonts/SVN-Gotham';
   font-size: 62.5%;
   text-rendering: optimizeLegibility;
   scroll-behavior: smooth;
@@ -96,6 +96,9 @@ body {
   line-height: 1;
   color: var(--black);
   background-color: #fff;
+}
+.app {
+  position: relative;
 }
 
 #wrapper {

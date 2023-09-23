@@ -1,0 +1,23 @@
+.gototop {
+  line-height: 24px;
+  position: fixed;
+  bottom: 70px;
+  right: -20px;
+  transform: rotate(-90deg);
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  opacity: 0;
+  transition: all 0.2s linear;
+
+  & > * {
+    display: inline-block;
+    color: black;
+  }
+  svg {
+    position: relative;
+    top: 2px;
+    right: 0;
+    margin-left: 5px;
+  }
+}
