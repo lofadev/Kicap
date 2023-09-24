@@ -1,8 +1,8 @@
-import Proptypes from "prop-types";
-import Slider from "react-slick";
-import Button from "../Button/Button";
-import NewsCard from "../NewsCard/NewsCard";
-import "./SectionNews.scss";
+import Proptypes from 'prop-types';
+import Slider from 'react-slick';
+import Button from '../Button/Button';
+import NewsCard from '../NewsCard/NewsCard';
+import './SectionNews.scss';
 
 const SectionNews = ({ news, title, strongTitle, dots = false, arrows = false, max = 4 }) => {
   const settings = {
@@ -15,17 +15,17 @@ const SectionNews = ({ news, title, strongTitle, dots = false, arrows = false, m
   };
   const maxLen = parseInt(max);
 
-  const txtButton = "Xem tất cả";
+  const txtButton = 'Xem tất cả';
 
   return (
-    <section className="section-news">
-      <div className="container">
-        <h2 className="news-title">
-          <a href="">
+    <section className='section-news'>
+      <div className='container'>
+        <h2 className='news-title'>
+          <a href=''>
             {title} <strong>{strongTitle}</strong>
           </a>
         </h2>
-        <div className="news-block">
+        <div className='news-block'>
           <Slider {...settings}>
             {news.map((item, index) => {
               if (index < maxLen) {
@@ -35,7 +35,7 @@ const SectionNews = ({ news, title, strongTitle, dots = false, arrows = false, m
           </Slider>
         </div>
 
-        <Button type="a" primary className="btn-more">
+        <Button type='a' primary className='btn-more'>
           {txtButton}
         </Button>
       </div>

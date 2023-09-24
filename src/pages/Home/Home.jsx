@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
-import { news, products } from "../../../data";
-import FeatureProductBlock from "../../components/FeatureProductBlock/FeatureProductBlock";
-import HeroSlider from "../../components/HeroSlider/HeroSlider";
-import SectionNews from "../../components/SectionNews/SectionNews";
-import SectionProduct from "../../components/SectionProduct/SectionProduct";
+import { useEffect, useState } from 'react';
+import { news, products } from '../../../data';
+import FeatureProductBlock from '../../components/FeatureProductBlock/FeatureProductBlock';
+import HeroSlider from '../../components/HeroSlider/HeroSlider';
+import SectionNews from '../../components/SectionNews/SectionNews';
+import SectionProduct from '../../components/SectionProduct/SectionProduct';
 
 const Home = () => {
   const [productState] = useState(products);
@@ -15,7 +15,7 @@ const Home = () => {
   const [accessorys, setAccessorys] = useState([]);
 
   useEffect(() => {
-    document.title = "Kicap - More inspirational";
+    document.title = 'Kicap - More inspirational';
     const newProductsArr = [];
     const keyboardCustomsArr = [];
     const keycapsArr = [];
@@ -29,13 +29,13 @@ const Home = () => {
         switchsArr.length == 4
       )
         break;
-      if (productState[i].type == "bàn phím cơ") {
+      if (productState[i].type == 'bàn phím cơ') {
         keyboardCustomsArr.push(productState[i]);
-      } else if (productState[i].type == "keycap bộ") {
+      } else if (productState[i].type == 'keycap bộ') {
         keycapsArr.push(productState[i]);
-      } else if (productState[i].type == "switch") {
+      } else if (productState[i].type == 'switch') {
         switchsArr.push(productState[i]);
-      } else if (productState[i].type == "phụ kiện") {
+      } else if (productState[i].type == 'phụ kiện') {
         accessorysArr.push(productState[i]);
       }
       newProductsArr.push(productState[i]);
@@ -51,13 +51,38 @@ const Home = () => {
   return (
     <>
       <HeroSlider></HeroSlider>
-      <SectionProduct max="4" products={newProducts} title="Sản phẩm" strongTitle="mới"></SectionProduct>
-      <SectionProduct products={keyboardCustoms} title="Bàn phím cơ" strongTitle="custom" arrows></SectionProduct>
-      <SectionProduct max="4" products={keycaps} title="Bộ sưu tập keycap" strongTitle="Cherry"></SectionProduct>
+      <SectionProduct
+        max='4'
+        products={newProducts}
+        title='Sản phẩm'
+        strongTitle='mới'
+      ></SectionProduct>
+      <SectionProduct
+        products={keyboardCustoms}
+        title='Bàn phím cơ'
+        strongTitle='custom'
+        arrows
+      ></SectionProduct>
+      <SectionProduct
+        max='4'
+        products={keycaps}
+        title='Bộ sưu tập keycap'
+        strongTitle='Cherry'
+      ></SectionProduct>
       <FeatureProductBlock></FeatureProductBlock>
-      <SectionProduct max="4" products={switchs} title="Switch" strongTitle="Cho bàn phím cơ"></SectionProduct>
-      <SectionProduct max="4" products={accessorys} title="Phụ kiện cho" strongTitle="Bàn phím cơ"></SectionProduct>
-      <SectionNews max="4" news={newsState} title="Tin tức" strongTitle="Kicap"></SectionNews>
+      <SectionProduct
+        max='4'
+        products={switchs}
+        title='Switch'
+        strongTitle='Cho bàn phím cơ'
+      ></SectionProduct>
+      <SectionProduct
+        max='4'
+        products={accessorys}
+        title='Phụ kiện cho'
+        strongTitle='Bàn phím cơ'
+      ></SectionProduct>
+      <SectionNews max='4' news={newsState} title='Tin tức' strongTitle='Kicap'></SectionNews>
     </>
   );
 };

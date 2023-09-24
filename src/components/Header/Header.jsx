@@ -170,7 +170,7 @@ const Header = () => {
                 key={item.id}
                 className={`nav-items ${item.hasChild && !item.hasMega ? 'has-childs' : ''}`}
               >
-                <NavLink className={`nav-link`} to={item.navigate}>
+                <NavLink className={'nav-link'} to={item.navigate}>
                   {item.name}
                   {item.hasChild ? (
                     <span>
