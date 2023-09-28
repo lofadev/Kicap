@@ -4,12 +4,13 @@ import Search from '../../assets/imgs/search.svg';
 import './FormSearch.scss';
 import { useEffect, useState } from 'react';
 
-const FormSearch = ({ onClick, searchActive }) => {
+const FormSearch = ({ onClick: handleToggleInSearch, searchActive }) => {
   const [inputValue, setInputValue] = useState('');
 
   useEffect(() => {
     setInputValue('');
   }, [searchActive]);
+
   return (
     <div className={`form-search ${searchActive ? 'active' : ''}`}>
       <form action='/search'>
@@ -29,7 +30,7 @@ const FormSearch = ({ onClick, searchActive }) => {
           </span>
         </div>
       </form>
-      <button className='close-search' title='Đóng tìm kiếm' onClick={onClick}>
+      <button className='close-search' title='Đóng tìm kiếm' onClick={handleToggleInSearch}>
         <FaXmark />
       </button>
     </div>

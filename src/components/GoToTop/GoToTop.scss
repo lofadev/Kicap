@@ -8,6 +8,7 @@
   align-items: center;
   cursor: pointer;
   opacity: 0;
+  z-index: 10;
   transition: all 0.2s linear;
 
   & > * {
