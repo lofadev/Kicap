@@ -96,6 +96,7 @@ body {
   line-height: 1;
   color: var(--black);
   background-color: #fff;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 .app {
   position: relative;
@@ -120,6 +121,15 @@ body {
 
 .hide {
   display: none !important;
+}
+
+.height-auto {
+  height: auto;
+}
+
+.hidden-lg,
+.hidden-md {
+  display: none;
 }
 
 .required {

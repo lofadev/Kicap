@@ -13,14 +13,15 @@
   background-color: transparent;
   -webkit-transition: color 0.45s cubic-bezier(0.785, 0.135, 0.15, 0.86),
     border 0.45s cubic-bezier(0.785, 0.135, 0.15, 0.86);
-  transition: color 0.45s cubic-bezier(0.785, 0.135, 0.15, 0.86), border 0.45s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+  transition: color 0.45s cubic-bezier(0.785, 0.135, 0.15, 0.86),
+    border 0.45s cubic-bezier(0.785, 0.135, 0.15, 0.86);
   z-index: 1;
   -webkit-tap-highlight-color: initial;
   color: #fff;
 
   &::before {
     position: absolute;
-    content: "";
+    content: '';
     display: block;
     left: 0;
     top: 0;
@@ -36,14 +37,16 @@
     background-color: #1c1c1c;
   }
 
-  &:hover::before {
-    left: unset;
-    right: 0;
-    width: 0;
-  }
+  @media (hover: hover) {
+    &:hover::before {
+      left: unset;
+      right: 0;
+      width: 0;
+    }
 
-  &:hover {
-    color: var(--black);
+    &:hover {
+      color: var(--black);
+    }
   }
 }
 
@@ -60,9 +63,11 @@
   display: block;
   transition: all 0.2s linear;
 
-  &:hover {
-    background-color: #1e2022;
-    color: #fff;
-    border-color: #234466;
+  @media (hover: hover) {
+    &:hover {
+      background-color: #1e2022;
+      color: #fff;
+      border-color: #234466;
+    }
   }
 }
