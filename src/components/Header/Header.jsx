@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+import { FaBars } from 'react-icons/fa';
 import { FaAngleDown } from 'react-icons/fa6';
 import { Link, NavLink } from 'react-router-dom';
 import Cart from '../../assets/imgs/add-to-basket.svg';
@@ -48,7 +49,6 @@ const menu = [
   {
     id: 6,
     name: 'Sản phẩm',
-    hasChild: true,
     navigate: '/collections/all',
     hasMega: true,
     children: [
@@ -65,7 +65,7 @@ const menu = [
       {
         id: 3,
         title: 'Đèn decor',
-        subtitle: ['', '', ''],
+        subtitle: [],
       },
       {
         id: 4,
@@ -106,9 +106,25 @@ const menu = [
 
 const Header = () => {
   const [searchActive, setSearchActive] = useState(false);
-
+  const navRef = useRef();
   const handleToggleInSearch = (prev) => {
     setSearchActive(!prev);
+  };
+
+  const handleShowDropdown = (e) => {
+    if (e.target.closest('.icon-dropdown')) {
+      e.preventDefault();
+      let navLink = e.target;
+      while (navLink.classList.value != 'nav-link') {
+        navLink = navLink.parentNode;
+      }
+      const dropDown = navLink.nextElementSibling;
+      dropDown.classList.toggle('height-auto');
+    }
+  };
+
+  const handleShowMenuBar = () => {
+    navRef.current.style = 'transform: translateX(0);';
   };
 
   return (
@@ -123,6 +139,9 @@ const Header = () => {
           <div className='top_header-text'>
             <span>Hotline tư vấn: </span>
             <a href='tel:0369161095'>0369161095</a>
+          </div>
+          <div className='top_header-bar hidden-lg' onClick={handleShowMenuBar}>
+            <FaBars />
           </div>
 
           <div className='top_header-logo'>
@@ -151,8 +170,9 @@ const Header = () => {
 
               <li className='top_header-cart'>
                 <a href=''>
-                  Giỏ hàng <img src={Cart} alt='' />
-                  <span className='top_header-count_item'>0</span>
+                  <span className='top_header-cart-name'>Giỏ hàng </span>
+                  <img src={Cart} alt='' />
+                  <span className='top_header-cart-count'>0</span>
                 </a>
               </li>
 
@@ -163,24 +183,26 @@ const Header = () => {
           </div>
         </div>
 
-        <nav className='nav'>
+        <nav className='nav' ref={navRef}>
           <ul className='nav-menu'>
             {menu.map((item) => (
               <li
                 key={item.id}
-                className={`nav-items ${item.hasChild && !item.hasMega ? 'has-childs' : ''}`}
+                className={`nav-items ${
+                  item.hasChild ? 'has-childs' : item.hasMega ? 'has-mega' : ''
+                }`}
               >
-                <NavLink className={'nav-link'} to={item.navigate}>
+                <NavLink className={'nav-link'} to={item.navigate} onClick={handleShowDropdown}>
                   {item.name}
-                  {item.hasChild ? (
-                    <span>
+                  {item.hasChild || item.hasMega ? (
+                    <span className='icon-dropdown'>
                       <FaAngleDown></FaAngleDown>
                     </span>
                   ) : (
                     <></>
                   )}
                 </NavLink>
-                {item.hasChild && !item.hasMega ? (
+                {item.hasChild ? (
                   <ul className='dropdown-menu'>
                     {item.children.map((itemChild, index) => (
                       <li key={index} className='dropdown-items'>
@@ -191,12 +213,17 @@ const Header = () => {
                 ) : (
                   ''
                 )}
-                {item.hasChild && item.hasMega ? (
+                {item.hasMega ? (
                   <div className='mega-menu'>
                     {item.children.map((item) => (
                       <div key={item.id} className='mega-items'>
                         <Link to='/' className='mega-title'>
                           {item.title}
+                          {item.subtitle.length > 0 && (
+                            <span className='hidden-lg'>
+                              <FaAngleDown></FaAngleDown>
+                            </span>
+                          )}
                         </Link>
                         <ul>
                           {item.subtitle.map((subItem, index) => (
@@ -213,6 +240,16 @@ const Header = () => {
                 )}
               </li>
             ))}
+            <li className='nav-items hidden-lg'>
+              <Link className='nav-link' to={'/account/login'}>
+                Đăng nhập
+              </Link>
+            </li>
+            <li className='nav-items hidden-lg'>
+              <Link className='nav-link' to={'/account/register'}>
+                Đăng ký
+              </Link>
+            </li>
           </ul>
         </nav>
       </div>

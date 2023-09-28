@@ -18,3 +18,11 @@
   margin-left: 50%;
   transform: translateX(-50%);
 }
+
+@media screen and (max-width: 991px) {
+  .slick-slider .slick-track {
+    transform: translate3d(0px, 0px, 0px);
+  }
+}
+@media screen and (max-width: 767.98px) {
+}

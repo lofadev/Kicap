@@ -19,9 +19,24 @@ const SectionProduct = ({
     infinite: false,
     speed: 500,
     slidesToShow: 4,
-    slidesToScroll: 1,
+    mobileFirst: true,
     beforeChange: () => (dragging = true),
     afterChange: () => (dragging = false),
+    slidesToScroll: 1,
+    // responsive: [
+    //   {
+    //     breakpoint: 991,
+    //     settings: {
+    //       slidesToShow: 3,
+    //     },
+    //   },
+    //   {
+    //     breakpoint: 767,
+    //     settings: {
+    //       slidesToShow: 2,
+    //     },
+    //   },
+    // ],;
   };
   const maxLen = parseInt(max);
 
