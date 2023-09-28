@@ -63,7 +63,7 @@ const Footer = () => {
               Mua bàn phím cơ, keycap bộ, keycap lẻ, keycap resin. Bảo hành chính hãng. Ưu đãi khi
               mua online. Dịch vụ mods phím cơ uy tín, chất lượng.
             </p>
-            <form id='footer-form'>
+            <form id='footer-form' action='/subcrible'>
               <input
                 type='text'
                 placeholder='Email của bạn'
