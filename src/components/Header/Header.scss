@@ -16,19 +16,7 @@
 
     a {
       font-weight: 700;
-      transition: all 0.2s linear;
-
-      @media (hover: hover) {
-        &:hover {
-          color: var(--light-gray);
-        }
-      }
     }
-  }
-
-  &-bar {
-    cursor: pointer;
-    font-size: 2.2rem;
   }
 
   &-logo {
@@ -65,14 +53,12 @@
         z-index: 8;
       }
 
-      @media (hover: hover) {
-        &:hover ul {
-          display: block;
-        }
+      &:hover ul {
+        display: block;
+      }
 
-        &:hover::before {
-          display: block;
-        }
+      &:hover::before {
+        display: block;
       }
     }
 
@@ -102,10 +88,8 @@
         pointer-events: none;
       }
 
-      @media (hover: hover) {
-        &:hover::before {
-          display: block;
-        }
+      &:hover::before {
+        display: block;
       }
     }
 
@@ -153,7 +137,7 @@
   }
 
   &-cart {
-    padding-right: 22px;
+    padding-right: 18px;
 
     & > a {
       position: relative;
@@ -172,6 +156,10 @@
       align-items: center;
       letter-spacing: 0;
     }
+  }
+
+  &-search {
+    padding: 4px;
   }
 }
 
@@ -205,11 +193,6 @@
       transform: translateY(2px);
     }
 
-    @media (hover: hover) {
-      &:hover {
-        color: var(--light-gray);
-      }
-    }
     &.active {
       color: var(--light-gray);
     }
@@ -240,23 +223,13 @@
 
   .dropdown-items {
     a {
+      font-size: 1.4rem;
+      font-weight: 300;
       display: block;
       padding: 10px 5px;
       padding-right: 20px;
       line-height: 20px;
-      font-weight: 300;
       letter-spacing: 0.25px;
-      -moz-transition: all 0.2s;
-      -o-transition: all 0.2s;
-      -webkit-transition: all 0.2s;
-      transition: all 0.2s;
-      font-size: 1.4rem;
-
-      @media (hover: hover) {
-        &:hover {
-          color: var(--light-gray);
-        }
-      }
     }
   }
 
@@ -359,7 +332,12 @@
       display: none;
     }
     &-bar {
-      display: block !important;
+      font-size: 2.2rem;
+    }
+    &-bar--inner {
+      cursor: pointer;
+      display: inline-block;
+      padding: 4px;
     }
     &-logo a {
       height: 50px;
@@ -454,5 +432,13 @@
   .nav-items span {
     height: 20px;
     padding: 0 10px;
+  }
+}
+
+@media screen and (max-width: 767.98px) {
+  .top_header-logo {
+    & > a {
+      width: 100px;
+    }
   }
 }

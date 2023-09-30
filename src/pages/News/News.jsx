@@ -5,8 +5,8 @@ import unidecode from 'unidecode';
 import { news } from '../../../data';
 import ArticleTag from '../../components/ArticleTag/ArticleTag';
 import FormComment from '../../components/FormComment/FormComment';
-import './News.scss';
 import SectionBreadCrumb from '../../components/SectionBreadCrumb/SectionBreadCrumb';
+import './News.scss';
 
 const News = () => {
   const { title } = useParams();

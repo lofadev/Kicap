@@ -1,4 +1,5 @@
 import Proptypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
 import Button from '../Button/Button';
 import NewsCard from '../NewsCard/NewsCard';
@@ -20,10 +21,10 @@ const SectionNews = ({ news, title, strongTitle, dots = false, arrows = false, m
   return (
     <section className='section-news'>
       <div className='container'>
-        <h2 className='news-title'>
-          <a href=''>
+        <h2 className='section-title-head'>
+          <Link to='/' className='text-hover-primary'>
             {title} <strong>{strongTitle}</strong>
-          </a>
+          </Link>
         </h2>
         <div className='news-block'>
           <Slider {...settings}>

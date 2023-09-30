@@ -26,7 +26,8 @@ const Home = () => {
         newProductsArr.length == 4 &&
         keyboardCustomsArr.length == 4 &&
         keycapsArr.length == 4 &&
-        switchsArr.length == 4
+        switchsArr.length == 4 &&
+        accessorysArr.length == 4
       )
         break;
       if (productState[i].type == 'bàn phím cơ') {
@@ -61,7 +62,6 @@ const Home = () => {
         products={keyboardCustoms}
         title='Bàn phím cơ'
         strongTitle='custom'
-        arrows
       ></SectionProduct>
       <SectionProduct
         max='4'

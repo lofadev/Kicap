@@ -15,10 +15,6 @@
     transition: all 0.2s linear;
     cursor: pointer;
     text-transform: capitalize;
-    &:hover {
-      color: var(--light-gray);
-      font-weight: 500;
-    }
   }
 
   .arrow-right {

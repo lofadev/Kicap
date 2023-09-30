@@ -1,8 +1,9 @@
+import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
+import { products } from '../../../data';
 import Star from '../../assets/imgs/star.webp';
 import ProductCard from '../ProductCard/ProductCard';
 import './FeatureProductBlock.scss';
-import { products } from '../../../data';
 
 const FeatureProductBlock = () => {
   const data = products[0];
@@ -19,9 +20,9 @@ const FeatureProductBlock = () => {
     <section className='feature-product_block'>
       <div className='container'>
         <h2 className='product_title'>
-          <a href=''>
+          <Link href=''>
             Bộ sưu tập <strong>Keycap sa osiris</strong>
-          </a>
+          </Link>
         </h2>
         <Slider {...settings}>
           <div className='shop-the-look'>

@@ -1,7 +1,7 @@
 import Proptypes from 'prop-types';
 import Footer from '../../components/Footer/Footer';
-import Header from '../../components/Header/Header';
 import GoToTop from '../../components/GoToTop/GoToTop';
+import Header from '../../components/Header/Header';
 
 const DefaultLayout = ({ children }) => {
   return (

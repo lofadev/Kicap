@@ -16,12 +16,6 @@
   }
 
   a {
-    cursor: pointer;
     color: #0657a3;
-    transition: all 0.2s linear;
-
-    &:hover {
-      color: var(--light-gray);
-    }
   }
 }

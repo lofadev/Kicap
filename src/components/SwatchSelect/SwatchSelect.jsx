@@ -1,7 +1,7 @@
 import Proptypes from 'prop-types';
+import { useState } from 'react';
 import SwatchCheck from '../../assets/imgs/select-pro.jpg';
 import './SwatchSelect.scss';
-import { useState } from 'react';
 
 const SwatchSelect = ({ product, field }) => {
   const [checked, setChecked] = useState(0);
@@ -9,10 +9,10 @@ const SwatchSelect = ({ product, field }) => {
     field === 'layout'
       ? 'Layout'
       : field === 'species'
-        ? 'Loại'
-        : field === 'color'
-          ? 'Màu sắc'
-          : 'Switch';
+      ? 'Loại'
+      : field === 'color'
+      ? 'Màu sắc'
+      : 'Switch';
   return (
     <div className='select-swatch-items'>
       <span className='field-name'>{fieldName}:</span>

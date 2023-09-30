@@ -1,7 +1,7 @@
 import Proptypes from 'prop-types';
-import './NewCard.scss';
 import { Link } from 'react-router-dom';
 import unidecode from 'unidecode';
+import './NewsCard.scss';
 
 const NewsCard = ({ newItem }) => {
   const titleParam = unidecode(newItem.title.toLowerCase()).split(' ').join('-');

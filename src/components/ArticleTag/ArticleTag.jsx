@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
 import Proptypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import './ArticleTag.scss';
 
 const ArticleTag = ({ newsState }) => {

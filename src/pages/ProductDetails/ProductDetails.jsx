@@ -193,8 +193,8 @@ const ProductDetails = () => {
                       {status === 0
                         ? 'Hết hàng'
                         : status > 0
-                          ? `${status} sản phẩm có sẵn`
-                          : 'Hàng order'}
+                        ? `${status} sản phẩm có sẵn`
+                        : 'Hàng order'}
                     </span>
                   </div>
 

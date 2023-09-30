@@ -167,42 +167,46 @@ const Header = () => {
         <div className='top_header'>
           <div className='top_header-text'>
             <span>Hotline tư vấn: </span>
-            <a href='tel:0369161095'>0369161095</a>
+            <a href='tel:0369161095' className='text-hover-primary'>
+              0369161095
+            </a>
           </div>
-          <div className='top_header-bar hidden-lg' onClick={handleShowMenuBar}>
-            <FaBars />
+          <div className='top_header-bar hidden-lg'>
+            <div className='top_header-bar--inner' onClick={handleShowMenuBar}>
+              <FaBars />
+            </div>
           </div>
 
           <div className='top_header-logo'>
-            <a href=''>
+            <Link to='/'>
               <img src={Logo} alt='' />
-            </a>
+            </Link>
           </div>
 
           <div className='top_header-right'>
             <ul className='top_header-features'>
               <li className='top_header-account'>
-                <a href='#'>Tài khoản</a>
+                <Link to='/'>Tài khoản</Link>
                 <ul>
                   <li>
-                    <a rel='nofollow' href='/account' title='Đăng nhập'>
+                    <Link to='/account' title='Đăng nhập'>
                       Đăng nhập
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a rel='nofollow' href='/account/logout' title='Đăng ký'>
+                    <Link to='/account/logout' title='Đăng ký'>
                       Đăng ký
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </li>
 
               <li className='top_header-cart'>
-                <a href=''>
+                <Link to='/'>
                   <span className='top_header-cart-name'>Giỏ hàng </span>
                   <img src={Cart} alt='' />
                   <span className='top_header-cart-count'>0</span>
-                </a>
+                </Link>
               </li>
 
               <li className='top_header-search' onClick={() => handleToggleInSearch()}>
@@ -220,8 +224,15 @@ const Header = () => {
                 className={`nav-items ${
                   item.hasChild ? 'has-childs' : item.hasMega ? 'has-mega' : ''
                 }`}
+                onClick={() => {
+                  if (isActiveMenubar) handleToggleOverlay();
+                }}
               >
-                <NavLink className={'nav-link'} to={item.navigate} onClick={handleShowDropdown}>
+                <NavLink
+                  className='nav-link text-hover-primary'
+                  to={item.navigate}
+                  onClick={handleShowDropdown}
+                >
                   {item.name}
                   {item.hasChild || item.hasMega ? (
                     <span className='icon-dropdown'>
@@ -235,7 +246,9 @@ const Header = () => {
                   <ul className='dropdown-menu'>
                     {item.children.map((itemChild, index) => (
                       <li key={index} className='dropdown-items'>
-                        <Link to={itemChild.navigate}>{itemChild.title}</Link>
+                        <Link className='text-hover-primary' to={itemChild.navigate}>
+                          {itemChild.title}
+                        </Link>
                       </li>
                     ))}
                   </ul>

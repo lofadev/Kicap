@@ -26,7 +26,7 @@ module.exports = {
     'no-multiple-empty-lines': 1,
     'space-before-blocks': ['error', 'always'],
     'object-curly-spacing': [1, 'always'],
-    indent: ['warn', 2],
+    indent: [0, 2],
     semi: [0, 'never'],
     quotes: ['error', 'single'],
     'array-bracket-spacing': 1,

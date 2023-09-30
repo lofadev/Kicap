@@ -1,8 +1,8 @@
 import Proptypes from 'prop-types';
+import { useEffect, useState } from 'react';
 import { FaXmark } from 'react-icons/fa6';
 import Search from '../../assets/imgs/search.svg';
 import './FormSearch.scss';
-import { useEffect, useState } from 'react';
 
 const FormSearch = ({ onClick: handleToggleInSearch, searchActive }) => {
   const [inputValue, setInputValue] = useState('');

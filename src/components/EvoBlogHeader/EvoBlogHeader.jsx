@@ -1,6 +1,6 @@
+import Proptypes from 'prop-types';
 import { useEffect } from 'react';
 import './EvoBlogHeader.scss';
-import Proptypes from 'prop-types';
 
 const EvoBlogHeader = ({ title }) => {
   useEffect(() => {

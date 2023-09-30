@@ -16,7 +16,7 @@ const SectionBreadCrumb = ({ parent = null, child = null }) => {
       <div className='container'>
         <h3>
           <Link to={'/'}>
-            <span className='bread-crumb-group'>
+            <span className='bread-crumb-group text-hover-primary'>
               Trang chủ
               <span className='arrow-right'>
                 <FaAngleRight />
@@ -25,7 +25,7 @@ const SectionBreadCrumb = ({ parent = null, child = null }) => {
           </Link>
 
           <Link to={`/${parentParam}`}>
-            <span className='bread-crumb-group'>
+            <span className='bread-crumb-group text-hover-primary'>
               {parent}
               {child && (
                 <span className='arrow-right'>

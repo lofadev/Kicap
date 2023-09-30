@@ -36,7 +36,7 @@ const Policy = () => {
                       key={i}
                       href={`mailto:${item.to}`}
                       target='_blank'
-                      className='p-link'
+                      className='p-link text-hover-primary'
                       rel='noreferrer'
                     >
                       {item.p}
