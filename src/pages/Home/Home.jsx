@@ -46,19 +46,19 @@ const Home = () => {
     setKeycaps(keycapsArr);
     setSwitchs(switchsArr);
     setAccessorys(accessorysArr);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [productState]);
 
   return (
     <>
       <HeroSlider></HeroSlider>
       <SectionProduct
-        max='4'
+        max='10'
         products={newProducts}
         title='Sản phẩm'
         strongTitle='mới'
       ></SectionProduct>
       <SectionProduct
+        max='10'
         products={keyboardCustoms}
         title='Bàn phím cơ'
         strongTitle='custom'
