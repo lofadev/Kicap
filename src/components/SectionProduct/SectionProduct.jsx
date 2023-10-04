@@ -1,44 +1,30 @@
 import Proptypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import Slider from 'react-slick';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import { Navigation } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import Button from '../Button/Button';
 import ProductCard from '../ProductCard/ProductCard';
 import './SectionProduct.scss';
 
-const SectionProduct = ({
-  products,
-  title,
-  strongTitle,
-  dots = false,
-  arrows = false,
-  max = 10,
-}) => {
-  let dragging = false;
-  const settings = {
-    arrows: arrows,
-    dots: dots,
-    infinite: false,
-    speed: 500,
-    slidesToShow: 4,
-    beforeChange: () => (dragging = true),
-    afterChange: () => (dragging = false),
-    slidesToScroll: 1,
-    focusOnSelect: true,
-    responsive: [
-      {
-        breakpoint: 991,
-        settings: {
-          slidesToShow: 3,
-        },
+const SectionProduct = ({ products, title, strongTitle, max }) => {
+  const swiperSettings = {
+    slidesPerView: 2,
+    spaceBetween: 10,
+    navigation: max > 4,
+    modules: [Navigation],
+    breakpoints: {
+      991: {
+        slidesPerView: 3,
       },
-      {
-        breakpoint: 767,
-        settings: {
-          slidesToShow: 2,
-        },
+      1150: {
+        slidesPerView: 4,
       },
-    ],
+    },
   };
+
   const maxLen = parseInt(max);
   const txtButton = title && strongTitle ? `Xem tất cả . ${title} ${strongTitle}` : 'Xem tất cả';
 
@@ -51,19 +37,17 @@ const SectionProduct = ({
           </Link>
         </h2>
         <div className='product_block'>
-          <Slider {...settings}>
+          <Swiper {...swiperSettings}>
             {products.map((item, index) => {
               if (index < maxLen) {
                 return (
-                  <ProductCard
-                    onClick={(e) => dragging && e.preventDefault()}
-                    key={item.id}
-                    product={item}
-                  ></ProductCard>
+                  <SwiperSlide key={item.id}>
+                    <ProductCard product={item}></ProductCard>
+                  </SwiperSlide>
                 );
               }
             })}
-          </Slider>
+          </Swiper>
         </div>
 
         <Button type='a' primary className='btn-more'>
