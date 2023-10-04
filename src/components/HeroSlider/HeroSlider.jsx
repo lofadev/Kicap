@@ -1,13 +1,10 @@
 // Import css files
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick-theme.css';
-import 'slick-carousel/slick/slick.css';
-import './HeroSlider.scss';
-
 import { Link } from 'react-router-dom';
+import Slider from 'react-slick';
 import Img1 from '../../assets/imgs/slider_1.jpg';
 import Img2 from '../../assets/imgs/slider_2.jpg';
 import Img3 from '../../assets/imgs/slider_3.jpg';
+import './HeroSlider.scss';
 
 const sliderData = [
   {

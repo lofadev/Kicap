@@ -4,7 +4,7 @@ import unidecode from 'unidecode';
 import Button from '../Button/Button';
 import './ProductCard.scss';
 
-const ProductCard = ({ product, onClick }) => {
+const ProductCard = ({ product }) => {
   const formattedPrice = product.price[0].toLocaleString('vi-VN', {
     style: 'currency',
     currency: 'VND',
@@ -25,7 +25,7 @@ const ProductCard = ({ product, onClick }) => {
 
   return (
     <div className='product_card' key={product.id}>
-      <Link to={`/product/${productTitleParams}`} className='product_url' onClick={onClick}>
+      <Link to={`/product/${productTitleParams}`} className='product_url'>
         {product.discount[0] > 0 && <span className='sale_box'>{`- ${product.discount[0]}%`}</span>}
         <div className='product_card-inner'>
           <div className='product_card-image'>
