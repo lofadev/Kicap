@@ -1,11 +1,13 @@
 const routes = {
   home: '/',
-  cart: '/cart',
-  introduce: '/gioi-thieu',
+  product_category: '/:title',
+  collections_all: '/collections/all',
   product_details: '/product/:title',
   news: '/news/:title',
-  contact: '/lien-he',
+  cart: '/cart',
   policy: 'policy/:title',
+  introduce: '/gioi-thieu',
+  contact: '/lien-he',
 };
 
 export default routes;

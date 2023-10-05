@@ -11,7 +11,6 @@
     font-size: 3.6rem;
     color: var(--black);
     margin-bottom: 10px;
-    line-height: 50px;
   }
 
   &-desc {
@@ -34,6 +33,24 @@
       margin-bottom: 15px;
       font-weight: 300;
       line-height: 24px;
+    }
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .introduce {
+    &-img {
+      padding: 0;
+      flex-direction: column;
+      row-gap: 10px;
+    }
+
+    &-head {
+      font-size: 1.8rem;
+    }
+
+    &-more {
+      text-align: justify;
     }
   }
 }

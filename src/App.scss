@@ -57,6 +57,7 @@ svg,
 video {
   display: block;
   max-width: 100%;
+  user-select: none;
 }
 input,
 select,
