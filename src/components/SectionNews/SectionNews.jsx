@@ -1,19 +1,10 @@
 import Proptypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import Slider from 'react-slick';
 import Button from '../Button/Button';
 import NewsCard from '../NewsCard/NewsCard';
 import './SectionNews.scss';
 
-const SectionNews = ({ news, title, strongTitle, dots = false, arrows = false, max = 4 }) => {
-  const settings = {
-    arrows: arrows,
-    dots: dots,
-    infinite: false,
-    speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 1,
-  };
+const SectionNews = ({ news, title, strongTitle, max = 4 }) => {
   const maxLen = parseInt(max);
 
   const txtButton = 'Xem tất cả';
@@ -26,14 +17,13 @@ const SectionNews = ({ news, title, strongTitle, dots = false, arrows = false, m
             {title} <strong>{strongTitle}</strong>
           </Link>
         </h2>
+
         <div className='news-block'>
-          <Slider {...settings}>
-            {news.map((item, index) => {
-              if (index < maxLen) {
-                return <NewsCard key={item.id} newItem={item}></NewsCard>;
-              }
-            })}
-          </Slider>
+          {news.map((item, index) => {
+            if (index < maxLen) {
+              return <NewsCard key={item.id} newItem={item}></NewsCard>;
+            }
+          })}
         </div>
 
         <Button type='a' primary className='btn-more'>
@@ -49,8 +39,6 @@ SectionNews.propTypes = {
   title: Proptypes.string,
   strongTitle: Proptypes.string,
   txtButton: Proptypes.node,
-  dots: Proptypes.bool,
-  arrows: Proptypes.bool,
   max: Proptypes.string,
 };
 

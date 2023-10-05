@@ -189,12 +189,12 @@ const Header = () => {
                 <Link to='/'>Tài khoản</Link>
                 <ul>
                   <li>
-                    <Link to='/account' title='Đăng nhập'>
+                    <Link to='/account/login' title='Đăng nhập'>
                       Đăng nhập
                     </Link>
                   </li>
                   <li>
-                    <Link to='/account/logout' title='Đăng ký'>
+                    <Link to='/account/register' title='Đăng ký'>
                       Đăng ký
                     </Link>
                   </li>
@@ -286,16 +286,20 @@ const Header = () => {
                 )}
               </li>
             ))}
-            <li className='nav-items hidden-lg'>
-              <Link className='nav-link' to={'/account/login'}>
-                Đăng nhập
-              </Link>
-            </li>
-            <li className='nav-items hidden-lg'>
-              <Link className='nav-link' to={'/account/register'}>
-                Đăng ký
-              </Link>
-            </li>
+            {isActiveMenubar && (
+              <>
+                <li className='nav-items hidden-lg'>
+                  <Link className='nav-link' to={'/account/login'}>
+                    Đăng nhập
+                  </Link>
+                </li>
+                <li className='nav-items hidden-lg'>
+                  <Link className='nav-link' to={'/account/register'}>
+                    Đăng ký
+                  </Link>
+                </li>
+              </>
+            )}
           </ul>
         </nav>
       </div>

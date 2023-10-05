@@ -58,7 +58,7 @@ const Home = () => {
         strongTitle='mới'
       ></SectionProduct>
       <SectionProduct
-        max='10'
+        max='5'
         products={keyboardCustoms}
         title='Bàn phím cơ'
         strongTitle='custom'
@@ -77,7 +77,7 @@ const Home = () => {
         strongTitle='Cho bàn phím cơ'
       ></SectionProduct>
       <SectionProduct
-        max='4'
+        max='2'
         products={accessorys}
         title='Phụ kiện cho'
         strongTitle='Bàn phím cơ'

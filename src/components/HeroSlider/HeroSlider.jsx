@@ -1,6 +1,9 @@
 // Import css files
 import { Link } from 'react-router-dom';
-import Slider from 'react-slick';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import { Pagination } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import Img1 from '../../assets/imgs/slider_1.jpg';
 import Img2 from '../../assets/imgs/slider_2.jpg';
 import Img3 from '../../assets/imgs/slider_3.jpg';
@@ -26,31 +29,28 @@ const sliderData = [
 
 const HeroSlider = () => {
   let dragging = false;
-  var settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    arrows: false,
-    autoplay: true,
-    autoplaySpeed: 5000,
-    pauseOnFocus: true,
-    beforeChange: () => (dragging = true),
-    afterChange: () => (dragging = false),
+  const swiperSettings = {
+    slidesPerView: 1,
+    pagination: true,
+    modules: [Pagination],
+    loop: true,
   };
 
   return (
     <section className='hero_slider'>
-      <Slider {...settings}>
-        {sliderData.map((item) => (
-          <Link key={item.id} to={item.url} onClick={(e) => dragging && e.preventDefault()}>
-            <div className='hero_slider-items'>
-              <img src={item.image} alt='' className='hero_slider-img' />
-            </div>
-          </Link>
-        ))}
-      </Slider>
+      <Swiper {...swiperSettings}>
+        {sliderData.map((item) => {
+          return (
+            <SwiperSlide key={item.id}>
+              <Link to={item.url} onClick={(e) => dragging && e.preventDefault()}>
+                <div className='hero_slider-items'>
+                  <img src={item.image} alt='' className='hero_slider-img' />
+                </div>
+              </Link>
+            </SwiperSlide>
+          );
+        })}
+      </Swiper>
     </section>
   );
 };
