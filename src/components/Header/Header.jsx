@@ -141,7 +141,7 @@ const Header = () => {
     setIsActiveOverlay((prev) => !prev);
   };
 
-  const handleShowDropdown = (e) => {
+  const handleCLickLink = (e) => {
     if (e.target.closest('.icon-dropdown')) {
       e.preventDefault();
       let navLink = e.target;
@@ -153,6 +153,8 @@ const Header = () => {
       }
       const dropDown = navLink.nextElementSibling;
       dropDown.classList.toggle('height-auto');
+    } else {
+      handleToggleOverlay();
     }
   };
 
@@ -202,7 +204,7 @@ const Header = () => {
               </li>
 
               <li className='top_header-cart'>
-                <Link to='/'>
+                <Link to='/cart'>
                   <span className='top_header-cart-name'>Giỏ hàng </span>
                   <img src={Cart} alt='' />
                   <span className='top_header-cart-count'>0</span>
@@ -224,14 +226,11 @@ const Header = () => {
                 className={`nav-items ${
                   item.hasChild ? 'has-childs' : item.hasMega ? 'has-mega' : ''
                 }`}
-                onClick={() => {
-                  if (isActiveMenubar) handleToggleOverlay();
-                }}
               >
                 <NavLink
                   className='nav-link text-hover-primary'
                   to={item.navigate}
-                  onClick={handleShowDropdown}
+                  onClick={handleCLickLink}
                 >
                   {item.name}
                   {item.hasChild || item.hasMega ? (
@@ -246,7 +245,11 @@ const Header = () => {
                   <ul className='dropdown-menu'>
                     {item.children.map((itemChild, index) => (
                       <li key={index} className='dropdown-items'>
-                        <Link className='text-hover-primary' to={itemChild.navigate}>
+                        <Link
+                          className='text-hover-primary'
+                          to={itemChild.navigate}
+                          onClick={handleCLickLink}
+                        >
                           {itemChild.title}
                         </Link>
                       </li>
@@ -259,11 +262,7 @@ const Header = () => {
                   <div className='mega-menu'>
                     {item.children.map((item) => (
                       <div key={item.id} className='mega-items'>
-                        <Link
-                          to={item.navigate}
-                          className='mega-title'
-                          onClick={handleShowDropdown}
-                        >
+                        <Link to={item.navigate} className='mega-title' onClick={handleCLickLink}>
                           {item.title}
                           {item.subtitle.length > 0 && (
                             <span className='hidden-lg icon-dropdown'>
@@ -274,7 +273,9 @@ const Header = () => {
                         <ul className='mega-submenu'>
                           {item.subtitle.map((subItem, index) => (
                             <li key={index}>
-                              <Link to='/'>{subItem}</Link>
+                              <Link to='/' onClick={handleCLickLink}>
+                                {subItem}
+                              </Link>
                             </li>
                           ))}
                         </ul>
