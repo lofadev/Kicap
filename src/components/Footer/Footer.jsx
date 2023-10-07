@@ -35,10 +35,16 @@ const Footer = () => {
                 <FaMapMarkerAlt></FaMapMarkerAlt> 38, ngõ 575 Kim Mã, Ba Đình, Hà Nội
               </li>
               <li>
-                <FaPhoneAlt></FaPhoneAlt> <a href='tel:0369161095'>0369161095</a>
+                <FaPhoneAlt></FaPhoneAlt>{' '}
+                <a className='text-hover-primary' href='tel:0369161095'>
+                  0369161095
+                </a>
               </li>
               <li>
-                <FaEnvelope></FaEnvelope> <a href='mailto:kicap.vn@gmail.com'>kicap.vn@gmail.com</a>
+                <FaEnvelope></FaEnvelope>{' '}
+                <a className='text-hover-primary' href='mailto:kicap.vn@gmail.com'>
+                  kicap.vn@gmail.com
+                </a>
               </li>
             </ul>
           </div>

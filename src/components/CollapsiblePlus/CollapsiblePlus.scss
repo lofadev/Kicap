@@ -1,0 +1,40 @@
+.collapsible-plus {
+  position: absolute;
+  right: 7px;
+  top: 8px;
+  width: 20px;
+  height: 20px;
+  color: var(--black);
+  & span {
+    display: inline-block;
+    margin-left: unset;
+    position: absolute;
+    content: '';
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: currentColor;
+    transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
+  }
+
+  & span:nth-child(1) {
+    height: 1px;
+    width: 11px;
+  }
+  & span:nth-child(2) {
+    width: 1px;
+    height: 11px;
+    opacity: 1;
+  }
+}
+
+.nav-item.active {
+  & > .collapsible-plus {
+    span:nth-child(1) {
+      transform: translate(-50%, -50%) rotate(180deg);
+    }
+    span:nth-child(2) {
+      opacity: 0;
+    }
+  }
+}

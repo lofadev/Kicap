@@ -1,0 +1,47 @@
+.aside-category {
+  .title-head {
+    font-size: 2rem;
+    line-height: 30px;
+    font-weight: 500;
+    color: #1c1c1c;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .nav-item {
+    position: relative;
+  }
+
+  .nav-link {
+    font-size: 1.4rem;
+    color: #1c1c1c;
+    font-weight: normal;
+    padding: 5px 25px;
+    padding-left: 0;
+    position: relative;
+    justify-content: space-between;
+    width: 100%;
+
+    &:hover {
+      color: var(--light-gray);
+    }
+  }
+
+  .nav-item.active {
+    & > .dropdown-menu {
+      display: block;
+    }
+  }
+
+  .dropdown-menu {
+    padding-left: 10px;
+    display: none;
+  }
+
+  .dropdown-submenu {
+    .dropdown-menu {
+      padding-left: 10px;
+    }
+  }
+}

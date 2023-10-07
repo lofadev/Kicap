@@ -2855,11 +2855,11 @@ export const nav = [
     hasChild: true,
     navigate: '/keycap-bo',
     children: [
-      { id: 1, title: 'Keycap Cherry', navigate: '/keycap-cherry' },
-      { id: 2, title: 'Keycap xuyên led', navigate: '/keycap-xuyen-led' },
-      { id: 3, title: 'Keycap SA', navigate: '/keycap-sa' },
-      { id: 4, title: 'Keycap XDA', navigate: '/keycap-xda' },
-      { id: 5, title: 'Keycap OEM', navigate: '/keycap-oem' },
+      { id: 1, name: 'Keycap Cherry', navigate: '/keycap-cherry' },
+      { id: 2, name: 'Keycap xuyên led', navigate: '/keycap-xuyen-led' },
+      { id: 3, name: 'Keycap SA', navigate: '/keycap-sa' },
+      { id: 4, name: 'Keycap XDA', navigate: '/keycap-xda' },
+      { id: 5, name: 'Keycap OEM', navigate: '/keycap-oem' },
     ],
   },
   {
@@ -2888,56 +2888,119 @@ export const nav = [
     children: [
       {
         id: 1,
-        title: 'Keycap bộ',
+        name: 'Keycap bộ',
         navigate: '/keycap-bo',
         sub_children: [
           {
             id: 1,
             name: 'Silent forest',
-            navigate: '/bo-keycap-silent-forest',
+            navigate: '/product/bo-keycap-silent-forest',
           },
           {
             id: 2,
             name: 'SA Harry Potter',
-            navigate: '/bo-keycap-sa-harry-potter-snake',
+            navigate: '/product/bo-keycap-sa-harry-potter-snake',
           },
           {
             id: 3,
             name: 'Keycap Polar Day',
-            navigate: '/bo-keycap-polar-day-oem-xuyen-led',
+            navigate: '/product/bo-keycap-polar-day-oem-xuyen-led',
           },
         ],
       },
       {
         id: 2,
-        title: 'Keycap lẻ',
+        name: 'Keycap lẻ',
         navigate: '/keycap-le',
-        sub_children: ['PIKACHU ALU', 'CARD VGA', 'CỜ ĐẢNG BÚA LIỀM'],
+        sub_children: [
+          {
+            id: 1,
+            name: 'PIKACHU ALU',
+            navigate: '/product/keycap-pikachu-hop-kim-nhom',
+          },
+          {
+            id: 2,
+            name: 'CARD VGA',
+            navigate: '/product/keycap-phim-enter-card-vga',
+          },
+          {
+            id: 3,
+            name: 'CỜ ĐẢNG BÚA LIỀM',
+            navigate: '/product/keycap-bua-liem',
+          },
+        ],
       },
       {
         id: 3,
-        title: 'Đèn decor',
+        name: 'Đèn decor',
         navigate: '/keycap-le',
         sub_children: [],
       },
       {
         id: 4,
-        title: 'Bàn phím cơ',
+        name: 'Bàn phím cơ',
         navigate: '/ban-phim-co',
-
-        sub_children: ['Monsgeek M1W', 'FL CMK75', 'Finalkey V81 Plus'],
+        sub_children: [
+          {
+            id: 1,
+            name: 'Monsgeek M1W',
+            navigate: '/product/ban-phim-co-custom-monsgeek-m1w',
+          },
+          {
+            id: 2,
+            name: 'FL CMK75',
+            navigate: '/product/ban-phim-co-cmk75-fl-esports',
+          },
+          {
+            id: 3,
+            name: 'Finalkey V81 Plus',
+            navigate: '/product/ban-phim-co-kit-v81',
+          },
+        ],
       },
       {
         id: 5,
-        title: 'Switch',
+        name: 'Switch',
         navigate: '/switch',
-        sub_children: ['WS Morandi', 'KTT Matcha', 'Akko Cream Yellow Pro'],
+        sub_children: [
+          {
+            id: 1,
+            name: 'WS Morandi',
+            navigate: '/product/switch-ws-morandi',
+          },
+          {
+            id: 2,
+            name: 'KTT Matcha',
+            navigate: '/product/switch-ktt-matcha-tactile',
+          },
+          {
+            id: 3,
+            name: 'Akko Cream Yellow Pro',
+            navigate: '/product/switch-akko-cream-yellow-v3-pro',
+          },
+        ],
       },
       {
         id: 6,
-        title: 'Phụ kiện',
+        name: 'Phụ kiện',
         navigate: '/phu-kien',
-        sub_children: ['Túi đựng bàn phím', 'Dụng cụ thay keycap', 'Chổi quét phím'],
+        sub_children: [
+          {
+            id: 1,
+            name: 'Túi đựng bàn phím',
+            navigate: '/product/tui-dung-ban-phim-chong-soc-chong-xuoc',
+          },
+          {
+            id: 2,
+            name: 'Dụng cụ thay keycap',
+            navigate: '/product/dung-cu-thay-keycap-va-switch-2-trong-1',
+          },
+          {
+            id: 3,
+            name: 'Chổi quét phím',
+            navigate: '/product/choi-ve-sinh-ban-phim-co',
+          },
+        ],
       },
     ],
   },
@@ -2953,10 +3016,371 @@ export const nav = [
     hasChild: true,
     navigate: '/gioi-thieu',
     children: [
-      { id: 1, title: 'Giới thiệu', navigate: '/gioi-thieu' },
-      { id: 2, title: 'Liên hệ', navigate: '/lien-he' },
-      { id: 3, title: 'Chính sách bảo hành', navigate: '/policy/chinh-sach-bao-hanh' },
-      { id: 4, title: 'Chính sách đổi trả', navigate: '/policy/chinh-sach-doi-tra-hang-hoan-tien' },
+      { id: 1, name: 'Giới thiệu', navigate: '/gioi-thieu' },
+      { id: 2, name: 'Liên hệ', navigate: '/lien-he' },
+      { id: 3, name: 'Chính sách bảo hành', navigate: '/policy/chinh-sach-bao-hanh' },
+      { id: 4, name: 'Chính sách đổi trả', navigate: '/policy/chinh-sach-doi-tra-hang-hoan-tien' },
+    ],
+  },
+];
+
+export const filters = [
+  {
+    id: 1,
+    title: 'Trạng thái tồn kho',
+    choices: [
+      {
+        text: 'Hàng có sẵn',
+        value: '(>0)',
+      },
+    ],
+  },
+  {
+    id: 2,
+    title: 'Tags',
+    choices: [
+      {
+        text: 'cherry',
+        value: '(cherry)',
+      },
+      {
+        text: 'sa',
+        value: '(sa)',
+      },
+      {
+        text: 'oem',
+        value: '(oem)',
+      },
+      {
+        text: 'asa',
+        value: '(asa)',
+      },
+      {
+        text: 'dyesub',
+        value: '(dyesub)',
+      },
+      {
+        text: 'doubleshot',
+        value: '(doubleshot)',
+      },
+      {
+        text: 'pbt',
+        value: '(pbt)',
+      },
+      {
+        text: 'abs',
+        value: '(abs)',
+      },
+    ],
+  },
+  {
+    id: 3,
+    title: 'Thương hiệu',
+    choices: [
+      {
+        text: '15Cables',
+        value: '(15Cables)',
+      },
+      {
+        text: 'Aifei',
+        value: '(Aifei)',
+      },
+      {
+        text: 'Aifei SA',
+        value: '(Aifei SA)',
+      },
+      {
+        text: 'Akko',
+        value: '(Akko)',
+      },
+      {
+        text: 'Cat Keys',
+        value: '(Cat Keys)',
+      },
+      {
+        text: 'Cherry',
+        value: '(Cherry)',
+      },
+      {
+        text: 'Cidoo',
+        value: '(Cidoo)',
+      },
+      {
+        text: 'CIY',
+        value: '(CIY)',
+      },
+      {
+        text: 'CMK',
+        value: '(CMK)',
+      },
+      {
+        text: 'DAGK',
+        value: '(DAGK)',
+      },
+      {
+        text: 'DPS Creation',
+        value: '(DPS Creation)',
+      },
+      {
+        text: 'Fantasy Labs',
+        value: '(Fantasy Labs)',
+      },
+      {
+        text: 'FBB',
+        value: '(FBB)',
+      },
+      {
+        text: 'Finalkey',
+        value: '(Finalkey)',
+      },
+      {
+        text: 'FL - Esports',
+        value: '(FL - Esports)',
+      },
+      {
+        text: 'Gateron',
+        value: '(Gateron)',
+      },
+      {
+        text: 'Gmk Clone',
+        value: '(Gmk Clone)',
+      },
+      {
+        text: 'Infiverse',
+        value: '(Infiverse)',
+      },
+      {
+        text: 'Jamesdonkey',
+        value: '(Jamesdonkey)',
+      },
+      {
+        text: 'JX',
+        value: '(JX)',
+      },
+      {
+        text: 'Kailh Box',
+        value: '(Kailh Box)',
+      },
+      {
+        text: 'Kelowna',
+        value: '(Kelowna)',
+      },
+      {
+        text: 'Keydous',
+        value: '(Keydous)',
+      },
+      {
+        text: 'Keystone',
+        value: '(Keystone)',
+      },
+      {
+        text: 'Kicap',
+        value: '(Kicap)',
+      },
+      {
+        text: 'KTT',
+        value: '(KTT)',
+      },
+      {
+        text: 'Loops',
+        value: '(Loops)',
+      },
+      {
+        text: 'M7',
+        value: '(M7)',
+      },
+      {
+        text: 'Melodic',
+        value: '(Melodic)',
+      },
+      {
+        text: 'MG',
+        value: '(MG)',
+      },
+      {
+        text: 'Mini Led',
+        value: '(Mini Led)',
+      },
+      {
+        text: 'Mintcaps',
+        value: '(Mintcaps)',
+      },
+      {
+        text: 'Monsgeek',
+        value: '(Monsgeek)',
+      },
+      {
+        text: 'MZ Studio',
+        value: '(MZ Studio)',
+      },
+      {
+        text: 'OSIRIS',
+        value: '(OSIRIS)',
+      },
+      {
+        text: 'PH Studio',
+        value: '(PH Studio)',
+      },
+      {
+        text: 'SA PBT',
+        value: '(SA PBT)',
+      },
+      {
+        text: 'Shark Studio',
+        value: '(Shark Studio)',
+      },
+      {
+        text: 'Soy Sauce',
+        value: '(Soy Sauce)',
+      },
+      {
+        text: 'Stooges',
+        value: '(Stooges)',
+      },
+      {
+        text: 'Titan Nation',
+        value: '(Titan Nation)',
+      },
+      {
+        text: 'TUT',
+        value: '(TUT)',
+      },
+      {
+        text: 'Weikav',
+        value: '(Weikav)',
+      },
+      {
+        text: 'Wu Liqi Keycap',
+        value: '(Wu Liqi Keycap)',
+      },
+      {
+        text: 'Wukds',
+        value: '(Wukds)',
+      },
+      {
+        text: 'Wuque Studio',
+        value: '(Wuque Studio)',
+      },
+      {
+        text: 'XCSTORE',
+        value: '(XCSTORE)',
+      },
+      {
+        text: 'Xinmeng',
+        value: '(Xinmeng)',
+      },
+      {
+        text: 'XM',
+        value: '(XM)',
+      },
+      {
+        text: 'XT-Design',
+        value: '(XT-Design)',
+      },
+      {
+        text: 'Yiwu',
+        value: '(Yiwu)',
+      },
+      {
+        text: 'Zomo',
+        value: '(Zomo)',
+      },
+      {
+        text: 'Zouya',
+        value: '(Zouya)',
+      },
+      {
+        text: 'Zuoya',
+        value: '(Zuoya)',
+      },
+    ],
+  },
+  {
+    id: 4,
+    title: 'Giá sản phẩm',
+    choices: [
+      {
+        text: 'Giá dưới 100.000đ',
+        value: '(<100000)',
+      },
+      {
+        text: '100.000đ - 200.000đ',
+        value: '(>=100000 AND <=200000)',
+      },
+      {
+        text: '200.000đ - 300.000đ',
+        value: '(>=200000 AND <=300000)',
+      },
+      {
+        text: '300.000đ - 500.000đ',
+        value: '(>=300000 AND <=500000)',
+      },
+      {
+        text: '500.000đ - 1.000.000đ',
+        value: '(>=500000 AND <=1000000)',
+      },
+      {
+        text: 'Giá trên 1.000.000đ',
+        value: '(>=1000000)',
+      },
+    ],
+  },
+  {
+    id: 5,
+    title: 'Loại',
+    choices: [
+      {
+        text: 'Bàn phím cơ',
+        value: '(Bàn phím cơ)',
+      },
+      {
+        text: 'Combo',
+        value: '(Combo)',
+      },
+      {
+        text: 'Custom Cable',
+        value: '(Custom Cable)',
+      },
+      {
+        text: 'Decor',
+        value: '(Decor)',
+      },
+      {
+        text: 'Đèn',
+        value: '(Đèn)',
+      },
+      {
+        text: 'Keycap bộ',
+        value: '(Keycap bộ)',
+      },
+      {
+        text: 'Keycap lẻ',
+        value: '(Keycap lẻ)',
+      },
+      {
+        text: 'Khác',
+        value: '(Khác)',
+      },
+      {
+        text: 'Kit',
+        value: '(Kit)',
+      },
+      {
+        text: 'Mods',
+        value: '(Mods)',
+      },
+      {
+        text: 'Phụ kiện',
+        value: '(Phụ kiện)',
+      },
+      {
+        text: 'Phụ kiện bàn phím',
+        value: '(Phụ kiện bàn phím)',
+      },
+      {
+        text: 'Switch',
+        value: '(Switch)',
+      },
     ],
   },
 ];

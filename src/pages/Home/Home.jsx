@@ -16,6 +16,7 @@ const Home = () => {
 
   useEffect(() => {
     document.title = 'Kicap - More inspirational';
+    window.scrollTo(0, 0);
     const newProductsArr = [];
     const keyboardCustomsArr = [];
     const keycapsArr = [];
@@ -56,18 +57,21 @@ const Home = () => {
         products={newProducts}
         title='Sản phẩm'
         strongTitle='mới'
+        navigate='san-pham-moi'
       ></SectionProduct>
       <SectionProduct
         max='5'
         products={keyboardCustoms}
         title='Bàn phím cơ'
         strongTitle='custom'
+        navigate='ban-phim-co'
       ></SectionProduct>
       <SectionProduct
         max='4'
         products={keycaps}
         title='Bộ sưu tập keycap'
         strongTitle='Cherry'
+        navigate='keycap-cherry'
       ></SectionProduct>
       <FeatureProductBlock></FeatureProductBlock>
       <SectionProduct
@@ -75,12 +79,14 @@ const Home = () => {
         products={switchs}
         title='Switch'
         strongTitle='Cho bàn phím cơ'
+        navigate='switch'
       ></SectionProduct>
       <SectionProduct
         max='2'
         products={accessorys}
         title='Phụ kiện cho'
         strongTitle='Bàn phím cơ'
+        navigate='phu-kien'
       ></SectionProduct>
       <SectionNews max='4' news={newsState} title='Tin tức' strongTitle='Kicap'></SectionNews>
     </>

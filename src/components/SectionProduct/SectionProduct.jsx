@@ -9,7 +9,7 @@ import Button from '../Button/Button';
 import ProductCard from '../ProductCard/ProductCard';
 import './SectionProduct.scss';
 
-const SectionProduct = ({ products, title, strongTitle, max }) => {
+const SectionProduct = ({ products, title, strongTitle, max, navigate }) => {
   const swiperSettings = {
     slidesPerView: 2,
     spaceBetween: 10,
@@ -32,7 +32,7 @@ const SectionProduct = ({ products, title, strongTitle, max }) => {
     <section className='section_product'>
       <div className='container'>
         <h2 className='product_title'>
-          <Link to='/' className='text-hover-primary'>
+          <Link to={`/${navigate}`} className='text-hover-primary'>
             {title} <strong>{strongTitle}</strong>
           </Link>
         </h2>
@@ -66,6 +66,7 @@ SectionProduct.propTypes = {
   dots: Proptypes.bool,
   arrows: Proptypes.bool,
   max: Proptypes.string,
+  navigate: Proptypes.string.isRequired,
 };
 
 export default SectionProduct;
