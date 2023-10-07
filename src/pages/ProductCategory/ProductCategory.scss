@@ -1,0 +1,39 @@
+.product-category {
+  &-header-content {
+    width: 66.66666667%;
+    min-height: 360px;
+    display: flex;
+    justify-content: center;
+    padding: 20px 0 40px;
+    flex-flow: column;
+    text-align: left;
+    color: #fff;
+
+    & > h1 {
+      font-size: 2.6rem;
+      line-height: 28px;
+      margin: 0;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 2.4px;
+      color: #fff;
+    }
+  }
+
+  &-header-desc {
+    font-size: 1.4rem;
+    line-height: 24px;
+    color: #fff;
+    letter-spacing: 0.5px;
+    margin-top: 10px;
+    font-weight: 300;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .product-category {
+    &-header-content {
+      width: 100%;
+    }
+  }
+}
