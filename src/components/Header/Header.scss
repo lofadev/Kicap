@@ -204,6 +204,7 @@
 }
 
 .nav-items {
+  flex: auto;
   &.has-childs {
     position: relative;
   }

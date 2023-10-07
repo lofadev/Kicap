@@ -3,6 +3,7 @@
   overflow: hidden;
   position: relative;
   margin-bottom: 15px;
+  user-select: none;
   cursor: pointer;
 
   &-image {

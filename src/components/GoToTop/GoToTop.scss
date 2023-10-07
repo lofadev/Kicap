@@ -1,5 +1,6 @@
 .gototop {
   line-height: 24px;
+  font-weight: 500;
   position: fixed;
   bottom: 70px;
   right: -20px;
@@ -14,11 +15,16 @@
   & > * {
     display: inline-block;
     color: black;
+    transition: all 0.2s linear;
   }
   svg {
     position: relative;
     top: 2px;
     right: 0;
     margin-left: 5px;
+  }
+
+  &:hover > * {
+    color: var(--light-gray);
   }
 }

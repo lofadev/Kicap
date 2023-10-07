@@ -28,6 +28,23 @@
     margin-top: 10px;
     font-weight: 300;
   }
+
+  &-main {
+    margin-top: 25px;
+  }
+
+  &-content {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+  }
+
+  .sidebar {
+    padding-right: 10px;
+  }
+
+  &-main-container {
+    padding: 0 10px;
+  }
 }
 
 @media screen and (max-width: 991px) {
