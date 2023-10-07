@@ -153,7 +153,7 @@ const Header = () => {
       }
       const dropDown = navLink.nextElementSibling;
       dropDown.classList.toggle('height-auto');
-    } else {
+    } else if (isActiveMenubar) {
       handleToggleOverlay();
     }
   };
