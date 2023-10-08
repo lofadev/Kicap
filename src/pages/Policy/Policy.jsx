@@ -1,7 +1,7 @@
 import { Fragment, useCallback, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { policys } from '../../../data';
-import EvoBlogHeader from '../../components/EvoBlogHeader/EvoBlogHeader';
+import { policys } from '~/../data';
+import EvoBlogHeader from '~/components/EvoBlogHeader/EvoBlogHeader';
 import './Policy.scss';
 
 const Policy = () => {

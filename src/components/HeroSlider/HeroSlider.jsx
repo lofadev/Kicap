@@ -1,12 +1,11 @@
-// Import css files
 import { Link } from 'react-router-dom';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import Img1 from '../../assets/imgs/slider_1.jpg';
-import Img2 from '../../assets/imgs/slider_2.jpg';
-import Img3 from '../../assets/imgs/slider_3.jpg';
+import Img1 from '~/assets/imgs/slider_1.jpg';
+import Img2 from '~/assets/imgs/slider_2.jpg';
+import Img3 from '~/assets/imgs/slider_3.jpg';
 import './HeroSlider.scss';
 
 const sliderData = [

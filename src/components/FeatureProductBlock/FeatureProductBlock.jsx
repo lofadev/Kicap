@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 import 'swiper/css';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { products } from '../../../data';
-import Star from '../../assets/imgs/star.webp';
+import { products } from '~/../data';
+import Star from '~/assets/imgs/star.webp';
 import ProductCard from '../ProductCard/ProductCard';
 import './FeatureProductBlock.scss';
 

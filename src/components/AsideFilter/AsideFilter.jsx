@@ -1,4 +1,4 @@
-import { filters } from '../../../data';
+import { filters } from '~/../data';
 import AsideItem from '../AsideItem/AsideItem';
 import './AsideFilter.scss';
 

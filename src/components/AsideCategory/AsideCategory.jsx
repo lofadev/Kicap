@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { nav } from '../../../data';
+import { nav } from '~/../data';
 import CollapsiblePlus from '../CollapsiblePlus/CollapsiblePlus';
 import './AsideCategory.scss';
 

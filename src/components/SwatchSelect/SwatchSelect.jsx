@@ -1,6 +1,6 @@
 import Proptypes from 'prop-types';
 import { useState } from 'react';
-import SwatchCheck from '../../assets/imgs/select-pro.jpg';
+import SwatchCheck from '~/assets/imgs/select-pro.jpg';
 import './SwatchSelect.scss';
 
 const SwatchSelect = ({ product, field }) => {

@@ -15,7 +15,7 @@
     height: 7px;
   }
   & .swiper-pagination-bullet-active {
-    transition: all 0.05s linear;
+    transition: all 0.2s ease-in-out;
     background-color: #c9d6df;
     width: 20px;
     border-radius: 6px;

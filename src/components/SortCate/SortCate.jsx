@@ -1,7 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import './SortCate.scss';
-import { products } from '../../../data';
-import ProductCard from '../ProductCard/ProductCard';
 
 const sorts = [
   {
@@ -32,17 +30,7 @@ const sorts = [
 ];
 const SortCate = () => {
   const [sortItemActive, setSortItemActive] = useState(null);
-  const [listProducts, setListProducts] = useState([]);
 
-  useEffect(() => {
-    const temp = [];
-    products.forEach((product, index) => {
-      if (index < 12) {
-        temp.push(product);
-      }
-    });
-    setListProducts(temp);
-  }, []);
   return (
     <div className='sort-cate'>
       <h3>Xếp theo:</h3>
@@ -61,12 +49,6 @@ const SortCate = () => {
           );
         })}
       </ul>
-
-      <div className='products-view'>
-        {listProducts.map((product) => {
-          return <ProductCard key={product.id} product={product}></ProductCard>;
-        })}
-      </div>
     </div>
   );
 };

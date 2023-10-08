@@ -2,9 +2,9 @@ import { useRef, useState } from 'react';
 import { FaBars } from 'react-icons/fa';
 import { FaAngleDown } from 'react-icons/fa6';
 import { Link, NavLink } from 'react-router-dom';
-import Cart from '../../assets/imgs/add-to-basket.svg';
-import Logo from '../../assets/imgs/logo.png';
-import Search from '../../assets/imgs/search.svg';
+import Cart from '~/assets/imgs/add-to-basket.svg';
+import Logo from '~/assets/imgs/logo.png';
+import Search from '~/assets/imgs/search.svg';
 import FormSearch from '../FormSearch/FormSearch';
 import './Header.scss';
 

@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react';
 import { GoChevronLeft, GoChevronRight } from 'react-icons/go';
 import { Link, useParams } from 'react-router-dom';
 import unidecode from 'unidecode';
-import { news } from '../../../data';
-import ArticleTag from '../../components/ArticleTag/ArticleTag';
-import FormComment from '../../components/FormComment/FormComment';
-import SectionBreadCrumb from '../../components/SectionBreadCrumb/SectionBreadCrumb';
+import { news } from '~/../data';
+import ArticleTag from '~/components/ArticleTag/ArticleTag';
+import FormComment from '~/components/FormComment/FormComment';
+import SectionBreadCrumb from '~/components/SectionBreadCrumb/SectionBreadCrumb';
 import './News.scss';
 
 const News = () => {
@@ -17,7 +17,6 @@ const News = () => {
   });
 
   useEffect(() => {
-    window.scrollTo(0, 0);
     document.title = newsState.title;
   }, [title, newsState]);
 
