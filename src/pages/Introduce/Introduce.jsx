@@ -7,7 +7,13 @@ import './Introduce.scss';
 const Introduce = () => {
   return (
     <section className='introduce'>
-      <EvoBlogHeader title='Giới thiệu'></EvoBlogHeader>
+      <EvoBlogHeader
+        title='Giới thiệu'
+        image={
+          'https://bizweb.dktcdn.net/100/436/596/themes/834446/assets/evo-page-banner.jpg?1689998079606'
+        }
+        color='black'
+      ></EvoBlogHeader>
       <div className='container'>
         <div className='introduce-top'>
           <h1 className='introduce-head'>KICAP - MORE INSPIRATIONAL!</h1>

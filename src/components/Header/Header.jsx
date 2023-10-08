@@ -2,114 +2,12 @@ import { useRef, useState } from 'react';
 import { FaBars } from 'react-icons/fa';
 import { FaAngleDown } from 'react-icons/fa6';
 import { Link, NavLink } from 'react-router-dom';
+import { menu } from '~/../data';
 import Cart from '~/assets/imgs/add-to-basket.svg';
 import Logo from '~/assets/imgs/logo.png';
 import Search from '~/assets/imgs/search.svg';
 import FormSearch from '../FormSearch/FormSearch';
 import './Header.scss';
-
-const menu = [
-  {
-    id: 1,
-    name: 'Trang chủ',
-    hasChild: false,
-    navigate: '/',
-  },
-  {
-    id: 2,
-    name: 'Keycap bộ',
-    hasChild: true,
-    navigate: '/keycap-bo',
-    children: [
-      { id: 1, title: 'Keycap Cherry', navigate: '/keycap-cherry' },
-      { id: 2, title: 'Keycap xuyên led', navigate: '/keycap-xuyen-led' },
-      { id: 3, title: 'Keycap SA', navigate: '/keycap-sa' },
-      { id: 4, title: 'Keycap XDA', navigate: '/keycap-xda' },
-      { id: 5, title: 'Keycap OEM', navigate: '/keycap-oem' },
-    ],
-  },
-  {
-    id: 3,
-    name: 'Mods phím',
-    hasChild: false,
-    navigate: '/mods-ban-phim-co',
-  },
-  {
-    id: 4,
-    name: 'Pre-order',
-    hasChild: false,
-    navigate: '/pre-order',
-  },
-  {
-    id: 5,
-    name: 'Decor',
-    hasChild: false,
-    navigate: '/den-decor',
-  },
-  {
-    id: 6,
-    name: 'Sản phẩm',
-    navigate: '/collections/all',
-    hasMega: true,
-    children: [
-      {
-        id: 1,
-        title: 'Keycap bộ',
-        navigate: '/keycap-bo',
-        subtitle: ['Silent forest', 'SA Harry Potter', 'Keycap Polar Day'],
-      },
-      {
-        id: 2,
-        title: 'Keycap lẻ',
-        navigate: '/keycap-le',
-        subtitle: ['PIKACHU ALU', 'CARD VGA', 'CỜ ĐẢNG BÚA LIỀM'],
-      },
-      {
-        id: 3,
-        title: 'Đèn decor',
-        navigate: '/keycap-le',
-        subtitle: [],
-      },
-      {
-        id: 4,
-        title: 'Bàn phím cơ',
-        navigate: '/ban-phim-co',
-
-        subtitle: ['Monsgeek M1W', 'FL CMK75', 'Finalkey V81 Plus'],
-      },
-      {
-        id: 5,
-        title: 'Switch',
-        navigate: '/switch',
-        subtitle: ['WS Morandi', 'KTT Matcha', 'Akko Cream Yellow Pro'],
-      },
-      {
-        id: 6,
-        title: 'Phụ kiện',
-        navigate: '/phu-kien',
-        subtitle: ['Túi đựng bàn phím', 'Dụng cụ thay keycap', 'Chổi quét phím'],
-      },
-    ],
-  },
-  {
-    id: 7,
-    name: 'Blog',
-    hasChild: false,
-    navigate: '/tin-tuc',
-  },
-  {
-    id: 8,
-    name: 'Về kicap',
-    hasChild: true,
-    navigate: '/gioi-thieu',
-    children: [
-      { id: 1, title: 'Giới thiệu', navigate: '/gioi-thieu' },
-      { id: 2, title: 'Liên hệ', navigate: '/lien-he' },
-      { id: 3, title: 'Chính sách bảo hành', navigate: '/policy/chinh-sach-bao-hanh' },
-      { id: 4, title: 'Chính sách đổi trả', navigate: '/policy/chinh-sach-doi-tra-hang-hoan-tien' },
-    ],
-  },
-];
 
 const Header = () => {
   const [isActiveSearch, setIsActiveSearch] = useState(false);
@@ -238,7 +136,7 @@ const Header = () => {
                       <FaAngleDown></FaAngleDown>
                     </span>
                   ) : (
-                    <></>
+                    ''
                   )}
                 </NavLink>
                 {item.hasChild ? (
@@ -250,7 +148,7 @@ const Header = () => {
                           to={itemChild.navigate}
                           onClick={handleCLickLink}
                         >
-                          {itemChild.title}
+                          {itemChild.name}
                         </Link>
                       </li>
                     ))}
@@ -260,21 +158,25 @@ const Header = () => {
                 )}
                 {item.hasMega ? (
                   <div className='mega-menu'>
-                    {item.children.map((item) => (
-                      <div key={item.id} className='mega-items'>
-                        <Link to={item.navigate} className='mega-title' onClick={handleCLickLink}>
-                          {item.title}
-                          {item.subtitle.length > 0 && (
+                    {item.children.map((submenu) => (
+                      <div key={submenu.id} className='mega-items'>
+                        <Link
+                          to={submenu.navigate}
+                          className='mega-title'
+                          onClick={handleCLickLink}
+                        >
+                          {submenu.name}
+                          {submenu.sub_children.length > 0 && (
                             <span className='hidden-lg icon-dropdown'>
                               <FaAngleDown></FaAngleDown>
                             </span>
                           )}
                         </Link>
                         <ul className='mega-submenu'>
-                          {item.subtitle.map((subItem, index) => (
-                            <li key={index}>
-                              <Link to='/' onClick={handleCLickLink}>
-                                {subItem}
+                          {submenu.sub_children.map((subitem) => (
+                            <li key={subitem.id}>
+                              <Link to={subitem.navigate} onClick={handleCLickLink}>
+                                {subitem.name}
                               </Link>
                             </li>
                           ))}

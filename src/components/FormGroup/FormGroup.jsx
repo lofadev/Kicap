@@ -1,4 +1,4 @@
-import Proptypes from 'prop-types';
+import PropTypes from 'prop-types';
 import './FormGroup.scss';
 
 const FormGroup = ({
@@ -21,12 +21,12 @@ const FormGroup = ({
 };
 
 FormGroup.propTypes = {
-  type: Proptypes.string.isRequired,
-  labelName: Proptypes.string.isRequired,
-  required: Proptypes.bool,
-  className: Proptypes.string,
-  placeholder: Proptypes.string,
-  labelFor: Proptypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  labelName: PropTypes.string.isRequired,
+  required: PropTypes.bool,
+  className: PropTypes.string,
+  placeholder: PropTypes.string,
+  labelFor: PropTypes.string.isRequired,
 };
 
 export default FormGroup;

@@ -1,4 +1,4 @@
-import Proptypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { useState } from 'react';
 import SwatchCheck from '~/assets/imgs/select-pro.jpg';
 import './SwatchSelect.scss';
@@ -41,8 +41,8 @@ const SwatchSelect = ({ product, field }) => {
 };
 
 SwatchSelect.propTypes = {
-  product: Proptypes.object.isRequired,
-  field: Proptypes.string.isRequired,
+  product: PropTypes.object.isRequired,
+  field: PropTypes.string.isRequired,
 };
 
 export default SwatchSelect;

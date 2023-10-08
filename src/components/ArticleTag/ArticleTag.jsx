@@ -1,4 +1,4 @@
-import Proptypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import './ArticleTag.scss';
 
@@ -19,6 +19,6 @@ const ArticleTag = ({ newsState }) => {
 };
 
 ArticleTag.propTypes = {
-  newsState: Proptypes.object.isRequired,
+  newsState: PropTypes.object.isRequired,
 };
 export default ArticleTag;

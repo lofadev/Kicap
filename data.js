@@ -2842,7 +2842,7 @@ export const policys = [
   },
 ];
 
-export const nav = [
+export const menu = [
   {
     id: 1,
     name: 'Trang chủ',

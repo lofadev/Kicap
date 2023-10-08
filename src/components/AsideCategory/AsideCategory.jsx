@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { nav } from '~/../data';
+import { menu } from '~/../data';
 import CollapsiblePlus from '../CollapsiblePlus/CollapsiblePlus';
 import './AsideCategory.scss';
 
@@ -11,7 +11,7 @@ const AsideCategory = () => {
       </div>
       <div className='aside-content'>
         <ul className='nav nav-category'>
-          {nav.map((item) => {
+          {menu.map((item) => {
             return (
               <li key={item.id} className='nav-item'>
                 <Link to={item.navigate} className='nav-link'>

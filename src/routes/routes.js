@@ -1,4 +1,5 @@
 import config from '~/config/index.js';
+import Blog from '~/pages/Blog/Blog';
 import Contact from '~/pages/Contact/Contact.jsx';
 import Home from '~/pages/Home/Home.jsx';
 import Introduce from '~/pages/Introduce/Introduce.jsx';
@@ -39,6 +40,10 @@ const publicRoutes = [
   {
     path: config.routes.collections_all,
     component: ProductCategory,
+  },
+  {
+    path: config.routes.blog,
+    component: Blog,
   },
 ];
 

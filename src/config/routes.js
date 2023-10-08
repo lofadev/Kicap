@@ -8,6 +8,7 @@ const routes = {
   policy: 'policy/:title',
   introduce: '/gioi-thieu',
   contact: '/lien-he',
+  blog: '/tin-tuc',
 };
 
 export default routes;
