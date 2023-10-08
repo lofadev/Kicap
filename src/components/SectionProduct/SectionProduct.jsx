@@ -1,4 +1,4 @@
-import Proptypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -59,14 +59,14 @@ const SectionProduct = ({ products, title, strongTitle, max, navigate }) => {
 };
 
 SectionProduct.propTypes = {
-  products: Proptypes.array.isRequired,
-  title: Proptypes.string,
-  strongTitle: Proptypes.string,
-  txtButton: Proptypes.node,
-  dots: Proptypes.bool,
-  arrows: Proptypes.bool,
-  max: Proptypes.string,
-  navigate: Proptypes.string.isRequired,
+  products: PropTypes.array.isRequired,
+  title: PropTypes.string,
+  strongTitle: PropTypes.string,
+  txtButton: PropTypes.node,
+  dots: PropTypes.bool,
+  arrows: PropTypes.bool,
+  max: PropTypes.string,
+  navigate: PropTypes.string.isRequired,
 };
 
 export default SectionProduct;

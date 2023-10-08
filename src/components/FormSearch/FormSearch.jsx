@@ -1,4 +1,4 @@
-import Proptypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import { FaXmark } from 'react-icons/fa6';
 import Search from '~/assets/imgs/search.svg';
@@ -38,8 +38,8 @@ const FormSearch = ({ onClick: handleToggleInSearch, searchActive }) => {
 };
 
 FormSearch.propTypes = {
-  onClick: Proptypes.func.isRequired,
-  searchActive: Proptypes.bool,
+  onClick: PropTypes.func.isRequired,
+  searchActive: PropTypes.bool,
 };
 
 export default FormSearch;

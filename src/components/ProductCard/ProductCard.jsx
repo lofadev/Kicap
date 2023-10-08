@@ -1,4 +1,4 @@
-import Proptypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import unidecode from 'unidecode';
 import Button from '../Button/Button';
@@ -66,8 +66,8 @@ const ProductCard = ({ product }) => {
 };
 
 ProductCard.propTypes = {
-  product: Proptypes.object.isRequired,
-  onClick: Proptypes.func,
+  product: PropTypes.object.isRequired,
+  onClick: PropTypes.func,
 };
 
 export default ProductCard;

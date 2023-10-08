@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import { MdKeyboardDoubleArrowLeft, MdKeyboardDoubleArrowRight } from 'react-icons/md';
-import ReactPaginate from 'react-paginate';
 import { products } from '~/../data';
 import AsideCategory from '~/components/AsideCategory/AsideCategory';
 import AsideFilter from '~/components/AsideFilter/AsideFilter';
+import EvoBlogHeader from '~/components/EvoBlogHeader/EvoBlogHeader';
+import Pagination from '~/components/Pagination/Pagination';
 import ProductCard from '~/components/ProductCard/ProductCard';
 import SortCate from '~/components/SortCate/SortCate';
 import './ProductCategory.scss';
@@ -27,13 +27,6 @@ const ProductCategory = () => {
     });
     setListProducts(temp);
   }, [page]);
-  const productCategoryHeaderStyle = {
-    height: '360px',
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    backgroundImage:
-      'url("https://bizweb.dktcdn.net/100/436/596/collections/53820d484a9f88c1d18e.jpg?v=1658977734810")',
-  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -41,17 +34,16 @@ const ProductCategory = () => {
 
   return (
     <div className='product-category'>
-      <div className='product-category-header' style={productCategoryHeaderStyle}>
-        <div className='container'>
-          <div className='product-category-header-content'>
-            <h1>Mods bàn phím cơ</h1>
-            <p className='product-category-header-desc'>
-              Kicap với đội ngũ mods chuyên nghiệp luôn mong muốn mang đến trải nghiệm mods phím
-              tuyệt vời và đúng gu của khách hàng nhất có thể
-            </p>
-          </div>
-        </div>
-      </div>
+      <EvoBlogHeader
+        title='Mods bàn phím cơ'
+        desc='Kicap với đội ngũ mods chuyên nghiệp luôn mong muốn mang đến trải nghiệm mods phím
+              tuyệt vời và đúng gu của khách hàng nhất có thể'
+        image={
+          'https://bizweb.dktcdn.net/100/436/596/collections/53820d484a9f88c1d18e.jpg?v=1658977734810'
+        }
+        height={360}
+        color='white'
+      />
 
       <div className='container'>
         <div className='product-category-main'>
@@ -69,20 +61,7 @@ const ProductCategory = () => {
                 })}
               </div>
 
-              <div className='product-pagination'>
-                <ReactPaginate
-                  breakLabel='...'
-                  nextLabel={<MdKeyboardDoubleArrowRight />}
-                  marginPagesDisplayed={1}
-                  pageRangeDisplayed={5}
-                  pageCount={pageCount}
-                  previousLabel={<MdKeyboardDoubleArrowLeft />}
-                  renderOnZeroPageCount={null}
-                  containerClassName='pagination'
-                  pageClassName='page-item'
-                  onPageChange={(value) => doSearch(value)}
-                ></ReactPaginate>
-              </div>
+              <Pagination pageCount={pageCount} onClickPageItem={doSearch}></Pagination>
             </div>
           </section>
         </div>

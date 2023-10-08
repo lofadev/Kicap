@@ -1,4 +1,4 @@
-import Proptypes from 'prop-types';
+import PropTypes from 'prop-types';
 import './Button.scss';
 
 const Button = ({ type, children, primary = false, secondary = false, className = '' }) => {
@@ -15,11 +15,11 @@ const Button = ({ type, children, primary = false, secondary = false, className 
 };
 
 Button.propTypes = {
-  type: Proptypes.string.isRequired,
-  children: Proptypes.node.isRequired,
-  primary: Proptypes.bool,
-  secondary: Proptypes.bool,
-  className: Proptypes.string,
+  type: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
+  primary: PropTypes.bool,
+  secondary: PropTypes.bool,
+  className: PropTypes.string,
 };
 
 export default Button;

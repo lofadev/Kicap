@@ -6,7 +6,13 @@ import './Contact.scss';
 const Contact = () => {
   return (
     <section className='contact'>
-      <EvoBlogHeader title='Liên hệ với chúng tôi'></EvoBlogHeader>
+      <EvoBlogHeader
+        title='Liên hệ với chúng tôi'
+        image={
+          'https://bizweb.dktcdn.net/100/436/596/themes/834446/assets/evo-page-banner.jpg?1689998079606'
+        }
+        color='black'
+      ></EvoBlogHeader>
       <div className='container'>
         <div className='contact-main'>
           <h2 className='contact-head'>Gửi thông tin</h2>

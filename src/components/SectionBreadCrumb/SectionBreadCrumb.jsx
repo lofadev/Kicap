@@ -1,4 +1,4 @@
-import Proptypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { FaAngleRight } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import unidecode from 'unidecode';
@@ -42,8 +42,8 @@ const SectionBreadCrumb = ({ parent = null, child = null }) => {
 };
 
 SectionBreadCrumb.propTypes = {
-  parent: Proptypes.string.isRequired,
-  child: Proptypes.string.isRequired,
+  parent: PropTypes.string.isRequired,
+  child: PropTypes.string.isRequired,
 };
 
 export default SectionBreadCrumb;

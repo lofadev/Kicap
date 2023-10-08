@@ -20,7 +20,13 @@ const Policy = () => {
   }, [title, handleFindPolicy]);
   return (
     <section className='policy-page'>
-      <EvoBlogHeader title={policyState.title}></EvoBlogHeader>
+      <EvoBlogHeader
+        title={policyState.title}
+        image={
+          'https://bizweb.dktcdn.net/100/436/596/themes/834446/assets/evo-page-banner.jpg?1689998079606'
+        }
+        color='black'
+      ></EvoBlogHeader>
       <div className='policy-content'>
         <div className='container'>
           {Object.keys(policyState).length !== 0 &&

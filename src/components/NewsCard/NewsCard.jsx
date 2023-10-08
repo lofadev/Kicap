@@ -1,9 +1,9 @@
-import Proptypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import unidecode from 'unidecode';
 import './NewsCard.scss';
 
-const NewsCard = ({ newItem }) => {
+const NewsCard = ({ newItem, height = 182 }) => {
   const titleParam = unidecode(newItem.title.toLowerCase()).split(' ').join('-');
   let desc = '';
   newItem.paragraph.forEach((item, index) => {
@@ -17,7 +17,7 @@ const NewsCard = ({ newItem }) => {
   return (
     <div className='news-card'>
       <Link to={`/news/${titleParam}`}>
-        <div className='news-card-img'>
+        <div className='news-card-img' style={{ height: height }}>
           <img src={newItem.image} alt='' />
         </div>
         <div className='news-card-main'>
@@ -30,7 +30,7 @@ const NewsCard = ({ newItem }) => {
 };
 
 NewsCard.propTypes = {
-  newItem: Proptypes.object.isRequired,
+  newItem: PropTypes.object.isRequired,
 };
 
 export default NewsCard;

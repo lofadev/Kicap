@@ -1,24 +1,24 @@
-.evo-blog-header {
-  height: 250px;
-  background: url('~/assets/imgs/evo-page-banner.jpg');
-  background-size: cover;
-  background-position: center;
-
+.evo-blog {
   &-content {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     height: 100%;
-    width: 100%;
+    gap: 10px;
+
+    h1 {
+      font-size: 26px;
+      line-height: 28px;
+      margin: 0;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 2.4px;
+    }
   }
 
-  h1 {
-    font-size: 26px;
-    line-height: 28px;
-    margin: 0;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 2.4px;
-    color: #1c1c1c;
+  &-desc {
+    letter-spacing: 0.5px;
+    line-height: 24px;
   }
 }

@@ -1,4 +1,4 @@
-import Proptypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import Footer from '~/components/Footer/Footer';
@@ -22,6 +22,6 @@ const DefaultLayout = ({ children }) => {
 };
 
 DefaultLayout.propTypes = {
-  children: Proptypes.node.isRequired,
+  children: PropTypes.node.isRequired,
 };
 export default DefaultLayout;

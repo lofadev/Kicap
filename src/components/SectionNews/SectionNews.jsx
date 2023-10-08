@@ -1,4 +1,4 @@
-import Proptypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Button from '../Button/Button';
 import NewsCard from '../NewsCard/NewsCard';
@@ -35,11 +35,11 @@ const SectionNews = ({ news, title, strongTitle, max = 4 }) => {
 };
 
 SectionNews.propTypes = {
-  news: Proptypes.array.isRequired,
-  title: Proptypes.string,
-  strongTitle: Proptypes.string,
-  txtButton: Proptypes.node,
-  max: Proptypes.string,
+  news: PropTypes.array.isRequired,
+  title: PropTypes.string,
+  strongTitle: PropTypes.string,
+  txtButton: PropTypes.node,
+  max: PropTypes.string,
 };
 
 export default SectionNews;
