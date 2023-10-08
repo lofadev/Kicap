@@ -16,6 +16,7 @@ const Home = () => {
 
   useEffect(() => {
     document.title = 'Kicap - More inspirational';
+    window.scrollTo(0, 0);
     const newProductsArr = [];
     const keyboardCustomsArr = [];
     const keycapsArr = [];

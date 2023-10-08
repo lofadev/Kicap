@@ -30,7 +30,6 @@ const sorts = [
 ];
 const SortCate = () => {
   const [sortItemActive, setSortItemActive] = useState(null);
-
   return (
     <div className='sort-cate'>
       <h3>Xếp theo:</h3>

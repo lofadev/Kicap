@@ -6,7 +6,6 @@ import AsideCategory from '~/components/AsideCategory/AsideCategory';
 import AsideFilter from '~/components/AsideFilter/AsideFilter';
 import ProductCard from '~/components/ProductCard/ProductCard';
 import SortCate from '~/components/SortCate/SortCate';
-import './ProductCategory.scss';
 
 const ProductCategory = () => {
   const [listProducts, setListProducts] = useState([]);
@@ -34,6 +33,10 @@ const ProductCategory = () => {
     backgroundImage:
       'url("https://bizweb.dktcdn.net/100/436/596/collections/53820d484a9f88c1d18e.jpg?v=1658977734810")',
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className='product-category'>

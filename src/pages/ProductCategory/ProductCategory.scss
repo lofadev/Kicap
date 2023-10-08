@@ -45,7 +45,6 @@
   &-main-container {
     padding: 0 10px;
   }
-
   .products-view {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -101,6 +100,7 @@
     color: var(--black);
     cursor: not-allowed;
   }
+
 }
 
 @media screen and (max-width: 991px) {
