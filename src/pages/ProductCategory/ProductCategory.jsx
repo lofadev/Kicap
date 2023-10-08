@@ -6,6 +6,7 @@ import AsideCategory from '~/components/AsideCategory/AsideCategory';
 import AsideFilter from '~/components/AsideFilter/AsideFilter';
 import ProductCard from '~/components/ProductCard/ProductCard';
 import SortCate from '~/components/SortCate/SortCate';
+import './ProductCategory.scss';
 
 const ProductCategory = () => {
   const [listProducts, setListProducts] = useState([]);
