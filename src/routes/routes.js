@@ -1,11 +1,11 @@
-import config from '../config/index.js';
-import Contact from '../pages/Contact/Contact.jsx';
-import Home from '../pages/Home/Home.jsx';
-import Introduce from '../pages/Introduce/Introduce.jsx';
-import News from '../pages/News/News.jsx';
-import Policy from '../pages/Policy/Policy.jsx';
-import ProductCategory from '../pages/ProductCategory/ProductCategory.jsx';
-import ProductDetails from '../pages/ProductDetails/ProductDetails.jsx';
+import config from '~/config/index.js';
+import Contact from '~/pages/Contact/Contact.jsx';
+import Home from '~/pages/Home/Home.jsx';
+import Introduce from '~/pages/Introduce/Introduce.jsx';
+import News from '~/pages/News/News.jsx';
+import Policy from '~/pages/Policy/Policy.jsx';
+import ProductCategory from '~/pages/ProductCategory/ProductCategory.jsx';
+import ProductDetails from '~/pages/ProductDetails/ProductDetails.jsx';
 
 const publicRoutes = [
   {

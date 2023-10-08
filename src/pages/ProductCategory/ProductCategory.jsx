@@ -1,10 +1,31 @@
-import { useEffect } from 'react';
-import AsideCategory from '../../components/AsideCategory/AsideCategory';
-import AsideFilter from '../../components/AsideFilter/AsideFilter';
-import SortCate from '../../components/SortCate/SortCate';
-import './ProductCategory.scss';
+import { useEffect, useState } from 'react';
+import { MdKeyboardDoubleArrowLeft, MdKeyboardDoubleArrowRight } from 'react-icons/md';
+import ReactPaginate from 'react-paginate';
+import { products } from '~/../data';
+import AsideCategory from '~/components/AsideCategory/AsideCategory';
+import AsideFilter from '~/components/AsideFilter/AsideFilter';
+import ProductCard from '~/components/ProductCard/ProductCard';
+import SortCate from '~/components/SortCate/SortCate';
 
 const ProductCategory = () => {
+  const [listProducts, setListProducts] = useState([]);
+  const [totalProduct] = useState(() => products.length);
+  const [pageCount] = useState(() => Math.ceil(totalProduct / 12));
+  const [page, setPage] = useState(1);
+
+  const doSearch = (value) => {
+    setPage(value.selected + 1);
+  };
+
+  useEffect(() => {
+    const temp = [];
+    products.forEach((product, index) => {
+      if (index >= (page - 1) * 12 && index < page * 12) {
+        temp.push(product);
+      }
+    });
+    setListProducts(temp);
+  }, [page]);
   const productCategoryHeaderStyle = {
     height: '360px',
     backgroundSize: 'cover',
@@ -40,6 +61,27 @@ const ProductCategory = () => {
             </div>
             <div className='product-category-main-container'>
               <SortCate />
+
+              <div className='products-view'>
+                {listProducts.map((product) => {
+                  return <ProductCard key={product.id} product={product}></ProductCard>;
+                })}
+              </div>
+
+              <div className='product-pagination'>
+                <ReactPaginate
+                  breakLabel='...'
+                  nextLabel={<MdKeyboardDoubleArrowRight />}
+                  marginPagesDisplayed={1}
+                  pageRangeDisplayed={5}
+                  pageCount={pageCount}
+                  previousLabel={<MdKeyboardDoubleArrowLeft />}
+                  renderOnZeroPageCount={null}
+                  containerClassName='pagination'
+                  pageClassName='page-item'
+                  onPageChange={(value) => doSearch(value)}
+                ></ReactPaginate>
+              </div>
             </div>
           </section>
         </div>

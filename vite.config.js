@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [
     react(), // other plugins,
   ],
-  server: {
-    port: 2644,
+  resolve: {
+    alias: [{ find: '~', replacement: '/src' }],
   },
 });

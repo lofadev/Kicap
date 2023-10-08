@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import { news, products } from '../../../data';
-import FeatureProductBlock from '../../components/FeatureProductBlock/FeatureProductBlock';
-import HeroSlider from '../../components/HeroSlider/HeroSlider';
-import SectionNews from '../../components/SectionNews/SectionNews';
-import SectionProduct from '../../components/SectionProduct/SectionProduct';
+import { news, products } from '~/../data';
+import FeatureProductBlock from '~/components/FeatureProductBlock/FeatureProductBlock';
+import HeroSlider from '~/components/HeroSlider/HeroSlider';
+import SectionNews from '~/components/SectionNews/SectionNews';
+import SectionProduct from '~/components/SectionProduct/SectionProduct';
 
 const Home = () => {
   const [productState] = useState(products);

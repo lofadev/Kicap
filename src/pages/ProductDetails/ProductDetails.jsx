@@ -3,13 +3,13 @@ import { FaCartArrowDown, FaHeart, FaRegStar } from 'react-icons/fa';
 import { useParams } from 'react-router-dom';
 import Slider from 'react-slick';
 import unidecode from 'unidecode';
-import { products } from '../../../data';
-import ImgService1 from '../../assets/imgs/policy_images_2.svg';
-import ImgService2 from '../../assets/imgs/policy_images_3.svg';
-import ImgService3 from '../../assets/imgs/policy_images_4.svg';
-import SectionBreadCrumb from '../../components/SectionBreadCrumb/SectionBreadCrumb';
-import SectionProduct from '../../components/SectionProduct/SectionProduct';
-import SwatchSelect from '../../components/SwatchSelect/SwatchSelect';
+import { products } from '~/../data';
+import ImgService1 from '~/assets/imgs/policy_images_2.svg';
+import ImgService2 from '~/assets/imgs/policy_images_3.svg';
+import ImgService3 from '~/assets/imgs/policy_images_4.svg';
+import SectionBreadCrumb from '~/components/SectionBreadCrumb/SectionBreadCrumb';
+import SectionProduct from '~/components/SectionProduct/SectionProduct';
+import SwatchSelect from '~/components/SwatchSelect/SwatchSelect';
 import './ProductDetails.scss';
 
 const ProductDetails = () => {
@@ -79,7 +79,6 @@ const ProductDetails = () => {
   );
 
   useEffect(() => {
-    window.scrollTo(0, 0);
     document.title = productState.title + ' | Kicap';
     const newProduct = handleFillterProduct();
     setProductState(newProduct);
@@ -310,6 +309,7 @@ const ProductDetails = () => {
           products={relatedProduct}
           title='sản phẩm'
           strongTitle='liên quan'
+          navigate={productState.type}
         ></SectionProduct>
       </section>
     </>

@@ -1,14 +1,14 @@
 import { FaCertificate, FaEnvelope, FaMapMarkerAlt, FaPhoneAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import { policys } from '../../../data';
-import Facebook from '../../assets/imgs/facebook-icon.png';
-import Logo from '../../assets/imgs/logo.png';
-import LogoBCT from '../../assets/imgs/logo_bct.png';
-import PaymentMasterCard from '../../assets/imgs/payment_mastercard.svg';
-import PaymentPaypal from '../../assets/imgs/payment_paypal.svg';
-import PaymentVisa from '../../assets/imgs/payment_visa.svg';
-import Shopee from '../../assets/imgs/shopee-icon.png';
-import Youtube from '../../assets/imgs/youtube-icon.png';
+import { policys } from '~/../data';
+import Facebook from '~/assets/imgs/facebook-icon.png';
+import Logo from '~/assets/imgs/logo.png';
+import LogoBCT from '~/assets/imgs/logo_bct.png';
+import PaymentMasterCard from '~/assets/imgs/payment_mastercard.svg';
+import PaymentPaypal from '~/assets/imgs/payment_paypal.svg';
+import PaymentVisa from '~/assets/imgs/payment_visa.svg';
+import Shopee from '~/assets/imgs/shopee-icon.png';
+import Youtube from '~/assets/imgs/youtube-icon.png';
 import Button from '../Button/Button';
 import './Footer.scss';
 

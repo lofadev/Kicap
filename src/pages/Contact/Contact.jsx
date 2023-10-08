@@ -1,6 +1,6 @@
-import Button from '../../components/Button/Button';
-import EvoBlogHeader from '../../components/EvoBlogHeader/EvoBlogHeader';
-import FormGroup from '../../components/FormGroup/FormGroup';
+import Button from '~/components/Button/Button';
+import EvoBlogHeader from '~/components/EvoBlogHeader/EvoBlogHeader';
+import FormGroup from '~/components/FormGroup/FormGroup';
 import './Contact.scss';
 
 const Contact = () => {

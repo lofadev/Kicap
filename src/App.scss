@@ -1,7 +1,7 @@
 @font-face {
   font-family: 'SVN-Gotham';
-  src: url('../src/assets/fonts/SVN-GothamBook.woff2') format('woff2'),
-    url('../src/assets/fonts/SVN-GothamBook.woff') format('woff');
+  src: url('~/assets/fonts/SVN-GothamBook.woff2') format('woff2'),
+    url('~/assets/fonts/SVN-GothamBook.woff') format('woff');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -9,8 +9,8 @@
 
 @font-face {
   font-family: 'SVN-Gotham';
-  src: url('../src/assets/fonts/SVN-GothamMedium.woff2') format('woff2'),
-    url('../src/assets/fonts/SVN-GothamMedium.woff') format('woff');
+  src: url('~/assets/fonts/SVN-GothamMedium.woff2') format('woff2'),
+    url('~/assets/fonts/SVN-GothamMedium.woff') format('woff');
   font-weight: 500;
   font-style: normal;
   font-display: swap;
@@ -18,8 +18,8 @@
 
 @font-face {
   font-family: 'SVN-Gotham';
-  src: url('../src/assets/fonts/SVN-GothamBold.woff2') format('woff2'),
-    url('../src/assets/fonts/SVN-GothamBold.woff') format('woff');
+  src: url('~/assets/fonts/SVN-GothamBold.woff2') format('woff2'),
+    url('~/assets/fonts/SVN-GothamBold.woff') format('woff');
   font-weight: bold;
   font-style: normal;
   font-display: swap;

@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
-import IntroduceImg1 from '../../assets/imgs/introduce_img1.jpg';
-import IntroduceImg2 from '../../assets/imgs/introduce_img2.jpg';
-import EvoBlogHeader from '../../components/EvoBlogHeader/EvoBlogHeader';
+import IntroduceImg1 from '~/assets/imgs/introduce_img1.jpg';
+import IntroduceImg2 from '~/assets/imgs/introduce_img2.jpg';
+import EvoBlogHeader from '~/components/EvoBlogHeader/EvoBlogHeader';
 import './Introduce.scss';
 
 const Introduce = () => {
