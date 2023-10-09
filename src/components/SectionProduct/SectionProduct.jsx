@@ -37,7 +37,7 @@ const SectionProduct = ({ products, title, strongTitle, max, navigate }) => {
           </Link>
         </h2>
         <div className='product_block'>
-          <Swiper {...swiperSettings}>
+          <Swiper {...swiperSettings} className={max < 4 ? 'center' : ''}>
             {products.map((item, index) => {
               if (index < maxLen) {
                 return (

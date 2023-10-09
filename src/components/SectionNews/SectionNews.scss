@@ -15,10 +15,29 @@
   .news-block {
     grid-template-columns: repeat(2, 1fr) !important;
   }
+
+  .section-news {
+    .news-card {
+      border-bottom: none;
+    }
+  }
 }
 
 @media screen and (max-width: 767.98px) {
   .news-block {
     grid-template-columns: repeat(1, 1fr) !important;
+  }
+  .section-news {
+    .news-card {
+      border-bottom: 1px solid rgba($color: #000000, $alpha: 0.1);
+      & > a {
+        flex-direction: row;
+      }
+
+      &-img {
+        width: 100px;
+        height: 67px !important;
+      }
+    }
   }
 }
