@@ -173,3 +173,15 @@ body {
     font-weight: 500;
   }
 }
+
+@media screen and (max-width: 1199px) {
+  .container {
+    max-width: 970px !important;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .container {
+    max-width: 750px !important;
+  }
+}
