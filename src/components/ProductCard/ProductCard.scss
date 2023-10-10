@@ -100,12 +100,14 @@
     transition: all 0.2s linear;
   }
 
-  &:hover .product_card-actions {
-    bottom: 0;
-  }
+  @media (hover: hover) {
+    &:hover .product_card-actions {
+      bottom: 0;
+    }
 
-  &:hover .product_card-type {
-    opacity: 0;
+    &:hover .product_card-type {
+      opacity: 0;
+    }
   }
 
   &-button {
