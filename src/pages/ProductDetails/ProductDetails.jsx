@@ -1,7 +1,11 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { FaCartArrowDown, FaHeart, FaRegStar } from 'react-icons/fa';
 import { useParams } from 'react-router-dom';
-import Slider from 'react-slick';
+import 'swiper/css';
+import 'swiper/css/effect-fade';
+import 'swiper/css/thumbs';
+import { EffectFade, Thumbs } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import unidecode from 'unidecode';
 import { products } from '~/../data';
 import ImgService1 from '~/assets/imgs/policy_images_2.svg';
@@ -13,6 +17,7 @@ import SwatchSelect from '~/components/SwatchSelect/SwatchSelect';
 import './ProductDetails.scss';
 
 const ProductDetails = () => {
+  const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const { title } = useParams();
   const handleFillterProduct = useCallback(() => {
     return products.find((product) => {
@@ -32,9 +37,6 @@ const ProductDetails = () => {
     );
   }, [productState]);
   const [relatedProduct, setRelatedProduct] = useState(handleFillterRelatedProduct());
-
-  const [slider1, setSlider1] = useState();
-  const [slider2, setSlider2] = useState();
 
   const [skuState, setSkuState] = useState(productState.sku[0] || '(Đang cập nhật...)');
   const handleCalculatorPrice = useCallback(
@@ -97,27 +99,22 @@ const ProductDetails = () => {
   ]);
 
   const settings1 = {
-    arrows: false,
-    dots: false,
-    infinite: false,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    fade: true,
-    asNavFor: slider2,
-    ref: (Slider1) => setSlider1(Slider1),
+    effect: 'fade',
+    modules: [EffectFade, Thumbs],
+    thumbs: { swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null },
   };
 
   const settings2 = {
-    arrows: true,
-    dots: false,
-    infinite: false,
-    speed: 500,
-    slidesToShow: 5,
-    slidesToScroll: 1,
-    focusOnSelect: true,
-    asNavFor: slider1,
-    ref: (Slider2) => setSlider2(Slider2),
+    spaceBetween: 5,
+    slidesPerView: 4,
+    modules: [Thumbs],
+    watchSlidesProgress: true,
+    onSwiper: setThumbsSwiper,
+    breakpoints: {
+      991: {
+        slidesPerView: 5,
+      },
+    },
   };
 
   return (
@@ -127,28 +124,34 @@ const ProductDetails = () => {
         <div className='container'>
           <div className='product-details'>
             <div className='product-main'>
-              <div className='product-image-block w-half'>
+              <div className='product-image-block'>
                 <div className='product-image-big'>
-                  <Slider {...settings1}>
+                  <Swiper {...settings1}>
                     {productState.images.map((img, index) => {
                       return (
-                        <div key={index}>
+                        <SwiperSlide key={index}>
                           <img loading='lazy' src={img} alt='' />
-                        </div>
+                        </SwiperSlide>
                       );
                     })}
-                  </Slider>
+                  </Swiper>
                 </div>
 
                 <div className='product-image-select'>
-                  <Slider {...settings2}>
+                  <Swiper {...settings2}>
                     {productState.images.map((img, index) => {
-                      return <img loading='lazy' key={index} src={img} alt='' />;
+                      return (
+                        <SwiperSlide key={index}>
+                          <div>
+                            <img data-index={index} loading='lazy' src={img} alt='' />
+                          </div>
+                        </SwiperSlide>
+                      );
                     })}
-                  </Slider>
+                  </Swiper>
                 </div>
               </div>
-              <div className='product-details-pro w-half'>
+              <div className='product-details-pro'>
                 <div className='product-top'>
                   <h1 className='title-head'>{productState.title}</h1>
                   <div className='product-sku'>
