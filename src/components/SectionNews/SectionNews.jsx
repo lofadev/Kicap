@@ -26,9 +26,11 @@ const SectionNews = ({ news, title, strongTitle, max = 4 }) => {
           })}
         </div>
 
-        <Button type='a' primary className='btn-more'>
-          {txtButton}
-        </Button>
+        <div style={{ textAlign: 'center' }}>
+          <Button type='a' primary className='btn-more'>
+            {txtButton}
+          </Button>
+        </div>
       </div>
     </section>
   );

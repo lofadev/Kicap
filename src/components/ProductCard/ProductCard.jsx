@@ -30,11 +30,13 @@ const ProductCard = ({ product }) => {
         <div className='product_card-inner'>
           <div className='product_card-image'>
             <img
+              loading='lazy'
               className={'product_card-image-front'}
               src={product.images[0]}
               alt={product.images[0]}
             />
             <img
+              loading='lazy'
               className={'product_card-image-back'}
               src={product.images[1]}
               alt={product.images[1]}

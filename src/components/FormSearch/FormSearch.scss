@@ -11,9 +11,13 @@
 
   .input-group {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     min-width: 500px;
+
+    & > input {
+      flex: 1;
+    }
 
     .form-control {
       width: unset;
@@ -40,11 +44,22 @@
     right: 20px;
 
     svg {
+      color: var(--black);
       font-size: 2.6rem;
     }
   }
 
   &.active {
     height: 70px;
+  }
+}
+
+@media screen and (max-width: 767.98px) {
+  .input-group {
+    justify-content: center !important;
+
+    & > input {
+      flex: unset !important;
+    }
   }
 }
