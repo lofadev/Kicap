@@ -23,14 +23,6 @@ const Home = () => {
     const switchsArr = [];
     const accessorysArr = [];
     for (let i = productState.length - 1; i >= 0; i--) {
-      if (
-        newProductsArr.length == 4 &&
-        keyboardCustomsArr.length == 4 &&
-        keycapsArr.length == 4 &&
-        switchsArr.length == 4 &&
-        accessorysArr.length == 4
-      )
-        break;
       if (productState[i].type == 'bàn phím cơ') {
         keyboardCustomsArr.push(productState[i]);
       } else if (productState[i].type == 'keycap bộ') {

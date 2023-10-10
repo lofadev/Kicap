@@ -30,12 +30,14 @@
     opacity: 0;
   }
 
-  &:hover .product_card-image-front {
-    opacity: 0;
-  }
+  @media (hover: hover) {
+    &:hover .product_card-image-front {
+      opacity: 0;
+    }
 
-  &:hover .product_card-image-back {
-    opacity: 1;
+    &:hover .product_card-image-back {
+      opacity: 1;
+    }
   }
 
   .sale_box {
@@ -108,5 +110,13 @@
 
   &-button {
     width: 100%;
+  }
+}
+
+@media screen and (max-width: 767.98px) {
+  .product_card {
+    &-image {
+      --height: 200px;
+    }
   }
 }

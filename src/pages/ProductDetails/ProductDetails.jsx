@@ -133,7 +133,7 @@ const ProductDetails = () => {
                     {productState.images.map((img, index) => {
                       return (
                         <div key={index}>
-                          <img src={img} alt='' />
+                          <img loading='lazy' src={img} alt='' />
                         </div>
                       );
                     })}
@@ -143,7 +143,7 @@ const ProductDetails = () => {
                 <div className='product-image-select'>
                   <Slider {...settings2}>
                     {productState.images.map((img, index) => {
-                      return <img key={index} src={img} alt='' />;
+                      return <img loading='lazy' key={index} src={img} alt='' />;
                     })}
                   </Slider>
                 </div>
