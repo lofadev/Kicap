@@ -14,7 +14,7 @@ const FeatureProductBlock = () => {
       <div className='container'>
         <div className='group-product-block'>
           <h2 className='product_title'>
-            <Link href=''>
+            <Link href='' className='text-hover-primary'>
               Bộ sưu tập <strong>Keycap sa osiris</strong>
             </Link>
           </h2>

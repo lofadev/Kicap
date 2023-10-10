@@ -24,7 +24,9 @@
     margin-left: 5px;
   }
 
-  &:hover > * {
-    color: var(--light-gray);
+  @media (hover: hover) {
+    &:hover > * {
+      color: var(--light-gray);
+    }
   }
 }
