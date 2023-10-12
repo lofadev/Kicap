@@ -77,6 +77,8 @@ const Footer = () => {
                 placeholder='Email của bạn'
                 className='footer-subcrible'
                 name='email'
+                id='footer-subcrible-email'
+                autoComplete='off'
               />
               <Button type='button' primary className='footer-btn'>
                 Đăng ký

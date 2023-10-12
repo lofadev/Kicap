@@ -3,9 +3,8 @@ import { FaCartArrowDown, FaHeart, FaRegStar } from 'react-icons/fa';
 import { useParams } from 'react-router-dom';
 import 'swiper/css';
 import 'swiper/css/effect-fade';
+import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
-import { EffectFade, Thumbs } from 'swiper/modules';
-import { Swiper, SwiperSlide } from 'swiper/react';
 import unidecode from 'unidecode';
 import { products } from '~/../data';
 import ImgService1 from '~/assets/imgs/policy_images_2.svg';
@@ -14,10 +13,10 @@ import ImgService3 from '~/assets/imgs/policy_images_4.svg';
 import SectionBreadCrumb from '~/components/SectionBreadCrumb/SectionBreadCrumb';
 import SectionProduct from '~/components/SectionProduct/SectionProduct';
 import SwatchSelect from '~/components/SwatchSelect/SwatchSelect';
+import ProductDetailsImage from '../ProductDetailsImage/ProductDetailsImage';
 import './ProductDetails.scss';
 
 const ProductDetails = () => {
-  const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const { title } = useParams();
   const handleFillterProduct = useCallback(() => {
     return products.find((product) => {
@@ -30,7 +29,6 @@ const ProductDetails = () => {
     });
   }, [title]);
   const [productState, setProductState] = useState(handleFillterProduct());
-
   const handleFillterRelatedProduct = useCallback(() => {
     return products.filter(
       (product) => product.type === productState.type && product.id !== productState.id
@@ -98,59 +96,15 @@ const ProductDetails = () => {
     handleCalculatorPrice,
   ]);
 
-  const settings1 = {
-    effect: 'fade',
-    modules: [EffectFade, Thumbs],
-    thumbs: { swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null },
-  };
-
-  const settings2 = {
-    spaceBetween: 5,
-    slidesPerView: 4,
-    modules: [Thumbs],
-    watchSlidesProgress: true,
-    onSwiper: setThumbsSwiper,
-    breakpoints: {
-      991: {
-        slidesPerView: 5,
-      },
-    },
-  };
-
   return (
     <>
-      <SectionBreadCrumb parent={productState.type} child={productState.title}></SectionBreadCrumb>
+      <SectionBreadCrumb parent={productState.type} child={productState.title} />
       <section className='product'>
         <div className='container'>
           <div className='product-details'>
             <div className='product-main'>
-              <div className='product-image-block'>
-                <div className='product-image-big'>
-                  <Swiper {...settings1}>
-                    {productState.images.map((img, index) => {
-                      return (
-                        <SwiperSlide key={index}>
-                          <img loading='lazy' src={img} alt='' />
-                        </SwiperSlide>
-                      );
-                    })}
-                  </Swiper>
-                </div>
+              <ProductDetailsImage productState={productState} />
 
-                <div className='product-image-select'>
-                  <Swiper {...settings2}>
-                    {productState.images.map((img, index) => {
-                      return (
-                        <SwiperSlide key={index}>
-                          <div>
-                            <img data-index={index} loading='lazy' src={img} alt='' />
-                          </div>
-                        </SwiperSlide>
-                      );
-                    })}
-                  </Swiper>
-                </div>
-              </div>
               <div className='product-details-pro'>
                 <div className='product-top'>
                   <h1 className='title-head'>{productState.title}</h1>
@@ -205,18 +159,19 @@ const ProductDetails = () => {
                       {/* chọn mẫu */}
                       <div className='select-swatch'>
                         {productState.layout && (
-                          <SwatchSelect product={productState} field='layout'></SwatchSelect>
+                          <SwatchSelect product={productState} field='layout' />
                         )}
                         {productState.species && (
-                          <SwatchSelect product={productState} field='species'></SwatchSelect>
+                          <SwatchSelect product={productState} field='species' />
                         )}
                         {productState.color && (
-                          <SwatchSelect product={productState} field='color'></SwatchSelect>
+                          <SwatchSelect product={productState} field='color' />
                         )}
                         {productState.switch && (
-                          <SwatchSelect product={productState} field='switch'></SwatchSelect>
+                          <SwatchSelect product={productState} field='switch' />
                         )}
                       </div>
+
                       <div className='form-group'>
                         {/* số lượng */}
                         {status !== 0 && (

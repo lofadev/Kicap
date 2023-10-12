@@ -11,49 +11,9 @@
     display: flex;
     justify-content: space-between;
 
-    > div {
+    & > div {
       padding: 0 10px;
       width: 50%;
-    }
-  }
-  &-image-block {
-    position: relative;
-  }
-
-  &-image-big {
-    cursor: pointer;
-    margin-bottom: 15px;
-    overflow: hidden;
-
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-  }
-
-  &-image-select {
-    padding: 0 5px;
-    .swiper-slide {
-      > div {
-        width: 100%;
-        height: 100%;
-        border: 1px solid #e6e6e6;
-        padding: 5px;
-        border-radius: 3px;
-      }
-    }
-
-    .swiper-slide.swiper-slide-thumb-active {
-      & > div {
-        border-color: #000 !important;
-      }
-    }
-
-    img {
-      width: auto;
-      height: 100%;
-      object-fit: cover;
     }
   }
 
@@ -286,6 +246,8 @@
 
   .hotline-product {
     line-height: 22px;
+    font-weight: 500;
+    letter-spacing: 0.25px;
     a {
       color: #00b0f0;
       transition: all 0.2s linear;
@@ -329,12 +291,67 @@
   }
 }
 
+@keyframes zoomIn {
+  from {
+    transform: scale(0.3);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .modal-show-image {
+    .modal-image > img {
+      width: 100% !important;
+      height: auto !important;
+    }
+  }
+}
+
 @media screen and (max-width: 767.98px) {
   .product-main {
     flex-direction: column;
 
     & > div {
       width: 100%;
+    }
+  }
+
+  .product {
+    &-details-pro {
+      margin-top: 20px;
+      text-align: center;
+
+      .save-price {
+        display: block;
+        text-align: left;
+      }
+
+      .inventory_quantity {
+        text-align: left;
+      }
+
+      .form-product {
+        text-align: left;
+      }
+
+      .btn-cart.add_to_cart {
+        width: 100%;
+      }
+
+      .hotline-product {
+        font-size: 1.3rem;
+      }
     }
   }
 }

@@ -1,0 +1,160 @@
+.product {
+  &-image-block {
+    position: relative;
+  }
+
+  &-image-big {
+    height: 565px;
+    cursor: pointer;
+    margin-bottom: 15px;
+    overflow: hidden;
+
+    img {
+      width: auto;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    & .swiper-button-prev,
+    & .swiper-button-next {
+      color: var(--black);
+    }
+  }
+
+  &-image-select {
+    padding: 0 5px;
+
+    .swiper-slide > div {
+      width: 100%;
+      height: 100%;
+      border: 1px solid #e6e6e6;
+      padding: 5px;
+      border-radius: 3px;
+    }
+
+    .swiper-slide.swiper-slide-thumb-active {
+      & > div {
+        border-color: #000 !important;
+      }
+    }
+
+    img {
+      width: 100%;
+      height: 95px;
+      object-fit: cover;
+    }
+  }
+
+  .modal-show-image {
+    padding: 0;
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+    width: 100%;
+    display: none;
+    opacity: 0;
+
+    .btn-close-modal {
+      border-radius: 2px;
+      background-color: #fff;
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      color: var(--black);
+      font-size: 3.2rem;
+      cursor: pointer;
+      z-index: 10;
+      animation: spinner 1.1s cubic-bezier(0.6, -0.28, 0.735, 0.045) infinite alternate;
+      transition: all 0.2s linear;
+    }
+
+    .modal-image {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-image > img {
+      width: auto;
+      height: 100%;
+      object-fit: cover;
+      z-index: 9;
+    }
+
+    &.active {
+      display: block;
+      opacity: 1;
+    }
+
+    &.active .modal-image {
+      animation: zoomIn 0.35s cubic-bezier(0.86, 0, 0.07, 1), fadeIn 0.3s linear;
+    }
+
+    .btn-prev,
+    .btn-next {
+      position: absolute;
+      top: 50%;
+      left: 20px;
+      color: var(--black);
+      font-size: 5rem;
+      background-color: #fff;
+      border-radius: 100rem;
+      box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+      z-index: 10;
+    }
+    .btn-prev.disabled,
+    .btn-next.disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .btn-next {
+      left: unset;
+      right: 20px;
+    }
+
+    .modal-overlay {
+      position: absolute;
+      inset: 0;
+      background-color: rgba($color: #000000, $alpha: 0.6);
+    }
+
+    @media (hover: hover) {
+      .btn-close-modal,
+      .btn-prev,
+      .btn-next {
+        &:hover {
+          transform: scale(1.05);
+        }
+      }
+
+      .btn-close-modal {
+        &:hover {
+          transform: scale(1.05) rotate(0);
+        }
+      }
+    }
+  }
+
+  .swiper.center {
+    .swiper-wrapper {
+      justify-content: center;
+    }
+  }
+}
+
+@keyframes spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .modal-show-image {
+    .btn-next,
+    .btn-prev {
+    }
+  }
+}
