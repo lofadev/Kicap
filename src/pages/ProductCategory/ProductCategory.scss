@@ -24,8 +24,28 @@
 
 @media screen and (max-width: 991px) {
   .product-category {
+    &-content {
+      grid-template-columns: unset;
+    }
+
     &-header-content {
       width: 100%;
+    }
+
+    .sidebar {
+      display: none;
+    }
+  }
+}
+
+@media screen and (max-width: 767.98px) {
+  .product-category {
+    .sort-cate {
+      display: none;
+    }
+
+    .products-view {
+      grid-template-columns: repeat(2, 1fr);
     }
   }
 }

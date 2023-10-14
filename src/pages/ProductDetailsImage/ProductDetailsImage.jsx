@@ -54,7 +54,7 @@ const ProductDetailsImage = ({ productState }) => {
     modules: [Thumbs, Keyboard, FreeMode],
     onSwiper: setThumbsSwiper,
     breakpoints: {
-      991: {
+      1199: {
         slidesPerView: 5,
       },
     },

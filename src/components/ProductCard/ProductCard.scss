@@ -115,6 +115,14 @@
   }
 }
 
+@media screen and (max-width: 1199px) {
+  .product_card {
+    &-image {
+      --height: 222px;
+    }
+  }
+}
+
 @media screen and (max-width: 767.98px) {
   .product_card {
     &-image {

@@ -151,10 +151,18 @@
   }
 }
 
+@media screen and (max-width: 1199px) {
+  .product {
+    &-image-big {
+      height: auto;
+    }
+  }
+}
+
 @media screen and (max-width: 991px) {
-  .modal-show-image {
-    .btn-next,
-    .btn-prev {
+  .product {
+    &-image-select img {
+      height: 75px;
     }
   }
 }
