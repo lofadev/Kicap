@@ -9,6 +9,7 @@ const routes = {
   introduce: '/gioi-thieu',
   contact: '/lien-he',
   blog: '/tin-tuc',
+  account_form: '/account/:type',
 };
 
 export default routes;

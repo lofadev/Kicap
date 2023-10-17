@@ -34,8 +34,14 @@
         border-color: var(--black);
       }
     }
-    &-btn img {
-      width: 16px;
+
+    &-search {
+      button {
+        padding: 12px;
+      }
+      img {
+        width: 16px;
+      }
     }
   }
 

@@ -23,9 +23,13 @@ const Header = () => {
   const handleToggleOverlay = () => {
     setIsActiveOverlay((prev) => !prev);
     if (isActiveMenubar) {
-      const dropdownShoweds = document.querySelectorAll('.height-auto');
-      dropdownShoweds.forEach((dropdown) => {
-        dropdown.classList.remove('height-auto');
+      const navlinkActive = document.querySelectorAll('.nav-link.active');
+      const megatitleActive = document.querySelectorAll('.mega-title.active');
+      megatitleActive.forEach((dropdown) => {
+        dropdown.classList.remove('active');
+      });
+      navlinkActive.forEach((dropdown) => {
+        dropdown.classList.remove('active');
       });
       setIsActiveMenubar((prev) => !prev);
     }
@@ -41,7 +45,6 @@ const Header = () => {
 
   const handleCLickLink = (e) => {
     if (e.target.closest('.icon-dropdown')) {
-      e.preventDefault();
       let navLink = e.target;
       while (
         !navLink.classList.value.includes('nav-link') &&
@@ -49,8 +52,7 @@ const Header = () => {
       ) {
         navLink = navLink.parentNode;
       }
-      const dropDown = navLink.nextElementSibling;
-      dropDown.classList.toggle('height-auto');
+      navLink.classList.toggle('active');
     } else if (isActiveMenubar) {
       handleToggleOverlay();
     }

@@ -23,7 +23,7 @@ const FormSearch = ({ onClick: handleToggleInSearch, searchActive }) => {
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
           />
-          <span className='input-group-btn'>
+          <span className='input-group-search'>
             <button className='btn btn-default' type='submit'>
               <img src={Search} alt='' />
             </button>

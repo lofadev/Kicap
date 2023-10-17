@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { FaFilter, FaTimes } from 'react-icons/fa';
 import { products } from '~/../data';
 import AsideCategory from '~/components/AsideCategory/AsideCategory';
 import AsideFilter from '~/components/AsideFilter/AsideFilter';
@@ -13,9 +14,14 @@ const ProductCategory = () => {
   const [totalProduct] = useState(() => products.length);
   const [pageCount] = useState(() => Math.ceil(totalProduct / 12));
   const [page, setPage] = useState(1);
+  const [openFilters, setOpenFilters] = useState(false);
 
   const doSearch = (value) => {
     setPage(value.selected + 1);
+  };
+
+  const handleToggleFilters = () => {
+    setOpenFilters((prev) => !prev);
   };
 
   useEffect(() => {
@@ -48,10 +54,26 @@ const ProductCategory = () => {
       <div className='container'>
         <div className='product-category-main'>
           <section className='product-category-content'>
+            <div
+              className={`open-filters ${openFilters ? 'open' : ''}`}
+              onClick={handleToggleFilters}
+            >
+              {!openFilters && (
+                <div>
+                  <FaFilter />
+                </div>
+              )}
+              {openFilters && (
+                <div>
+                  <FaTimes />
+                </div>
+              )}
+            </div>
             <div className='sidebar'>
               <AsideCategory />
               <AsideFilter />
             </div>
+
             <div className='product-category-main-container'>
               <SortCate />
 
