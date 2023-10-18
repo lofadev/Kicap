@@ -8,6 +8,7 @@ const CollapsiblePlus = () => {
     const navItem = collapsibleRef.current.parentNode;
     navItem.classList.toggle('active');
   };
+
   return (
     <div className='collapsible-plus' ref={collapsibleRef} onClick={handleClickCollapsible}>
       <span></span>

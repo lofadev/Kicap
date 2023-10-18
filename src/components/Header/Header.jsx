@@ -1,6 +1,5 @@
 import { useRef, useState } from 'react';
 import { FaBars } from 'react-icons/fa';
-import { FaAngleDown } from 'react-icons/fa6';
 import { Link, NavLink } from 'react-router-dom';
 import { menu } from '~/../data';
 import Cart from '~/assets/imgs/add-to-basket.svg';
@@ -8,6 +7,7 @@ import Logo from '~/assets/imgs/logo.png';
 import Search from '~/assets/imgs/search.svg';
 import FormSearch from '../FormSearch/FormSearch';
 import './Header.scss';
+import Dropdown from './components/Dropdown/Dropdown';
 
 const Header = () => {
   const [isActiveSearch, setIsActiveSearch] = useState(false);
@@ -15,26 +15,20 @@ const Header = () => {
   const [isActiveMenubar, setIsActiveMenubar] = useState(false);
   const navRef = useRef();
 
-  const handleToggleInSearch = () => {
+  const handleToggleSearch = () => {
     setIsActiveSearch((prev) => !prev);
     setIsActiveOverlay((prev) => !prev);
   };
 
-  const handleToggleOverlay = () => {
-    setIsActiveOverlay((prev) => !prev);
-    if (isActiveMenubar) {
-      const navlinkActive = document.querySelectorAll('.nav-link.active');
-      const megatitleActive = document.querySelectorAll('.mega-title.active');
-      megatitleActive.forEach((dropdown) => {
-        dropdown.classList.remove('active');
-      });
-      navlinkActive.forEach((dropdown) => {
-        dropdown.classList.remove('active');
-      });
-      setIsActiveMenubar((prev) => !prev);
-    }
-    if (isActiveSearch) {
-      setIsActiveSearch((prev) => !prev);
+  const handleToggleOverlay = (e) => {
+    if (!e.target.closest('.icon-dropdown')) {
+      if (isActiveMenubar) {
+        setIsActiveOverlay((prev) => !prev);
+        setIsActiveMenubar((prev) => !prev);
+      } else if (isActiveSearch) {
+        setIsActiveOverlay((prev) => !prev);
+        setIsActiveSearch((prev) => !prev);
+      }
     }
   };
 
@@ -43,28 +37,13 @@ const Header = () => {
     setIsActiveOverlay((prev) => !prev);
   };
 
-  const handleCLickLink = (e) => {
-    if (e.target.closest('.icon-dropdown')) {
-      let navLink = e.target;
-      while (
-        !navLink.classList.value.includes('nav-link') &&
-        !navLink.classList.value.includes('mega-title')
-      ) {
-        navLink = navLink.parentNode;
-      }
-      navLink.classList.toggle('active');
-    } else if (isActiveMenubar) {
-      handleToggleOverlay();
-    }
-  };
-
   return (
     <header className='header'>
       <div
         className={`overlay ${isActiveOverlay ? 'active' : ''}`}
         onClick={handleToggleOverlay}
       ></div>
-      <FormSearch onClick={handleToggleInSearch} searchActive={isActiveSearch} />
+      <FormSearch onClick={handleToggleSearch} searchActive={isActiveSearch} />
       <div className='container'>
         <div className='top_header'>
           <div className='top_header-text'>
@@ -111,7 +90,7 @@ const Header = () => {
                 </Link>
               </li>
 
-              <li className='top_header-search' onClick={() => handleToggleInSearch()}>
+              <li className='top_header-search' onClick={() => handleToggleSearch()}>
                 <img src={Search} alt='' />
               </li>
             </ul>
@@ -130,64 +109,48 @@ const Header = () => {
                 <NavLink
                   className='nav-link text-hover-primary'
                   to={item.navigate}
-                  onClick={handleCLickLink}
+                  onClick={handleToggleOverlay}
                 >
                   {item.name}
-                  {item.hasChild || item.hasMega ? (
-                    <span className='icon-dropdown'>
-                      <FaAngleDown></FaAngleDown>
-                    </span>
-                  ) : (
-                    ''
-                  )}
+                  {(item.hasChild || item.hasMega) && <Dropdown />}
                 </NavLink>
-                {item.hasChild ? (
+                {item.hasChild && (
                   <ul className='dropdown-menu'>
                     {item.children.map((itemChild, index) => (
                       <li key={index} className='dropdown-items'>
                         <Link
                           className='text-hover-primary'
                           to={itemChild.navigate}
-                          onClick={handleCLickLink}
+                          onClick={handleToggleOverlay}
                         >
                           {itemChild.name}
                         </Link>
                       </li>
                     ))}
                   </ul>
-                ) : (
-                  ''
                 )}
-                {item.hasMega ? (
+                {item.hasMega && (
                   <div className='mega-menu'>
                     {item.children.map((submenu) => (
                       <div key={submenu.id} className='mega-items'>
                         <Link
                           to={submenu.navigate}
                           className='mega-title'
-                          onClick={handleCLickLink}
+                          onClick={handleToggleOverlay}
                         >
                           {submenu.name}
-                          {submenu.sub_children.length > 0 && (
-                            <span className='hidden-lg icon-dropdown'>
-                              <FaAngleDown></FaAngleDown>
-                            </span>
-                          )}
+                          {submenu.sub_children.length > 0 && <Dropdown className={'hidden-lg'} />}
                         </Link>
                         <ul className='mega-submenu'>
                           {submenu.sub_children.map((subitem) => (
                             <li key={subitem.id}>
-                              <Link to={subitem.navigate} onClick={handleCLickLink}>
-                                {subitem.name}
-                              </Link>
+                              <Link to={subitem.navigate}>{subitem.name}</Link>
                             </li>
                           ))}
                         </ul>
                       </div>
                     ))}
                   </div>
-                ) : (
-                  ''
                 )}
               </li>
             ))}
