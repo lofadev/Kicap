@@ -1,0 +1,17 @@
+.nav-items .icon-dropdown {
+  padding: 5px 10px;
+}
+
+@media screen and (max-width: 991px) {
+  .nav-items.active {
+    & > a > .icon-dropdown {
+      transform: scaleY(-1);
+    }
+  }
+
+  .mega-items.active {
+    .icon-dropdown {
+      transform: scaleY(-1);
+    }
+  }
+}
