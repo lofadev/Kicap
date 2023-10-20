@@ -16,6 +16,7 @@ const FormGroup = ({
         {labelName} {required && <span className='required'>*</span>}
       </label>
       <Element id={labelFor} placeholder={placeholder} className='form-control'></Element>
+      <span className='form-error'></span>
     </div>
   );
 };

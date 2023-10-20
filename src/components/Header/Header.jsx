@@ -157,12 +157,12 @@ const Header = () => {
             {isActiveMenubar && (
               <>
                 <li className='nav-items hidden-lg'>
-                  <Link className='nav-link' to={'/account/login'}>
+                  <Link className='nav-link' to={'/account/login'} onClick={handleToggleOverlay}>
                     Đăng nhập
                   </Link>
                 </li>
                 <li className='nav-items hidden-lg'>
-                  <Link className='nav-link' to={'/account/register'}>
+                  <Link className='nav-link' to={'/account/register'} onClick={handleToggleOverlay}>
                     Đăng ký
                   </Link>
                 </li>

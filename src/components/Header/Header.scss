@@ -118,7 +118,6 @@
       position: relative;
       padding: 8px 15px;
       white-space: nowrap;
-      line-height: 24px;
       transition: all 0.2s linear;
 
       @media (hover: hover) {
@@ -297,14 +296,21 @@
     background-color: rgba(0, 0, 0, 0.55);
     display: none;
     opacity: 0;
-    transition: opacity 0.5s ease;
   }
 
   .overlay.active {
     display: block;
-    opacity: 1;
     z-index: 999;
-    transition: opacity 0.5s ease;
+    animation: fadeIn 0.5s ease forwards;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 

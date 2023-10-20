@@ -5,35 +5,34 @@ import unidecode from 'unidecode';
 import './SectionBreadCrumb.scss';
 
 const SectionBreadCrumb = ({ parent = null, child = null }) => {
-  const parentParam = unidecode(parent.toLowerCase())
-    .split(' ')
-    .map((word) => word.replace(/[^\w\s-]/g, ''))
-    .filter((word) => word !== '-')
-    .join('-');
+  const parentParam =
+    parent &&
+    unidecode(parent.toLowerCase())
+      .split(' ')
+      .map((word) => word.replace(/[^\w\s-]/g, ''))
+      .filter((word) => word !== '-')
+      .join('-');
 
   return (
     <div className='bread-crumb'>
       <div className='container'>
         <h3>
           <Link to={'/'}>
-            <span className='bread-crumb-group text-hover-primary'>
-              Trang chủ
-              <span className='arrow-right'>
-                <FaAngleRight />
-              </span>
-            </span>
+            <span className='bread-crumb-group text-hover-primary'>Trang chủ</span>
           </Link>
-
-          <Link to={`/${parentParam}`}>
-            <span className='bread-crumb-group text-hover-primary'>
-              {parent}
+          <span className='arrow-right'>
+            <FaAngleRight />
+          </span>
+          {parent && (
+            <Link to={`/${parentParam}`}>
+              <span className='bread-crumb-group text-hover-primary'>{parent}</span>
               {child && (
                 <span className='arrow-right'>
                   <FaAngleRight />
                 </span>
               )}
-            </span>
-          </Link>
+            </Link>
+          )}
           {child && <span className='current-active'>{child}</span>}
         </h3>
       </div>
@@ -42,7 +41,7 @@ const SectionBreadCrumb = ({ parent = null, child = null }) => {
 };
 
 SectionBreadCrumb.propTypes = {
-  parent: PropTypes.string.isRequired,
+  parent: PropTypes.string,
   child: PropTypes.string.isRequired,
 };
 

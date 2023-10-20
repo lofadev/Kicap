@@ -11,7 +11,6 @@
     font-size: 2.6rem;
     line-height: 28px;
     margin: 0;
-    font-weight: 400;
     text-transform: uppercase;
     letter-spacing: 2.4px;
     text-align: center;
@@ -19,7 +18,6 @@
 
   &-desc {
     font-size: 14px;
-    line-height: 24px;
     color: #333;
     letter-spacing: 0.5px;
     margin-top: 10px;
@@ -29,38 +27,6 @@
   }
 
   form {
-    .form-group {
-      margin-bottom: 20px;
-      padding: 0;
-      padding-bottom: 8px;
-    }
-
-    label {
-      font-weight: 500;
-      letter-spacing: 1.5px;
-      font-size: 12px;
-      text-transform: uppercase;
-      margin-bottom: 10px;
-    }
-
-    input {
-      background: #f7f7f7;
-      height: 50px;
-      padding: 0 15px;
-      font-weight: 300;
-      outline: none;
-    }
-
-    textarea {
-      padding: 0 15px;
-      padding-top: 10px;
-      font-weight: 300;
-      background-color: #f7f7f7;
-      min-height: 150px;
-      max-width: 630px;
-      min-width: 630px;
-    }
-
     .btn-send-message {
       width: 100%;
       height: 50px;
