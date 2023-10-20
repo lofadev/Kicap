@@ -1,11 +1,35 @@
 .form {
-  &-main {
-    margin: 0 -10px;
-  }
-
   &-group {
-    padding: 0 10px;
+    margin-bottom: 20px;
+    padding: 0;
     padding-bottom: 8px;
+
+    label {
+      display: inline-block;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      font-size: 12px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    input {
+      background: #f7f7f7;
+      height: 50px;
+      padding: 0 15px;
+      font-weight: 300;
+      outline: none;
+    }
+
+    textarea {
+      padding: 0 15px;
+      padding-top: 10px;
+      font-weight: 300;
+      background-color: #f7f7f7;
+      min-height: 150px;
+      max-width: 630px;
+      min-width: 630px;
+    }
   }
 
   &-control {
@@ -22,12 +46,16 @@
     border-radius: 3px;
     outline: none;
     box-shadow: none;
+    appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
     border: 1px solid #e6e6e6;
   }
 
-  textarea {
-    height: 135px;
+  &-error {
+    display: inline-block;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    color: #a94442;
   }
 }

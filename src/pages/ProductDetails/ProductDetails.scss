@@ -61,7 +61,6 @@
   &-reviews {
     display: flex;
     align-items: center;
-    line-height: 24px;
     margin-bottom: 15px;
 
     &-scroll {
@@ -74,7 +73,6 @@
   &-stars {
     display: inline-flex;
     align-items: center;
-    line-height: 1;
     gap: 3px;
   }
 
@@ -90,7 +88,6 @@
     font-size: 24px;
     font-weight: 500;
     letter-spacing: 0.25px;
-    line-height: 24px;
     margin-right: 15px;
   }
 
@@ -108,13 +105,11 @@
   &-price-save {
     font-weight: 500;
     color: var(--light-gray);
-    line-height: 24px;
     letter-spacing: 0.25px;
     font-size: 1.4rem;
   }
 
   .inventory_quantity {
-    line-height: 24px;
     letter-spacing: 0.25px;
     margin-bottom: 15px;
     font-weight: 500;

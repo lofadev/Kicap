@@ -1,0 +1,14 @@
+.account {
+  .title-head {
+    font-size: 2.6rem;
+    line-height: 28px;
+    text-transform: uppercase;
+    letter-spacing: 2.4px;
+  }
+
+  &-main {
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto;
+  }
+}

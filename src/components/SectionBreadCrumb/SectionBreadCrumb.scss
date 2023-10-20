@@ -6,19 +6,17 @@
   font-weight: 300;
 
   h3 {
-    line-height: 24px;
     font-size: 1.4rem;
   }
 
   .bread-crumb-group {
-    margin-right: 4px;
     transition: all 0.2s linear;
     cursor: pointer;
     text-transform: capitalize;
   }
 
   .arrow-right {
-    margin-left: 4px;
+    margin: 0 4px;
     position: relative;
     top: 2px;
     svg {

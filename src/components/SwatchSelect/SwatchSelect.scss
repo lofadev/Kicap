@@ -11,7 +11,6 @@
     letter-spacing: 0.5px;
     margin: 0.1em 0;
     min-width: 100px;
-    line-height: 24px;
   }
   .select-swap {
     display: flex;
@@ -19,8 +18,6 @@
   }
 
   .swatch-element {
-    -webkit-transform: translateZ(0);
-    -webkit-font-smoothing: antialiased;
     margin: 0px 5px 5px 0;
     position: relative;
 

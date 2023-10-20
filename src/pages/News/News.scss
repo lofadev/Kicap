@@ -32,7 +32,6 @@
 
   .paragraph {
     margin-bottom: 15px;
-    line-height: 24px;
     letter-spacing: 0.25px;
   }
 
@@ -69,11 +68,6 @@
     padding: 10px;
     color: #fff;
     background-color: #1c1c1c;
-
-    &-head,
-    &-title {
-      line-height: 24px;
-    }
 
     &-head {
       color: #fff;

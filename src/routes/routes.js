@@ -1,4 +1,5 @@
 import config from '~/config/index.js';
+import Account from '~/pages/Account/Account';
 import Blog from '~/pages/Blog/Blog';
 import Contact from '~/pages/Contact/Contact.jsx';
 import Home from '~/pages/Home/Home.jsx';
@@ -44,6 +45,10 @@ const publicRoutes = [
   {
     path: config.routes.blog,
     component: Blog,
+  },
+  {
+    path: config.routes.account,
+    component: Account,
   },
 ];
 

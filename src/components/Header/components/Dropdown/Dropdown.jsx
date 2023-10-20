@@ -5,7 +5,8 @@ import { useRef } from 'react';
 const Dropdown = ({ className }) => {
   const dropdownRef = useRef();
 
-  const handleShowDropdown = () => {
+  const handleShowDropdown = (e) => {
+    e.preventDefault();
     const navItem = dropdownRef.current.parentNode.parentNode;
     navItem.classList.toggle('active');
   };
