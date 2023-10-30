@@ -3,9 +3,14 @@
   & > a {
     display: inline-block;
   }
-  &--facebook {
+  &--facebook,
+  &--googleplus {
     img {
       width: 130px;
     }
+  }
+
+  &--googleplus {
+    margin-left: 15px;
   }
 }

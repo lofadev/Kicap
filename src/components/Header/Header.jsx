@@ -144,7 +144,9 @@ const Header = () => {
                         <ul className='mega-submenu'>
                           {submenu.sub_children.map((subitem) => (
                             <li key={subitem.id}>
-                              <Link to={subitem.navigate}>{subitem.name}</Link>
+                              <Link to={subitem.navigate} onClick={handleToggleOverlay}>
+                                {subitem.name}
+                              </Link>
                             </li>
                           ))}
                         </ul>
