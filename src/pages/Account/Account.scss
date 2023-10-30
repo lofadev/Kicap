@@ -11,4 +11,23 @@
     width: 100%;
     margin: 0 auto;
   }
+
+  .btn-login,
+  .btn-registor {
+    min-width: 290px;
+    height: 50px;
+    padding-top: 0;
+    padding-bottom: 0;
+    font-weight: 500;
+    font-size: 1.3rem;
+    letter-spacing: 1.2px;
+  }
+
+  .btn-recover-password,
+  .btn-registor-login {
+    display: inline-block;
+    line-height: inherit;
+    margin: 15px 0;
+    font-weight: 500;
+  }
 }

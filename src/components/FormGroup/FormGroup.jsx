@@ -3,6 +3,7 @@ import './FormGroup.scss';
 
 const FormGroup = ({
   type,
+  typeInput,
   labelName,
   required = false,
   className = '',
@@ -15,14 +16,20 @@ const FormGroup = ({
       <label htmlFor={labelFor}>
         {labelName} {required && <span className='required'>*</span>}
       </label>
-      <Element id={labelFor} placeholder={placeholder} className='form-control'></Element>
-      <span className='form-error'></span>
+      <Element
+        type={typeInput}
+        id={labelFor}
+        placeholder={placeholder}
+        className='form-control'
+      ></Element>
+      {/* <span className='form-error'></span> */}
     </div>
   );
 };
 
 FormGroup.propTypes = {
   type: PropTypes.string.isRequired,
+  typeInput: PropTypes.string,
   labelName: PropTypes.string.isRequired,
   required: PropTypes.bool,
   className: PropTypes.string,

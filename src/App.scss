@@ -109,6 +109,14 @@ body {
   padding: 0 1rem;
 }
 
+.text-color-primary {
+  color: var(--light-gray);
+  transition: all 0.2s linear;
+  &:hover {
+    color: #1c1c1c;
+  }
+}
+
 .text-hover-primary {
   -moz-transition: all 0.2s;
   -o-transition: all 0.2s;
