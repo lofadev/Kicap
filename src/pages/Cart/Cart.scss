@@ -1,0 +1,32 @@
+.shopping-cart {
+  &-main {
+    margin-top: 30px;
+  }
+  &-heading {
+    font-size: 2.6rem;
+    line-height: calc(28 / 26);
+    text-transform: uppercase;
+    letter-spacing: 2.4px;
+
+    span {
+      font-size: 1.4rem;
+      text-transform: none;
+    }
+  }
+
+  .empty-cart {
+    & > img {
+      width: 200px;
+      margin: 0 auto;
+    }
+  }
+
+  .btn-continue {
+    margin-top: 20px;
+    display: inline-block;
+    text-transform: uppercase;
+    padding: 0 30px;
+    margin-left: 50%;
+    transform: translateX(-50%);
+  }
+}

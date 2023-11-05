@@ -20,26 +20,28 @@ const Login = () => {
 
           <SocialLogin />
 
-          <FormGroup
-            type='input'
-            labelFor='login-email'
-            labelName='Email'
-            required
-            placeholder='Nhập địa chỉ email'
-          />
-          <FormGroup
-            type='input'
-            typeInput='password'
-            labelFor='login-password'
-            labelName='Mật khẩu'
-            required
-            placeholder='Nhập mật khẩu'
-          />
-          <div className='text-center'>
-            <Button type='button' primary className='btn-login'>
-              Đăng nhập
-            </Button>
-          </div>
+          <form action='/account/login' method='post'>
+            <FormGroup
+              type='input'
+              labelFor='login-email'
+              labelName='Email'
+              required
+              placeholder='Nhập địa chỉ email'
+            />
+            <FormGroup
+              type='input'
+              typeInput='password'
+              labelFor='login-password'
+              labelName='Mật khẩu'
+              required
+              placeholder='Nhập mật khẩu'
+            />
+            <div className='text-center'>
+              <Button type='submit' primary className='btn-login'>
+                Đăng nhập
+              </Button>
+            </div>
+          </form>
           <p className='text-center'>
             <Link to='' className='btn-recover-password  text-color-primary'>
               Quên mật khẩu?
