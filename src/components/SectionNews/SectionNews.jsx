@@ -4,7 +4,7 @@ import Button from '../Button/Button';
 import NewsCard from '../NewsCard/NewsCard';
 import './SectionNews.scss';
 
-const SectionNews = ({ news, title, strongTitle, max = 4 }) => {
+const SectionNews = ({ news, title, strongTitle, max = 4, navigate }) => {
   const maxLen = parseInt(max);
 
   const txtButton = 'Xem tất cả';
@@ -27,7 +27,7 @@ const SectionNews = ({ news, title, strongTitle, max = 4 }) => {
         </div>
 
         <div style={{ textAlign: 'center' }}>
-          <Button type='a' primary className='btn-more'>
+          <Button type='a' primary className='btn-more' to={navigate}>
             {txtButton}
           </Button>
         </div>
@@ -42,6 +42,7 @@ SectionNews.propTypes = {
   strongTitle: PropTypes.string,
   txtButton: PropTypes.node,
   max: PropTypes.string,
+  navigate: PropTypes.string,
 };
 
 export default SectionNews;

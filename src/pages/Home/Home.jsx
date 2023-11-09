@@ -80,7 +80,13 @@ const Home = () => {
         strongTitle='Bàn phím cơ'
         navigate='phu-kien'
       ></SectionProduct>
-      <SectionNews max='4' news={newsState} title='Tin tức' strongTitle='Kicap'></SectionNews>
+      <SectionNews
+        max='4'
+        news={newsState}
+        title='Tin tức'
+        strongTitle='Kicap'
+        navigate='tin-tuc'
+      ></SectionNews>
     </>
   );
 };
