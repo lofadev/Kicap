@@ -27,7 +27,6 @@ const sliderData = [
 ];
 
 const HeroSlider = () => {
-  let dragging = false;
   const swiperSettings = {
     slidesPerView: 1,
     pagination: true,
@@ -41,7 +40,7 @@ const HeroSlider = () => {
         {sliderData.map((item) => {
           return (
             <SwiperSlide key={item.id}>
-              <Link to={item.url} onClick={(e) => dragging && e.preventDefault()}>
+              <Link to={item.url}>
                 <div className='hero_slider-items'>
                   <img src={item.image} alt='' className='hero_slider-img' />
                 </div>

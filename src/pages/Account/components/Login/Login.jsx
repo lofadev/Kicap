@@ -37,7 +37,7 @@ const Login = () => {
               placeholder='Nhập mật khẩu'
             />
             <div className='text-center'>
-              <Button type='submit' primary className='btn-login'>
+              <Button type='button' primary className='btn-login'>
                 Đăng nhập
               </Button>
             </div>
