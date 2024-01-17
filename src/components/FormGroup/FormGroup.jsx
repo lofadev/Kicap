@@ -6,13 +6,12 @@ const FormGroup = ({
   typeInput,
   labelName,
   required = false,
-  className = '',
   placeholder = labelName,
   labelFor,
 }) => {
   const Element = type == 'text' ? 'textarea' : 'input';
   return (
-    <div className={`form-group ${className}`}>
+    <div className="form-group">
       <label htmlFor={labelFor}>
         {labelName} {required && <span className='required'>*</span>}
       </label>
