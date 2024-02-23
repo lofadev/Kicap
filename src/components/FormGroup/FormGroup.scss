@@ -1,8 +1,10 @@
 .form {
   &-group {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     padding: 0;
     padding-bottom: 8px;
+    flex: 1;
+    width: 100%;
 
     label {
       display: inline-block;
@@ -28,8 +30,8 @@
       font-weight: 300;
       background-color: #f7f7f7;
       min-height: 150px;
-      max-width: 630px;
-      min-width: 630px;
+      max-width: 100%;
+      min-width: 100%;
     }
   }
 
