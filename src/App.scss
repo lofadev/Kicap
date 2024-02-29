@@ -156,6 +156,10 @@ body {
   float: left;
 }
 
+.w-full {
+  width: 100% !important;
+}
+
 .clear {
   clear: both;
 }
@@ -180,6 +184,10 @@ body {
   text-align: center;
 }
 
+.mt-auto {
+  margin-top: auto !important;
+}
+
 .section-title-head {
   text-align: center;
   margin-bottom: 30px;
@@ -193,6 +201,10 @@ body {
   strong {
     font-weight: 500;
   }
+}
+
+.d-block {
+  display: block !important;
 }
 
 @media screen and (max-width: 1199px) {

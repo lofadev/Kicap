@@ -10,6 +10,12 @@ const routes = {
   contact: '/lien-he',
   blog: '/tin-tuc',
   account: '/account/:type',
+  notfound: '*',
+  admin: {
+    login: '/admin/login',
+    logout: '/admin/logout',
+    dashboard: 'admin/dashboard',
+  },
 };
 
 export default routes;

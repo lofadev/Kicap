@@ -3006,7 +3006,7 @@ export const menu = [
   },
   {
     id: 7,
-    name: 'Blog',
+    name: 'Bài viết',
     hasChild: false,
     navigate: '/tin-tuc',
   },

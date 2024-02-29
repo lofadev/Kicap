@@ -8,10 +8,11 @@ const FormGroup = ({
   required = false,
   placeholder = labelName,
   labelFor,
+  autoFocus = false,
 }) => {
   const Element = type == 'text' ? 'textarea' : 'input';
   return (
-    <div className="form-group">
+    <div className='form-group'>
       <label htmlFor={labelFor}>
         {labelName} {required && <span className='required'>*</span>}
       </label>
@@ -20,6 +21,7 @@ const FormGroup = ({
         id={labelFor}
         placeholder={placeholder}
         className='form-control'
+        autoFocus={autoFocus}
       ></Element>
       {/* <span className='form-error'></span> */}
     </div>
