@@ -1,13 +1,11 @@
-import './SideBar.scss';
-import { MdCategory } from 'react-icons/md';
 import { AiFillDashboard } from 'react-icons/ai';
-import { FaUser } from 'react-icons/fa';
-import { FaCartFlatbed } from 'react-icons/fa6';
-import { PiSlideshowFill } from 'react-icons/pi';
-import { MdOutlineProductionQuantityLimits } from 'react-icons/md';
 import { BiSolidCategory } from 'react-icons/bi';
-import { FaSignOutAlt } from 'react-icons/fa';
+import { FaSignOutAlt, FaUser } from 'react-icons/fa';
+import { FaCartFlatbed } from 'react-icons/fa6';
+import { MdCategory, MdOutlineProductionQuantityLimits } from 'react-icons/md';
+import { PiSlideshowFill } from 'react-icons/pi';
 import { RiAdminFill } from 'react-icons/ri';
+import './SideBar.scss';
 
 const menu = [
   {
@@ -98,14 +96,7 @@ const menu = [
 ];
 
 const SideBar = () => {
-  return (
-    <div className='side-bar'>
-      {menu.map((item) => {
-        const Component = item.icon;
-        return <Component key={item.item} />;
-      })}
-    </div>
-  );
+  return <div className='side-bar'></div>;
 };
 
 export default SideBar;

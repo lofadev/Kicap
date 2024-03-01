@@ -10,7 +10,7 @@ function App() {
   return (
     <div className='app'>
       <Routes>
-        {!location.pathname.includes('admin') &&
+        {!location.pathname.includes('/admin/') &&
           publicRoutes.map((route, index) => {
             const Page = route.component;
             let Layout = DefaultLayout;
@@ -23,7 +23,6 @@ function App() {
 
             return (
               <Route
-                exact
                 key={index}
                 path={route.path}
                 element={
@@ -35,7 +34,7 @@ function App() {
             );
           })}
 
-        {location.pathname.includes('admin') &&
+        {location.pathname.includes('/admin/') &&
           privateRoutes.map((route, index) => {
             const Page = route.component;
             let Layout = DefaultLayout;
@@ -48,7 +47,6 @@ function App() {
 
             return (
               <Route
-                exact
                 key={index}
                 path={route.path}
                 element={

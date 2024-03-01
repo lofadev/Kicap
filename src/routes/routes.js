@@ -1,5 +1,5 @@
-import SideBar from '~/components/Admin/SideBar/SideBar';
 import config from '~/config/index.js';
+import AdminLayout from '~/layouts/AdminLayout/AdminLayout';
 import Account from '~/pages/Account/Account';
 import Blog from '~/pages/Blog/Blog';
 import Cart from '~/pages/Cart/Cart.jsx';
@@ -11,6 +11,7 @@ import NotFound from '~/pages/NotFound/NotFound';
 import Policy from '~/pages/Policy/Policy.jsx';
 import ProductCategory from '~/pages/ProductCategory/ProductCategory.jsx';
 import ProductDetails from '~/pages/ProductDetails/ProductDetails.jsx';
+import Dashboard from '~/pages/admin/Dashboard/Dashboard';
 import Login from '~/pages/admin/Login/Login';
 
 const publicRoutes = [
@@ -72,8 +73,8 @@ const privateRoutes = [
   },
   {
     path: config.routes.admin.dashboard,
-    component: SideBar,
-    layout: null,
+    component: Dashboard,
+    layout: AdminLayout,
   },
 ];
 

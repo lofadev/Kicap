@@ -1,8 +1,8 @@
+import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import NotFoundImg from '~/assets/imgs/404.webp';
 import SectionBreadCrumb from '~/components/SectionBreadCrumb/SectionBreadCrumb';
 import './NotFound.scss';
-import NotFoundImg from '~/assets/imgs/404.webp';
-import { Link } from 'react-router-dom';
-import { useEffect } from 'react';
 
 const NotFound = () => {
   useEffect(() => {
