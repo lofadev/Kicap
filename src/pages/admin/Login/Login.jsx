@@ -4,7 +4,7 @@ import './Login.scss';
 
 const Login = () => {
   return (
-    <div className='main'>
+    <div className='main-login'>
       <div className='content'>
         <div>
           <h1>Đăng nhập</h1>
