@@ -1,0 +1,55 @@
+.admin {
+  .sidebar {
+    width: 330px;
+    margin-right: 10px;
+    background-color: var(--admin-gray);
+    color: #fff;
+    font-weight: 400;
+    font-size: 1.6rem;
+    overflow-y: auto;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+
+    &-items.active {
+      .sidebar-title {
+        background-color: var(--light-gray);
+        color: var(--black);
+        font-weight: 500;
+      }
+
+      .sidebar-dropdown {
+        display: block;
+        height: auto;
+      }
+    }
+
+    &-title {
+      display: flex;
+      align-items: center;
+      padding: 10px 15px;
+      transition: all 0.2s linear;
+
+      &:hover {
+        background-color: var(--light-gray);
+        color: var(--black);
+        cursor: pointer;
+      }
+    }
+
+    &-name {
+      margin: 5px;
+    }
+
+    &-dropdown {
+      display: none;
+      height: 0;
+      transition: all 0.2s linear;
+
+      li a {
+        display: block;
+        padding: 10px 20px;
+        padding-left: 35px;
+      }
+    }
+  }
+}

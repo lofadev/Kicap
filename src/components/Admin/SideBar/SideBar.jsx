@@ -1,102 +1,148 @@
+import { useState } from 'react';
 import { AiFillDashboard } from 'react-icons/ai';
 import { BiSolidCategory } from 'react-icons/bi';
 import { FaSignOutAlt, FaUser } from 'react-icons/fa';
 import { FaCartFlatbed } from 'react-icons/fa6';
 import { MdCategory, MdOutlineProductionQuantityLimits } from 'react-icons/md';
 import { PiSlideshowFill } from 'react-icons/pi';
-import { RiAdminFill } from 'react-icons/ri';
+import { TiArrowSortedDown } from 'react-icons/ti';
+import { Link } from 'react-router-dom';
 import './SideBar.scss';
 
 const menu = [
   {
-    item: 'Bảng điều khiển',
-    to: '/dashboard',
+    name: 'Bảng điều khiển',
+    to: '/admin/dashboard',
     icon: AiFillDashboard,
   },
   {
-    item: 'Quản lý sản phẩm',
+    name: 'Quản lý sản phẩm',
     to: null,
     icon: MdOutlineProductionQuantityLimits,
     children: [
       {
-        item: 'Thêm sản phẩm',
-        to: '/product/add',
+        name: 'Thêm sản phẩm',
+        to: '/admin/product/add',
       },
       {
-        item: 'Xem sản phẩm',
-        to: '/product/view',
+        name: 'Xem sản phẩm',
+        to: '/admin/product/view',
       },
     ],
   },
   {
-    item: 'Quản lý danh mục sản phẩm',
+    name: 'Quản lý danh mục sản phẩm',
     to: null,
     icon: BiSolidCategory,
     children: [
       {
-        item: 'Thêm danh mục sản phẩm',
-        to: '/category/add',
+        name: 'Thêm danh mục sản phẩm',
+        to: '/admin/category/add',
       },
       {
-        item: 'Xem danh mục sản phẩm',
-        to: '/category/view',
+        name: 'Xem danh mục sản phẩm',
+        to: '/admin/category/view',
       },
     ],
   },
   {
-    item: 'Quản lý thể loại',
+    name: 'Quản lý thể loại',
     to: null,
     icon: MdCategory,
     children: [
       {
-        item: 'Thêm thể loại',
-        to: '/type/add',
+        name: 'Thêm thể loại',
+        to: '/admin/type/add',
       },
       {
-        item: 'Xem thể loại',
-        to: '/type/view',
+        name: 'Xem thể loại',
+        to: '/admin/type/view',
       },
     ],
   },
   {
-    item: 'Quản lý slides banner',
+    name: 'Quản lý slides banner',
     to: null,
     icon: PiSlideshowFill,
     children: [
       {
-        item: 'Thêm slides banner',
-        to: '/slide/add',
+        name: 'Thêm slides banner',
+        to: '/admin/slide/add',
       },
       {
-        item: 'Xem slides banner',
-        to: '/slide/view',
+        name: 'Xem slides banner',
+        to: '/admin/slide/view',
       },
     ],
   },
   {
-    item: 'Quản lý khách hàng',
-    to: '/users/view',
+    name: 'Quản lý khách hàng',
+    to: '/admin/customers/view',
     icon: FaUser,
   },
   {
-    item: 'Quản lý đơn đặt hàng',
-    to: '/orders/view',
+    name: 'Quản lý đơn đặt hàng',
+    to: '/admin/orders/view',
     icon: FaCartFlatbed,
   },
   {
-    item: 'Quản lý admin',
-    to: '/orders/view',
-    icon: RiAdminFill,
-  },
-  {
-    item: 'Đăng xuất',
-    to: '/logout',
+    name: 'Đăng xuất',
+    to: '/admin/logout',
     icon: FaSignOutAlt,
   },
 ];
 
 const SideBar = () => {
-  return <div className='side-bar'></div>;
+  const [itemActive, setItemActive] = useState(
+    JSON.parse(sessionStorage.getItem('sidebarItemActive')) || 0
+  );
+  const [isShowDropdown, setIsShowDropdown] = useState(false);
+
+  const handleChangeItemActive = (index) => {
+    sessionStorage.setItem('sidebarItemActive', JSON.stringify(index));
+    setItemActive(index);
+    setIsShowDropdown((prev) => !prev);
+  };
+
+  return (
+    <div className='sidebar'>
+      <ul className='sidebar-menu'>
+        {menu.map((item, index) => {
+          const Icon = item.icon;
+          return (
+            <li
+              key={item.name}
+              className={`sidebar-items ${itemActive === index ? 'active' : ''}`}
+              onClick={() => handleChangeItemActive(index)}
+            >
+              {item.to ? (
+                <Link to={item.to} className='sidebar-title'>
+                  <Icon /> <span className='sidebar-name'>{item.name}</span>{' '}
+                  {item.children && <TiArrowSortedDown />}
+                </Link>
+              ) : (
+                <span className='sidebar-title'>
+                  <Icon /> <span className='sidebar-name'>{item.name}</span>{' '}
+                  {item.children && <TiArrowSortedDown />}
+                </span>
+              )}
+
+              <ul className={`sidebar-dropdown ${isShowDropdown ? '' : 'hide'}`}>
+                {item.children &&
+                  item.children.map((subitem) => {
+                    return (
+                      <li key={subitem.name}>
+                        <Link to={subitem.to}>{subitem.name}</Link>
+                      </li>
+                    );
+                  })}
+              </ul>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  );
 };
 
 export default SideBar;
