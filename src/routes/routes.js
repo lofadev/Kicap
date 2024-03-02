@@ -11,8 +11,18 @@ import NotFound from '~/pages/NotFound/NotFound';
 import Policy from '~/pages/Policy/Policy.jsx';
 import ProductCategory from '~/pages/ProductCategory/ProductCategory.jsx';
 import ProductDetails from '~/pages/ProductDetails/ProductDetails.jsx';
+import AddCategory from '~/pages/admin/AddCategory/AddCategory';
+import AddProduct from '~/pages/admin/AddProduct/AddProduct';
+import AddSlideBanner from '~/pages/admin/AddSlideBanner/AddSlideBanner';
+import AddType from '~/pages/admin/AddType/AddType';
+import Customer from '~/pages/admin/Customer/Customer';
 import Dashboard from '~/pages/admin/Dashboard/Dashboard';
 import Login from '~/pages/admin/Login/Login';
+import Order from '~/pages/admin/Order/Order';
+import ShowCategory from '~/pages/admin/ShowCategory/ShowCategory';
+import ShowProduct from '~/pages/admin/ShowProduct/ShowProduct';
+import ShowSlideBanner from '~/pages/admin/ShowSlideBanner/ShowSlideBanner';
+import ShowType from '~/pages/admin/ShowType/ShowType';
 
 const publicRoutes = [
   {
@@ -74,6 +84,56 @@ const privateRoutes = [
   {
     path: config.routes.admin.dashboard,
     component: Dashboard,
+    layout: AdminLayout,
+  },
+  {
+    path: config.routes.admin.product.add,
+    component: AddProduct,
+    layout: AdminLayout,
+  },
+  {
+    path: config.routes.admin.product.show,
+    component: ShowProduct,
+    layout: AdminLayout,
+  },
+  {
+    path: config.routes.admin.category.add,
+    component: AddCategory,
+    layout: AdminLayout,
+  },
+  {
+    path: config.routes.admin.category.show,
+    component: ShowCategory,
+    layout: AdminLayout,
+  },
+  {
+    path: config.routes.admin.slide.add,
+    component: AddSlideBanner,
+    layout: AdminLayout,
+  },
+  {
+    path: config.routes.admin.slide.show,
+    component: ShowSlideBanner,
+    layout: AdminLayout,
+  },
+  {
+    path: config.routes.admin.type.add,
+    component: AddType,
+    layout: AdminLayout,
+  },
+  {
+    path: config.routes.admin.type.show,
+    component: ShowType,
+    layout: AdminLayout,
+  },
+  {
+    path: config.routes.admin.customers,
+    component: Customer,
+    layout: AdminLayout,
+  },
+  {
+    path: config.routes.admin.orders,
+    component: Order,
     layout: AdminLayout,
   },
 ];

@@ -1,0 +1,51 @@
+.admin {
+  .dashboard {
+    padding: 20px;
+    background-color: #fff;
+    flex: 1;
+    border-radius: 8px;
+
+    &-menu {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 30px;
+    }
+
+    &-box {
+      flex: 1;
+    }
+  }
+
+  .new-orders {
+    margin-top: 20px;
+    &-heading {
+      border-radius: 4px;
+      padding: 10px;
+      background-color: var(--admin-gray);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 1.8rem;
+      margin-bottom: 5px;
+
+      span {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+    }
+
+    &-link {
+      display: inline-block;
+      transition: all 0.2s linear;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      &:hover {
+        color: var(--light-gray);
+      }
+    }
+  }
+}

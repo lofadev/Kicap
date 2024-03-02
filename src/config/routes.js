@@ -15,6 +15,24 @@ const routes = {
     login: '/admin/login',
     logout: '/admin/logout',
     dashboard: 'admin/dashboard',
+    product: {
+      add: '/admin/product/add',
+      show: '/admin/product/view',
+    },
+    category: {
+      add: '/admin/category/add',
+      show: '/admin/category/view',
+    },
+    type: {
+      add: '/admin/type/add',
+      show: '/admin/type/view',
+    },
+    slide: {
+      add: '/admin/slide/add',
+      show: '/admin/slide/view',
+    },
+    customers: 'admin/customers/view',
+    orders: 'admin/orders/view',
   },
 };
 

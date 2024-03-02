@@ -1,12 +1,17 @@
 import { useEffect, useRef } from 'react';
 import { FaLongArrowAltRight } from 'react-icons/fa';
 import './GoToTop.scss';
+import { useLocation } from 'react-router-dom';
 
 const GoToTop = () => {
   const goToTopRef = useRef();
+  const location = useLocation();
+
   const handleGoToTop = () => {
     window.scrollTo(0, 0);
   };
+
+  useEffect(() => handleGoToTop, [location.pathname]);
 
   useEffect(() => {
     function hanleScroll() {
