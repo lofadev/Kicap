@@ -5,6 +5,7 @@
     padding-bottom: 8px;
     flex: 1;
     width: 100%;
+    position: relative;
 
     label {
       display: inline-block;
@@ -53,6 +54,23 @@
     -webkit-appearance: none;
     -moz-appearance: none;
     border: 1px solid #e6e6e6;
+    transition: all 0.2s linear;
+
+    &:focus {
+      border-color: var(--black);
+    }
+
+    &.border-red {
+      border-color: #a94442;
+    }
+  }
+
+  &-eye {
+    position: absolute;
+    right: 15px;
+    top: 44px;
+    padding: 10px;
+    cursor: pointer;
   }
 
   &-error {
