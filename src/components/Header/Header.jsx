@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
 import { FaBars } from 'react-icons/fa';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink } from 'react-router-dom';
 import { menu } from '~/../data';
 import Cart from '~/assets/imgs/add-to-basket.svg';
@@ -8,16 +9,26 @@ import Search from '~/assets/imgs/search.svg';
 import FormSearch from '../FormSearch/FormSearch';
 import './Header.scss';
 import Dropdown from './components/Dropdown/Dropdown';
+import UserService from '~/services/UserService';
+import { resetUser } from '~/redux/slides/UserSlide';
 
 const Header = () => {
   const [isActiveSearch, setIsActiveSearch] = useState(false);
   const [isActiveOverlay, setIsActiveOverlay] = useState(false);
   const [isActiveMenubar, setIsActiveMenubar] = useState(false);
   const navRef = useRef();
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
   const handleToggleSearch = () => {
     setIsActiveSearch((prev) => !prev);
     setIsActiveOverlay((prev) => !prev);
+  };
+
+  const handleLogout = async () => {
+    await UserService.logoutUser();
+    dispatch(resetUser());
+    localStorage.clear();
   };
 
   const handleToggleOverlay = (e) => {
@@ -69,16 +80,33 @@ const Header = () => {
               <li className='top_header-account'>
                 <Link to='/'>Tài khoản</Link>
                 <ul>
-                  <li>
-                    <Link to='/account/login' title='Đăng nhập'>
-                      Đăng nhập
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to='/account/register' title='Đăng ký'>
-                      Đăng ký
-                    </Link>
-                  </li>
+                  {user.name ? (
+                    <>
+                      <li>
+                        <Link to='/account' title='Tài khoản'>
+                          xin chào, {user.name}
+                        </Link>
+                      </li>
+                      <li>
+                        <Link title='Đăng xuất' onClick={handleLogout}>
+                          Đăng xuất
+                        </Link>
+                      </li>
+                    </>
+                  ) : (
+                    <>
+                      <li>
+                        <Link to='/account/login' title='Đăng nhập'>
+                          Đăng nhập
+                        </Link>
+                      </li>
+                      <li>
+                        <Link to='/account/register' title='Đăng ký'>
+                          Đăng ký
+                        </Link>
+                      </li>
+                    </>
+                  )}
                 </ul>
               </li>
 

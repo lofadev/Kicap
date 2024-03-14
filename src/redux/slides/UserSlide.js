@@ -54,6 +54,6 @@ export const userSlide = createSlice({
   },
 });
 
-export const { updateUser } = userSlide.actions;
+export const { updateUser, resetUser } = userSlide.actions;
 
 export default userSlide.reducer;

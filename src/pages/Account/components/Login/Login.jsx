@@ -1,8 +1,14 @@
+import { jwtDecode } from 'jwt-decode';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 import Button from '~/components/Button/Button';
 import FormGroup from '~/components/FormGroup/FormGroup';
+import Loading from '~/components/Loading/Loading';
 import SectionBreadCrumb from '~/components/SectionBreadCrumb/SectionBreadCrumb';
+import ToastMessage from '~/components/ToastMessage/ToastMessage';
+import { updateUser } from '~/redux/slides/UserSlide';
+import UserService from '~/services/UserService';
 import { validatedEmail, validatedPassword } from '~/utils';
 import SocialLogin from '../SocialLogin/SocialLogin';
 import './Login.scss';
@@ -13,6 +19,10 @@ const Login = () => {
     password: '',
   });
   const [formErrors, setFormErrors] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+  const [toast, setToast] = useState();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     document.title = 'Đăng nhập tài khoản | Kicap';
@@ -37,16 +47,68 @@ const Login = () => {
     return true;
   };
 
-  const handleLogin = (e) => {
+  useEffect(() => {
+    const time = setTimeout(() => {
+      if (toast) setToast();
+    }, 5000);
+
+    return () => clearTimeout(time);
+  }, [toast]);
+
+  const handleLogin = async (e) => {
     e.preventDefault();
     const validated = handleValidate();
     if (validated) {
-      // xử lý đăng nhập
+      setIsLoading(true);
+      const payload = {
+        email: formData.email,
+        password: formData.password,
+      };
+      const res = await UserService.loginUser(payload);
+      setIsLoading(false);
+      if (res.status === 'ERROR') {
+        setToast({
+          status: 'failure',
+          title: 'Thất bại',
+          message: 'Thông tin đăng nhập không đúng.',
+        });
+        return;
+      }
+      navigate('/');
+      const data = res.data;
+      localStorage.setItem('access_token', JSON.stringify(data?.access_token));
+      localStorage.setItem('refresh_token', JSON.stringify(data?.refresh_token));
+      if (data?.access_token) {
+        const decoded = jwtDecode(data?.access_token);
+        if (decoded?.id) {
+          handleGetDetailsUser(decoded?.id, data?.access_token);
+        }
+      }
     }
+  };
+
+  const handleGetDetailsUser = async (id, token) => {
+    const storage = localStorage.getItem('refresh_token');
+    const refreshToken = JSON.parse(storage);
+    const res = await UserService.getDetailsUser(id, token);
+    dispatch(updateUser({ ...res?.data, accessToken: token, refreshToken }));
+  };
+
+  const handleClose = () => {
+    setToast();
   };
 
   return (
     <section className='section-login'>
+      {isLoading && <Loading />}
+      {toast && (
+        <ToastMessage
+          status={toast.status}
+          title={toast.title}
+          message={toast.message}
+          handleClose={handleClose}
+        />
+      )}
       <SectionBreadCrumb child='Đăng nhập tài khoản'></SectionBreadCrumb>
       <div className='container mt-30'>
         <div className='account-main'>
@@ -74,6 +136,8 @@ const Login = () => {
               labelName='Mật khẩu'
               name='password'
               required
+              eye
+              password
               placeholder='Nhập mật khẩu'
               valueInput={formData.password}
               handleOnChange={handleOnChangeInput}
