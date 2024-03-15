@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Button from '~/components/Button/Button';
 import FormGroup from '~/components/FormGroup/FormGroup';
 import SectionBreadCrumb from '~/components/SectionBreadCrumb/SectionBreadCrumb';
@@ -12,6 +12,10 @@ import {
 } from '~/utils';
 import SocialLogin from '../SocialLogin/SocialLogin';
 import './Register.scss';
+import { useDispatch } from 'react-redux';
+import { setLoading } from '~/redux/slides/LoadingSlider';
+import UserService from '~/services/UserService';
+import { updateToast } from '~/redux/slides/ToastSlide';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -22,6 +26,9 @@ const Register = () => {
     confirmPassword: '',
   });
   const [formErrors, setFormErrors] = useState({});
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   useEffect(() => {
     document.title = 'Đăng ký tài khoản | Kicap';
   }, []);
@@ -60,12 +67,39 @@ const Register = () => {
     return true;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const validated = handleValidate();
     if (validated) {
       // xử lý đăng ký
-      console.log('xử lý đăng ký');
+      dispatch(setLoading(true));
+      const payload = {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        password: formData.password,
+        confirmPassword: formData.confirmPassword,
+      };
+      const res = await UserService.registerUser(payload);
+      dispatch(setLoading(false));
+      if (res.status === 'ERROR') {
+        dispatch(
+          updateToast({
+            status: 'failure',
+            title: 'Thất bại',
+            message: res.message,
+          })
+        );
+        return;
+      }
+      dispatch(
+        updateToast({
+          status: 'success',
+          title: 'Thành công',
+          message: res.message,
+        })
+      );
+      navigate('/account/login');
     }
   };
 
@@ -82,10 +116,10 @@ const Register = () => {
             <FormGroup
               type='input'
               labelFor='name'
-              labelName='Tên'
+              labelName='Họ tên'
               name='name'
               required
-              placeholder='Nhập tên'
+              placeholder='Nhập họ tên'
               autoFocus
               valueInput={formData.name}
               handleOnChange={handleOnChangeInput}

@@ -4,12 +4,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import Footer from '~/components/Footer/Footer';
 import GoToTop from '~/components/GoToTop/GoToTop';
 import Header from '~/components/Header/Header';
+import Loading from '~/components/Loading/Loading';
 import ToastMessage from '~/components/ToastMessage/ToastMessage';
 import { resetToast } from '~/redux/slides/ToastSlide';
 
 const DefaultLayout = ({ children }) => {
   const dispatch = useDispatch();
   const toast = useSelector((state) => state.toast);
+  const loading = useSelector((state) => state.loading);
 
   useEffect(() => {
     const time = setTimeout(() => {
@@ -29,6 +31,7 @@ const DefaultLayout = ({ children }) => {
           handleClose={() => dispatch(resetToast())}
         />
       )}
+      {loading.isLoading && <Loading />}
       <Header></Header>
       <div className='main-content'>{children}</div>
       <Footer></Footer>

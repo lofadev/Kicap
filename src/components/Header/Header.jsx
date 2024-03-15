@@ -29,6 +29,7 @@ const Header = () => {
     await UserService.logoutUser();
     dispatch(resetUser());
     localStorage.clear();
+    document.location.reload();
   };
 
   const handleToggleOverlay = (e) => {
