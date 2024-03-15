@@ -6,7 +6,7 @@ import Button from '~/components/Button/Button';
 import FormGroup from '~/components/FormGroup/FormGroup';
 import Loading from '~/components/Loading/Loading';
 import SectionBreadCrumb from '~/components/SectionBreadCrumb/SectionBreadCrumb';
-import ToastMessage from '~/components/ToastMessage/ToastMessage';
+import { updateToast } from '~/redux/slides/ToastSlide';
 import { updateUser } from '~/redux/slides/UserSlide';
 import UserService from '~/services/UserService';
 import { validatedEmail, validatedPassword } from '~/utils';
@@ -20,7 +20,6 @@ const Login = () => {
   });
   const [formErrors, setFormErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
-  const [toast, setToast] = useState();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -47,14 +46,6 @@ const Login = () => {
     return true;
   };
 
-  useEffect(() => {
-    const time = setTimeout(() => {
-      if (toast) setToast();
-    }, 5000);
-
-    return () => clearTimeout(time);
-  }, [toast]);
-
   const handleLogin = async (e) => {
     e.preventDefault();
     const validated = handleValidate();
@@ -67,13 +58,22 @@ const Login = () => {
       const res = await UserService.loginUser(payload);
       setIsLoading(false);
       if (res.status === 'ERROR') {
-        setToast({
-          status: 'failure',
-          title: 'Thất bại',
-          message: 'Thông tin đăng nhập không đúng.',
-        });
+        dispatch(
+          updateToast({
+            status: 'failure',
+            title: 'Thất bại',
+            message: res.message,
+          })
+        );
         return;
       }
+      dispatch(
+        updateToast({
+          status: 'success',
+          title: 'Thành công',
+          message: res.message,
+        })
+      );
       navigate('/');
       const data = res.data;
       localStorage.setItem('access_token', JSON.stringify(data?.access_token));
@@ -94,21 +94,9 @@ const Login = () => {
     dispatch(updateUser({ ...res?.data, accessToken: token, refreshToken }));
   };
 
-  const handleClose = () => {
-    setToast();
-  };
-
   return (
     <section className='section-login'>
       {isLoading && <Loading />}
-      {toast && (
-        <ToastMessage
-          status={toast.status}
-          title={toast.title}
-          message={toast.message}
-          handleClose={handleClose}
-        />
-      )}
       <SectionBreadCrumb child='Đăng nhập tài khoản'></SectionBreadCrumb>
       <div className='container mt-30'>
         <div className='account-main'>
