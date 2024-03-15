@@ -4,7 +4,6 @@ import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import Button from '~/components/Button/Button';
 import FormGroup from '~/components/FormGroup/FormGroup';
-import Loading from '~/components/Loading/Loading';
 import SectionBreadCrumb from '~/components/SectionBreadCrumb/SectionBreadCrumb';
 import { updateToast } from '~/redux/slides/ToastSlide';
 import { updateUser } from '~/redux/slides/UserSlide';
@@ -12,6 +11,7 @@ import UserService from '~/services/UserService';
 import { validatedEmail, validatedPassword } from '~/utils';
 import SocialLogin from '../SocialLogin/SocialLogin';
 import './Login.scss';
+import { setLoading } from '~/redux/slides/LoadingSlider';
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -19,7 +19,6 @@ const Login = () => {
     password: '',
   });
   const [formErrors, setFormErrors] = useState({});
-  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -50,13 +49,13 @@ const Login = () => {
     e.preventDefault();
     const validated = handleValidate();
     if (validated) {
-      setIsLoading(true);
+      dispatch(setLoading(true));
       const payload = {
         email: formData.email,
         password: formData.password,
       };
       const res = await UserService.loginUser(payload);
-      setIsLoading(false);
+      dispatch(setLoading(false));
       if (res.status === 'ERROR') {
         dispatch(
           updateToast({
@@ -96,7 +95,6 @@ const Login = () => {
 
   return (
     <section className='section-login'>
-      {isLoading && <Loading />}
       <SectionBreadCrumb child='Đăng nhập tài khoản'></SectionBreadCrumb>
       <div className='container mt-30'>
         <div className='account-main'>
