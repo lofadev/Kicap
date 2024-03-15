@@ -11,6 +11,7 @@ import {
   persistStore,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+import toastReducer from './slides/ToastSlide.js';
 import userReducer from './slides/UserSlide.js';
 
 const persistConfig = {
@@ -19,6 +20,7 @@ const persistConfig = {
 };
 
 const rootReducer = combineReducers({
+  toast: toastReducer,
   user: userReducer,
 });
 

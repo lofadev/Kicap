@@ -36,14 +36,14 @@ const Footer = () => {
               </li>
               <li>
                 <FaPhoneAlt></FaPhoneAlt>{' '}
-                <a className='text-hover-primary' href='tel:0369161095'>
-                  0369161095
+                <a className='text-hover-primary' href='tel:0379252637'>
+                  0379252637
                 </a>
               </li>
               <li>
                 <FaEnvelope></FaEnvelope>{' '}
-                <a className='text-hover-primary' href='mailto:kicap.vn@gmail.com'>
-                  kicap.vn@gmail.com
+                <a className='text-hover-primary' href='mailto:contact.lofa@gmail.com'>
+                  contact.lofa@gmail.com
                 </a>
               </li>
             </ul>
@@ -128,7 +128,7 @@ const Footer = () => {
 
       <div className='footer-copyright'>
         <div className='container'>
-          <h3>© Copyright 2021 | Kicap | All Rights Reserved</h3>
+          <h3>© Copyright 2024 | Kicap | LofA | All Rights Reserved</h3>
         </div>
       </div>
     </footer>

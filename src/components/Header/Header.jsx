@@ -59,8 +59,8 @@ const Header = () => {
         <div className='top_header'>
           <div className='top_header-text'>
             <span>Hotline tư vấn: </span>
-            <a href='tel:0369161095' className='text-hover-primary'>
-              0369161095
+            <a href='tel:0379252637' className='text-hover-primary'>
+              0379252637
             </a>
           </div>
           <div className='top_header-bar hidden-lg'>
