@@ -2,6 +2,7 @@ import { IoMdArrowDropdown } from 'react-icons/io';
 import { MdOutlineLogout } from 'react-icons/md';
 import { RiAdminFill } from 'react-icons/ri';
 import './Header.scss';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   const handleLogout = () => {
@@ -10,7 +11,9 @@ const Header = () => {
 
   return (
     <div className='header'>
-      <h1 className='heading'>Kicap shop</h1>
+      <h1 className='heading'>
+        <Link to='/admin/dashboard'>Kicap shop</Link>
+      </h1>
 
       <div className='header-right'>
         <RiAdminFill style={{ marginRight: '5px' }} />

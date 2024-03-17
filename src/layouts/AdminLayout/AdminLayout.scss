@@ -4,8 +4,7 @@
   font-weight: 500;
 
   &-container {
-    margin-top: 10px;
     display: flex;
-    height: calc(100vh - 63px);
+    min-height: calc(100vh - 53px);
   }
 }

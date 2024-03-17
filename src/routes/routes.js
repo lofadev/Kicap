@@ -92,7 +92,7 @@ const privateRoutes = [
     layout: AdminLayout,
   },
   {
-    path: config.routes.admin.product.show,
+    path: config.routes.admin.product.view,
     component: ShowProduct,
     layout: AdminLayout,
   },
@@ -102,7 +102,7 @@ const privateRoutes = [
     layout: AdminLayout,
   },
   {
-    path: config.routes.admin.category.show,
+    path: config.routes.admin.category.view,
     component: ShowCategory,
     layout: AdminLayout,
   },
@@ -112,7 +112,7 @@ const privateRoutes = [
     layout: AdminLayout,
   },
   {
-    path: config.routes.admin.slide.show,
+    path: config.routes.admin.slide.view,
     component: ShowSlideBanner,
     layout: AdminLayout,
   },
@@ -122,7 +122,7 @@ const privateRoutes = [
     layout: AdminLayout,
   },
   {
-    path: config.routes.admin.type.show,
+    path: config.routes.admin.type.view,
     component: ShowType,
     layout: AdminLayout,
   },
