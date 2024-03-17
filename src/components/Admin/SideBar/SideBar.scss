@@ -1,13 +1,11 @@
 .admin {
   .sidebar {
     width: 330px;
-    margin-right: 10px;
     background-color: var(--admin-gray);
     color: #fff;
     font-weight: 400;
     font-size: 1.6rem;
     overflow-y: auto;
-    border-radius: 8px;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 
     &-items.active {

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const axiosJWT = axios.create();
+const axiosJWT = axios.create();
 
 const registerUser = async (data) => {
   const res = await axios.post(`${import.meta.env.VITE_REACT_APP_API_KEY}/user/sign-up`, data);
@@ -26,11 +26,26 @@ const getDetailsUser = async (id, access_token) => {
   return res.data;
 };
 
+const refreshToken = async (refreshToken) => {
+  const res = await axios.post(
+    `${import.meta.env.VITE_REACT_APP_API_KEY}/user/refresh-token`,
+    {},
+    {
+      headers: {
+        token: `Bearer ${refreshToken}`,
+      },
+    }
+  );
+  return res.data;
+};
+
 const UserService = {
   registerUser,
   loginUser,
   logoutUser,
   getDetailsUser,
+  axiosJWT,
+  refreshToken,
 };
 
 export default UserService;

@@ -17,22 +17,22 @@ const routes = {
     dashboard: 'admin/dashboard',
     product: {
       add: '/admin/product/add',
-      show: '/admin/product/view',
+      view: '/admin/products',
     },
     category: {
       add: '/admin/category/add',
-      show: '/admin/category/view',
+      view: '/admin/categorys',
     },
     type: {
       add: '/admin/type/add',
-      show: '/admin/type/view',
+      view: '/admin/types',
     },
     slide: {
       add: '/admin/slide/add',
-      show: '/admin/slide/view',
+      view: '/admin/slides',
     },
-    customers: 'admin/customers/view',
-    orders: 'admin/orders/view',
+    customers: 'admin/customers',
+    orders: 'admin/orders',
   },
 };
 

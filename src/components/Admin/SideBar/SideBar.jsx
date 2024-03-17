@@ -26,7 +26,7 @@ const menu = [
       },
       {
         name: 'Xem sản phẩm',
-        to: '/admin/product/view',
+        to: '/admin/products',
       },
     ],
   },
@@ -41,7 +41,7 @@ const menu = [
       },
       {
         name: 'Xem danh mục sản phẩm',
-        to: '/admin/category/view',
+        to: '/admin/categorys',
       },
     ],
   },
@@ -56,7 +56,7 @@ const menu = [
       },
       {
         name: 'Xem thể loại',
-        to: '/admin/type/view',
+        to: '/admin/types',
       },
     ],
   },
@@ -71,18 +71,18 @@ const menu = [
       },
       {
         name: 'Xem slides banner',
-        to: '/admin/slide/view',
+        to: '/admin/slides',
       },
     ],
   },
   {
     name: 'Quản lý khách hàng',
-    to: '/admin/customers/view',
+    to: '/admin/customers',
     icon: FaUser,
   },
   {
     name: 'Quản lý đơn đặt hàng',
-    to: '/admin/orders/view',
+    to: '/admin/orders',
     icon: FaCartFlatbed,
   },
   {
