@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { AiFillDashboard } from 'react-icons/ai';
 import { BiSolidCategory } from 'react-icons/bi';
-import { FaSignOutAlt, FaUser } from 'react-icons/fa';
+import { FaUser } from 'react-icons/fa';
 import { FaCartFlatbed } from 'react-icons/fa6';
 import { MdCategory, MdOutlineProductionQuantityLimits } from 'react-icons/md';
 import { PiSlideshowFill } from 'react-icons/pi';
-import { TiArrowSortedDown } from 'react-icons/ti';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import Dropdown from '~/components/Header/components/Dropdown/Dropdown';
 import './SideBar.scss';
 
 const menu = [
@@ -85,58 +85,50 @@ const menu = [
     to: '/admin/orders',
     icon: FaCartFlatbed,
   },
-  {
-    name: 'Đăng xuất',
-    to: '/admin/logout',
-    icon: FaSignOutAlt,
-  },
 ];
 
 const SideBar = () => {
-  const [itemActive, setItemActive] = useState(
-    JSON.parse(sessionStorage.getItem('sidebarItemActive')) || 0
-  );
-  const [isShowDropdown, setIsShowDropdown] = useState(false);
+  const [itemActive, setItemActive] = useState(0);
 
-  const handleChangeItemActive = (index) => {
-    sessionStorage.setItem('sidebarItemActive', JSON.stringify(index));
-    setItemActive(index);
-    setIsShowDropdown((prev) => !prev);
+  const handleClickItem = (index) => {
+    if (itemActive === index) setItemActive(-1);
+    else setItemActive(index);
   };
-
   return (
     <div className='sidebar'>
       <ul className='sidebar-menu'>
         {menu.map((item, index) => {
           const Icon = item.icon;
           return (
-            <li
-              key={item.name}
-              className={`sidebar-items ${itemActive === index ? 'active' : ''}`}
-              onClick={() => handleChangeItemActive(index)}
-            >
+            <li key={item.name} className={`sidebar-items ${itemActive === index ? 'active' : ''}`}>
               {item.to ? (
-                <Link to={item.to} className='sidebar-title'>
+                <NavLink
+                  to={item.to}
+                  className='sidebar-title'
+                  onClick={() => handleClickItem(index)}
+                >
                   <Icon /> <span className='sidebar-name'>{item.name}</span>{' '}
-                  {item.children && <TiArrowSortedDown />}
-                </Link>
+                  {item.children && <Dropdown />}
+                </NavLink>
               ) : (
-                <span className='sidebar-title'>
+                <span className='sidebar-title' onClick={() => handleClickItem(index)}>
                   <Icon /> <span className='sidebar-name'>{item.name}</span>{' '}
-                  {item.children && <TiArrowSortedDown />}
+                  {item.children && <Dropdown />}
                 </span>
               )}
 
-              <ul className={`sidebar-dropdown ${isShowDropdown ? '' : 'hide'}`}>
-                {item.children &&
-                  item.children.map((subitem) => {
-                    return (
-                      <li key={subitem.name}>
-                        <Link to={subitem.to}>{subitem.name}</Link>
-                      </li>
-                    );
-                  })}
-              </ul>
+              {item.children && (
+                <ul className='sidebar-dropdown'>
+                  {item.children &&
+                    item.children.map((subitem) => {
+                      return (
+                        <li key={subitem.name}>
+                          <NavLink to={subitem.to}>{subitem.name}</NavLink>
+                        </li>
+                      );
+                    })}
+                </ul>
+              )}
             </li>
           );
         })}

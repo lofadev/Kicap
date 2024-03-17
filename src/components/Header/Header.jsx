@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { FaBars } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink } from 'react-router-dom';
@@ -6,17 +6,16 @@ import { menu } from '~/../data';
 import Cart from '~/assets/imgs/add-to-basket.svg';
 import Logo from '~/assets/imgs/logo.png';
 import Search from '~/assets/imgs/search.svg';
+import { resetUser } from '~/redux/slides/UserSlide';
+import UserService from '~/services/UserService';
 import FormSearch from '../FormSearch/FormSearch';
 import './Header.scss';
 import Dropdown from './components/Dropdown/Dropdown';
-import UserService from '~/services/UserService';
-import { resetUser } from '~/redux/slides/UserSlide';
 
 const Header = () => {
   const [isActiveSearch, setIsActiveSearch] = useState(false);
   const [isActiveOverlay, setIsActiveOverlay] = useState(false);
   const [isActiveMenubar, setIsActiveMenubar] = useState(false);
-  const navRef = useRef();
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
@@ -34,11 +33,10 @@ const Header = () => {
 
   const handleToggleOverlay = (e) => {
     if (!e.target.closest('.icon-dropdown')) {
+      setIsActiveOverlay((prev) => !prev);
       if (isActiveMenubar) {
-        setIsActiveOverlay((prev) => !prev);
         setIsActiveMenubar((prev) => !prev);
       } else if (isActiveSearch) {
-        setIsActiveOverlay((prev) => !prev);
         setIsActiveSearch((prev) => !prev);
       }
     }
@@ -126,7 +124,7 @@ const Header = () => {
           </div>
         </div>
 
-        <nav className={`nav ${isActiveMenubar ? 'active' : ''}`} ref={navRef}>
+        <nav className={`nav ${isActiveMenubar ? 'active' : ''}`}>
           <ul className='nav-menu'>
             {menu.map((item) => (
               <li

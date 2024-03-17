@@ -2,19 +2,14 @@
   .sidebar {
     width: 330px;
     background-color: var(--admin-gray);
-    color: #fff;
+    color: var(--light-gray);
     font-weight: 400;
     font-size: 1.6rem;
     overflow-y: auto;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    user-select: none;
 
     &-items.active {
-      .sidebar-title {
-        background-color: var(--light-gray);
-        color: var(--black);
-        font-weight: 500;
-      }
-
       .sidebar-dropdown {
         display: block;
         height: auto;
@@ -26,16 +21,17 @@
       align-items: center;
       padding: 10px 15px;
       transition: all 0.2s linear;
+    }
 
-      &:hover {
-        background-color: var(--light-gray);
-        color: var(--black);
-        cursor: pointer;
-      }
+    &-title.active,
+    &-title:has(+ .sidebar-dropdown a.active) {
+      background-color: var(--light-gray);
+      color: var(--black);
     }
 
     &-name {
       margin: 5px;
+      flex: 1;
     }
 
     &-dropdown {
@@ -48,6 +44,17 @@
         padding: 10px 20px;
         padding-left: 35px;
       }
+    }
+
+    &-title:hover,
+    &-dropdown a:hover {
+      background-color: rgba($color: #fff, $alpha: 0.2);
+      color: var(--white);
+      cursor: pointer;
+    }
+
+    &-dropdown a.active {
+      color: var(--white);
     }
   }
 }
