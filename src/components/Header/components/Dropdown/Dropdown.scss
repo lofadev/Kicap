@@ -1,5 +1,14 @@
-.nav-items .icon-dropdown {
+.nav-items .icon-dropdown,
+.sidebar-items .icon-dropdown {
   padding: 5px;
+  transform: rotate(-90deg);
+  transition: all 0.2s linear;
+}
+
+.sidebar-items.active {
+  .icon-dropdown {
+    transform: rotate(0);
+  }
 }
 
 @media screen and (max-width: 991px) {
@@ -9,13 +18,13 @@
 
   .nav-items.active {
     & > a > .icon-dropdown {
-      transform: scaleY(-1);
+      transform: rotate(0);
     }
   }
 
   .mega-items.active {
     .icon-dropdown {
-      transform: scaleY(-1);
+      transform: rotate(0);
     }
   }
 }

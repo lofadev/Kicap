@@ -1,6 +1,6 @@
+import { useRef } from 'react';
 import { FaAngleDown } from 'react-icons/fa6';
 import './Dropdown.scss';
-import { useRef } from 'react';
 
 const Dropdown = ({ className }) => {
   const dropdownRef = useRef();

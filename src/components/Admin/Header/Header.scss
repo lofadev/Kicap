@@ -22,32 +22,52 @@
       svg {
         display: inline-block;
         font-size: 2.2rem;
+
+        &:last-of-type {
+          transform: rotate(-90deg);
+          transition: all 0.2s linear;
+        }
       }
 
       .dropdown-logout {
         background-color: #fff;
         padding: 10px;
-        border-radius: 8px;
+        border-radius: 2px;
         box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
         display: flex;
         align-items: center;
         justify-content: space-between;
         position: absolute;
-        top: 100%;
+        top: calc(100% + 14px);
         right: 0;
         width: 120px;
         display: none;
         transform: translateY(30px);
+        transition: all 0.2s linear;
+        animation: fadeIn linear 0.3s;
+      }
+
+      &::before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 15px;
+        background-color: transparent;
+        top: 100%;
+        right: 0;
       }
 
       &:hover .dropdown-logout {
         display: flex;
         transform: translateX(0);
-        transition: all 0.2s linear;
+      }
+
+      &:hover svg:last-of-type {
+        transform: rotate(0);
       }
 
       .dropdown-logout:hover {
-        background-color: tomato;
+        background-color: var(--blue);
         transition: all 0.2s linear;
       }
     }
