@@ -1,0 +1,15 @@
+.admin {
+  .product {
+    &-add {
+      height: 100%;
+    }
+
+    &-content {
+      height: calc(100% - 36px);
+      padding: 10px;
+      background-color: var(--white);
+      border-radius: 4px;
+      overflow-y: auto;
+    }
+  }
+}

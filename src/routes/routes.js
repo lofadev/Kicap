@@ -12,16 +12,23 @@ import Policy from '~/pages/Policy/Policy.jsx';
 import ProductCategory from '~/pages/ProductCategory/ProductCategory.jsx';
 import ProductDetails from '~/pages/ProductDetails/ProductDetails.jsx';
 import AddCategory from '~/pages/admin/AddCategory/AddCategory';
+import AddEmployee from '~/pages/admin/AddEmployee/AddEmployee';
+import AddOrder from '~/pages/admin/AddOrder/AddOrder';
 import AddProduct from '~/pages/admin/AddProduct/AddProduct';
+import AddShipper from '~/pages/admin/AddShipper/AddShipper';
 import AddSlideBanner from '~/pages/admin/AddSlideBanner/AddSlideBanner';
+import AddSupplier from '~/pages/admin/AddSupplier/AddSupplier';
 import AddType from '~/pages/admin/AddType/AddType';
 import Customer from '~/pages/admin/Customer/Customer';
 import Dashboard from '~/pages/admin/Dashboard/Dashboard';
 import Login from '~/pages/admin/Login/Login';
 import Order from '~/pages/admin/Order/Order';
 import ShowCategory from '~/pages/admin/ShowCategory/ShowCategory';
+import ShowEmployee from '~/pages/admin/ShowEmployee/ShowEmployee';
 import ShowProduct from '~/pages/admin/ShowProduct/ShowProduct';
+import ShowShipper from '~/pages/admin/ShowShipper/ShowShipper';
 import ShowSlideBanner from '~/pages/admin/ShowSlideBanner/ShowSlideBanner';
+import ShowSupplier from '~/pages/admin/ShowSupplier/ShowSupplier';
 import ShowType from '~/pages/admin/ShowType/ShowType';
 
 const publicRoutes = [
@@ -127,12 +134,47 @@ const privateRoutes = [
     layout: AdminLayout,
   },
   {
+    path: config.routes.admin.supplier.add,
+    component: AddSupplier,
+    layout: AdminLayout,
+  },
+  {
+    path: config.routes.admin.supplier.view,
+    component: ShowSupplier,
+    layout: AdminLayout,
+  },
+  {
+    path: config.routes.admin.shipper.add,
+    component: AddShipper,
+    layout: AdminLayout,
+  },
+  {
+    path: config.routes.admin.shipper.view,
+    component: ShowShipper,
+    layout: AdminLayout,
+  },
+  {
+    path: config.routes.admin.employee.add,
+    component: AddEmployee,
+    layout: AdminLayout,
+  },
+  {
+    path: config.routes.admin.employee.view,
+    component: ShowEmployee,
+    layout: AdminLayout,
+  },
+  {
     path: config.routes.admin.customers,
     component: Customer,
     layout: AdminLayout,
   },
   {
-    path: config.routes.admin.orders,
+    path: config.routes.admin.orders.add,
+    component: AddOrder,
+    layout: AdminLayout,
+  },
+  {
+    path: config.routes.admin.orders.view,
     component: Order,
     layout: AdminLayout,
   },

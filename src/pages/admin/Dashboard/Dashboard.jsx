@@ -1,11 +1,11 @@
 import { BiSolidCategory } from 'react-icons/bi';
-import { FaBarsProgress, FaCartFlatbed, FaUser } from 'react-icons/fa6';
+import { FaArrowAltCircleRight, FaUser } from 'react-icons/fa';
+import { FaBarsProgress, FaCartFlatbed } from 'react-icons/fa6';
+import { Link } from 'react-router-dom';
 import DashboardBox from '~/components/Admin/DashboardBox/DashboardBox';
 import Revenue from '~/components/Admin/Revenue/Revenue';
 import DataTable from '~/components/DataTable/DataTable';
 import './Dashboard.scss';
-import { Link } from 'react-router-dom';
-import { FaArrowAltCircleRight } from 'react-icons/fa';
 
 const dashboard = [
   {

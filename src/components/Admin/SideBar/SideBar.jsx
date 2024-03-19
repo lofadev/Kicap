@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { AiFillDashboard } from 'react-icons/ai';
 import { BiSolidCategory } from 'react-icons/bi';
-import { FaUser } from 'react-icons/fa';
+import { FaCarSide, FaCartPlus, FaPeopleCarry, FaUser, FaUserTie } from 'react-icons/fa';
 import { FaCartFlatbed } from 'react-icons/fa6';
 import { MdCategory, MdOutlineProductionQuantityLimits } from 'react-icons/md';
 import { PiSlideshowFill } from 'react-icons/pi';
@@ -76,6 +76,51 @@ const menu = [
     ],
   },
   {
+    name: 'Quản lý nhà cung cấp',
+    to: null,
+    icon: FaPeopleCarry,
+    children: [
+      {
+        name: 'Thêm nhà cung cấp',
+        to: '/admin/supplier/add',
+      },
+      {
+        name: 'Xem nhà cung cấp',
+        to: '/admin/suppliers',
+      },
+    ],
+  },
+  {
+    name: 'Quản lý người giao hàng',
+    to: null,
+    icon: FaCarSide,
+    children: [
+      {
+        name: 'Thêm người giao hàng',
+        to: '/admin/shipper/add',
+      },
+      {
+        name: 'Xem người giao hàng',
+        to: '/admin/shippers',
+      },
+    ],
+  },
+  {
+    name: 'Quản lý nhân viên',
+    to: null,
+    icon: FaUserTie,
+    children: [
+      {
+        name: 'Thêm nhân viên',
+        to: '/admin/employee/add',
+      },
+      {
+        name: 'Xem nhân viên',
+        to: '/admin/employees',
+      },
+    ],
+  },
+  {
     name: 'Quản lý khách hàng',
     to: '/admin/customers',
     icon: FaUser,
@@ -84,6 +129,11 @@ const menu = [
     name: 'Quản lý đơn đặt hàng',
     to: '/admin/orders',
     icon: FaCartFlatbed,
+  },
+  {
+    name: 'Lập đơn hàng',
+    to: '/admin/order/add',
+    icon: FaCartPlus,
   },
 ];
 

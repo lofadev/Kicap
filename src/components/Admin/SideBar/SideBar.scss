@@ -1,6 +1,7 @@
 .admin {
   .sidebar {
-    width: 330px;
+    min-width: var(--admin-sidebar-width);
+    max-width: var(--admin-sidebar-width);
     background-color: var(--admin-gray);
     color: var(--light-gray);
     font-weight: 400;

@@ -28,15 +28,15 @@ const Header = () => {
     await UserService.logoutUser();
     dispatch(resetUser());
     localStorage.clear();
-    document.location.reload();
   };
 
   const handleToggleOverlay = (e) => {
     if (!e.target.closest('.icon-dropdown')) {
-      setIsActiveOverlay((prev) => !prev);
       if (isActiveMenubar) {
+        setIsActiveOverlay((prev) => !prev);
         setIsActiveMenubar((prev) => !prev);
       } else if (isActiveSearch) {
+        setIsActiveOverlay((prev) => !prev);
         setIsActiveSearch((prev) => !prev);
       }
     }

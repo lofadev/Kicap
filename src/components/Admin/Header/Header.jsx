@@ -11,7 +11,7 @@ const Header = () => {
 
   return (
     <div className='header'>
-      <h1 className='heading'>
+      <h1 className='header-shop-name'>
         <Link to='/admin/dashboard'>Kicap shop</Link>
       </h1>
 

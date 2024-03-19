@@ -1,8 +1,11 @@
 .nav-items .icon-dropdown,
 .sidebar-items .icon-dropdown {
   padding: 5px;
-  transform: rotate(-90deg);
   transition: all 0.2s linear;
+}
+
+.sidebar-items .icon-dropdown {
+  transform: rotate(-90deg);
 }
 
 .sidebar-items.active {
@@ -14,6 +17,7 @@
 @media screen and (max-width: 991px) {
   .nav-items .icon-dropdown {
     padding: 5px 10px;
+    transform: rotate(-90deg);
   }
 
   .nav-items.active {

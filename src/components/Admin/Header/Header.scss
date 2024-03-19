@@ -6,11 +6,14 @@
     align-items: center;
     padding: 10px 15px;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    height: var(--admin-header-height);
 
-    .heading {
-      font-size: 3.3rem;
+    &-shop-name {
+      font-size: 3rem;
       font-weight: bold;
       line-height: 1;
+      width: calc(var(--admin-sidebar-width) - 15px);
+      text-align: center;
     }
 
     &-right {
@@ -38,7 +41,7 @@
         align-items: center;
         justify-content: space-between;
         position: absolute;
-        top: calc(100% + 14px);
+        top: calc(100% + 13px);
         right: 0;
         width: 120px;
         display: none;

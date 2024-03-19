@@ -1,26 +1,27 @@
 import axios from 'axios';
 
-const axiosJWT = axios.create();
+const axiosJWT = axios.create({ baseURL: import.meta.env.VITE_REACT_APP_API_KEY });
+const axiosInstance = axios.create({ baseURL: import.meta.env.VITE_REACT_APP_API_KEY });
 
 const registerUser = async (data) => {
-  const res = await axios.post(`${import.meta.env.VITE_REACT_APP_API_KEY}/user/sign-up`, data);
+  const res = await axiosInstance.post('/user/sign-up', data);
   return res.data;
 };
 
 const loginUser = async (data) => {
-  const res = await axios.post(`${import.meta.env.VITE_REACT_APP_API_KEY}/user/sign-in`, data);
+  const res = await axiosInstance.post('/user/sign-in', data);
   return res.data;
 };
 
 export const logoutUser = async () => {
-  const res = await axios.post(`${import.meta.env.VITE_REACT_APP_API_KEY}/user/sign-out`);
+  const res = await axiosInstance.post('/user/sign-out');
   return res.data;
 };
 
 const getDetailsUser = async (id, access_token) => {
-  const res = await axiosJWT.get(`${import.meta.env.VITE_REACT_APP_API_KEY}/user/${id}`, {
+  const res = await axiosJWT.get(`/user/${id}`, {
     headers: {
-      token: `Bearer ${access_token}`,
+      Authorization: `Bearer ${access_token}`,
     },
   });
   return res.data;
@@ -28,11 +29,11 @@ const getDetailsUser = async (id, access_token) => {
 
 const refreshToken = async (refreshToken) => {
   const res = await axios.post(
-    `${import.meta.env.VITE_REACT_APP_API_KEY}/user/refresh-token`,
+    '/user/refresh-token',
     {},
     {
       headers: {
-        token: `Bearer ${refreshToken}`,
+        Authorization: `Bearer ${refreshToken}`,
       },
     }
   );
@@ -45,6 +46,7 @@ const UserService = {
   logoutUser,
   getDetailsUser,
   axiosJWT,
+  axiosInstance,
   refreshToken,
 };
 

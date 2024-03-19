@@ -31,8 +31,23 @@ const routes = {
       add: '/admin/slide/add',
       view: '/admin/slides',
     },
+    supplier: {
+      add: '/admin/supplier/add',
+      view: '/admin/suppliers',
+    },
+    shipper: {
+      add: '/admin/shipper/add',
+      view: '/admin/shippers',
+    },
+    employee: {
+      add: '/admin/employee/add',
+      view: '/admin/employees',
+    },
+    orders: {
+      add: '/admin/order/add',
+      view: '/admin/orders',
+    },
     customers: 'admin/customers',
-    orders: 'admin/orders',
   },
 };
 
