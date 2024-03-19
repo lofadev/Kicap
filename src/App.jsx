@@ -8,12 +8,15 @@ import NotFound from './pages/NotFound/NotFound';
 import { resetUser, updateUser } from './redux/slides/UserSlide';
 import { privateRoutes, publicRoutes } from './routes';
 import UserService from './services/UserService';
+import { resetToast, updateToast } from './redux/slides/ToastSlide';
+import { setLoading } from './redux/slides/LoadingSlider';
 
 function App() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
 
   useEffect(() => {
+    dispatch(resetToast());
     const { accessToken, decoded } = handleDecoded();
     if (decoded?.id) {
       handleGetDetailsUser(decoded?.id, accessToken);
@@ -51,6 +54,21 @@ function App() {
       return config;
     },
     (err) => Promise.reject(err)
+  );
+
+  UserService.axiosInstance.interceptors.response.use(
+    (response) => {
+      return response;
+    },
+    (error) => {
+      if (!error.response) {
+        dispatch(setLoading(false));
+        dispatch(
+          updateToast({ status: 'failure', title: 'Thất bại', message: 'Lỗi kết nối mạng!' })
+        );
+      }
+      return Promise.reject(error);
+    }
   );
 
   const handleGetDetailsUser = async (id, token) => {

@@ -5,7 +5,12 @@
 
   &-container {
     display: flex;
-    min-height: calc(100vh - 53px);
+    min-height: calc(100vh - var(--admin-header-height));
     background-color: #eee;
+  }
+
+  &-content {
+    padding: 20px;
+    flex: 1;
   }
 }

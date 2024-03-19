@@ -49,39 +49,41 @@ const Login = () => {
     e.preventDefault();
     const validated = handleValidate();
     if (validated) {
-      dispatch(setLoading(true));
-      const payload = {
-        email: formData.email,
-        password: formData.password,
-      };
-      const res = await UserService.loginUser(payload);
-      dispatch(setLoading(false));
-      if (res.status === 'ERROR') {
+      try {
+        dispatch(setLoading(true));
+        const payload = {
+          email: formData.email,
+          password: formData.password,
+        };
+        const res = await UserService.loginUser(payload);
+        dispatch(setLoading(false));
+        dispatch(
+          updateToast({
+            status: 'success',
+            title: 'Thành công',
+            message: res.message,
+          })
+        );
+        navigate('/');
+        const data = res.data;
+        localStorage.setItem('access_token', JSON.stringify(data?.access_token));
+        localStorage.setItem('refresh_token', JSON.stringify(data?.refresh_token));
+        if (data?.access_token) {
+          const decoded = jwtDecode(data?.access_token);
+          if (decoded?.id) {
+            handleGetDetailsUser(decoded?.id, data?.access_token);
+          }
+        }
+      } catch (error) {
+        const message = error.response.data.message;
         dispatch(
           updateToast({
             status: 'failure',
             title: 'Thất bại',
-            message: res.message,
+            message,
           })
         );
-        return;
-      }
-      dispatch(
-        updateToast({
-          status: 'success',
-          title: 'Thành công',
-          message: res.message,
-        })
-      );
-      navigate('/');
-      const data = res.data;
-      localStorage.setItem('access_token', JSON.stringify(data?.access_token));
-      localStorage.setItem('refresh_token', JSON.stringify(data?.refresh_token));
-      if (data?.access_token) {
-        const decoded = jwtDecode(data?.access_token);
-        if (decoded?.id) {
-          handleGetDetailsUser(decoded?.id, data?.access_token);
-        }
+        dispatch(setLoading(false));
       }
     }
   };
