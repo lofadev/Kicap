@@ -30,6 +30,6 @@ const AddShipper = () => {
       </Box>
     </div>
   );
-};
+}
 
 export default AddShipper;
