@@ -22,17 +22,17 @@ const rows = [
   createData('123123123', 356, 16.0, 49, 3.9),
 ];
 
-export default function BasicTable() {
+export default function DataTable() {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650, fontSize: '1.6rem' }} aria-label='simple table'>
         <TableHead>
-          <TableRow>
-            <TableCell>Dessert (100g serving)</TableCell>
-            <TableCell align='right'>Calories</TableCell>
-            <TableCell align='right'>Fat&nbsp;(g)</TableCell>
-            <TableCell align='right'>Carbs&nbsp;(g)</TableCell>
-            <TableCell align='right'>Protein&nbsp;(g)</TableCell>
+          <TableRow sx={{ backgroundColor: 'var(--blue)', color: 'var(--white)' }}>
+            <TableCell sx={{ color: 'white' }}>Dessert (100g serving)</TableCell>
+            <TableCell>Calories</TableCell>
+            <TableCell>Fat&nbsp;(g)</TableCell>
+            <TableCell>Carbs&nbsp;(g)</TableCell>
+            <TableCell>Protein&nbsp;(g)</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -41,10 +41,10 @@ export default function BasicTable() {
               <TableCell component='th' scope='row'>
                 {row.name}
               </TableCell>
-              <TableCell align='right'>{row.calories}</TableCell>
-              <TableCell align='right'>{row.fat}</TableCell>
-              <TableCell align='right'>{row.carbs}</TableCell>
-              <TableCell align='right'>{row.protein}</TableCell>
+              <TableCell>{row.calories}</TableCell>
+              <TableCell>{row.fat}</TableCell>
+              <TableCell>{row.carbs}</TableCell>
+              <TableCell>{row.protein}</TableCell>
             </TableRow>
           ))}
         </TableBody>

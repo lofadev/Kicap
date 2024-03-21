@@ -18,7 +18,9 @@ const DefaultLayout = ({ children }) => {
       if (toast) dispatch(resetToast());
     }, 5000);
 
-    return () => clearTimeout(time);
+    return () => {
+      clearTimeout(time);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [toast]);
 

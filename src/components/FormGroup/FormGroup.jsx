@@ -4,13 +4,12 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa6';
 import './FormGroup.scss';
 
 const FormGroup = ({
-  type,
+  type = 'input',
   password,
   labelName,
   required = false,
   placeholder = labelName,
   name = '',
-  labelFor,
   autoFocus = false,
   valueInput,
   handleOnChange,
@@ -22,11 +21,13 @@ const FormGroup = ({
 
   return (
     <div className='form-group'>
-      <label htmlFor={labelFor}>
-        {labelName} {required && <span className='required'>*</span>}
-      </label>
+      {labelName && (
+        <label htmlFor={name}>
+          {labelName} {required && <span className='required'>*</span>}
+        </label>
+      )}
       <Element
-        id={labelFor}
+        id={name}
         type={isShow ? 'password' : 'text'}
         name={name}
         placeholder={placeholder}
@@ -49,13 +50,12 @@ const FormGroup = ({
 
 FormGroup.propTypes = {
   type: PropTypes.string.isRequired,
-  name: PropTypes.string,
+  name: PropTypes.string.isRequired,
   typeInput: PropTypes.string,
-  labelName: PropTypes.string.isRequired,
+  labelName: PropTypes.string,
   required: PropTypes.bool,
   className: PropTypes.string,
   placeholder: PropTypes.string,
-  labelFor: PropTypes.string.isRequired,
 };
 
 export default FormGroup;

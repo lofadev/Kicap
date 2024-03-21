@@ -26,8 +26,8 @@
 
     &-title.active,
     &-title:has(+ .sidebar-dropdown a.active) {
-      background-color: var(--light-gray);
-      color: var(--black);
+      background-color: var(--light-gray) !important;
+      color: var(--black) !important;
     }
 
     &-name {
