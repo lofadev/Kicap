@@ -142,7 +142,7 @@ const SideBar = () => {
 
   const handleClickItem = (index) => {
     if (itemActive === index) setItemActive(-1);
-    else setItemActive(index);
+    else if (menu[index].children) setItemActive(index);
   };
   return (
     <div className='sidebar'>
@@ -186,5 +186,4 @@ const SideBar = () => {
     </div>
   );
 };
-
 export default SideBar;

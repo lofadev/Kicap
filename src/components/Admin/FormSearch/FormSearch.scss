@@ -1,0 +1,43 @@
+.admin {
+  &-form-search {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    position: relative;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+
+    input {
+      flex: 1;
+      padding: 0 15px;
+      height: 4.4rem;
+      border: 1px solid #eee;
+      color: #55595c;
+      font-weight: 300;
+      line-height: 1.5;
+    }
+
+    button {
+      position: absolute;
+      right: 5px;
+      font-size: 1.8rem;
+      height: calc(100% - 10px);
+      padding: 10px;
+      gap: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: var(--blue);
+      color: var(--white);
+      transition: all 0.2s linear;
+
+      &:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+      }
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+}
