@@ -5,50 +5,61 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
+import { FaEdit, FaTimes } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 import './DataTable.scss';
+import PropTypes from 'prop-types';
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
+export default function DataTable({ head, rows, keys, handleOpenDelete }) {
+  const resKeys = keys?.filter((key) => key !== 'id');
 
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-  createData('123', 356, 16.0, 49, 3.9),
-  createData('1233', 356, 16.0, 49, 3.9),
-  createData('123123123', 356, 16.0, 49, 3.9),
-];
-
-export default function DataTable() {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650, fontSize: '1.6rem' }} aria-label='simple table'>
         <TableHead>
           <TableRow sx={{ backgroundColor: 'var(--blue)', color: 'var(--white)' }}>
-            <TableCell sx={{ color: 'white' }}>Dessert (100g serving)</TableCell>
-            <TableCell>Calories</TableCell>
-            <TableCell>Fat&nbsp;(g)</TableCell>
-            <TableCell>Carbs&nbsp;(g)</TableCell>
-            <TableCell>Protein&nbsp;(g)</TableCell>
+            {head?.map((item) => (
+              <TableCell key={item} sx={{ color: 'white' }}>
+                {item}
+              </TableCell>
+            ))}
+            <TableCell sx={{ color: 'white', width: '100px' }}>Actions</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.name} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-              <TableCell component='th' scope='row'>
-                {row.name}
+          {rows?.map((row) => (
+            <TableRow key={row.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+              {resKeys.map((key, index) => (
+                <TableCell key={index}>{row[key]}</TableCell>
+              ))}
+              <TableCell className='btn-actions'>
+                <Link
+                  to={`update/${row.id}`}
+                  style={{ color: 'var(--blue)', display: 'inline-block' }}
+                >
+                  <FaEdit />
+                </Link>
+                <button onClick={() => handleOpenDelete(row.id)} style={{ color: 'var(--red)' }}>
+                  <FaTimes />
+                </button>
               </TableCell>
-              <TableCell>{row.calories}</TableCell>
-              <TableCell>{row.fat}</TableCell>
-              <TableCell>{row.carbs}</TableCell>
-              <TableCell>{row.protein}</TableCell>
             </TableRow>
           ))}
+          {!rows.length && (
+            <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+              <TableCell sx={{ textAlign: 'center' }} colSpan={head.length + 1}>
+                Không tìm kết kết quả phù hợp hoặc dữ liệu không tồn tại.
+              </TableCell>
+            </TableRow>
+          )}
         </TableBody>
       </Table>
     </TableContainer>
   );
 }
+
+DataTable.propTypes = {
+  head: PropTypes.array.isRequired,
+  rows: PropTypes.array.isRequired,
+  keys: PropTypes.array.isRequired,
+};

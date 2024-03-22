@@ -16,35 +16,36 @@ const routes = {
     logout: '/admin/logout',
     dashboard: 'admin/dashboard',
     product: {
-      add: '/admin/product/add',
+      add: '/admin/products/add',
       view: '/admin/products',
     },
     category: {
-      add: '/admin/category/add',
+      add: '/admin/categorys/add',
       view: '/admin/categorys',
     },
     type: {
-      add: '/admin/type/add',
+      add: '/admin/types/add',
       view: '/admin/types',
     },
     slide: {
-      add: '/admin/slide/add',
+      add: '/admin/slides/add',
       view: '/admin/slides',
     },
     supplier: {
-      add: '/admin/supplier/add',
+      add: '/admin/suppliers/add',
       view: '/admin/suppliers',
     },
     shipper: {
-      add: '/admin/shipper/add',
+      add: '/admin/shippers/add',
+      update: '/admin/shippers/update/:id',
       view: '/admin/shippers',
     },
     employee: {
-      add: '/admin/employee/add',
+      add: '/admin/employees/add',
       view: '/admin/employees',
     },
     orders: {
-      add: '/admin/order/add',
+      add: '/admin/orders/add',
       view: '/admin/orders',
     },
     customers: 'admin/customers',

@@ -1,0 +1,24 @@
+.MuiPaper-root {
+  #alert-dialog-title {
+    font-size: 2.6rem;
+  }
+
+  #alert-dialog-description {
+    font-size: 1.6rem;
+  }
+
+  .MuiDialogActions-root {
+    padding: 8px 10px;
+    button {
+      font-size: 1.4rem;
+
+      &:last-of-type {
+        color: var(--red);
+
+        &:hover {
+          background-color: rgba(255, 104, 104, 0.1);
+        }
+      }
+    }
+  }
+}

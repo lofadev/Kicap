@@ -22,7 +22,7 @@ const menu = [
     children: [
       {
         name: 'Thêm sản phẩm',
-        to: '/admin/product/add',
+        to: '/admin/products/add',
       },
       {
         name: 'Xem sản phẩm',
@@ -37,7 +37,7 @@ const menu = [
     children: [
       {
         name: 'Thêm danh mục sản phẩm',
-        to: '/admin/category/add',
+        to: '/admin/categorys/add',
       },
       {
         name: 'Xem danh mục sản phẩm',
@@ -52,7 +52,7 @@ const menu = [
     children: [
       {
         name: 'Thêm thể loại',
-        to: '/admin/type/add',
+        to: '/admin/types/add',
       },
       {
         name: 'Xem thể loại',
@@ -67,7 +67,7 @@ const menu = [
     children: [
       {
         name: 'Thêm slides banner',
-        to: '/admin/slide/add',
+        to: '/admin/slides/add',
       },
       {
         name: 'Xem slides banner',
@@ -82,7 +82,7 @@ const menu = [
     children: [
       {
         name: 'Thêm nhà cung cấp',
-        to: '/admin/supplier/add',
+        to: '/admin/suppliers/add',
       },
       {
         name: 'Xem nhà cung cấp',
@@ -97,7 +97,7 @@ const menu = [
     children: [
       {
         name: 'Thêm người giao hàng',
-        to: '/admin/shipper/add',
+        to: '/admin/shippers/add',
       },
       {
         name: 'Xem người giao hàng',
@@ -112,7 +112,7 @@ const menu = [
     children: [
       {
         name: 'Thêm nhân viên',
-        to: '/admin/employee/add',
+        to: '/admin/employees/add',
       },
       {
         name: 'Xem nhân viên',
@@ -132,7 +132,7 @@ const menu = [
   },
   {
     name: 'Lập đơn hàng',
-    to: '/admin/order/add',
+    to: '/admin/orders/add',
     icon: FaCartPlus,
   },
 ];

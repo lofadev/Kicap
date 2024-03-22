@@ -1,12 +1,11 @@
 import { FaSave } from 'react-icons/fa';
-import Button from '~/components/Button/Button';
 import './ButtonSave.scss';
 
-const ButtonSave = () => {
+const ButtonSave = ({ handleSave }) => {
   return (
-    <Button type='button' className='button-save'>
+    <button type='' className='button-save' onClick={handleSave}>
       <FaSave /> Lưu dữ liệu
-    </Button>
+    </button>
   );
 };
 

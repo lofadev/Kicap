@@ -5,7 +5,21 @@
     padding: 10px;
   }
 
-  .css-1ygcj2i-MuiTableCell-root {
+  .MuiTableCell-root {
     font-family: 'SVN-Gotham' !important;
+  }
+
+  .btn-actions {
+    & > * {
+      font-size: 1.8rem;
+      border-radius: 4px;
+      padding: 8px 10px;
+      vertical-align: middle;
+      cursor: pointer;
+      transition: all 0.2s linear;
+      &:hover {
+        background-color: rgba($color: #ccc, $alpha: 0.2);
+      }
+    }
   }
 }

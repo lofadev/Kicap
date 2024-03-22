@@ -5,13 +5,13 @@ import { Link, useNavigate } from 'react-router-dom';
 import Button from '~/components/Button/Button';
 import FormGroup from '~/components/FormGroup/FormGroup';
 import SectionBreadCrumb from '~/components/SectionBreadCrumb/SectionBreadCrumb';
+import { setLoading } from '~/redux/slides/LoadingSlider';
 import { updateToast } from '~/redux/slides/ToastSlide';
 import { updateUser } from '~/redux/slides/UserSlide';
 import UserService from '~/services/UserService';
 import { validatedEmail, validatedPassword } from '~/utils';
 import SocialLogin from '../SocialLogin/SocialLogin';
 import './Login.scss';
-import { setLoading } from '~/redux/slides/LoadingSlider';
 
 const Login = () => {
   const [formData, setFormData] = useState({

@@ -3,13 +3,13 @@ import { Fragment, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import './App.scss';
+import { axiosJWT } from './api/apiConfig';
 import DefaultLayout from './layouts/DefaultLayout';
 import NotFound from './pages/NotFound/NotFound';
+import { resetToast } from './redux/slides/ToastSlide';
 import { resetUser, updateUser } from './redux/slides/UserSlide';
 import { privateRoutes, publicRoutes } from './routes';
 import UserService from './services/UserService';
-import { resetToast, updateToast } from './redux/slides/ToastSlide';
-import { setLoading } from './redux/slides/LoadingSlider';
 
 function App() {
   const dispatch = useDispatch();
@@ -17,7 +17,7 @@ function App() {
 
   useEffect(() => {
     dispatch(resetToast());
-    const { accessToken, decoded } = handleDecoded();
+    const { decoded, accessToken } = handleDecoded();
     if (decoded?.id) {
       handleGetDetailsUser(decoded?.id, accessToken);
     }
@@ -25,16 +25,16 @@ function App() {
   }, []);
 
   const handleDecoded = () => {
-    let accessToken = user?.accessToken || localStorage.getItem('access_token');
+    let accessToken = localStorage.getItem('access_token');
     let decoded = {};
-    if (accessToken && !user?.accessToken) {
+    if (accessToken) {
       accessToken = JSON.parse(accessToken);
       decoded = jwtDecode(accessToken);
     }
     return { decoded, accessToken };
   };
 
-  UserService.axiosJWT.interceptors.request.use(
+  axiosJWT.interceptors.request.use(
     async (config) => {
       // Do something before request is sent
       const currentTime = new Date();
@@ -45,8 +45,9 @@ function App() {
       if (decoded?.exp < currentTime.getTime() / 1000) {
         if (decodedRefreshToken?.exp > currentTime.getTime() / 1000) {
           const data = await UserService.refreshToken(refreshToken);
-          config.headers['token'] = `Bearer ${data?.access_token}`;
+          config.headers['Authorization'] = `Bearer ${data?.access_token}`;
           localStorage.setItem('access_token', JSON.stringify(data?.access_token));
+          dispatch(updateUser({ ...user, accessToken: data?.access_token }));
         } else {
           dispatch(resetUser());
         }
@@ -56,26 +57,26 @@ function App() {
     (err) => Promise.reject(err)
   );
 
-  UserService.axiosInstance.interceptors.response.use(
-    (response) => {
-      return response;
-    },
-    (error) => {
-      if (!error.response) {
-        dispatch(setLoading(false));
-        dispatch(
-          updateToast({ status: 'failure', title: 'Thất bại', message: 'Lỗi kết nối mạng!' })
-        );
-      }
-      return Promise.reject(error);
-    }
-  );
+  // UserService.axiosInstance.interceptors.response.use(
+  //   (response) => {
+  //     return response;
+  //   },
+  //   (error) => {
+  //     if (!error.response) {
+  //       dispatch(setLoading(false));
+  //       dispatch(
+  //         updateToast({ status: 'failure', title: 'Thất bại', message: 'Lỗi kết nối mạng!' })
+  //       );
+  //     }
+  //     return Promise.reject(error);
+  //   }
+  // );
 
-  const handleGetDetailsUser = async (id, token) => {
+  const handleGetDetailsUser = async (id) => {
     let storageRefreshToken = localStorage.getItem('refresh_token');
     const refreshToken = JSON.parse(storageRefreshToken);
-    const res = await UserService.getDetailsUser(id, token);
-    dispatch(updateUser({ ...res?.data, accessToken: token, refreshToken }));
+    const res = await UserService.getDetailsUser(id);
+    dispatch(updateUser({ ...res?.data, refreshToken }));
   };
 
   return (
