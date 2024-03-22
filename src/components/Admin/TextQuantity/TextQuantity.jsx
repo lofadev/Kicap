@@ -8,7 +8,8 @@ const TextQuantity = ({ quantity, text, totalPage, page, pageSize }) => {
       </span>
 
       <span>
-        {page * pageSize - pageSize + 1} - {page * pageSize} trong số {quantity}
+        {quantity ? page * pageSize - pageSize + 1 : quantity} -{' '}
+        {page * pageSize > quantity ? quantity : page * pageSize} trong số {quantity}
       </span>
     </p>
   );

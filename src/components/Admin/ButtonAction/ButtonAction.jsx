@@ -1,15 +1,15 @@
+import { TbArrowBack } from 'react-icons/tb';
 import Button from '~/components/Button/Button';
 import ButtonSave from '../ButtonSave/ButtonSave';
 import './ButtonAction.scss';
-import { TbArrowBack } from 'react-icons/tb';
 
-const ButtonAction = ({ to }) => {
+const ButtonAction = ({ to, handleSave }) => {
   return (
     <div className='button-actions'>
       <Button type='a' secondary className='button-back' to={to}>
         <TbArrowBack /> Quay lại
       </Button>
-      <ButtonSave />
+      <ButtonSave handleSave={handleSave} />
     </div>
   );
 };
