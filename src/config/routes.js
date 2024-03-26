@@ -33,6 +33,7 @@ const routes = {
     },
     supplier: {
       add: '/admin/suppliers/add',
+      update: '/admin/suppliers/update/:id',
       view: '/admin/suppliers',
     },
     shipper: {

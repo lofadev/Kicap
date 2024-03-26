@@ -15,8 +15,8 @@ export const isVietNamPhoneNumber = (phone) => {
 export const isEmpty = (value) => value.trim().length === 0;
 export const isPassword = (value) => value.trim().length >= 8 && value.trim().length <= 20;
 
-export const validatedEmpty = (email) => {
-  const error = isEmpty(email) ? validate.empty : undefined;
+export const validatedEmpty = (value) => {
+  const error = isEmpty(value) ? validate.empty : undefined;
   return error;
 };
 

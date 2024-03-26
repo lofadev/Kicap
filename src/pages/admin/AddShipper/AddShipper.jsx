@@ -49,8 +49,7 @@ const AddShipper = () => {
       dispatch(setLoading(false));
       dispatch(
         updateToast({
-          status: 'success',
-          title: 'Thành công',
+          status: 'ok',
           message: response.message,
         })
       );
