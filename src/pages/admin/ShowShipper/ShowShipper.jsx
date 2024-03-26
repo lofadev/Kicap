@@ -66,21 +66,20 @@ const ShowShipper = () => {
 
   const handleDeleteShipper = async () => {
     try {
+      setOpen(false);
       dispatch(setLoading(true));
       const res = await ShipperService.deleteShipper(id, user.accessToken);
-      fetchData({ page, search: searchDebounce });
-      setOpen(false);
+      dispatch(setLoading(false));
       dispatch(
         updateToast({
-          status: 'success',
-          title: 'Thành công',
+          status: 'ok',
           message: res.message,
         })
       );
-      dispatch(setLoading(false));
+      const newRows = rows.filter((row) => row.id !== res.data._id);
+      setRows(newRows);
     } catch (error) {
       dispatch(setLoading(false));
-      console.log(error);
     }
   };
 

@@ -17,8 +17,10 @@
     }
 
     input {
+      border: 1px solid #e6e6e6;
+      display: block;
+      width: 100%;
       background: #f7f7f7;
-      // color: #55595c;
       height: 50px;
       padding: 0 15px;
       font-weight: 300;
@@ -32,6 +34,12 @@
       min-height: 150px;
       max-width: 100%;
       min-width: 100%;
+    }
+
+    .MuiFormControl-root {
+      display: flex;
+      margin: 0;
+      font-size: 1.6rem;
     }
   }
 
@@ -52,7 +60,6 @@
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    border: 1px solid #e6e6e6;
     transition: all 0.2s linear;
 
     &:focus {
@@ -78,4 +85,15 @@
     margin-bottom: 10px;
     color: #a94442;
   }
+}
+
+.MuiMenuItem-root {
+  font-size: 1.4rem !important;
+}
+
+.MuiInputBase-input {
+  padding: 0 15px !important;
+  font-size: 1.4rem !important;
+  height: 50px !important;
+  line-height: 50px !important;
 }

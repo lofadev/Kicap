@@ -85,8 +85,7 @@ const Register = () => {
       if (res.status === 'ERROR') {
         dispatch(
           updateToast({
-            status: 'failure',
-            title: 'Thất bại',
+            status: 'error',
             message: res.message,
           })
         );
@@ -94,8 +93,7 @@ const Register = () => {
       }
       dispatch(
         updateToast({
-          status: 'success',
-          title: 'Thành công',
+          status: 'ok',
           message: res.message,
         })
       );

@@ -15,6 +15,7 @@ const FormGroup = ({
   handleOnChange,
   error = false,
   eye,
+  children,
 }) => {
   const Element = type == 'text' ? 'textarea' : 'input';
   const [isShow, setIsShow] = useState(password);
@@ -26,17 +27,20 @@ const FormGroup = ({
           {labelName} {required && <span className='required'>*</span>}
         </label>
       )}
-      <Element
-        id={name}
-        type={isShow ? 'password' : 'text'}
-        name={name}
-        placeholder={placeholder}
-        className={`form-control ${error ? 'border-red' : ''}`}
-        autoFocus={autoFocus}
-        value={valueInput}
-        onChange={handleOnChange}
-        autoComplete='off'
-      />
+      {children ?? (
+        <Element
+          id={name}
+          type={isShow ? 'password' : 'text'}
+          name={name}
+          placeholder={placeholder}
+          className={`form-control ${error ? 'border-red' : ''}`}
+          autoFocus={autoFocus}
+          value={valueInput}
+          onChange={handleOnChange}
+          autoComplete='off'
+        />
+      )}
+
       {eye && (
         <div className='form-eye' onClick={() => setIsShow((prev) => !prev)}>
           {isShow && <FaEyeSlash />}

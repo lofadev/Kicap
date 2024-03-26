@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Box from '~/components/Admin/Box/Box';
 import ButtonAction from '~/components/Admin/ButtonAction/ButtonAction';
@@ -9,9 +9,10 @@ import { setLoading } from '~/redux/slides/LoadingSlider';
 import { updateToast } from '~/redux/slides/ToastSlide';
 import SupplierService from '~/services/SupplierService';
 import { validatedEmail, validatedEmpty, validatedPhoneNumber } from '~/utils';
-import './AddSupplier.scss';
+import './UpdateSupplier.scss';
+import { useParams } from 'react-router-dom';
 
-const AddSupplier = () => {
+const UpdateSupplier = () => {
   const [formData, setFormData] = useState({
     name: '',
     contactName: '',
@@ -20,10 +21,10 @@ const AddSupplier = () => {
     address: '',
     province: '',
   });
-
   const [formErrors, setFormErrors] = useState({});
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
+  const { id } = useParams();
 
   const handleOnChangeInput = (e) => {
     let error;
@@ -71,7 +72,7 @@ const AddSupplier = () => {
           province: formData.province,
         };
         dispatch(setLoading(true));
-        const response = await SupplierService.createSupplier(payload, user.accessToken);
+        const response = await SupplierService.updateSupplier(id, payload, user.accessToken);
         dispatch(setLoading(false));
         dispatch(
           updateToast({
@@ -80,8 +81,8 @@ const AddSupplier = () => {
           })
         );
       } catch (error) {
-        dispatch(setLoading(false));
         console.log(error);
+        dispatch(setLoading(false));
         dispatch(
           updateToast({
             status: 'error',
@@ -99,6 +100,34 @@ const AddSupplier = () => {
     setFormErrors(newFormErrors);
   };
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        dispatch(setLoading(true));
+        const res = await SupplierService.getSupplier(id, user.accessToken);
+        dispatch(setLoading(false));
+        setFormData({
+          name: res.data.name,
+          contactName: res.data.contactName,
+          phone: res.data.phone,
+          email: res.data.email,
+          address: res.data.address,
+          province: res.data.province,
+        });
+      } catch (error) {
+        dispatch(setLoading(false));
+        dispatch(
+          updateToast({
+            status: 'error',
+            message: error.response.data.message,
+          })
+        );
+      }
+    };
+    fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <div>
       <HeadingBreadCrumb>Bổ sung nhà cung cấp</HeadingBreadCrumb>
@@ -111,6 +140,7 @@ const AddSupplier = () => {
           type='input'
           autoFocus
           name='name'
+          valueInput={formData.name}
           handleOnChange={handleOnChangeInput}
           error={formErrors.name}
         ></FormGroup>
@@ -120,6 +150,7 @@ const AddSupplier = () => {
           required
           type='input'
           name='contactName'
+          valueInput={formData.contactName}
           handleOnChange={handleOnChangeInput}
           error={formErrors.contactName}
         ></FormGroup>
@@ -129,6 +160,7 @@ const AddSupplier = () => {
           required
           type='input'
           name='phone'
+          valueInput={formData.phone}
           handleOnChange={handleOnChangeInput}
           error={formErrors.phone}
         ></FormGroup>
@@ -138,6 +170,7 @@ const AddSupplier = () => {
           required
           type='input'
           name='email'
+          valueInput={formData.email}
           handleOnChange={handleOnChangeInput}
           error={formErrors.email}
         ></FormGroup>
@@ -147,6 +180,7 @@ const AddSupplier = () => {
           required
           type='input'
           name='address'
+          valueInput={formData.address}
           handleOnChange={handleOnChangeInput}
           error={formErrors.address}
         ></FormGroup>
@@ -186,4 +220,4 @@ const AddSupplier = () => {
   );
 };
 
-export default AddSupplier;
+export default UpdateSupplier;

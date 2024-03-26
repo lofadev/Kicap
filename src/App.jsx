@@ -25,10 +25,10 @@ function App() {
   }, []);
 
   const handleDecoded = () => {
-    let accessToken = localStorage.getItem('access_token');
+    let accessToken = user?.accessToken || localStorage.getItem('access_token');
     let decoded = {};
     if (accessToken) {
-      accessToken = JSON.parse(accessToken);
+      // if (typeof accessToken === 'string') accessToken = JSON.parse(accessToken);
       decoded = jwtDecode(accessToken);
     }
     return { decoded, accessToken };
@@ -49,6 +49,7 @@ function App() {
           localStorage.setItem('access_token', JSON.stringify(data?.access_token));
           dispatch(updateUser({ ...user, accessToken: data?.access_token }));
         } else {
+          localStorage.clear();
           dispatch(resetUser());
         }
       }

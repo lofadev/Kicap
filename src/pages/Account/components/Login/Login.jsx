@@ -59,8 +59,7 @@ const Login = () => {
         dispatch(setLoading(false));
         dispatch(
           updateToast({
-            status: 'success',
-            title: 'Thành công',
+            status: 'ok',
             message: res.message,
           })
         );
@@ -78,8 +77,7 @@ const Login = () => {
         const message = error.response.data.message;
         dispatch(
           updateToast({
-            status: 'failure',
-            title: 'Thất bại',
+            status: 'error',
             message,
           })
         );

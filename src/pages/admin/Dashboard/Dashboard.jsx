@@ -71,7 +71,7 @@ const Dashboard = () => {
           </Link>
         </div>
       </div>
-      <DataTable />
+      {/* <DataTable /> */}
     </div>
   );
 };

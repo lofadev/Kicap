@@ -31,6 +31,7 @@ import ShowSlideBanner from '~/pages/admin/ShowSlideBanner/ShowSlideBanner';
 import ShowSupplier from '~/pages/admin/ShowSupplier/ShowSupplier';
 import ShowType from '~/pages/admin/ShowType/ShowType';
 import UpdateShipper from '~/pages/admin/UpdateShipper/UpdateShipper';
+import UpdateSupplier from '~/pages/admin/UpdateSupplier/UpdateSupplier';
 
 const publicRoutes = [
   {
@@ -137,6 +138,11 @@ const privateRoutes = [
   {
     path: config.routes.admin.supplier.add,
     component: AddSupplier,
+    layout: AdminLayout,
+  },
+  {
+    path: config.routes.admin.supplier.update,
+    component: UpdateSupplier,
     layout: AdminLayout,
   },
   {

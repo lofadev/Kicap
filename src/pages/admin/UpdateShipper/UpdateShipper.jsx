@@ -31,7 +31,13 @@ const UpdateShipper = () => {
           phone: res.data.phone,
         });
       } catch (error) {
-        console.log(error);
+        dispatch(setLoading(false));
+        dispatch(
+          updateToast({
+            status: 'error',
+            message: error.response.data.message,
+          })
+        );
       }
     };
     fetchData();
@@ -69,8 +75,7 @@ const UpdateShipper = () => {
       dispatch(setLoading(false));
       dispatch(
         updateToast({
-          status: 'success',
-          title: 'Thành công',
+          status: 'ok',
           message: response.message,
         })
       );
