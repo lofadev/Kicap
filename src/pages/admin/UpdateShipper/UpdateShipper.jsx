@@ -84,7 +84,7 @@ const UpdateShipper = () => {
 
   return (
     <div>
-      <HeadingBreadCrumb>Bổ sung người giao hàng</HeadingBreadCrumb>
+      <HeadingBreadCrumb>Cập nhật thông tin người giao hàng</HeadingBreadCrumb>
 
       <Box>
         <FormGroup

@@ -11,6 +11,7 @@ import SupplierService from '~/services/SupplierService';
 import { validatedEmail, validatedEmpty, validatedPhoneNumber } from '~/utils';
 import './UpdateSupplier.scss';
 import { useParams } from 'react-router-dom';
+import ProvinceService from '~/services/ProvinceService';
 
 const UpdateSupplier = () => {
   const [formData, setFormData] = useState({
@@ -25,6 +26,7 @@ const UpdateSupplier = () => {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const { id } = useParams();
+  const [options, setOptions] = useState([]);
 
   const handleOnChangeInput = (e) => {
     let error;
@@ -81,7 +83,6 @@ const UpdateSupplier = () => {
           })
         );
       } catch (error) {
-        console.log(error);
         dispatch(setLoading(false));
         dispatch(
           updateToast({
@@ -104,16 +105,28 @@ const UpdateSupplier = () => {
     const fetchData = async () => {
       try {
         dispatch(setLoading(true));
-        const res = await SupplierService.getSupplier(id, user.accessToken);
+        const [supplierRes, provinceRes] = await Promise.all([
+          SupplierService.getSupplier(id, user.accessToken),
+          ProvinceService.getProvinces(),
+        ]);
         dispatch(setLoading(false));
+        const supplierData = supplierRes.data;
+        const options =
+          provinceRes.status === 'OK'
+            ? provinceRes.data.map((province) => ({
+                id: province.provinceId,
+                name: province.provinceName,
+              }))
+            : [];
         setFormData({
-          name: res.data.name,
-          contactName: res.data.contactName,
-          phone: res.data.phone,
-          email: res.data.email,
-          address: res.data.address,
-          province: res.data.province,
+          name: supplierData.name,
+          contactName: supplierData.contactName,
+          phone: supplierData.phone,
+          email: supplierData.email,
+          address: supplierData.address,
+          province: supplierData.province,
         });
+        setOptions(options);
       } catch (error) {
         dispatch(setLoading(false));
         dispatch(
@@ -124,13 +137,14 @@ const UpdateSupplier = () => {
         );
       }
     };
+
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <div>
-      <HeadingBreadCrumb>Bổ sung nhà cung cấp</HeadingBreadCrumb>
+      <HeadingBreadCrumb>Cập nhật thông tin nhà cung cấp</HeadingBreadCrumb>
 
       <Box>
         <FormGroup
@@ -193,20 +207,7 @@ const UpdateSupplier = () => {
           error={formErrors.province}
         >
           <SelectOptions
-            options={[
-              {
-                value: '1',
-                name: '1',
-              },
-              {
-                value: '2',
-                name: '2',
-              },
-              {
-                value: '3',
-                name: '3',
-              },
-            ]}
+            options={options}
             optionDefault='--- Chọn Tỉnh/thành ---'
             id='province'
             value={formData.province}

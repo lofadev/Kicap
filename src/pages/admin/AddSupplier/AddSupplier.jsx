@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Box from '~/components/Admin/Box/Box';
 import ButtonAction from '~/components/Admin/ButtonAction/ButtonAction';
@@ -10,6 +10,7 @@ import { updateToast } from '~/redux/slides/ToastSlide';
 import SupplierService from '~/services/SupplierService';
 import { validatedEmail, validatedEmpty, validatedPhoneNumber } from '~/utils';
 import './AddSupplier.scss';
+import ProvinceService from '~/services/ProvinceService';
 
 const AddSupplier = () => {
   const [formData, setFormData] = useState({
@@ -20,10 +21,10 @@ const AddSupplier = () => {
     address: '',
     province: '',
   });
-
   const [formErrors, setFormErrors] = useState({});
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
+  const [options, setOptions] = useState([]);
 
   const handleOnChangeInput = (e) => {
     let error;
@@ -99,6 +100,26 @@ const AddSupplier = () => {
     setFormErrors(newFormErrors);
   };
 
+  useEffect(() => {
+    const fetchProvinces = async () => {
+      try {
+        const res = await ProvinceService.getProvinces();
+        if (res.status === 'OK') {
+          const options = res.data.map((province) => {
+            return {
+              id: province.provinceId,
+              name: province.provinceName,
+            };
+          });
+          setOptions(options);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchProvinces();
+  }, []);
+
   return (
     <div>
       <HeadingBreadCrumb>Bổ sung nhà cung cấp</HeadingBreadCrumb>
@@ -159,20 +180,7 @@ const AddSupplier = () => {
           error={formErrors.province}
         >
           <SelectOptions
-            options={[
-              {
-                value: '1',
-                name: '1',
-              },
-              {
-                value: '2',
-                name: '2',
-              },
-              {
-                value: '3',
-                name: '3',
-              },
-            ]}
+            options={options}
             optionDefault='--- Chọn Tỉnh/thành ---'
             id='province'
             value={formData.province}

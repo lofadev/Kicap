@@ -65,12 +65,12 @@ const Login = () => {
         );
         navigate('/');
         const data = res.data;
-        localStorage.setItem('access_token', JSON.stringify(data?.access_token));
-        localStorage.setItem('refresh_token', JSON.stringify(data?.refresh_token));
-        if (data?.access_token) {
-          const decoded = jwtDecode(data?.access_token);
+        localStorage.setItem('accessToken', JSON.stringify(data?.accessToken));
+        localStorage.setItem('refreshToken', JSON.stringify(data?.refreshToken));
+        if (data?.accessToken) {
+          const decoded = jwtDecode(data?.accessToken);
           if (decoded?.id) {
-            handleGetDetailsUser(decoded?.id, data?.access_token);
+            handleGetDetailsUser(decoded?.id, data?.accessToken);
           }
         }
       } catch (error) {
@@ -87,7 +87,7 @@ const Login = () => {
   };
 
   const handleGetDetailsUser = async (id, token) => {
-    const storage = localStorage.getItem('refresh_token');
+    const storage = localStorage.getItem('refreshToken');
     const refreshToken = JSON.parse(storage);
     const res = await UserService.getDetailsUser(id, token);
     dispatch(updateUser({ ...res?.data, accessToken: token, refreshToken }));
