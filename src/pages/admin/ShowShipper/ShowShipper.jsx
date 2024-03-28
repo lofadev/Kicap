@@ -46,11 +46,20 @@ const ShowShipper = () => {
           };
         });
         setRows(rows);
-        if (rows.length) setKeys(Object.keys(rows[0]));
+
+        if (rows.length) {
+          const keys = Object.keys(rows[0]);
+          setKeys(keys);
+        }
       }
     } catch (error) {
-      console.error('Error fetching shippers:', error);
       dispatch(setLoading(false));
+      dispatch(
+        updateToast({
+          status: 'error',
+          message: error.response.data.message,
+        })
+      );
     }
   };
 
