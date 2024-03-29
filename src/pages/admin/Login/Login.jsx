@@ -1,36 +1,58 @@
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 import Button from '~/components/Button/Button';
-import FormGroup from '~/components/FormGroup/FormGroup';
+import Input from '~/components/FormGroup/Input/Input';
+import { regex, validate } from '~/constant';
 import './Login.scss';
+import UserService from '~/services/UserService';
+
+const schema = Yup.object().shape({
+  email: Yup.string().required(validate.NOT_EMPTY).email(validate.INVALID_EMAIL),
+  password: Yup.string()
+    .required(validate.NOT_EMPTY)
+    .matches(regex.password, validate.INVALID_PASSWORD),
+});
 
 const Login = () => {
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      password: '',
+    },
+    validationSchema: schema,
+    onSubmit: async (payload, { setSubmitting, resetForm }) => {
+      const res = await UserService.loginUser(payload);
+      console.log(res);
+      setSubmitting(false);
+      resetForm();
+    },
+  });
+
   return (
     <div className='main-login'>
       <div className='content'>
-        <div>
+        <form onSubmit={formik.handleSubmit}>
           <h1>Đăng nhập</h1>
 
-          <FormGroup
-            labelName='Tên đăng nhập'
+          <Input
+            labelName='Email'
+            placeholder='Nhập email...'
             required
-            placeholder='Nhập tên đăng nhập...'
-            type='input'
-            labelFor='username'
-            autoFocus
-          ></FormGroup>
-          <FormGroup
+            name='email'
+            formik={formik}
+          ></Input>
+          <Input
             labelName='Mật khẩu'
-            required
             placeholder='Nhập mật khẩu...'
-            type='input'
-            labelFor='password'
-          ></FormGroup>
-        </div>
-
-        <a>
-          <Button primary type='button' className='d-block w-full'>
+            required
+            name='password'
+            password
+            formik={formik}
+          ></Input>
+          <Button secondary type='submit' className='d-block w-full' disabled={formik.isSubmitting}>
             Đăng nhập
           </Button>
-        </a>
+        </form>
       </div>
     </div>
   );

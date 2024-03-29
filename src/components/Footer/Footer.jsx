@@ -80,7 +80,7 @@ const Footer = () => {
                 id='footer-subcrible-email'
                 autoComplete='off'
               />
-              <Button type='button' primary className='footer-btn'>
+              <Button primary className='footer-btn'>
                 Đăng ký
               </Button>
             </form>

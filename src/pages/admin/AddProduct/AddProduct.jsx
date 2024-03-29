@@ -13,7 +13,6 @@ const AddProduct = () => {
           placeholder='Nhập tên sản phẩm...'
           type='input'
           labelFor='productName'
-          autoFocus
         ></FormGroup>
         <FormGroup
           labelName='Tên sản phẩm'

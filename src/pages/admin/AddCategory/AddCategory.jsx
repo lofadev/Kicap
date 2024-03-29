@@ -1,78 +1,51 @@
-import { useState } from 'react';
+import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import Box from '~/components/Admin/Box/Box';
 import ButtonAction from '~/components/Admin/ButtonAction/ButtonAction';
 import HeadingBreadCrumb from '~/components/Admin/HeadingBreadCrumb/HeadingBreadCrumb';
-import FormGroup from '~/components/FormGroup/FormGroup';
+import Input from '~/components/FormGroup/Input/Input';
 import CategoryService from '~/services/CategoryService';
-import { validatedEmpty } from '~/utils';
+import { categorySchema } from '~/validate/YupSchema';
 
 const AddCategory = () => {
-  const [formData, setFormData] = useState({
-    categoryName: '',
-    description: '',
-  });
-  const [formErrors, setFormErrors] = useState({});
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
 
-  const handleOnChangeInput = (e) => {
-    let error;
-    const name = e.target.name;
-    const value = e.target.value;
-    if (name === 'categoryName') error = validatedEmpty(value);
-    setFormErrors({ ...formErrors, [name]: error });
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const handleValidate = () => {
-    const errorCategoryName = validatedEmpty(formData.categoryName);
-    setFormErrors({
-      categoryName: errorCategoryName ?? '',
-    });
-    if (errorCategoryName) return false;
-    return true;
-  };
-
-  const handleSave = async () => {
-    const validated = handleValidate();
-    if (validated) {
-      const payload = {
-        categoryName: formData.categoryName,
-        description: formData.description,
-      };
+  const formik = useFormik({
+    initialValues: {
+      categoryName: '',
+      description: '',
+    },
+    validationSchema: categorySchema,
+    onSubmit: async (payload, { setSubmitting, resetForm }) => {
       await CategoryService.createCategory(payload, user.accessToken, dispatch);
-      setFormData({ categoryName: '', description: '' });
-    }
-  };
+      setSubmitting(false);
+      resetForm();
+    },
+  });
 
   return (
     <div>
       <HeadingBreadCrumb>Bổ sung danh mục sản phẩm</HeadingBreadCrumb>
 
       <Box>
-        <FormGroup
+        <Input
           labelName='Tên danh mục sản phẩm'
           placeholder='Nhập tên danh mục sản phẩm'
           required
-          type='input'
-          autoFocus
           name='categoryName'
-          value={formData.categoryName}
-          handleOnChange={handleOnChangeInput}
-          error={formErrors.categoryName}
-        ></FormGroup>
-        <FormGroup
+          formik={formik}
+        />
+        <Input
           labelName='Mô tả'
           placeholder='Nhập mô tả danh mục sản phẩm'
           type='text'
           name='description'
-          value={formData.description}
-          handleOnChange={handleOnChangeInput}
-          error={formErrors.description}
-        ></FormGroup>
+          formik={formik}
+          textarea
+        />
 
-        <ButtonAction to='/admin/categorys' handleSave={handleSave} />
+        <ButtonAction to='/admin/categorys' handleSave={formik.handleSubmit} />
       </Box>
     </div>
   );

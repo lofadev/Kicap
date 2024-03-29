@@ -27,7 +27,6 @@ const AdminLayout = ({ children }) => {
       {toast.status && (
         <ToastMessage
           status={toast.status}
-          title={toast.title}
           message={toast.message}
           handleClose={() => dispatch(resetToast())}
         />

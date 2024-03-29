@@ -15,24 +15,14 @@ const FormComment = () => {
         <div className='form-main'>
           <FormGroup type='text' labelName='Nội dung' required labelFor='content'></FormGroup>
           <div className='form-container'>
-            <FormGroup
-              type='input'
-              labelName='Họ tên'
-              required
-              labelFor='fullname'
-            ></FormGroup>
-            <FormGroup
-              type='input'
-              labelName='Email'
-              required
-              labelFor='email'
-            ></FormGroup>
+            <FormGroup type='input' labelName='Họ tên' required labelFor='fullname'></FormGroup>
+            <FormGroup type='input' labelName='Email' required labelFor='email'></FormGroup>
           </div>
           <div className='clear'></div>
         </div>
 
         <div className='form-row'>
-          <Button type='button' primary className='form-btn'>
+          <Button primary className='form-btn'>
             Gửi bình luận
           </Button>
         </div>

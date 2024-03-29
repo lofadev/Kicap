@@ -6,7 +6,7 @@ import './ButtonAction.scss';
 const ButtonAction = ({ to, handleSave }) => {
   return (
     <div className='button-actions'>
-      <Button type='a' secondary className='button-back' to={to}>
+      <Button secondary className='button-back' to={to}>
         <TbArrowBack /> Quay lại
       </Button>
       <ButtonSave handleSave={handleSave} />

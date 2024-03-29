@@ -1,40 +1,48 @@
-import { axiosJWT } from '~/api/apiConfig';
+import { axiosJWT, handleAPICall } from '~/api/apiConfig';
 
-const createSupplier = async (data, token) => {
-  const res = await axiosJWT.post('/supplier/create', data, {
-    headers: { Authorization: `Bearer ${token}` },
-  });
-  return res.data;
-};
+const createSupplier = (data, token, dispatch) =>
+  handleAPICall(
+    axiosJWT.post('/supplier/create', data, {
+      headers: { Authorization: `Bearer ${token}` },
+    }),
+    dispatch,
+    true
+  );
 
-const updateSupplier = async (id, data, token) => {
-  const res = await axiosJWT.put(`/supplier/update/${id}`, data, {
-    headers: { Authorization: `Bearer ${token}` },
-  });
-  return res.data;
-};
+const updateSupplier = (id, data, token, dispatch) =>
+  handleAPICall(
+    axiosJWT.put(`/supplier/update/${id}`, data, {
+      headers: { Authorization: `Bearer ${token}` },
+    }),
+    dispatch,
+    true
+  );
 
-const getSuppliers = async (params, token) => {
-  const res = await axiosJWT.get('/supplier/get-all', {
-    params: params,
-    headers: { Authorization: `Bearer ${token}` },
-  });
-  return res.data;
-};
+const getSuppliers = (params, token, dispatch) =>
+  handleAPICall(
+    axiosJWT.get('/supplier/get-all', {
+      params: params,
+      headers: { Authorization: `Bearer ${token}` },
+    }),
+    dispatch
+  );
 
-const getSupplier = async (id, token) => {
-  const res = await axiosJWT.get(`/supplier/${id}`, {
-    headers: { Authorization: `Bearer ${token}` },
-  });
-  return res.data;
-};
+const getSupplier = (id, token, dispatch) =>
+  handleAPICall(
+    axiosJWT.get(`/supplier/${id}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    }),
+    dispatch
+  );
 
-const deleteSupplier = async (id, token) => {
-  const res = await axiosJWT.delete(`/supplier/delete/${id}`, {
-    headers: { Authorization: `Bearer ${token}` },
-  });
-  return res.data;
-};
+const deleteSupplier = (id, token, dispatch) =>
+  handleAPICall(
+    axiosJWT.delete(`/supplier/delete/${id}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    }),
+    dispatch,
+    true
+  );
 
 const SupplierService = {
   createSupplier,

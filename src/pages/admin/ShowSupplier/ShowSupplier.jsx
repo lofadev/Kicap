@@ -9,8 +9,6 @@ import DataTable from '~/components/DataTable/DataTable';
 import ModalDialog from '~/components/ModalDialog/ModalDialog';
 import Pagination from '~/components/Pagination/Pagination';
 import { useDebounce } from '~/hooks/useDebounce';
-import { setLoading } from '~/redux/slides/LoadingSlider';
-import { updateToast } from '~/redux/slides/ToastSlide';
 import SupplierService from '~/services/SupplierService';
 import './ShowSupplier.scss';
 
@@ -21,14 +19,6 @@ const ShowSupplier = () => {
   const [response, setResponse] = useState({});
   const [rows, setRows] = useState([]);
   const [keys, setKeys] = useState([]);
-  const [head] = useState([
-    'Tên nhà cung cấp',
-    'Tên liên hệ',
-    'Số điện thoại',
-    'Email',
-    'Địa chỉ',
-    'Tỉnh/thành',
-  ]);
   const [open, setOpen] = useState(false);
   const [id, setId] = useState('');
   const user = useSelector((state) => state.user);
@@ -39,29 +29,19 @@ const ShowSupplier = () => {
   };
 
   const fetchData = async (payload) => {
-    try {
-      dispatch(setLoading(true));
-      const res = await SupplierService.getSuppliers(payload, user.accessToken);
-      if (res) {
-        dispatch(setLoading(false));
-        setResponse(res);
-        const rows = res.data.map((e) => {
-          return {
-            id: e._id,
-            name: e.name,
-            contactName: e.contactName,
-            phone: e.phone,
-            email: e.email,
-            address: e.address,
-            province: e.province,
-          };
-        });
-        setRows(rows);
-        if (rows.length) setKeys(Object.keys(rows[0]));
-      }
-    } catch (error) {
-      dispatch(setLoading(false));
-    }
+    const res = await SupplierService.getSuppliers(payload, user.accessToken, dispatch);
+    const rows = res.data.map((supplier) => ({
+      id: supplier._id,
+      name: supplier.name,
+      contactName: supplier.contactName,
+      phone: supplier.phone,
+      email: supplier.email,
+      address: supplier.address,
+      province: supplier.province,
+    }));
+    setRows(rows);
+    setResponse(res);
+    if (rows.length) setKeys(Object.keys(rows[0]));
   };
 
   useEffect(() => {
@@ -75,22 +55,9 @@ const ShowSupplier = () => {
   };
 
   const handleDeleteShipper = async () => {
-    try {
-      setOpen(false);
-      dispatch(setLoading(true));
-      const res = await SupplierService.deleteSupplier(id, user.accessToken);
-      dispatch(setLoading(false));
-      dispatch(
-        updateToast({
-          status: 'ok',
-          message: res.message,
-        })
-      );
-      const newRows = rows.filter((row) => row.id !== res.data._id);
-      setRows(newRows);
-    } catch (error) {
-      dispatch(setLoading(false));
-    }
+    setOpen(false);
+    const res = await SupplierService.deleteSupplier(id, user.accessToken, dispatch);
+    if (res) fetchData({ page, search: searchDebounce });
   };
 
   return (
@@ -104,7 +71,7 @@ const ShowSupplier = () => {
             handleOnChange={handleOnChangeSearch}
             disabled={!searchDebounce}
           />
-          <Button secondary type='a' className='btn-add' to='/admin/suppliers/add'>
+          <Button secondary className='btn-add' to='/admin/suppliers/add'>
             Bổ sung
           </Button>
         </div>
@@ -116,7 +83,19 @@ const ShowSupplier = () => {
           pageSize={response.limit ?? 0}
         />
 
-        <DataTable rows={rows} head={head} keys={keys} handleOpenDelete={handleOpenDelete} />
+        <DataTable
+          rows={rows}
+          head={[
+            'Tên nhà cung cấp',
+            'Tên liên hệ',
+            'Số điện thoại',
+            'Email',
+            'Địa chỉ',
+            'Tỉnh/thành phố',
+          ]}
+          keys={keys}
+          handleOpenDelete={handleOpenDelete}
+        />
         <Pagination
           pageCount={response.totalPage ?? 0}
           onClickPageItem={(value) => setPage(value.selected + 1)}

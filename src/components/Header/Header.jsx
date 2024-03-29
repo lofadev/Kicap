@@ -25,7 +25,7 @@ const Header = () => {
   };
 
   const handleLogout = async () => {
-    await UserService.logoutUser();
+    await UserService.logoutUser(dispatch);
     dispatch(resetUser());
     localStorage.clear();
   };

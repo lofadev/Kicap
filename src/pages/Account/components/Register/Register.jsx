@@ -1,105 +1,39 @@
-import { useEffect, useState } from 'react';
+import { useFormik } from 'formik';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import Button from '~/components/Button/Button';
-import FormGroup from '~/components/FormGroup/FormGroup';
+import Input from '~/components/FormGroup/Input/Input';
 import SectionBreadCrumb from '~/components/SectionBreadCrumb/SectionBreadCrumb';
-import {
-  validatedConfirmPassword,
-  validatedEmail,
-  validatedEmpty,
-  validatedPassword,
-  validatedPhoneNumber,
-} from '~/utils';
+import UserService from '~/services/UserService';
+import { registerSchema } from '~/validate/YupSchema';
 import SocialLogin from '../SocialLogin/SocialLogin';
 import './Register.scss';
-import { useDispatch } from 'react-redux';
-import { setLoading } from '~/redux/slides/LoadingSlider';
-import UserService from '~/services/UserService';
-import { updateToast } from '~/redux/slides/ToastSlide';
 
 const Register = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    phone: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
-  });
-  const [formErrors, setFormErrors] = useState({});
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const formik = useFormik({
+    initialValues: {
+      name: '',
+      phone: '',
+      email: '',
+      password: '',
+      confirmPassword: '',
+    },
+    validationSchema: registerSchema,
+    onSubmit: async (payload) => {
+      const res = await UserService.registerUser(payload, dispatch);
+      if (res.status === 'OK') {
+        navigate('/account/login');
+      }
+    },
+  });
 
   useEffect(() => {
     document.title = 'Đăng ký tài khoản | Kicap';
   }, []);
-
-  const handleOnChangeInput = (e) => {
-    let error;
-    const name = e.target.name;
-    const value = e.target.value;
-    if (name === 'name') error = validatedEmpty(value);
-    else if (name === 'phone') error = validatedPhoneNumber(value);
-    else if (name === 'email') error = validatedEmail(value);
-    else if (name === 'password') error = validatedPassword(value);
-    else if (name === 'confirmPassword') error = validatedConfirmPassword(formData.password, value);
-    setFormErrors({ ...formErrors, [name]: error });
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const handleValidate = () => {
-    const errorName = validatedEmpty(formData.name);
-    const errorPhone = validatedPhoneNumber(formData.phone);
-    const errorEmail = validatedEmail(formData.email);
-    const errorPassword = validatedPassword(formData.password);
-    const errorConfirmPassword = validatedConfirmPassword(
-      formData.password,
-      formData.confirmPassword
-    );
-    setFormErrors({
-      name: errorName ?? '',
-      phone: errorPhone ?? '',
-      email: errorEmail ?? '',
-      password: errorPassword ?? '',
-      confirmPassword: errorConfirmPassword ?? '',
-    });
-    if (errorName || errorPhone || errorEmail || errorPassword || errorConfirmPassword)
-      return false;
-    return true;
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const validated = handleValidate();
-    if (validated) {
-      // xử lý đăng ký
-      dispatch(setLoading(true));
-      const payload = {
-        name: formData.name,
-        email: formData.email,
-        phone: formData.phone,
-        password: formData.password,
-        confirmPassword: formData.confirmPassword,
-      };
-      const res = await UserService.registerUser(payload);
-      dispatch(setLoading(false));
-      if (res.status === 'ERROR') {
-        dispatch(
-          updateToast({
-            status: 'error',
-            message: res.message,
-          })
-        );
-        return;
-      }
-      dispatch(
-        updateToast({
-          status: 'ok',
-          message: res.message,
-        })
-      );
-      navigate('/account/login');
-    }
-  };
 
   return (
     <div className='section-registor'>
@@ -110,70 +44,47 @@ const Register = () => {
           <p className='text-center mb-30'>Nếu chưa có tài khoản vui lòng đăng ký tại đây</p>
           <SocialLogin />
 
-          <form method='post'>
-            <FormGroup
-              type='input'
-              labelFor='name'
+          <form>
+            <Input
               labelName='Họ tên'
+              placeholder='Nhập họ tên'
               name='name'
               required
-              placeholder='Nhập họ tên'
-              autoFocus
-              value={formData.name}
-              handleOnChange={handleOnChangeInput}
-              error={formErrors.name}
+              formik={formik}
             />
-            <FormGroup
-              type='input'
-              labelFor='phone'
+            <Input
               labelName='Số điện thoại'
+              placeholder='Nhập số điện thoại'
               name='phone'
               required
-              placeholder='Nhập số điện thoại'
-              value={formData.phone}
-              handleOnChange={handleOnChangeInput}
-              error={formErrors.phone}
+              formik={formik}
             />
-            <FormGroup
-              type='input'
-              labelFor='email'
+            <Input
               labelName='Email'
+              placeholder='Nhập địa chỉ email'
               name='email'
               required
-              placeholder='Nhập địa chỉ email'
-              value={formData.email}
-              handleOnChange={handleOnChangeInput}
-              error={formErrors.email}
+              formik={formik}
             />
-            <FormGroup
-              type='input'
-              password
-              labelFor='password'
+            <Input
               labelName='Mật khẩu'
+              placeholder='Nhập mật khẩu'
               name='password'
               required
-              placeholder='Nhập mật khẩu'
-              value={formData.password}
-              handleOnChange={handleOnChangeInput}
-              error={formErrors.password}
-              eye={true}
-            />
-            <FormGroup
-              type='input'
               password
-              labelFor='confirm-password'
+              formik={formik}
+            />
+            <Input
               labelName='Xác nhận mật khẩu'
+              placeholder='Nhập lại mật khẩu'
               name='confirmPassword'
               required
-              placeholder='Nhập lại mật khẩu'
-              value={formData.confirmPassword}
-              handleOnChange={handleOnChangeInput}
-              error={formErrors.confirmPassword}
-              eye={true}
+              password
+              formik={formik}
             />
 
-            <div className='text-center' onClick={handleSubmit}>
-              <Button type='button' primary className='btn-registor'>
+            <div className='text-center' onClick={formik.handleSubmit}>
+              <Button primary type='submit' className='btn-registor'>
                 Tạo tài khoản
               </Button>
             </div>

@@ -1,87 +1,48 @@
-import { useState } from 'react';
+import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import Box from '~/components/Admin/Box/Box';
 import ButtonAction from '~/components/Admin/ButtonAction/ButtonAction';
 import HeadingBreadCrumb from '~/components/Admin/HeadingBreadCrumb/HeadingBreadCrumb';
-import FormGroup from '~/components/FormGroup/FormGroup';
-import { setLoading } from '~/redux/slides/LoadingSlider';
-import { updateToast } from '~/redux/slides/ToastSlide';
+import Input from '~/components/FormGroup/Input/Input';
 import ShipperService from '~/services/ShipperService';
-import { validatedEmpty, validatedPhoneNumber } from '~/utils';
+import { shipperSchema } from '~/validate/YupSchema';
 
 const AddShipper = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    phone: '',
-  });
-  const [formErrors, setFormErrors] = useState({});
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
-
-  const handleOnChangeInput = (e) => {
-    let error;
-    if (e.target.name === 'name') error = validatedEmpty(e.target.value);
-    else if (e.target.name === 'phone') error = validatedPhoneNumber(e.target.value);
-    setFormErrors({ ...formErrors, [e.target.name]: error });
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleValidate = () => {
-    const errorName = validatedEmpty(formData.name);
-    const errorPhone = validatedPhoneNumber(formData.phone);
-    setFormErrors({
-      name: errorName ?? '',
-      phone: errorPhone ?? '',
-    });
-    if (errorName || errorPhone) return false;
-    return true;
-  };
-
-  const handleSave = async () => {
-    const validated = handleValidate();
-    if (validated) {
-      dispatch(setLoading(true));
-      const payload = {
-        name: formData.name,
-        phone: formData.phone,
-      };
-      const response = await ShipperService.createShipper(payload, user.accessToken);
-      dispatch(setLoading(false));
-      dispatch(
-        updateToast({
-          status: 'ok',
-          message: response.message,
-        })
-      );
-    }
-  };
+  const formik = useFormik({
+    initialValues: {
+      name: '',
+      phone: '',
+    },
+    validationSchema: shipperSchema,
+    onSubmit: async (payload, actions) => {
+      await ShipperService.createShipper(payload, user.accessToken, dispatch);
+      actions.resetForm();
+    },
+  });
 
   return (
     <div>
       <HeadingBreadCrumb>Bổ sung người giao hàng</HeadingBreadCrumb>
 
       <Box>
-        <FormGroup
+        <Input
           labelName='Tên người giao hàng'
           placeholder='Nhập tên người giao hàng'
           required
-          type='input'
-          autoFocus
           name='name'
-          handleOnChange={handleOnChangeInput}
-          error={formErrors.name}
-        ></FormGroup>
-        <FormGroup
+          formik={formik}
+        />
+        <Input
           labelName='Số điện thoại'
           placeholder='Nhập số điện thoại người giao hàng'
           required
-          type='input'
           name='phone'
-          handleOnChange={handleOnChangeInput}
-          error={formErrors.phone}
-        ></FormGroup>
+          formik={formik}
+        />
 
-        <ButtonAction to='/admin/shippers' handleSave={handleSave} />
+        <ButtonAction to='/admin/shippers' handleSave={formik.handleSubmit} />
       </Box>
     </div>
   );

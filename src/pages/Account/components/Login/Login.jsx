@@ -1,95 +1,58 @@
+import { useFormik } from 'formik';
 import { jwtDecode } from 'jwt-decode';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
+import * as Yup from 'yup';
 import Button from '~/components/Button/Button';
-import FormGroup from '~/components/FormGroup/FormGroup';
+import Input from '~/components/FormGroup/Input/Input';
 import SectionBreadCrumb from '~/components/SectionBreadCrumb/SectionBreadCrumb';
-import { setLoading } from '~/redux/slides/LoadingSlider';
-import { updateToast } from '~/redux/slides/ToastSlide';
+import { regex, validate } from '~/constant';
 import { updateUser } from '~/redux/slides/UserSlide';
 import UserService from '~/services/UserService';
-import { validatedEmail, validatedPassword } from '~/utils';
 import SocialLogin from '../SocialLogin/SocialLogin';
 import './Login.scss';
 
+const schema = Yup.object().shape({
+  email: Yup.string().required(validate.NOT_EMPTY).email(validate.INVALID_EMAIL),
+  password: Yup.string()
+    .required(validate.NOT_EMPTY)
+    .matches(regex.password, validate.INVALID_PASSWORD),
+});
+
 const Login = () => {
-  const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-  });
-  const [formErrors, setFormErrors] = useState({});
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      password: '',
+    },
+    validationSchema: schema,
+    onSubmit: async (payload) => {
+      const res = await UserService.loginUser(payload, dispatch);
+      const data = res.data;
+      navigate('/');
+      localStorage.setItem('accessToken', JSON.stringify(data?.accessToken));
+      localStorage.setItem('refreshToken', JSON.stringify(data?.refreshToken));
+      if (data?.accessToken) {
+        const decoded = jwtDecode(data?.accessToken);
+        if (decoded?.id) {
+          handleGetDetailsUser(decoded?.id, data?.accessToken);
+        }
+      }
+    },
+  });
 
   useEffect(() => {
     document.title = 'Đăng nhập tài khoản | Kicap';
   }, []);
 
-  const handleOnChangeInput = (e) => {
-    let error;
-    if (e.target.name === 'email') error = validatedEmail(e.target.value);
-    else if (e.target.name === 'password') error = validatedPassword(e.target.value);
-    setFormErrors({ ...formErrors, [e.target.name]: error });
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleValidate = () => {
-    const errorEmail = validatedEmail(formData.email);
-    const errorPassword = validatedPassword(formData.password);
-    setFormErrors({
-      email: errorEmail ?? '',
-      password: errorPassword ?? '',
-    });
-    if (errorEmail || errorPassword) return false;
-    return true;
-  };
-
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    const validated = handleValidate();
-    if (validated) {
-      try {
-        dispatch(setLoading(true));
-        const payload = {
-          email: formData.email,
-          password: formData.password,
-        };
-        const res = await UserService.loginUser(payload);
-        dispatch(setLoading(false));
-        dispatch(
-          updateToast({
-            status: 'ok',
-            message: res.message,
-          })
-        );
-        navigate('/');
-        const data = res.data;
-        localStorage.setItem('accessToken', JSON.stringify(data?.accessToken));
-        localStorage.setItem('refreshToken', JSON.stringify(data?.refreshToken));
-        if (data?.accessToken) {
-          const decoded = jwtDecode(data?.accessToken);
-          if (decoded?.id) {
-            handleGetDetailsUser(decoded?.id, data?.accessToken);
-          }
-        }
-      } catch (error) {
-        const message = error.response.data.message;
-        dispatch(
-          updateToast({
-            status: 'error',
-            message,
-          })
-        );
-        dispatch(setLoading(false));
-      }
-    }
-  };
-
   const handleGetDetailsUser = async (id, token) => {
     const storage = localStorage.getItem('refreshToken');
     const refreshToken = JSON.parse(storage);
-    const res = await UserService.getDetailsUser(id, token);
+    const res = await UserService.getDetailsUser(id, token, dispatch);
     dispatch(updateUser({ ...res?.data, accessToken: token, refreshToken }));
   };
 
@@ -102,35 +65,24 @@ const Login = () => {
 
           <SocialLogin />
 
-          <form action='' method='post'>
-            <FormGroup
-              type='input'
-              labelFor='login-email'
+          <form onSubmit={formik.handleSubmit}>
+            <Input
               labelName='Email'
+              placeholder='Nhập địa chỉ email'
               name='email'
               required
-              placeholder='Nhập địa chỉ email'
-              autoFocus
-              value={formData.email}
-              handleOnChange={handleOnChangeInput}
-              error={formErrors.email}
+              formik={formik}
             />
-            <FormGroup
-              type='input'
-              typeInput='password'
-              labelFor='login-password'
+            <Input
               labelName='Mật khẩu'
+              placeholder='Nhập mật khẩu'
               name='password'
               required
-              eye
               password
-              placeholder='Nhập mật khẩu'
-              value={formData.password}
-              handleOnChange={handleOnChangeInput}
-              error={formErrors.password}
+              formik={formik}
             />
-            <div className='text-center' onClick={handleLogin}>
-              <Button type='button' primary className='btn-login'>
+            <div className='text-center'>
+              <Button type='submit' primary className='btn-login'>
                 Đăng nhập
               </Button>
             </div>

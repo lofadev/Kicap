@@ -52,7 +52,7 @@ const Contact = () => {
               placeholder='Nội dung liên hệ'
               labelFor='content'
             />
-            <Button type='button' primary className='btn-send-message'>
+            <Button primary className='btn-send-message'>
               Gửi tin nhắn
             </Button>
           </form>

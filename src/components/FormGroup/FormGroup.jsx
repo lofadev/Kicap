@@ -16,6 +16,7 @@ const FormGroup = ({
   error = false,
   eye,
   children,
+  touched,
 }) => {
   const Element = type == 'text' ? 'textarea' : 'input';
   const [isShow, setIsShow] = useState(password);
@@ -47,7 +48,7 @@ const FormGroup = ({
           {!isShow && <FaEye />}
         </div>
       )}
-      {error && <span className='form-error'>{error}</span>}
+      {touched && error && <span className='form-error'>{error}</span>}
     </div>
   );
 };

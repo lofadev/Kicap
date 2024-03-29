@@ -1,39 +1,34 @@
-import { axiosInstance, axiosJWT } from '~/api/apiConfig';
+import { axiosInstance, axiosJWT, handleAPICall } from '~/api/apiConfig';
 
-const registerUser = async (data) => {
-  const res = await axiosInstance.post('/user/sign-up', data);
-  return res.data;
-};
+const registerUser = (data, dispatch) =>
+  handleAPICall(axiosInstance.post('/user/sign-up', data), dispatch, true);
 
-const loginUser = async (data) => {
-  const res = await axiosInstance.post('/user/sign-in', data);
-  return res.data;
-};
+const loginUser = (data, dispatch) =>
+  handleAPICall(axiosInstance.post('/user/sign-in', data), dispatch, true);
 
-export const logoutUser = async () => {
-  const res = await axiosInstance.post('/user/sign-out');
-  return res.data;
-};
+const logoutUser = (dispatch) => handleAPICall(axiosInstance.post('/user/sign-out'), dispatch);
 
-const getDetailsUser = async (id, token) => {
-  const res = await axiosJWT.get(`/user/${id}`, {
-    headers: { Authorization: 'Bearer ' + token },
-  });
-  return res.data;
-};
-
-const refreshToken = async (refreshToken) => {
-  const res = await axiosInstance.post(
-    '/user/refresh-token',
-    {},
-    {
-      headers: {
-        Authorization: `Bearer ${refreshToken}`,
-      },
-    }
+const getDetailsUser = (id, token, dispatch) =>
+  handleAPICall(
+    axiosJWT.get(`/user/${id}`, {
+      headers: { Authorization: 'Bearer ' + token },
+    }),
+    dispatch
   );
-  return res.data;
-};
+
+const refreshToken = (refreshToken, dispatch) =>
+  handleAPICall(
+    axiosInstance.post(
+      '/user/refresh-token',
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${refreshToken}`,
+        },
+      }
+    ),
+    dispatch
+  );
 
 const UserService = {
   registerUser,

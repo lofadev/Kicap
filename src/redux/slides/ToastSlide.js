@@ -4,19 +4,16 @@ export const toastSlice = createSlice({
   name: 'toast',
   initialState: {
     status: '',
-    title: '',
     message: '',
   },
   reducers: {
     updateToast: (state, action) => {
-      const { status, title, message } = action.payload;
+      const { status, message } = action.payload;
       state.status = status ? status : state.status;
-      state.title = title ? title : state.title;
       state.message = message ? message : state.message;
     },
     resetToast: (state) => {
       state.status = '';
-      state.title = '';
       state.message = '';
     },
   },

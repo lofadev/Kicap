@@ -53,7 +53,7 @@ const ProductCard = ({ product }) => {
           </div>
 
           <div className='product_card-actions'>
-            <Button secondary type='button' className='product_card-button'>
+            <Button secondary className='product_card-button'>
               {product.status[0] === null
                 ? 'Tùy chọn'
                 : product.status[0] === 0
