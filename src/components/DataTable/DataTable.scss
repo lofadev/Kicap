@@ -1,12 +1,13 @@
 .MuiPaper-root {
   th,
   td {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     padding: 10px;
   }
 
   .MuiTableCell-root {
     font-family: 'SVN-Gotham' !important;
+    border: 1px solid #ccc;
   }
 
   .btn-actions {

@@ -111,7 +111,7 @@ const Login = () => {
               required
               placeholder='Nhập địa chỉ email'
               autoFocus
-              valueInput={formData.email}
+              value={formData.email}
               handleOnChange={handleOnChangeInput}
               error={formErrors.email}
             />
@@ -125,7 +125,7 @@ const Login = () => {
               eye
               password
               placeholder='Nhập mật khẩu'
-              valueInput={formData.password}
+              value={formData.password}
               handleOnChange={handleOnChangeInput}
               error={formErrors.password}
             />

@@ -11,7 +11,7 @@ const FormGroup = ({
   placeholder = labelName,
   name = '',
   autoFocus = false,
-  valueInput,
+  value,
   handleOnChange,
   error = false,
   eye,
@@ -35,7 +35,7 @@ const FormGroup = ({
           placeholder={placeholder}
           className={`form-control ${error ? 'border-red' : ''}`}
           autoFocus={autoFocus}
-          value={valueInput}
+          value={value}
           onChange={handleOnChange}
           autoComplete='off'
         />

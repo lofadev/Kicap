@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import Box from '~/components/Admin/Box/Box';
 import ButtonAction from '~/components/Admin/ButtonAction/ButtonAction';
 import HeadingBreadCrumb from '~/components/Admin/HeadingBreadCrumb/HeadingBreadCrumb';
@@ -7,14 +8,27 @@ import FormGroup from '~/components/FormGroup/FormGroup';
 import CategoryService from '~/services/CategoryService';
 import { validatedEmpty } from '~/utils';
 
-const AddCategory = () => {
+const UpdateCategory = () => {
   const [formData, setFormData] = useState({
     categoryName: '',
     description: '',
   });
   const [formErrors, setFormErrors] = useState({});
-  const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const { id } = useParams();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await CategoryService.getCategory(id, user.accessToken, dispatch);
+      setFormData({
+        categoryName: res.data.categoryName,
+        description: res.data.description,
+      });
+    };
+    fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleOnChangeInput = (e) => {
     let error;
@@ -38,17 +52,16 @@ const AddCategory = () => {
     const validated = handleValidate();
     if (validated) {
       const payload = {
-        categoryName: formData.categoryName,
-        description: formData.description,
+        name: formData.name,
+        phone: formData.phone,
       };
-      await CategoryService.createCategory(payload, user.accessToken, dispatch);
-      setFormData({ categoryName: '', description: '' });
+      await CategoryService.updateCategory(id, payload, user.accessToken, dispatch);
     }
   };
 
   return (
     <div>
-      <HeadingBreadCrumb>Bổ sung danh mục sản phẩm</HeadingBreadCrumb>
+      <HeadingBreadCrumb>Cập nhật thông tin danh mục sản phẩm</HeadingBreadCrumb>
 
       <Box>
         <FormGroup
@@ -78,4 +91,4 @@ const AddCategory = () => {
   );
 };
 
-export default AddCategory;
+export default UpdateCategory;

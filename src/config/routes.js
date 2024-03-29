@@ -21,6 +21,7 @@ const routes = {
     },
     category: {
       add: '/admin/categorys/add',
+      update: '/admin/categorys/update/:id',
       view: '/admin/categorys',
     },
     type: {

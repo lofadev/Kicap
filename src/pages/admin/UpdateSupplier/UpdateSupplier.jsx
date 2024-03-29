@@ -154,7 +154,7 @@ const UpdateSupplier = () => {
           type='input'
           autoFocus
           name='name'
-          valueInput={formData.name}
+          value={formData.name}
           handleOnChange={handleOnChangeInput}
           error={formErrors.name}
         ></FormGroup>
@@ -164,7 +164,7 @@ const UpdateSupplier = () => {
           required
           type='input'
           name='contactName'
-          valueInput={formData.contactName}
+          value={formData.contactName}
           handleOnChange={handleOnChangeInput}
           error={formErrors.contactName}
         ></FormGroup>
@@ -174,7 +174,7 @@ const UpdateSupplier = () => {
           required
           type='input'
           name='phone'
-          valueInput={formData.phone}
+          value={formData.phone}
           handleOnChange={handleOnChangeInput}
           error={formErrors.phone}
         ></FormGroup>
@@ -184,7 +184,7 @@ const UpdateSupplier = () => {
           required
           type='input'
           name='email'
-          valueInput={formData.email}
+          value={formData.email}
           handleOnChange={handleOnChangeInput}
           error={formErrors.email}
         ></FormGroup>
@@ -194,7 +194,7 @@ const UpdateSupplier = () => {
           required
           type='input'
           name='address'
-          valueInput={formData.address}
+          value={formData.address}
           handleOnChange={handleOnChangeInput}
           error={formErrors.address}
         ></FormGroup>

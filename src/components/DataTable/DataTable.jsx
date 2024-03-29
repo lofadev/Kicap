@@ -5,17 +5,17 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
+import PropTypes from 'prop-types';
 import { FaEdit, FaTimes } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import './DataTable.scss';
-import PropTypes from 'prop-types';
 
 export default function DataTable({ head, rows, keys, handleOpenDelete }) {
   const resKeys = keys?.filter((key) => key !== 'id');
 
   return (
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650, fontSize: '1.6rem' }} aria-label='simple table'>
+      <Table sx={{ minWidth: 650 }} aria-label='simple table'>
         <TableHead>
           <TableRow sx={{ backgroundColor: 'var(--blue)', color: 'var(--white)' }}>
             {head?.map((item) => (
@@ -28,7 +28,7 @@ export default function DataTable({ head, rows, keys, handleOpenDelete }) {
         </TableHead>
         <TableBody>
           {rows?.map((row) => (
-            <TableRow key={row.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+            <TableRow key={row.id}>
               {resKeys.map((key, index) => (
                 <TableCell key={index}>{row[key]}</TableCell>
               ))}
@@ -46,7 +46,7 @@ export default function DataTable({ head, rows, keys, handleOpenDelete }) {
             </TableRow>
           ))}
           {!rows.length && (
-            <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+            <TableRow>
               <TableCell sx={{ textAlign: 'center' }} colSpan={head.length + 1}>
                 Không tìm kết kết quả phù hợp hoặc dữ liệu không tồn tại.
               </TableCell>
