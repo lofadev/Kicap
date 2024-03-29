@@ -2,7 +2,6 @@ import { jwtDecode } from 'jwt-decode';
 import { Fragment, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
-import './App.scss';
 import { axiosJWT } from './api/apiConfig';
 import DefaultLayout from './layouts/DefaultLayout';
 import NotFound from './pages/NotFound/NotFound';
@@ -10,6 +9,7 @@ import { resetToast } from './redux/slides/ToastSlide';
 import { resetUser, updateUser } from './redux/slides/UserSlide';
 import { privateRoutes, publicRoutes } from './routes';
 import UserService from './services/UserService';
+import './App.scss';
 
 function App() {
   const dispatch = useDispatch();
@@ -47,7 +47,7 @@ function App() {
       const decodedRefreshToken = jwtDecode(refreshToken);
       if (decodedAccessToken?.exp < currentTime.getTime() / 1000) {
         if (decodedRefreshToken?.exp > currentTime.getTime() / 1000) {
-          const data = await UserService.refreshToken(refreshToken);
+          const data = await UserService.refreshToken(refreshToken, dispatch);
           config.headers['Authorization'] = `Bearer ${data?.accessToken}`;
           localStorage.setItem('accessToken', JSON.stringify(data?.accessToken));
           dispatch(updateUser({ ...user, accessToken: data?.accessToken }));
@@ -61,25 +61,10 @@ function App() {
     (err) => Promise.reject(err)
   );
 
-  // UserService.axiosInstance.interceptors.response.use(
-  //   (response) => {
-  //     return response;
-  //   },
-  //   (error) => {
-  //     if (!error.response) {
-  //       dispatch(setLoading(false));
-  //       dispatch(
-  //         updateToast({ status: 'failure', title: 'Thất bại', message: 'Lỗi kết nối mạng!' })
-  //       );
-  //     }
-  //     return Promise.reject(error);
-  //   }
-  // );
-
   const handleGetDetailsUser = async (id, token) => {
     let storageRefreshToken = localStorage.getItem('refreshToken');
     const refreshToken = JSON.parse(storageRefreshToken);
-    const res = await UserService.getDetailsUser(id, token);
+    const res = await UserService.getDetailsUser(id, token, dispatch);
     dispatch(updateUser({ ...res?.data, refreshToken }));
   };
 

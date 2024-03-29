@@ -27,7 +27,7 @@ const Cart = () => {
             </div>
           )}
 
-          <Button type='a' secondary className='btn-continue' to={'/collections/all'}>
+          <Button secondary className='btn-continue' to={'/collections/all'}>
             tiếp tục mua sắm
           </Button>
         </div>

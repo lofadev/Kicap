@@ -1,40 +1,48 @@
-import { axiosJWT } from '~/api/apiConfig';
+import { axiosJWT, handleAPICall } from '~/api/apiConfig';
 
-const createShipper = async (data, token) => {
-  const res = await axiosJWT.post('/shipper/create', data, {
-    headers: { Authorization: `Bearer ${token}` },
-  });
-  return res.data;
-};
+const createShipper = (data, token, dispatch) =>
+  handleAPICall(
+    axiosJWT.post('/shipper/create', data, {
+      headers: { Authorization: `Bearer ${token}` },
+    }),
+    dispatch,
+    true
+  );
 
-const updateShipper = async (id, data, token) => {
-  const res = await axiosJWT.put(`/shipper/update/${id}`, data, {
-    headers: { Authorization: `Bearer ${token}` },
-  });
-  return res.data;
-};
+const updateShipper = (id, data, token, dispatch) =>
+  handleAPICall(
+    axiosJWT.put(`/shipper/update/${id}`, data, {
+      headers: { Authorization: `Bearer ${token}` },
+    }),
+    dispatch,
+    true
+  );
 
-const getShippers = async (payload, token) => {
-  const res = await axiosJWT.get('/shipper/get-all', {
-    params: payload,
-    headers: { Authorization: `Bearer ${token}` },
-  });
-  return res.data;
-};
+const getShippers = (payload, token, dispatch) =>
+  handleAPICall(
+    axiosJWT.get('/shipper/get-all', {
+      params: payload,
+      headers: { Authorization: `Bearer ${token}` },
+    }),
+    dispatch
+  );
 
-const getShipper = async (id, token) => {
-  const res = await axiosJWT.get(`/shipper/${id}`, {
-    headers: { Authorization: `Bearer ${token}` },
-  });
-  return res.data;
-};
+const getShipper = (id, token, dispatch) =>
+  handleAPICall(
+    axiosJWT.get(`/shipper/${id}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    }),
+    dispatch
+  );
 
-const deleteShipper = async (id, token) => {
-  const res = await axiosJWT.delete(`/shipper/delete/${id}`, {
-    headers: { Authorization: `Bearer ${token}` },
-  });
-  return res.data;
-};
+const deleteShipper = (id, token, dispatch) =>
+  handleAPICall(
+    axiosJWT.delete(`/shipper/delete/${id}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    }),
+    dispatch,
+    true
+  );
 
 const ShipperService = {
   createShipper,

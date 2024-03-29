@@ -18,7 +18,6 @@ const ShowCategory = () => {
   const [response, setResponse] = useState({});
   const [rows, setRows] = useState([]);
   const [keys, setKeys] = useState([]);
-  const [head] = useState(['Tên danh mục sản phẩm', 'Mô tả']);
   const [open, setOpen] = useState(false);
   const [id, setId] = useState('');
   const user = useSelector((state) => state.user);
@@ -30,16 +29,14 @@ const ShowCategory = () => {
 
   const fetchData = async (payload) => {
     const res = await CategoryService.getCategorys(payload, user.accessToken, dispatch);
-    if (res) {
-      setResponse(res);
-      const rows = res.data.map((e) => {
-        return {
-          id: e._id,
-          categoryName: e.categoryName,
-          description: e.description,
-        };
-      });
+    if (res.status === 'OK') {
+      const rows = res.data.map((category) => ({
+        id: category._id,
+        categoryName: category.categoryName,
+        description: category.description,
+      }));
       setRows(rows);
+      setResponse(res);
       if (rows.length) setKeys(Object.keys(rows[0]));
     }
   };
@@ -57,7 +54,7 @@ const ShowCategory = () => {
   const handleDelete = async () => {
     setOpen(false);
     const res = await CategoryService.deleteCategory(id, user.accessToken, dispatch);
-    if (res) fetchData({ page, search: searchDebounce });
+    if (res.status === 'OK') fetchData({ page, search: searchDebounce });
   };
 
   return (
@@ -71,7 +68,7 @@ const ShowCategory = () => {
             handleOnChange={handleOnChangeSearch}
             disabled={!searchDebounce}
           />
-          <Button secondary type='a' className='btn-add' to='/admin/categorys/add'>
+          <Button secondary className='btn-add' to='/admin/categorys/add'>
             Bổ sung
           </Button>
         </div>
@@ -83,7 +80,12 @@ const ShowCategory = () => {
           pageSize={response.limit ?? 0}
         />
 
-        <DataTable rows={rows} head={head} keys={keys} handleOpenDelete={handleOpenDelete} />
+        <DataTable
+          rows={rows}
+          head={['Tên danh mục sản phẩm', 'Mô tả']}
+          keys={keys}
+          handleOpenDelete={handleOpenDelete}
+        />
         <Pagination
           pageCount={response.totalPage ?? 0}
           onClickPageItem={(value) => setPage(value.selected + 1)}

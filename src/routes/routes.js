@@ -83,14 +83,14 @@ const publicRoutes = [
     path: config.routes.notfound,
     component: NotFound,
   },
-];
-
-const privateRoutes = [
   {
     path: config.routes.admin.login,
     component: Login,
     layout: null,
   },
+];
+
+const privateRoutes = [
   {
     path: config.routes.admin.dashboard,
     component: Dashboard,

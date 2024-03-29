@@ -27,7 +27,7 @@ const SectionNews = ({ news, title, strongTitle, max = 4, navigate }) => {
         </div>
 
         <div style={{ textAlign: 'center' }}>
-          <Button type='a' primary className='btn-more' to={navigate}>
+          <Button primary className='btn-more' to={navigate}>
             {txtButton}
           </Button>
         </div>

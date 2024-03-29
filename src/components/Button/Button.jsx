@@ -1,27 +1,33 @@
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import './Button.scss';
+import { useNavigate } from 'react-router-dom';
 
-const Button = ({ type, children, primary = false, secondary = false, className = '', to }) => {
+const Button = ({
+  type,
+  children,
+  primary = false,
+  secondary = false,
+  className = '',
+  disabled,
+  to,
+}) => {
+  const navigator = useNavigate();
   const commonProps = {
     className: `${className} ${primary ? 'btn-primary' : ''} ${secondary ? 'btn-secondary' : ''}`,
     children,
+    type,
+    disabled,
   };
 
-  if (type === 'a') {
-    return <Link to={to} {...commonProps}></Link>;
-  } else if (type === 'button') {
-    return <button {...commonProps}></button>;
-  } else return null;
+  return <button {...commonProps} onClick={() => navigator(to)}></button>;
 };
 
 Button.propTypes = {
-  type: PropTypes.string.isRequired,
+  type: PropTypes.string,
   children: PropTypes.node.isRequired,
   primary: PropTypes.bool,
   secondary: PropTypes.bool,
   className: PropTypes.string,
-  to: PropTypes.string,
 };
 
 export default Button;

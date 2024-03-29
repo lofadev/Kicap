@@ -4,7 +4,13 @@ import './FormSearch.scss';
 const FormSearch = ({ placeholder, value, handleOnChange, handleSearch, disabled }) => {
   return (
     <form className='admin-form-search'>
-      <input type='text' placeholder={placeholder} value={value} onChange={handleOnChange} />
+      <input
+        type='text'
+        placeholder={placeholder}
+        value={value}
+        onChange={handleOnChange}
+        name='search'
+      />
       <button onClick={handleSearch} disabled={disabled}>
         <FaSearch /> Tìm kiếm
       </button>

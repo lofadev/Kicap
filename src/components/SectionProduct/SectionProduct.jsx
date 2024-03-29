@@ -51,7 +51,7 @@ const SectionProduct = ({ products, title, strongTitle, max, navigate }) => {
         </div>
 
         <div style={{ textAlign: 'center' }}>
-          <Button type='a' primary className='btn-more' to={navigate}>
+          <Button primary className='btn-more' to={navigate}>
             {txtButton}
           </Button>
         </div>

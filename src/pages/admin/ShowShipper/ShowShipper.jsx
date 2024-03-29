@@ -9,8 +9,6 @@ import DataTable from '~/components/DataTable/DataTable';
 import ModalDialog from '~/components/ModalDialog/ModalDialog';
 import Pagination from '~/components/Pagination/Pagination';
 import { useDebounce } from '~/hooks/useDebounce';
-import { setLoading } from '~/redux/slides/LoadingSlider';
-import { updateToast } from '~/redux/slides/ToastSlide';
 import ShipperService from '~/services/ShipperService';
 import './ShowShipper.scss';
 
@@ -21,7 +19,6 @@ const ShowShipper = () => {
   const [response, setResponse] = useState({});
   const [rows, setRows] = useState([]);
   const [keys, setKeys] = useState([]);
-  const [head] = useState(['Tên người giao hàng', 'Số điện thoại']);
   const [open, setOpen] = useState(false);
   const [id, setId] = useState('');
   const user = useSelector((state) => state.user);
@@ -32,34 +29,21 @@ const ShowShipper = () => {
   };
 
   const fetchData = async (payload) => {
-    try {
-      dispatch(setLoading(true));
-      const res = await ShipperService.getShippers(payload, user.accessToken);
-      if (res) {
-        dispatch(setLoading(false));
-        setResponse(res);
-        const rows = res.data.map((e) => {
-          return {
-            id: e._id,
-            name: e.name,
-            phone: e.phone,
-          };
-        });
-        setRows(rows);
-
-        if (rows.length) {
-          const keys = Object.keys(rows[0]);
-          setKeys(keys);
-        }
+    const res = await ShipperService.getShippers(payload, user.accessToken, dispatch);
+    if (res.status === 'OK') {
+      setResponse(res);
+      const rows = res.data.map((e) => {
+        return {
+          id: e._id,
+          name: e.name,
+          phone: e.phone,
+        };
+      });
+      setRows(rows);
+      if (rows.length) {
+        const keys = Object.keys(rows[0]);
+        setKeys(keys);
       }
-    } catch (error) {
-      dispatch(setLoading(false));
-      dispatch(
-        updateToast({
-          status: 'error',
-          message: error.response.data.message,
-        })
-      );
     }
   };
 
@@ -74,22 +58,9 @@ const ShowShipper = () => {
   };
 
   const handleDeleteShipper = async () => {
-    try {
-      setOpen(false);
-      dispatch(setLoading(true));
-      const res = await ShipperService.deleteShipper(id, user.accessToken);
-      dispatch(setLoading(false));
-      dispatch(
-        updateToast({
-          status: 'ok',
-          message: res.message,
-        })
-      );
-      const newRows = rows.filter((row) => row.id !== res.data._id);
-      setRows(newRows);
-    } catch (error) {
-      dispatch(setLoading(false));
-    }
+    setOpen(false);
+    const res = await ShipperService.deleteShipper(id, user.accessToken);
+    if (res.status === 'OK') fetchData({ page, search: searchDebounce });
   };
 
   return (
@@ -102,8 +73,9 @@ const ShowShipper = () => {
             value={search}
             handleOnChange={handleOnChangeSearch}
             disabled={!searchDebounce}
+            name='search'
           />
-          <Button secondary type='a' className='btn-add' to='/admin/shippers/add'>
+          <Button secondary className='btn-add' to='/admin/shippers/add'>
             Bổ sung
           </Button>
         </div>
@@ -115,7 +87,12 @@ const ShowShipper = () => {
           pageSize={response.limit ?? 0}
         />
 
-        <DataTable rows={rows} head={head} keys={keys} handleOpenDelete={handleOpenDelete} />
+        <DataTable
+          rows={rows}
+          head={['Tên người giao hàng', 'Số điện thoại']}
+          keys={keys}
+          handleOpenDelete={handleOpenDelete}
+        />
         <Pagination
           pageCount={response.totalPage ?? 0}
           onClickPageItem={(value) => setPage(value.selected + 1)}
