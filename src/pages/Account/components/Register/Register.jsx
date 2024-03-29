@@ -119,7 +119,7 @@ const Register = () => {
               required
               placeholder='Nhập họ tên'
               autoFocus
-              valueInput={formData.name}
+              value={formData.name}
               handleOnChange={handleOnChangeInput}
               error={formErrors.name}
             />
@@ -130,7 +130,7 @@ const Register = () => {
               name='phone'
               required
               placeholder='Nhập số điện thoại'
-              valueInput={formData.phone}
+              value={formData.phone}
               handleOnChange={handleOnChangeInput}
               error={formErrors.phone}
             />
@@ -141,7 +141,7 @@ const Register = () => {
               name='email'
               required
               placeholder='Nhập địa chỉ email'
-              valueInput={formData.email}
+              value={formData.email}
               handleOnChange={handleOnChangeInput}
               error={formErrors.email}
             />
@@ -153,7 +153,7 @@ const Register = () => {
               name='password'
               required
               placeholder='Nhập mật khẩu'
-              valueInput={formData.password}
+              value={formData.password}
               handleOnChange={handleOnChangeInput}
               error={formErrors.password}
               eye={true}
@@ -166,7 +166,7 @@ const Register = () => {
               name='confirmPassword'
               required
               placeholder='Nhập lại mật khẩu'
-              valueInput={formData.confirmPassword}
+              value={formData.confirmPassword}
               handleOnChange={handleOnChangeInput}
               error={formErrors.confirmPassword}
               eye={true}

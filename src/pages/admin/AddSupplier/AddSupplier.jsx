@@ -82,7 +82,6 @@ const AddSupplier = () => {
         );
       } catch (error) {
         dispatch(setLoading(false));
-        console.log(error);
         dispatch(
           updateToast({
             status: 'error',

@@ -30,6 +30,7 @@ import ShowShipper from '~/pages/admin/ShowShipper/ShowShipper';
 import ShowSlideBanner from '~/pages/admin/ShowSlideBanner/ShowSlideBanner';
 import ShowSupplier from '~/pages/admin/ShowSupplier/ShowSupplier';
 import ShowType from '~/pages/admin/ShowType/ShowType';
+import UpdateCategory from '~/pages/admin/UpdateCategory/UpdateCategory';
 import UpdateShipper from '~/pages/admin/UpdateShipper/UpdateShipper';
 import UpdateSupplier from '~/pages/admin/UpdateSupplier/UpdateSupplier';
 
@@ -108,6 +109,11 @@ const privateRoutes = [
   {
     path: config.routes.admin.category.add,
     component: AddCategory,
+    layout: AdminLayout,
+  },
+  {
+    path: config.routes.admin.category.update,
+    component: UpdateCategory,
     layout: AdminLayout,
   },
   {

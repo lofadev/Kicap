@@ -94,7 +94,7 @@ const UpdateShipper = () => {
           type='input'
           autoFocus
           name='name'
-          valueInput={formData.name}
+          value={formData.name}
           handleOnChange={handleOnChangeInput}
           error={formErrors.name}
         ></FormGroup>
@@ -104,7 +104,7 @@ const UpdateShipper = () => {
           required
           type='input'
           name='phone'
-          valueInput={formData.phone}
+          value={formData.phone}
           handleOnChange={handleOnChangeInput}
           error={formErrors.phone}
         ></FormGroup>

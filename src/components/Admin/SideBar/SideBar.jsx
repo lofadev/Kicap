@@ -45,21 +45,21 @@ const menu = [
       },
     ],
   },
-  {
-    name: 'Quản lý thể loại',
-    to: null,
-    icon: MdCategory,
-    children: [
-      {
-        name: 'Thêm thể loại',
-        to: '/admin/types/add',
-      },
-      {
-        name: 'Xem thể loại',
-        to: '/admin/types',
-      },
-    ],
-  },
+  // {
+  //   name: 'Quản lý thể loại',
+  //   to: null,
+  //   icon: MdCategory,
+  //   children: [
+  //     {
+  //       name: 'Thêm thể loại',
+  //       to: '/admin/types/add',
+  //     },
+  //     {
+  //       name: 'Xem thể loại',
+  //       to: '/admin/types',
+  //     },
+  //   ],
+  // },
   {
     name: 'Quản lý slides banner',
     to: null,
