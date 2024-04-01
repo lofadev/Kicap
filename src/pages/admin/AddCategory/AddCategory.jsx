@@ -28,24 +28,26 @@ const AddCategory = () => {
     <div>
       <HeadingBreadCrumb>Bổ sung danh mục sản phẩm</HeadingBreadCrumb>
 
-      <Box>
-        <Input
-          labelName='Tên danh mục sản phẩm'
-          placeholder='Nhập tên danh mục sản phẩm'
-          required
-          name='categoryName'
-          formik={formik}
-        />
-        <Input
-          labelName='Mô tả'
-          placeholder='Nhập mô tả danh mục sản phẩm'
-          type='text'
-          name='description'
-          formik={formik}
-          textarea
-        />
+      <Box title='Thông tin danh mục sản phẩm'>
+        <form>
+          <Input
+            labelName='Tên danh mục sản phẩm'
+            placeholder='Nhập tên danh mục sản phẩm'
+            required
+            name='categoryName'
+            formik={formik}
+          />
+          <Input
+            labelName='Mô tả'
+            placeholder='Nhập mô tả danh mục sản phẩm'
+            type='text'
+            name='description'
+            formik={formik}
+            textarea
+          />
 
-        <ButtonAction to='/admin/categorys' handleSave={formik.handleSubmit} />
+          <ButtonAction to='/admin/categorys' handleSave={formik.handleSubmit} />
+        </form>
       </Box>
     </div>
   );
