@@ -3,20 +3,5 @@
     &-content {
       background-color: #fff;
     }
-
-    &-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .btn-add {
-      height: auto;
-      padding: 10px 16px;
-      white-space: nowrap;
-      line-height: normal;
-      border-radius: 2px;
-    }
   }
 }

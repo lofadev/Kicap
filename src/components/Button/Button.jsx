@@ -3,7 +3,7 @@ import './Button.scss';
 import { useNavigate } from 'react-router-dom';
 
 const Button = ({
-  type,
+  type = 'button',
   children,
   primary = false,
   secondary = false,

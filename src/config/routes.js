@@ -50,7 +50,11 @@ const routes = {
       add: '/admin/orders/add',
       view: '/admin/orders',
     },
-    customers: 'admin/customers',
+    customers: {
+      add: 'admin/customers/add',
+      view: 'admin/customers',
+      update: 'admin/customers/update/:id',
+    },
   },
 };
 

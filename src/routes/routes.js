@@ -12,6 +12,7 @@ import Policy from '~/pages/Policy/Policy.jsx';
 import ProductCategory from '~/pages/ProductCategory/ProductCategory.jsx';
 import ProductDetails from '~/pages/ProductDetails/ProductDetails.jsx';
 import AddCategory from '~/pages/admin/AddCategory/AddCategory';
+import AddCustomer from '~/pages/admin/AddCustomer/AddCustomer';
 import AddEmployee from '~/pages/admin/AddEmployee/AddEmployee';
 import AddOrder from '~/pages/admin/AddOrder/AddOrder';
 import AddProduct from '~/pages/admin/AddProduct/AddProduct';
@@ -19,11 +20,11 @@ import AddShipper from '~/pages/admin/AddShipper/AddShipper';
 import AddSlideBanner from '~/pages/admin/AddSlideBanner/AddSlideBanner';
 import AddSupplier from '~/pages/admin/AddSupplier/AddSupplier';
 import AddType from '~/pages/admin/AddType/AddType';
-import Customer from '~/pages/admin/Customer/Customer';
 import Dashboard from '~/pages/admin/Dashboard/Dashboard';
 import Login from '~/pages/admin/Login/Login';
 import Order from '~/pages/admin/Order/Order';
 import ShowCategory from '~/pages/admin/ShowCategory/ShowCategory';
+import ShowCustomer from '~/pages/admin/ShowCustomer/ShowCustomer';
 import ShowEmployee from '~/pages/admin/ShowEmployee/ShowEmployee';
 import ShowProduct from '~/pages/admin/ShowProduct/ShowProduct';
 import ShowShipper from '~/pages/admin/ShowShipper/ShowShipper';
@@ -31,6 +32,7 @@ import ShowSlideBanner from '~/pages/admin/ShowSlideBanner/ShowSlideBanner';
 import ShowSupplier from '~/pages/admin/ShowSupplier/ShowSupplier';
 import ShowType from '~/pages/admin/ShowType/ShowType';
 import UpdateCategory from '~/pages/admin/UpdateCategory/UpdateCategory';
+import UpdateCustomer from '~/pages/admin/UpdateCustomer/UpdateCustomer';
 import UpdateShipper from '~/pages/admin/UpdateShipper/UpdateShipper';
 import UpdateSupplier from '~/pages/admin/UpdateSupplier/UpdateSupplier';
 
@@ -182,8 +184,18 @@ const privateRoutes = [
     layout: AdminLayout,
   },
   {
-    path: config.routes.admin.customers,
-    component: Customer,
+    path: config.routes.admin.customers.view,
+    component: ShowCustomer,
+    layout: AdminLayout,
+  },
+  {
+    path: config.routes.admin.customers.add,
+    component: AddCustomer,
+    layout: AdminLayout,
+  },
+  {
+    path: config.routes.admin.customers.update,
+    component: UpdateCustomer,
     layout: AdminLayout,
   },
   {

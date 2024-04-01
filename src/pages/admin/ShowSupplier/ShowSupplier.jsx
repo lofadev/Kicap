@@ -54,17 +54,17 @@ const ShowSupplier = () => {
     setId(id);
   };
 
-  const handleDeleteShipper = async () => {
+  const handleDelete = async () => {
     setOpen(false);
     const res = await SupplierService.deleteSupplier(id, user.accessToken, dispatch);
     if (res) fetchData({ page, search: searchDebounce });
   };
 
   return (
-    <div className='shippers'>
+    <div className='suppliers'>
       <HeadingBreadCrumb>Quản lý nhà cung cấp</HeadingBreadCrumb>
-      <Box>
-        <div className='shippers-head'>
+      <Box title='Danh sách nhà cung cấp'>
+        <div className='search-head'>
           <FormSearch
             placeholder='Nhập tên nhà cung cấp cần tìm kiếm'
             value={search}
@@ -104,7 +104,7 @@ const ShowSupplier = () => {
       <ModalDialog
         desc={'Bạn có muốn xoá nhà cung cấp này không ?'}
         handleClose={() => setOpen(false)}
-        handleDelete={handleDeleteShipper}
+        handleDelete={handleDelete}
         open={open}
       ></ModalDialog>
     </div>

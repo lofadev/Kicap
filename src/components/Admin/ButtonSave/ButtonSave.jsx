@@ -1,9 +1,9 @@
 import { FaSave } from 'react-icons/fa';
 import './ButtonSave.scss';
 
-const ButtonSave = ({ handleSave }) => {
+const ButtonSave = ({ handleSave, disabled }) => {
   return (
-    <button type='' className='button-save' onClick={handleSave}>
+    <button type='submit' className='button-save' onClick={handleSave} disabled={disabled}>
       <FaSave /> Lưu dữ liệu
     </button>
   );
