@@ -44,22 +44,28 @@ const UpdateShipper = () => {
       <HeadingBreadCrumb>Cập nhật thông tin người giao hàng</HeadingBreadCrumb>
 
       <Box>
-        <Input
-          labelName='Tên người giao hàng'
-          placeholder='Nhập tên người giao hàng'
-          required
-          name='name'
-          formik={formik}
-        />
-        <Input
-          labelName='Số điện thoại'
-          placeholder='Nhập số điện thoại người giao hàng'
-          required
-          name='phone'
-          formik={formik}
-        />
+        <form>
+          <Input
+            labelName='Tên người giao hàng'
+            placeholder='Nhập tên người giao hàng'
+            required
+            name='name'
+            formik={formik}
+          />
+          <Input
+            labelName='Số điện thoại'
+            placeholder='Nhập số điện thoại người giao hàng'
+            required
+            name='phone'
+            formik={formik}
+          />
 
-        <ButtonAction to='/admin/shippers' handleSave={formik.handleSubmit} />
+          <ButtonAction
+            to='/admin/shippers'
+            handleSave={formik.handleSubmit}
+            isSubmitting={formik.isSubmitting}
+          />
+        </form>
       </Box>
     </div>
   );

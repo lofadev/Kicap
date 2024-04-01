@@ -1,6 +1,6 @@
 .form {
   &-group {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     padding: 0;
     padding-bottom: 8px;
     flex: 1;
@@ -46,6 +46,114 @@
     &.has-error .MuiOutlinedInput-notchedOutline {
       border-color: #a94442;
     }
+
+    .ql-editor {
+      min-height: 100px;
+    }
+
+    .file-upload {
+      cursor: pointer;
+      text-align: center;
+      margin: auto;
+
+      &:hover::file-selector-button {
+        background-color: var(--blue);
+        color: var(--white);
+      }
+
+      &::file-selector-button {
+        height: 30px;
+        padding: 4px 12px;
+        outline: none;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        margin-top: 9px;
+        color: var(--black);
+        background-color: transparent;
+        cursor: pointer;
+        transition: all 0.2s linear;
+      }
+    }
+
+    .preview-image {
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+
+      & > .image-items {
+        width: 150px;
+        height: 150px;
+        position: relative;
+
+        button {
+          position: absolute;
+          bottom: 5px;
+          right: 5px;
+          background-color: var(--red);
+          color: var(--white);
+          font-size: 2.6rem;
+          padding: 4px;
+
+          &:hover {
+            color: var(--black);
+          }
+        }
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+    }
+
+    .input-file {
+      height: 50px;
+      border-radius: 8px;
+      border: 1px dashed var(--black);
+      position: relative;
+
+      input {
+        height: 100%;
+        opacity: 0;
+      }
+    }
+
+    .input-text {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      position: absolute;
+
+      span {
+        display: inline-block;
+        color: var(--blue);
+        cursor: pointer;
+        transition: all 0.2s linear;
+      }
+
+      span:nth-child(2) {
+        color: var(--black);
+      }
+
+      span:nth-child(3) {
+        background-color: var(--blue);
+        color: var(--white);
+        border: 1px solid var(--blue);
+        padding: 4px 10px;
+        border-radius: 8px;
+        z-index: 11;
+
+        &:hover {
+          background-color: transparent;
+          color: var(--blue);
+        }
+      }
+    }
   }
 
   &-control {
@@ -83,8 +191,8 @@
   &-error {
     display: inline-block;
     margin-top: 5px;
-    margin-bottom: 10px;
     color: #a94442;
+    font-weight: 300;
   }
 }
 

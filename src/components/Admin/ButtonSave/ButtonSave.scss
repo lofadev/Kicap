@@ -11,6 +11,10 @@
     border-radius: 4px;
     transition: all 0.2s linear;
 
+    &:disabled {
+      opacity: 0.3;
+    }
+
     &:hover {
       opacity: 0.8;
     }

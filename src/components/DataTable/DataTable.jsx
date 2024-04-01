@@ -6,7 +6,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import PropTypes from 'prop-types';
-import { FaEdit, FaTimes } from 'react-icons/fa';
+import { FaEdit, FaTimes, FaCheck } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import './DataTable.scss';
 
@@ -28,10 +28,16 @@ export default function DataTable({ head, rows, keys, handleOpenDelete }) {
         </TableHead>
         <TableBody>
           {rows?.map((row) => (
-            <TableRow key={row.id}>
-              {resKeys.map((key, index) => (
-                <TableCell key={index}>{row[key]}</TableCell>
-              ))}
+            <TableRow key={row.id} hover>
+              {resKeys.map((key, index) => {
+                if (key === 'isLocked')
+                  return (
+                    <TableCell sx={{ textAlign: 'center', width: '100px' }} key={index}>
+                      {row[key] ? <FaCheck style={{ display: 'inline-block' }} /> : ''}
+                    </TableCell>
+                  );
+                else return <TableCell key={index}>{row[key]}</TableCell>;
+              })}
               <TableCell className='btn-actions'>
                 <Link
                   to={`update/${row.id}`}

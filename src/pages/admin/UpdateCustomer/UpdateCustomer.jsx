@@ -8,11 +8,23 @@ import HeadingBreadCrumb from '~/components/Admin/HeadingBreadCrumb/HeadingBread
 import Input from '~/components/FormGroup/Input/Input';
 import SelectOptions from '~/components/Select/Select';
 import ProvinceService from '~/services/ProvinceService';
-import SupplierService from '~/services/SupplierService';
-import { supplierSchema } from '~/validate/YupSchema';
-import './UpdateSupplier.scss';
+import UserService from '~/services/UserService';
+import { addCustomerSchema } from '~/validate/YupSchema';
 
-const UpdateSupplier = () => {
+const optionsLocked = [
+  {
+    id: 1,
+    name: 'Không',
+    value: false,
+  },
+  {
+    id: 2,
+    name: 'Có',
+    value: true,
+  },
+];
+
+const UpdateCustomer = () => {
   const { id } = useParams();
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
@@ -21,23 +33,23 @@ const UpdateSupplier = () => {
   const formik = useFormik({
     initialValues: {
       name: '',
-      contactName: '',
       phone: '',
       email: '',
       address: '',
       province: '',
+      isLocked: false,
     },
-    validationSchema: supplierSchema,
+    validationSchema: addCustomerSchema,
     onSubmit: async (payload) => {
-      await SupplierService.updateSupplier(id, payload, user.accessToken, dispatch);
+      await UserService.updateUser(id, payload, user.accessToken, dispatch);
     },
   });
 
   useEffect(() => {
     const fetchData = async () => {
-      const [provinceRes, supplierRes] = await Promise.all([
+      const [provinceRes, customerRes] = await Promise.all([
         ProvinceService.getProvinces(),
-        SupplierService.getSupplier(id, user.accessToken, dispatch),
+        UserService.getDetailsUser(id, user.accessToken, dispatch),
       ]);
       if (provinceRes.status === 'OK') {
         const options = provinceRes.data.map((province) => {
@@ -48,14 +60,14 @@ const UpdateSupplier = () => {
         });
         setOptions(options);
       }
-      const supplier = supplierRes.data;
+      const customer = customerRes.data;
       formik.setValues({
-        name: supplier.name,
-        contactName: supplier.contactName,
-        phone: supplier.phone,
-        email: supplier.email,
-        address: supplier.address,
-        province: supplier.province,
+        name: customer.name,
+        phone: customer.phone,
+        email: customer.email,
+        address: customer.address,
+        province: customer.province,
+        isLocked: customer.isLocked,
       });
     };
 
@@ -65,40 +77,27 @@ const UpdateSupplier = () => {
 
   return (
     <div>
-      <HeadingBreadCrumb>Cập nhật thông tin nhà cung cấp</HeadingBreadCrumb>
+      <HeadingBreadCrumb>Cập nhật thông tin khách hàng</HeadingBreadCrumb>
 
       <Box>
         <Input
-          labelName='Tên nhà cung cấp'
-          placeholder='Nhập tên nhà cung cấp'
+          labelName='Tên khách hàng'
+          placeholder='Nhập tên khách hàng'
           required
           name='name'
           formik={formik}
         />
         <Input
-          labelName='Tên giao dịch'
-          placeholder='Nhập tên giao dịch'
-          required
-          name='contactName'
-          formik={formik}
-        />
-        <Input
           labelName='Số điện thoại'
-          placeholder='Nhập số điện thoại nhà cung cấp'
+          placeholder='Nhập số điện thoại khách hàng'
           required
           name='phone'
           formik={formik}
         />
-        <Input
-          labelName='Email'
-          placeholder='Nhập email nhà cung cấp'
-          required
-          name='email'
-          formik={formik}
-        />
+        <Input labelName='Email' placeholder='Nhập email khách hàng' name='email' formik={formik} />
         <Input
           labelName='Địa chỉ'
-          placeholder='Nhập địa chỉ nhà cung cấp'
+          placeholder='Nhập địa chỉ khách hàng'
           required
           name='address'
           formik={formik}
@@ -112,11 +111,18 @@ const UpdateSupplier = () => {
           formik={formik}
           value='name'
         ></SelectOptions>
+        <SelectOptions
+          labelName='Trạng thái khoá'
+          required
+          options={optionsLocked}
+          name='isLocked'
+          formik={formik}
+        ></SelectOptions>
 
-        <ButtonAction to='/admin/suppliers' handleSave={formik.handleSubmit} />
+        <ButtonAction to='/admin/customers' handleSave={formik.handleSubmit} />
       </Box>
     </div>
   );
 };
 
-export default UpdateSupplier;
+export default UpdateCustomer;

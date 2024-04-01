@@ -15,7 +15,7 @@ const Pagination = ({ pageCount, onClickPageItem: handleClickPageItem }) => {
         renderOnZeroPageCount={null}
         containerClassName='pagination'
         pageClassName='page-item'
-        onPageChange={(value) => handleClickPageItem(value)}
+        onPageChange={handleClickPageItem}
       ></ReactPaginate>
     </div>
   );

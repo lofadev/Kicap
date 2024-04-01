@@ -1,6 +1,7 @@
 import FormControl from '@mui/material/FormControl';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
+import { useState } from 'react';
 
 export default function SelectOptions({
   labelName,
@@ -9,15 +10,25 @@ export default function SelectOptions({
   optionDefault,
   name,
   formik,
+  value = 'value',
 }) {
   const { errors, handleChange, values, touched } = formik;
   const error = errors[name];
   const hasError = touched[name] && error;
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   return (
     <div className={`form-group ${hasError ? 'has-error' : ''}`}>
       {labelName && (
-        <label htmlFor={name}>
+        <label htmlFor={name} onClick={handleOpen}>
           {labelName} {required && <span className='required'>*</span>}
         </label>
       )}
@@ -26,16 +37,21 @@ export default function SelectOptions({
           value={values[name]}
           onChange={handleChange}
           displayEmpty
+          defaultValue={values[name]}
+          open={open}
+          onOpen={handleOpen}
+          onClose={handleClose}
           id={name}
           name={name}
-          defaultValue={values[name]}
         >
-          <MenuItem value='' sx={{ fontSize: '1.4rem', padding: 0 }}>
-            {optionDefault}
-          </MenuItem>
+          {optionDefault && (
+            <MenuItem value='' sx={{ fontSize: '1.4rem', padding: 0 }}>
+              {optionDefault}
+            </MenuItem>
+          )}
           {options &&
             options.map((option) => (
-              <MenuItem key={option.id} value={option.name}>
+              <MenuItem key={option.id} value={option[value]}>
                 {option.name}
               </MenuItem>
             ))}
