@@ -43,7 +43,7 @@ const UpdateShipper = () => {
     <div>
       <HeadingBreadCrumb>Cập nhật thông tin người giao hàng</HeadingBreadCrumb>
 
-      <Box>
+      <Box title='Thông tin người giao hàng'>
         <form>
           <Input
             labelName='Tên người giao hàng'

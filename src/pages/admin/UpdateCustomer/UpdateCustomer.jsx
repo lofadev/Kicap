@@ -79,47 +79,54 @@ const UpdateCustomer = () => {
     <div>
       <HeadingBreadCrumb>Cập nhật thông tin khách hàng</HeadingBreadCrumb>
 
-      <Box>
-        <Input
-          labelName='Tên khách hàng'
-          placeholder='Nhập tên khách hàng'
-          required
-          name='name'
-          formik={formik}
-        />
-        <Input
-          labelName='Số điện thoại'
-          placeholder='Nhập số điện thoại khách hàng'
-          required
-          name='phone'
-          formik={formik}
-        />
-        <Input labelName='Email' placeholder='Nhập email khách hàng' name='email' formik={formik} />
-        <Input
-          labelName='Địa chỉ'
-          placeholder='Nhập địa chỉ khách hàng'
-          required
-          name='address'
-          formik={formik}
-        />
-        <SelectOptions
-          labelName='Tỉnh/thành'
-          required
-          options={options}
-          optionDefault='--- Chọn Tỉnh/thành ---'
-          name='province'
-          formik={formik}
-          value='name'
-        ></SelectOptions>
-        <SelectOptions
-          labelName='Trạng thái khoá'
-          required
-          options={optionsLocked}
-          name='isLocked'
-          formik={formik}
-        ></SelectOptions>
+      <Box title='Thông tin khách hàng'>
+        <form>
+          <Input
+            labelName='Tên khách hàng'
+            placeholder='Nhập tên khách hàng'
+            required
+            name='name'
+            formik={formik}
+          />
+          <Input
+            labelName='Số điện thoại'
+            placeholder='Nhập số điện thoại khách hàng'
+            required
+            name='phone'
+            formik={formik}
+          />
+          <Input
+            labelName='Email'
+            placeholder='Nhập email khách hàng'
+            name='email'
+            formik={formik}
+          />
+          <Input
+            labelName='Địa chỉ'
+            placeholder='Nhập địa chỉ khách hàng'
+            required
+            name='address'
+            formik={formik}
+          />
+          <SelectOptions
+            labelName='Tỉnh/thành'
+            required
+            options={options}
+            optionDefault='--- Chọn Tỉnh/thành ---'
+            name='province'
+            formik={formik}
+            value='name'
+          ></SelectOptions>
+          <SelectOptions
+            labelName='Trạng thái khoá'
+            required
+            options={optionsLocked}
+            name='isLocked'
+            formik={formik}
+          ></SelectOptions>
 
-        <ButtonAction to='/admin/customers' handleSave={formik.handleSubmit} />
+          <ButtonAction to='/admin/customers' handleSave={formik.handleSubmit} />
+        </form>
       </Box>
     </div>
   );

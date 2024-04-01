@@ -64,7 +64,7 @@ const ShowCustomer = () => {
   return (
     <div className='customers'>
       <HeadingBreadCrumb>Quản lý khách hàng</HeadingBreadCrumb>
-      <Box>
+      <Box title='Danh sách khách hàng'>
         <div className='search-head'>
           <FormSearch
             placeholder='Nhập tên khách hàng cần tìm kiếm'
@@ -103,7 +103,7 @@ const ShowCustomer = () => {
         ></Pagination>
       </Box>
       <ModalDialog
-        desc={'Bạn có muốn khách hàng này không ?'}
+        desc={'Bạn có muốn xóa khách hàng này không ?'}
         handleClose={() => setOpen(false)}
         handleDelete={handleDelete}
         open={open}

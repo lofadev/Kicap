@@ -67,53 +67,55 @@ const UpdateSupplier = () => {
     <div>
       <HeadingBreadCrumb>Cập nhật thông tin nhà cung cấp</HeadingBreadCrumb>
 
-      <Box>
-        <Input
-          labelName='Tên nhà cung cấp'
-          placeholder='Nhập tên nhà cung cấp'
-          required
-          name='name'
-          formik={formik}
-        />
-        <Input
-          labelName='Tên giao dịch'
-          placeholder='Nhập tên giao dịch'
-          required
-          name='contactName'
-          formik={formik}
-        />
-        <Input
-          labelName='Số điện thoại'
-          placeholder='Nhập số điện thoại nhà cung cấp'
-          required
-          name='phone'
-          formik={formik}
-        />
-        <Input
-          labelName='Email'
-          placeholder='Nhập email nhà cung cấp'
-          required
-          name='email'
-          formik={formik}
-        />
-        <Input
-          labelName='Địa chỉ'
-          placeholder='Nhập địa chỉ nhà cung cấp'
-          required
-          name='address'
-          formik={formik}
-        />
-        <SelectOptions
-          labelName='Tỉnh/thành'
-          required
-          options={options}
-          optionDefault='--- Chọn Tỉnh/thành ---'
-          name='province'
-          formik={formik}
-          value='name'
-        ></SelectOptions>
+      <Box title='Thông tin nhà cung cấp'>
+        <form>
+          <Input
+            labelName='Tên nhà cung cấp'
+            placeholder='Nhập tên nhà cung cấp'
+            required
+            name='name'
+            formik={formik}
+          />
+          <Input
+            labelName='Tên giao dịch'
+            placeholder='Nhập tên giao dịch'
+            required
+            name='contactName'
+            formik={formik}
+          />
+          <Input
+            labelName='Số điện thoại'
+            placeholder='Nhập số điện thoại nhà cung cấp'
+            required
+            name='phone'
+            formik={formik}
+          />
+          <Input
+            labelName='Email'
+            placeholder='Nhập email nhà cung cấp'
+            required
+            name='email'
+            formik={formik}
+          />
+          <Input
+            labelName='Địa chỉ'
+            placeholder='Nhập địa chỉ nhà cung cấp'
+            required
+            name='address'
+            formik={formik}
+          />
+          <SelectOptions
+            labelName='Tỉnh/thành'
+            required
+            options={options}
+            optionDefault='--- Chọn Tỉnh/thành ---'
+            name='province'
+            formik={formik}
+            value='name'
+          ></SelectOptions>
 
-        <ButtonAction to='/admin/suppliers' handleSave={formik.handleSubmit} />
+          <ButtonAction to='/admin/suppliers' handleSave={formik.handleSubmit} />
+        </form>
       </Box>
     </div>
   );

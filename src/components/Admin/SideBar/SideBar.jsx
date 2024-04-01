@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { AiFillDashboard } from 'react-icons/ai';
 import { BiSolidCategory } from 'react-icons/bi';
-import { FaCarSide, FaCartPlus, FaPeopleCarry, FaUser, FaUserTie } from 'react-icons/fa';
+import { FaCarSide, FaCartPlus, FaFolder, FaPeopleCarry, FaUser, FaUserTie } from 'react-icons/fa';
 import { FaCartFlatbed } from 'react-icons/fa6';
-import { MdCategory, MdOutlineProductionQuantityLimits } from 'react-icons/md';
+import { MdOutlineProductionQuantityLimits } from 'react-icons/md';
 import { PiSlideshowFill } from 'react-icons/pi';
 import { NavLink } from 'react-router-dom';
 import Dropdown from '~/components/Header/components/Dropdown/Dropdown';
@@ -16,124 +16,63 @@ const menu = [
     icon: AiFillDashboard,
   },
   {
-    name: 'Quản lý sản phẩm',
+    name: 'Quản lý dữ liệu',
     to: null,
-    icon: MdOutlineProductionQuantityLimits,
+    icon: FaFolder,
     children: [
       {
-        name: 'Thêm sản phẩm',
-        to: '/admin/products/add',
-      },
-      {
-        name: 'Xem sản phẩm',
+        name: 'Sản phẩm',
         to: '/admin/products',
-      },
-    ],
-  },
-  {
-    name: 'Quản lý danh mục sản phẩm',
-    to: null,
-    icon: BiSolidCategory,
-    children: [
-      {
-        name: 'Thêm danh mục sản phẩm',
-        to: '/admin/categorys/add',
+        icon: MdOutlineProductionQuantityLimits,
       },
       {
-        name: 'Xem danh mục sản phẩm',
+        name: 'Danh mục sản phẩm',
         to: '/admin/categorys',
-      },
-    ],
-  },
-  // {
-  //   name: 'Quản lý thể loại',
-  //   to: null,
-  //   icon: MdCategory,
-  //   children: [
-  //     {
-  //       name: 'Thêm thể loại',
-  //       to: '/admin/types/add',
-  //     },
-  //     {
-  //       name: 'Xem thể loại',
-  //       to: '/admin/types',
-  //     },
-  //   ],
-  // },
-  {
-    name: 'Quản lý slides banner',
-    to: null,
-    icon: PiSlideshowFill,
-    children: [
-      {
-        name: 'Thêm slides banner',
-        to: '/admin/slides/add',
+        icon: BiSolidCategory,
       },
       {
-        name: 'Xem slides banner',
+        name: 'Slides banner',
         to: '/admin/slides',
-      },
-    ],
-  },
-  {
-    name: 'Quản lý nhà cung cấp',
-    to: null,
-    icon: FaPeopleCarry,
-    children: [
-      {
-        name: 'Thêm nhà cung cấp',
-        to: '/admin/suppliers/add',
+        icon: PiSlideshowFill,
       },
       {
-        name: 'Xem nhà cung cấp',
+        name: 'Nhà cung cấp',
         to: '/admin/suppliers',
-      },
-    ],
-  },
-  {
-    name: 'Quản lý người giao hàng',
-    to: null,
-    icon: FaCarSide,
-    children: [
-      {
-        name: 'Thêm người giao hàng',
-        to: '/admin/shippers/add',
+        icon: FaPeopleCarry,
       },
       {
-        name: 'Xem người giao hàng',
+        name: 'Người giao hàng',
         to: '/admin/shippers',
+        icon: FaCarSide,
+      },
+      {
+        name: 'Nhân viên',
+        to: '/admin/employees',
+        icon: FaUserTie,
+      },
+      {
+        name: 'Khách hàng',
+        to: '/admin/customers',
+        icon: FaUser,
       },
     ],
   },
   {
-    name: 'Quản lý nhân viên',
+    name: 'Quản lý bán hàng',
     to: null,
-    icon: FaUserTie,
+    icon: FaFolder,
     children: [
       {
-        name: 'Thêm nhân viên',
-        to: '/admin/employees/add',
+        name: 'Đơn đặt hàng',
+        to: '/admin/orders',
+        icon: FaCartFlatbed,
       },
       {
-        name: 'Xem nhân viên',
-        to: '/admin/employees',
+        name: 'Lập đơn hàng',
+        to: '/admin/orders/add',
+        icon: FaCartPlus,
       },
     ],
-  },
-  {
-    name: 'Quản lý khách hàng',
-    to: '/admin/customers',
-    icon: FaUser,
-  },
-  {
-    name: 'Quản lý đơn đặt hàng',
-    to: '/admin/orders',
-    icon: FaCartFlatbed,
-  },
-  {
-    name: 'Lập đơn hàng',
-    to: '/admin/orders/add',
-    icon: FaCartPlus,
   },
 ];
 
@@ -171,9 +110,13 @@ const SideBar = () => {
                 <ul className='sidebar-dropdown'>
                   {item.children &&
                     item.children.map((subitem) => {
+                      const Icon = subitem.icon;
                       return (
                         <li key={subitem.name}>
-                          <NavLink to={subitem.to}>{subitem.name}</NavLink>
+                          <NavLink to={subitem.to}>
+                            <Icon />
+                            {subitem.name}
+                          </NavLink>
                         </li>
                       );
                     })}
