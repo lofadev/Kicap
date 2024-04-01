@@ -25,7 +25,13 @@ const ProductCard = ({ product }) => {
 
   return (
     <div className='product_card' key={product.id}>
-      <Link to={`/product/${productTitleParams}`} className='product_url'>
+      <Link
+        to={{
+          pathname: `/product/${productTitleParams}`,
+          state: { id: product.id },
+        }}
+        className='product_url'
+      >
         {product.discount[0] > 0 && <span className='sale_box'>{`- ${product.discount[0]}%`}</span>}
         <div className='product_card-inner'>
           <div className='product_card-image'>

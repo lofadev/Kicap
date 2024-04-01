@@ -34,3 +34,10 @@ export const registerSchema = yup.object().shape({
     .matches(regex.password, validate.INVALID_PASSWORD)
     .oneOf([yup.ref('password')], validate.NOT_MATCH_PASSWORD),
 });
+
+export const addCustomerSchema = yup.object().shape({
+  name: yup.string().required(validate.NOT_EMPTY),
+  phone: yup.string().required(validate.NOT_EMPTY).matches(regex.phone, validate.INVALID_PHONE),
+  address: yup.string().required(validate.NOT_EMPTY),
+  province: yup.string().required(validate.NOT_EMPTY),
+});

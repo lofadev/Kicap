@@ -47,6 +47,8 @@ const Login = () => {
 
   useEffect(() => {
     document.title = 'Đăng nhập tài khoản | Kicap';
+    if (localStorage.getItem('accessToken')) navigate('/');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleGetDetailsUser = async (id, token) => {

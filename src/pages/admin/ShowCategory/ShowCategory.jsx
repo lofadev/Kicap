@@ -58,10 +58,10 @@ const ShowCategory = () => {
   };
 
   return (
-    <div className='shippers'>
+    <div className='categories'>
       <HeadingBreadCrumb>Quản lý danh mục sản phẩm</HeadingBreadCrumb>
-      <Box>
-        <div className='shippers-head'>
+      <Box title='Danh sách danh mục sản phẩm'>
+        <div className='search-head'>
           <FormSearch
             placeholder='Nhập tên danh mục sản phẩm cần tìm kiếm'
             value={search}

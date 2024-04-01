@@ -86,7 +86,7 @@ const ProductDetailsImage = ({ productState }) => {
             {productState.images.map((img, index) => {
               return (
                 <SwiperSlide key={index}>
-                  <div onClickCapture={handleViewImage}>
+                  <div onClick={handleViewImage}>
                     <img data-index={index} loading='lazy' src={img} alt='' />
                   </div>
                 </SwiperSlide>

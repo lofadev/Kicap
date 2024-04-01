@@ -177,7 +177,7 @@ const ProductDetails = () => {
                         {status !== 0 && (
                           <div className='custom-btn-number'>
                             <label htmlFor='quantity'>Số lượng:</label>
-                            <div className='form-control'>
+                            <div className='form-quantity'>
                               <button className='btn-cts' onClick={handleDecreaseQuantity}>
                                 -
                               </button>

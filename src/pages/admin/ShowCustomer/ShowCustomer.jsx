@@ -9,46 +9,44 @@ import DataTable from '~/components/DataTable/DataTable';
 import ModalDialog from '~/components/ModalDialog/ModalDialog';
 import Pagination from '~/components/Pagination/Pagination';
 import { useDebounce } from '~/hooks/useDebounce';
-import ShipperService from '~/services/ShipperService';
-import './ShowShipper.scss';
+import UserService from '~/services/UserService';
 
-const ShowShipper = () => {
-  const dispatch = useDispatch();
-  const user = useSelector((state) => state.user);
-  const [searchInput, setSearchInput] = useState('');
+const ShowCustomer = () => {
+  const [search, setSearch] = useState('');
   const [page, setPage] = useState(1);
+  const dispatch = useDispatch();
   const [response, setResponse] = useState({});
   const [rows, setRows] = useState([]);
   const [keys, setKeys] = useState([]);
   const [open, setOpen] = useState(false);
   const [id, setId] = useState('');
+  const user = useSelector((state) => state.user);
 
-  const searchDebounce = useDebounce(searchInput, 500);
+  const searchDebounce = useDebounce(search, 1000);
   const handleOnChangeSearch = (e) => {
-    setSearchInput(e.target.value);
+    setSearch(e.target.value);
   };
 
   const fetchData = async (payload) => {
-    const res = await ShipperService.getShippers(payload, user.accessToken, dispatch);
+    const res = await UserService.getUsers(payload, user.accessToken, dispatch);
     if (res.status === 'OK') {
-      setResponse(res);
-      const rows = res.data.map((e) => {
-        return {
-          id: e._id,
-          name: e.name,
-          phone: e.phone,
-        };
-      });
+      const rows = res.data.map((user) => ({
+        id: user._id,
+        name: user.name,
+        phone: user.phone,
+        email: user.email,
+        address: user.address,
+        province: user.province,
+        isLocked: user.isLocked,
+      }));
       setRows(rows);
-      if (rows.length) {
-        const keys = Object.keys(rows[0]);
-        setKeys(keys);
-      }
+      setResponse(res);
+      if (rows.length) setKeys(Object.keys(rows[0]));
     }
   };
 
   useEffect(() => {
-    fetchData({ page, search: searchDebounce });
+    fetchData({ page: 1, search: searchDebounce });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page, searchDebounce]);
 
@@ -59,33 +57,28 @@ const ShowShipper = () => {
 
   const handleDelete = async () => {
     setOpen(false);
-    const res = await ShipperService.deleteShipper(id, user.accessToken, dispatch);
-    if (res.status === 'OK') fetchData({ page, search: searchDebounce });
-  };
-
-  const handleChangePage = (value) => {
-    setPage(value.selected + 1);
+    const res = await UserService.deleteUser(id, user.accessToken, dispatch);
+    if (res) fetchData({ page, search: searchDebounce });
   };
 
   return (
-    <div className='shippers'>
-      <HeadingBreadCrumb>Quản lý người giao hàng</HeadingBreadCrumb>
-      <Box title='Danh sách người giao hàng'>
+    <div className='customers'>
+      <HeadingBreadCrumb>Quản lý khách hàng</HeadingBreadCrumb>
+      <Box>
         <div className='search-head'>
           <FormSearch
-            placeholder='Nhập tên người giao hàng cần tìm kiếm'
-            value={searchInput}
+            placeholder='Nhập tên khách hàng cần tìm kiếm'
+            value={search}
             handleOnChange={handleOnChangeSearch}
             disabled={!searchDebounce}
-            name='search'
           />
-          <Button secondary className='btn-add' to='/admin/shippers/add'>
+          <Button secondary className='btn-add' to='/admin/customers/add'>
             Bổ sung
           </Button>
         </div>
         <TextQuantity
-          quantity={response.totalShippers ?? 0}
-          text='người giao hàng'
+          quantity={response.totalUsers ?? 0}
+          text='khách hàng'
           totalPage={response.totalPage ?? 0}
           page={page}
           pageSize={response.limit ?? 0}
@@ -93,17 +86,24 @@ const ShowShipper = () => {
 
         <DataTable
           rows={rows}
-          head={['Tên người giao hàng', 'Số điện thoại']}
+          head={[
+            'Tên khách hàng',
+            'Số điện thoại',
+            'Email',
+            'Địa chỉ',
+            'Tỉnh/thành phố',
+            'Bị khoá?',
+          ]}
           keys={keys}
           handleOpenDelete={handleOpenDelete}
         />
         <Pagination
           pageCount={response.totalPage ?? 0}
-          onClickPageItem={handleChangePage}
+          onClickPageItem={(value) => setPage(value.selected + 1)}
         ></Pagination>
       </Box>
       <ModalDialog
-        desc={'Bạn có muốn xoá người giao hàng này không ?'}
+        desc={'Bạn có muốn khách hàng này không ?'}
         handleClose={() => setOpen(false)}
         handleDelete={handleDelete}
         open={open}
@@ -112,4 +112,4 @@ const ShowShipper = () => {
   );
 };
 
-export default ShowShipper;
+export default ShowCustomer;
