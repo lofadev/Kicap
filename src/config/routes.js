@@ -42,10 +42,6 @@ const routes = {
       update: '/admin/shippers/update/:id',
       view: '/admin/shippers',
     },
-    employee: {
-      add: '/admin/employees/add',
-      view: '/admin/employees',
-    },
     orders: {
       add: '/admin/orders/add',
       view: '/admin/orders',

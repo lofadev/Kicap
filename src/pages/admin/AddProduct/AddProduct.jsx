@@ -8,6 +8,7 @@ import HeadingBreadCrumb from '~/components/Admin/HeadingBreadCrumb/HeadingBread
 import FormGroup from '~/components/FormGroup/FormGroup';
 import Input from '~/components/FormGroup/Input/Input';
 import InputFile from '~/components/FormGroup/InputFile/InputFile';
+import InputNumber from '~/components/FormGroup/InputNumber/InputNumber';
 import SelectOptions from '~/components/Select/Select';
 import CategoryService from '~/services/CategoryService';
 import SupplierService from '~/services/SupplierService';
@@ -27,6 +28,7 @@ const AddProduct = () => {
       supplier: '',
       images: [],
       price: '',
+      productAttribute: false,
     },
   });
 
@@ -105,6 +107,38 @@ const AddProduct = () => {
             onChange={setValue}
           />
         </FormGroup>
+        <SelectOptions
+          labelName='Thuộc tính sản phẩm'
+          required
+          options={[
+            {
+              id: 1,
+              value: false,
+              name: 'Không',
+            },
+            {
+              id: 2,
+              value: true,
+              name: 'Có',
+            },
+          ]}
+          name='productAttribute'
+          formik={formik}
+        ></SelectOptions>
+
+        {!formik.values.productAttribute && (
+          <>
+            <Input
+              labelName='Thương hiệu'
+              name='brand'
+              required
+              formik={formik}
+              placeholder='Nhập thương hiệu của sản phẩm'
+            />
+            <InputNumber labelName='Số lượng' required formik={formik} name='quantity' />
+            <InputNumber labelName='Giá' required formik={formik} name='price' />
+          </>
+        )}
       </Box>
     </div>
   );

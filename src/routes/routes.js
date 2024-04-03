@@ -13,7 +13,6 @@ import ProductCategory from '~/pages/ProductCategory/ProductCategory.jsx';
 import ProductDetails from '~/pages/ProductDetails/ProductDetails.jsx';
 import AddCategory from '~/pages/admin/AddCategory/AddCategory';
 import AddCustomer from '~/pages/admin/AddCustomer/AddCustomer';
-import AddEmployee from '~/pages/admin/AddEmployee/AddEmployee';
 import AddOrder from '~/pages/admin/AddOrder/AddOrder';
 import AddProduct from '~/pages/admin/AddProduct/AddProduct';
 import AddShipper from '~/pages/admin/AddShipper/AddShipper';
@@ -25,7 +24,6 @@ import Login from '~/pages/admin/Login/Login';
 import Order from '~/pages/admin/Order/Order';
 import ShowCategory from '~/pages/admin/ShowCategory/ShowCategory';
 import ShowCustomer from '~/pages/admin/ShowCustomer/ShowCustomer';
-import ShowEmployee from '~/pages/admin/ShowEmployee/ShowEmployee';
 import ShowProduct from '~/pages/admin/ShowProduct/ShowProduct';
 import ShowShipper from '~/pages/admin/ShowShipper/ShowShipper';
 import ShowSlideBanner from '~/pages/admin/ShowSlideBanner/ShowSlideBanner';
@@ -171,16 +169,6 @@ const privateRoutes = [
   {
     path: config.routes.admin.shipper.view,
     component: ShowShipper,
-    layout: AdminLayout,
-  },
-  {
-    path: config.routes.admin.employee.add,
-    component: AddEmployee,
-    layout: AdminLayout,
-  },
-  {
-    path: config.routes.admin.employee.view,
-    component: ShowEmployee,
     layout: AdminLayout,
   },
   {

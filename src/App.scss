@@ -100,6 +100,24 @@ body {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--light-gray);
+  border-radius: 8px;
+  transition: all 0.2s linear;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--admin-gray);
+}
+
 .app {
   position: relative;
 }

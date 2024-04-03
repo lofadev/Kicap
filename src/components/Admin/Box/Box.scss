@@ -6,7 +6,7 @@
     background-color: #fff;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     overflow: hidden;
-    max-height: 1000px;
+    max-height: 2000px;
     transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
 
     &.hide-box {
@@ -20,16 +20,16 @@
       padding-bottom: 12px;
       border-bottom: 1px solid #ccc;
       margin-bottom: 10px;
-    }
 
-    button {
-      border-radius: 4px;
-      padding: 10px;
-      cursor: pointer;
-      transition: all 0.2s linear;
+      button {
+        border-radius: 4px;
+        padding: 10px;
+        cursor: pointer;
+        transition: all 0.2s linear;
 
-      &:hover {
-        background-color: #eee;
+        &:hover {
+          background-color: #eee;
+        }
       }
     }
   }
