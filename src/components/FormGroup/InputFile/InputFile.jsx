@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { MdDeleteForever } from 'react-icons/md';
 import { v4 as uuidv4 } from 'uuid';
 import '../FormGroup.scss';
@@ -8,16 +8,14 @@ const InputFile = ({ labelName = '', required = false, name = '', formik, multip
   const { errors, handleBlur, setFieldValue } = formik;
   const error = errors[name];
   const hasError = Boolean(error);
-  const [images, setImages] = useState(JSON.parse(localStorage.getItem('images')) ?? []);
-  const [imageDelete, setImageDelete] = useState({});
+  const [images, setImages] = useState([]);
   const inputRef = useRef();
-  const [key, setKey] = useState(1);
 
-  useEffect(() => {
-    return () => {
-      URL.revokeObjectURL(imageDelete.fileUrl);
-    };
-  }, [imageDelete]);
+  // useEffect(() => {
+  //   return () => {
+  //     URL.revokeObjectURL(imageDelete.fileUrl);
+  //   };
+  // }, [imageDelete]);
 
   const handleChangeFiles = (e) => {
     const files = e.target.files;
@@ -31,17 +29,12 @@ const InputFile = ({ labelName = '', required = false, name = '', formik, multip
       }
     });
 
-    localStorage.setItem('images', JSON.stringify([...images, ...newImages]));
     setImages([...images, ...newImages]);
   };
 
   const handleDeleteImage = (id) => {
-    setKey((prev) => prev + 1);
     const newImages = images.filter((image) => image.id !== id);
-    const imgDelete = images.find((image) => image.id === id);
-    localStorage.setItem('images', JSON.stringify(newImages));
     setImages(newImages);
-    setImageDelete(imgDelete);
   };
 
   return (
@@ -68,7 +61,6 @@ const InputFile = ({ labelName = '', required = false, name = '', formik, multip
           multiple={multiple}
           accept='image/*'
           ref={inputRef}
-          key={key}
         />
       </div>
 

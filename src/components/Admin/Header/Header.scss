@@ -1,9 +1,9 @@
 .admin {
   .header {
-    background-color: #fff;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: #fff;
     padding: 10px 15px;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     height: var(--admin-header-height);
@@ -21,6 +21,10 @@
       align-items: center;
       cursor: pointer;
       position: relative;
+
+      span {
+        line-height: 1;
+      }
 
       svg {
         display: inline-block;
