@@ -10,9 +10,7 @@ import { FaCheck, FaEdit, FaTimes } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import './DataTable.scss';
 
-export default function DataTable({ head, rows, keys, handleOpenDelete }) {
-  const resKeys = keys?.filter((key) => key !== 'id');
-
+export default function DataTable({ head, rows, keys, handleOpenDelete, action, updateTo }) {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label='simple table'>
@@ -23,13 +21,15 @@ export default function DataTable({ head, rows, keys, handleOpenDelete }) {
                 {item}
               </TableCell>
             ))}
-            <TableCell sx={{ color: 'white', width: '100px' }}>Actions</TableCell>
+            <TableCell sx={{ color: 'white', width: '100px', textAlign: 'center' }}>
+              {action}
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {rows?.map((row) => (
             <TableRow key={row.id} hover>
-              {resKeys.map((key, index) => {
+              {keys.map((key, index) => {
                 if (key === 'isLocked')
                   return (
                     <TableCell sx={{ textAlign: 'center', width: '100px' }} key={index}>
@@ -46,7 +46,7 @@ export default function DataTable({ head, rows, keys, handleOpenDelete }) {
               })}
               <TableCell className='btn-actions'>
                 <Link
-                  to={`update/${row.id}`}
+                  to={`/admin/${updateTo}/update/${row.id}`}
                   style={{ color: 'var(--blue)', display: 'inline-block' }}
                 >
                   <FaEdit />

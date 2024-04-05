@@ -11,28 +11,28 @@ import NotFound from '~/pages/NotFound/NotFound';
 import Policy from '~/pages/Policy/Policy.jsx';
 import ProductCategory from '~/pages/ProductCategory/ProductCategory.jsx';
 import ProductDetails from '~/pages/ProductDetails/ProductDetails.jsx';
-import AddCategory from '~/pages/admin/AddCategory/AddCategory';
-import AddCustomer from '~/pages/admin/AddCustomer/AddCustomer';
-import AddOrder from '~/pages/admin/AddOrder/AddOrder';
-import AddProduct from '~/pages/admin/AddProduct/AddProduct';
-import AddShipper from '~/pages/admin/AddShipper/AddShipper';
-import AddSlideBanner from '~/pages/admin/AddSlideBanner/AddSlideBanner';
-import AddSupplier from '~/pages/admin/AddSupplier/AddSupplier';
-import AddType from '~/pages/admin/AddType/AddType';
+import AddCategory from '~/pages/admin/Category/AddCategory/AddCategory';
+import ShowCategory from '~/pages/admin/Category/ShowCategory/ShowCategory';
+import UpdateCategory from '~/pages/admin/Category/UpdateCategory/UpdateCategory';
+import AddCustomer from '~/pages/admin/Customer/AddCustomer/AddCustomer';
+import ShowCustomer from '~/pages/admin/Customer/ShowCustomer/ShowCustomer';
+import UpdateCustomer from '~/pages/admin/Customer/UpdateCustomer/UpdateCustomer';
 import Dashboard from '~/pages/admin/Dashboard/Dashboard';
 import Login from '~/pages/admin/Login/Login';
-import Order from '~/pages/admin/Order/Order';
-import ShowCategory from '~/pages/admin/ShowCategory/ShowCategory';
-import ShowCustomer from '~/pages/admin/ShowCustomer/ShowCustomer';
-import ShowProduct from '~/pages/admin/ShowProduct/ShowProduct';
-import ShowShipper from '~/pages/admin/ShowShipper/ShowShipper';
-import ShowSlideBanner from '~/pages/admin/ShowSlideBanner/ShowSlideBanner';
-import ShowSupplier from '~/pages/admin/ShowSupplier/ShowSupplier';
-import ShowType from '~/pages/admin/ShowType/ShowType';
-import UpdateCategory from '~/pages/admin/UpdateCategory/UpdateCategory';
-import UpdateCustomer from '~/pages/admin/UpdateCustomer/UpdateCustomer';
-import UpdateShipper from '~/pages/admin/UpdateShipper/UpdateShipper';
-import UpdateSupplier from '~/pages/admin/UpdateSupplier/UpdateSupplier';
+import AddOrder from '~/pages/admin/Order/AddOrder/AddOrder';
+import ShowOrder from '~/pages/admin/Order/ShowOrder/ShowOrder';
+import AddProduct from '~/pages/admin/Product/AddProduct/AddProduct';
+import AddShipper from '~/pages/admin/Shipper/AddShipper/AddShipper';
+import ShowShipper from '~/pages/admin/Shipper/ShowShipper/ShowShipper';
+import UpdateShipper from '~/pages/admin/Shipper/UpdateShipper/UpdateShipper';
+import ShowProduct from '~/pages/admin/Product/ShowProduct/ShowProduct';
+import AddSlideBanner from '~/pages/admin/SlideBanner/AddSlideBanner/AddSlideBanner';
+import ShowSlideBanner from '~/pages/admin/SlideBanner/ShowSlideBanner/ShowSlideBanner';
+import AddSupplier from '~/pages/admin/Supplier/AddSupplier/AddSupplier';
+import ShowSupplier from '~/pages/admin/Supplier/ShowSupplier/ShowSupplier';
+import UpdateSupplier from '~/pages/admin/Supplier/UpdateSupplier/UpdateSupplier';
+import AddProductImage from '~/pages/admin/ProductImage/AddProductImage/AddProductImage';
+import UpdateProductImage from '~/pages/admin/ProductImage/UpdateProductImage/UpdateProductImage';
 
 const publicRoutes = [
   {
@@ -132,16 +132,6 @@ const privateRoutes = [
     layout: AdminLayout,
   },
   {
-    path: config.routes.admin.type.add,
-    component: AddType,
-    layout: AdminLayout,
-  },
-  {
-    path: config.routes.admin.type.view,
-    component: ShowType,
-    layout: AdminLayout,
-  },
-  {
     path: config.routes.admin.supplier.add,
     component: AddSupplier,
     layout: AdminLayout,
@@ -193,7 +183,17 @@ const privateRoutes = [
   },
   {
     path: config.routes.admin.orders.view,
-    component: Order,
+    component: ShowOrder,
+    layout: AdminLayout,
+  },
+  {
+    path: config.routes.admin.product.image.add,
+    component: AddProductImage,
+    layout: AdminLayout,
+  },
+  {
+    path: config.routes.admin.product.image.update,
+    component: UpdateProductImage,
     layout: AdminLayout,
   },
 ];

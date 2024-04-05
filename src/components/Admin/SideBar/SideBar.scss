@@ -1,14 +1,13 @@
 .admin {
   .sidebar {
-    min-width: var(--admin-sidebar-width);
-    max-width: var(--admin-sidebar-width);
+    width: var(--admin-sidebar-width);
     background-color: var(--admin-gray);
     color: var(--light-gray);
     font-weight: 400;
     font-size: 1.6rem;
-    // overflow-y: auto;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
     user-select: none;
+    overflow: hidden;
     position: relative;
     transition: all 0.2s linear;
 
@@ -17,8 +16,10 @@
 
       .sidebar-title {
         justify-content: center;
-        font-size: 2.6rem;
         padding: 15px;
+        svg {
+          font-size: 2.6rem;
+        }
       }
     }
 
@@ -70,6 +71,14 @@
         padding: 10px 20px;
         padding-left: 35px;
         white-space: nowrap;
+      }
+    }
+
+    &-title,
+    &-dropdown {
+      svg {
+        flex-shrink: 0;
+        font-size: 1.6rem;
       }
     }
 

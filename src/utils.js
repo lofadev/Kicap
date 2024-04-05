@@ -1,3 +1,4 @@
+import { jwtDecode } from 'jwt-decode';
 import { validate } from './constant';
 
 /* eslint-disable no-useless-escape */
@@ -46,4 +47,26 @@ export const validatedConfirmPassword = (password, confirmPassword) => {
   if (isEmpty(confirmPassword)) error = validate.NOT_EMPTY;
   else if (password !== confirmPassword) error = validate.NOT_MATCH_PASSWORD;
   return error;
+};
+
+export const getToken = () => {
+  const accessToken = JSON.parse(localStorage.getItem('accessToken')) || '';
+  return accessToken;
+};
+
+export const getRfToken = () => {
+  const refreshToken = JSON.parse(localStorage.getItem('refreshToken')) || '';
+  return refreshToken;
+};
+
+export const getDecodedToken = () => {
+  const token = getToken();
+  const decoded = jwtDecode(token);
+  return decoded;
+};
+
+export const getDecodedRfToken = () => {
+  const rfToken = getRfToken();
+  const decoded = jwtDecode(rfToken);
+  return decoded;
 };

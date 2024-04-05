@@ -3,8 +3,8 @@ import * as Yup from 'yup';
 import Button from '~/components/Button/Button';
 import Input from '~/components/FormGroup/Input/Input';
 import { regex, validate } from '~/constant';
-import './Login.scss';
 import UserService from '~/services/UserService';
+import './Login.scss';
 
 const schema = Yup.object().shape({
   email: Yup.string().required(validate.NOT_EMPTY).email(validate.INVALID_EMAIL),

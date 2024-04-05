@@ -10,7 +10,7 @@ export default function SelectOptions({
   optionDefault,
   name,
   formik,
-  value = 'value',
+  value = 'id',
 }) {
   const { errors, handleChange, values, touched } = formik;
   const error = errors[name];
