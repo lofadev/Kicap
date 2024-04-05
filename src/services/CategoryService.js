@@ -1,29 +1,21 @@
-import { axiosJWT, handleAPICall } from '~/api/apiConfig';
+import { axiosJWT, handleAPICall, handleAPICallWithoutToast } from '~/api/apiConfig';
+import { getToken } from '~/utils';
 
-const createCategory = (data, token, dispatch) =>
-  handleAPICall(
+const createCategory = (data, dispatch) => {
+  const token = getToken();
+  return handleAPICall(
     axiosJWT.post('/category/create', data, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     }),
-    dispatch,
-    true
+    dispatch
   );
+};
 
-const updateCategory = (id, data, token, dispatch) =>
-  handleAPICall(
-    axiosJWT.put(`/category/update/${id}`, data, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }),
-    dispatch,
-    true
-  );
-
-const getCategory = (id, token, dispatch) =>
-  handleAPICall(
+const getCategory = (id, dispatch) => {
+  const token = getToken();
+  return handleAPICallWithoutToast(
     axiosJWT.get(`/category/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -31,26 +23,42 @@ const getCategory = (id, token, dispatch) =>
     }),
     dispatch
   );
+};
 
-const getCategorys = (payload, token, dispatch) =>
-  handleAPICall(
+const getCategorys = (payload, dispatch) => {
+  const token = getToken();
+  return handleAPICallWithoutToast(
     axiosJWT.get('/category/get-all', {
       params: payload,
       headers: { Authorization: `Bearer ${token}` },
     }),
     dispatch
   );
+};
 
-const deleteCategory = (id, token, dispatch) =>
-  handleAPICall(
+const updateCategory = (id, data, dispatch) => {
+  const token = getToken();
+  return handleAPICall(
+    axiosJWT.put(`/category/update/${id}`, data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }),
+    dispatch
+  );
+};
+
+const deleteCategory = (id, dispatch) => {
+  const token = getToken();
+  return handleAPICall(
     axiosJWT.delete(`/category/delete/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     }),
-    dispatch,
-    true
+    dispatch
   );
+};
 
 const CategoryService = {
   createCategory,

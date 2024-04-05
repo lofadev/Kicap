@@ -1,5 +1,4 @@
 import { useFormik } from 'formik';
-import { jwtDecode } from 'jwt-decode';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
@@ -10,6 +9,7 @@ import SectionBreadCrumb from '~/components/SectionBreadCrumb/SectionBreadCrumb'
 import { regex, validate } from '~/constant';
 import { updateUser } from '~/redux/slides/UserSlide';
 import UserService from '~/services/UserService';
+import { getDecodedToken, getRfToken, getToken } from '~/utils';
 import SocialLogin from '../SocialLogin/SocialLogin';
 import './Login.scss';
 
@@ -33,13 +33,14 @@ const Login = () => {
     onSubmit: async (payload) => {
       const res = await UserService.loginUser(payload, dispatch);
       const data = res.data;
-      navigate('/');
-      localStorage.setItem('accessToken', JSON.stringify(data?.accessToken));
-      localStorage.setItem('refreshToken', JSON.stringify(data?.refreshToken));
-      if (data?.accessToken) {
-        const decoded = jwtDecode(data?.accessToken);
+      if (data) {
+        navigate('/');
+        localStorage.setItem('accessToken', JSON.stringify(data?.accessToken));
+        localStorage.setItem('refreshToken', JSON.stringify(data?.refreshToken));
+
+        const decoded = getDecodedToken();
         if (decoded?.id) {
-          handleGetDetailsUser(decoded?.id, data?.accessToken);
+          handleGetDetailsUser(decoded?.id);
         }
       }
     },
@@ -51,11 +52,13 @@ const Login = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleGetDetailsUser = async (id, token) => {
-    const storage = localStorage.getItem('refreshToken');
-    const refreshToken = JSON.parse(storage);
-    const res = await UserService.getDetailsUser(id, token, dispatch);
-    dispatch(updateUser({ ...res?.data, accessToken: token, refreshToken }));
+  const handleGetDetailsUser = async (id) => {
+    const res = await UserService.getDetailsUser(id, dispatch);
+    if (res.data) {
+      const accessToken = getToken();
+      const refreshToken = getRfToken();
+      dispatch(updateUser({ ...res?.data, accessToken, refreshToken }));
+    }
   };
 
   return (

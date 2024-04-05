@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
-import './Button.scss';
 import { useNavigate } from 'react-router-dom';
+import './Button.scss';
 
 const Button = ({
   type = 'button',

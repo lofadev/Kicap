@@ -13,43 +13,56 @@ const routes = {
   account: '/account/:type',
   admin: {
     login: '/admin/login',
-    logout: '/admin/logout',
     dashboard: 'admin/dashboard',
     product: {
-      add: '/admin/products/add',
+      add: '/admin/product/add',
       view: '/admin/products',
+      image: {
+        add: '/admin/product/image/add',
+        update: '/admin/product/image/update/:id',
+      },
+      variant: {
+        add: '/admin/product/variant/add',
+        update: '/admin/product/variant/update/:id',
+      },
+      attribute: {
+        view: '/admin/product/attributes',
+        add: '/admin/product/attribute/add',
+        update: '/admin/product/attribute/update/:id',
+      },
     },
     category: {
-      add: '/admin/categorys/add',
-      update: '/admin/categorys/update/:id',
-      view: '/admin/categorys',
+      add: '/admin/category/add',
+      update: '/admin/category/update/:id',
+      view: '/admin/categories',
     },
     type: {
-      add: '/admin/types/add',
+      add: '/admin/type/add',
       view: '/admin/types',
     },
     slide: {
-      add: '/admin/slides/add',
+      add: '/admin/slide/add',
+      update: '/admin/slide/update/:id',
       view: '/admin/slides',
     },
     supplier: {
-      add: '/admin/suppliers/add',
-      update: '/admin/suppliers/update/:id',
+      add: '/admin/supplier/add',
+      update: '/admin/supplier/update/:id',
       view: '/admin/suppliers',
     },
     shipper: {
-      add: '/admin/shippers/add',
-      update: '/admin/shippers/update/:id',
+      add: '/admin/shipper/add',
+      update: '/admin/shipper/update/:id',
       view: '/admin/shippers',
     },
     orders: {
-      add: '/admin/orders/add',
+      add: '/admin/order/add',
       view: '/admin/orders',
     },
     customers: {
-      add: 'admin/customers/add',
+      add: 'admin/customer/add',
+      update: 'admin/customer/update/:id',
       view: 'admin/customers',
-      update: 'admin/customers/update/:id',
     },
   },
 };

@@ -1,40 +1,36 @@
 import PropTypes from 'prop-types';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { MdDeleteForever } from 'react-icons/md';
 import { v4 as uuidv4 } from 'uuid';
 import '../FormGroup.scss';
 
-const InputFile = ({ labelName = '', required = false, name = '', formik, multiple }) => {
+const InputFile = ({ labelName = '', required = false, name = '', formik }) => {
   const { errors, handleBlur, setFieldValue } = formik;
   const error = errors[name];
   const hasError = Boolean(error);
-  const [images, setImages] = useState([]);
+  const [image, setImage] = useState();
+  const [key, setKey] = useState(1);
   const inputRef = useRef();
 
-  // useEffect(() => {
-  //   return () => {
-  //     URL.revokeObjectURL(imageDelete.fileUrl);
-  //   };
-  // }, [imageDelete]);
+  useEffect(() => {
+    console.log(image?.fileUrl);
+    return () => {
+      image && URL.revokeObjectURL(image.fileUrl);
+    };
+  }, [image]);
 
-  const handleChangeFiles = (e) => {
-    const files = e.target.files;
-    setFieldValue('images', files);
-    const newImages = Array.from(files).map((file) => {
-      if (file.type.includes('image')) {
-        return {
-          id: uuidv4(),
-          fileUrl: URL.createObjectURL(file),
-        };
-      }
-    });
-
-    setImages([...images, ...newImages]);
+  const handleChangeFile = (e) => {
+    const file = e.target.files[0];
+    setFieldValue('image', file);
+    if (file?.type.includes('image')) {
+      setImage({ id: uuidv4(), fileUrl: URL.createObjectURL(file) });
+    }
   };
 
-  const handleDeleteImage = (id) => {
-    const newImages = images.filter((image) => image.id !== id);
-    setImages(newImages);
+  const handleDeleteImage = () => {
+    setFieldValue('image', '');
+    setImage();
+    setKey((key) => key + 1);
   };
 
   return (
@@ -56,24 +52,22 @@ const InputFile = ({ labelName = '', required = false, name = '', formik, multip
           name={name}
           type='file'
           className={`form-control ${hasError ? 'border-red' : ''} file-upload`}
-          onChange={handleChangeFiles}
+          onChange={handleChangeFile}
           onBlur={handleBlur}
-          multiple={multiple}
           accept='image/*'
           ref={inputRef}
+          key={key}
         />
       </div>
 
-      <div className='preview-image'>
-        {images.map((image) => (
-          <div key={image.fileUrl} className='image-items'>
-            <button onClick={() => handleDeleteImage(image.id)}>
-              <MdDeleteForever />
-            </button>
-            <img src={image.fileUrl} alt='' />
-          </div>
-        ))}
-      </div>
+      {image && (
+        <div className='preview-image'>
+          <button onClick={() => handleDeleteImage(image.id)}>
+            <MdDeleteForever />
+          </button>
+          <img src={image.fileUrl} alt='' />
+        </div>
+      )}
 
       {hasError && <span className='form-error'>{error}</span>}
     </div>

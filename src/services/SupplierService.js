@@ -1,48 +1,56 @@
-import { axiosJWT, handleAPICall } from '~/api/apiConfig';
+import { axiosJWT, handleAPICall, handleAPICallWithoutToast } from '~/api/apiConfig';
+import { getToken } from '~/utils';
 
-const createSupplier = (data, token, dispatch) =>
-  handleAPICall(
+const createSupplier = (data, dispatch) => {
+  const token = getToken();
+  return handleAPICall(
     axiosJWT.post('/supplier/create', data, {
       headers: { Authorization: `Bearer ${token}` },
     }),
-    dispatch,
-    true
+    dispatch
   );
+};
 
-const updateSupplier = (id, data, token, dispatch) =>
-  handleAPICall(
-    axiosJWT.put(`/supplier/update/${id}`, data, {
-      headers: { Authorization: `Bearer ${token}` },
-    }),
-    dispatch,
-    true
-  );
-
-const getSuppliers = (params, token, dispatch) =>
-  handleAPICall(
+const getSuppliers = (params, dispatch) => {
+  const token = getToken();
+  return handleAPICallWithoutToast(
     axiosJWT.get('/supplier/get-all', {
       params: params,
       headers: { Authorization: `Bearer ${token}` },
     }),
     dispatch
   );
+};
 
-const getSupplier = (id, token, dispatch) =>
-  handleAPICall(
+const getSupplier = (id, dispatch) => {
+  const token = getToken();
+  return handleAPICallWithoutToast(
     axiosJWT.get(`/supplier/${id}`, {
       headers: { Authorization: `Bearer ${token}` },
     }),
     dispatch
   );
+};
 
-const deleteSupplier = (id, token, dispatch) =>
-  handleAPICall(
+const updateSupplier = (id, data, dispatch) => {
+  const token = getToken();
+  return handleAPICall(
+    axiosJWT.put(`/supplier/update/${id}`, data, {
+      headers: { Authorization: `Bearer ${token}` },
+    }),
+    dispatch
+  );
+};
+
+const deleteSupplier = (id, dispatch) => {
+  const token = getToken();
+  return handleAPICall(
     axiosJWT.delete(`/supplier/delete/${id}`, {
       headers: { Authorization: `Bearer ${token}` },
     }),
-    dispatch,
-    true
+    dispatch
   );
+};
 
 const SupplierService = {
   createSupplier,

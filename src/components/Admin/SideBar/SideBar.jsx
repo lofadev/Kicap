@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { AiFillDashboard } from 'react-icons/ai';
-import { BiSolidCategory, BiSolidLeftArrow, BiSolidRightArrow } from 'react-icons/bi';
+import { BiSolidCategory } from 'react-icons/bi';
 import { FaCarSide, FaCartPlus, FaFolder, FaPeopleCarry, FaUser } from 'react-icons/fa';
 import { FaCartFlatbed } from 'react-icons/fa6';
 import { MdOutlineProductionQuantityLimits } from 'react-icons/md';
@@ -27,7 +27,7 @@ const menuLarge = [
       },
       {
         name: 'Danh mục sản phẩm',
-        to: '/admin/categorys',
+        to: '/admin/categories',
         icon: BiSolidCategory,
       },
       {
@@ -64,7 +64,7 @@ const menuLarge = [
       },
       {
         name: 'Lập đơn hàng',
-        to: '/admin/orders/add',
+        to: '/admin/order/add',
         icon: FaCartPlus,
       },
     ],
@@ -85,7 +85,7 @@ const menuSmall = [
   },
   {
     name: 'Danh mục sản phẩm',
-    to: '/admin/categorys',
+    to: '/admin/categories',
     icon: BiSolidCategory,
   },
   {
@@ -116,14 +116,13 @@ const menuSmall = [
   },
   {
     name: 'Lập đơn hàng',
-    to: '/admin/orders/add',
+    to: '/admin/order/add',
     icon: FaCartPlus,
   },
 ];
 
-const SideBar = () => {
+const SideBar = ({ isSmall }) => {
   const [itemActive, setItemActive] = useState(0);
-  const [isSmall, setIsSmall] = useState(false);
   const [menu, setMenu] = useState(menuLarge);
 
   useEffect(() => {
@@ -134,19 +133,12 @@ const SideBar = () => {
     }
   }, [isSmall]);
 
-  const handleToggleSidebar = () => {
-    setIsSmall((prev) => !prev);
-  };
-
   const handleClickItem = (index) => {
     if (itemActive === index) setItemActive(-1);
     else if (menu[index].children) setItemActive(index);
   };
   return (
     <div className={`sidebar ${isSmall ? 'small' : ''}`}>
-      <button className='sidebar-arrow' onClick={handleToggleSidebar}>
-        {isSmall ? <BiSolidRightArrow /> : <BiSolidLeftArrow />}
-      </button>
       <ul className='sidebar-menu'>
         {menu.map((item, index) => {
           const Icon = item.icon;

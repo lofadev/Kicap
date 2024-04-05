@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import '../FormGroup.scss';
 
-const InputNumber = ({ labelName, required = false, name = '', formik }) => {
+const InputNumber = ({ labelName, required = false, name = '', formik, min }) => {
   const { errors, handleChange, handleBlur, values, touched } = formik;
   const error = errors[name];
   const hasError = touched[name] && error;
@@ -18,10 +18,11 @@ const InputNumber = ({ labelName, required = false, name = '', formik }) => {
         type='number'
         name={name}
         className={`form-control ${hasError ? 'border-red' : ''}`}
-        value={values[name] || 0}
+        value={values[name]}
         onChange={handleChange}
         onBlur={handleBlur}
         autoComplete='off'
+        min={min}
       />
 
       {hasError && <span className='form-error'>{error}</span>}

@@ -4,14 +4,14 @@ import { RiAdminFill } from 'react-icons/ri';
 import './Header.scss';
 import { Link } from 'react-router-dom';
 
-const Header = () => {
+const Header = ({ isSmall }) => {
   const handleLogout = () => {
     alert('dang xuat');
   };
 
   return (
     <div className='header'>
-      <h1 className='header-shop-name'>
+      <h1 className={`header-shop-name ${isSmall ? 'ml-10' : ''}`}>
         <Link to='/admin/dashboard'>Kicap shop</Link>
       </h1>
 

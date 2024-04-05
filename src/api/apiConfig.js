@@ -10,17 +10,34 @@ export const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_REACT_APP_API_KEY,
 });
 
-export const handleAPICall = async (apiCall, dispatch, showToast = false) => {
+export const handleAPICall = async (apiCall, dispatch) => {
   try {
     dispatch(setLoading(true));
     const res = await apiCall;
-    if (showToast)
-      dispatch(
-        updateToast({
-          status: 'ok',
-          message: res.data.message,
-        })
-      );
+    dispatch(
+      updateToast({
+        status: 'ok',
+        message: res.data.message,
+      })
+    );
+    return res.data;
+  } catch (error) {
+    dispatch(
+      updateToast({
+        status: 'error',
+        message: error.response.data.message,
+      })
+    );
+    return error.response.data;
+  } finally {
+    dispatch(setLoading(false));
+  }
+};
+
+export const handleAPICallWithoutToast = async (apiCall, dispatch) => {
+  try {
+    dispatch(setLoading(true));
+    const res = await apiCall;
     return res.data;
   } catch (error) {
     dispatch(
