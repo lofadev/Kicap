@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
 import '../FormGroup.scss';
+import { formatPriceToVND } from '~/utils';
 
-const InputNumber = ({ labelName, required = false, name = '', formik, min }) => {
+const InputNumber = ({ labelName, required = false, name = '', formik, min, isPrice }) => {
   const { errors, handleChange, handleBlur, values, touched } = formik;
   const error = errors[name];
   const hasError = touched[name] && error;
@@ -13,17 +14,20 @@ const InputNumber = ({ labelName, required = false, name = '', formik, min }) =>
           {labelName} {required && <span className='required'>*</span>}
         </label>
       )}
-      <input
-        id={name}
-        type='number'
-        name={name}
-        className={`form-control ${hasError ? 'border-red' : ''}`}
-        value={values[name]}
-        onChange={handleChange}
-        onBlur={handleBlur}
-        autoComplete='off'
-        min={min}
-      />
+      <div className='form-content'>
+        <input
+          id={name}
+          type='number'
+          name={name}
+          className={`form-control ${hasError ? 'border-red' : ''}`}
+          value={values[name]}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          autoComplete='off'
+          min={min}
+        />
+        {isPrice && <div className='format-price'>{formatPriceToVND(values[name])}</div>}
+      </div>
 
       {hasError && <span className='form-error'>{error}</span>}
     </div>

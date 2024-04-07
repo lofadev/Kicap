@@ -5,7 +5,10 @@ const createSlider = (data, dispatch) => {
   const token = getToken();
   return handleAPICall(
     axiosJWT.post('/slider/create', data, {
-      headers: { Authorization: `Bearer ${token}` },
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'multipart/form-data',
+      },
     }),
     dispatch
   );
@@ -36,7 +39,10 @@ const updateSlider = (id, data, dispatch) => {
   const token = getToken();
   return handleAPICall(
     axiosJWT.put(`/slider/update/${id}`, data, {
-      headers: { Authorization: `Bearer ${token}` },
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'multipart/form-data',
+      },
     }),
     dispatch
   );

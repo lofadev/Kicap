@@ -26,4 +26,24 @@
       }
     }
   }
+
+  .btn-add {
+    display: inline-block;
+    padding: 2px 10px;
+    font-size: 1.8rem;
+    border-radius: 2px;
+    transition: all 0.2s linear;
+
+    &:hover {
+      background-color: rgba($color: #eee, $alpha: 0.2);
+    }
+  }
+
+  .image-cell {
+    width: 100px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px dashed var(--black);
+  }
 }

@@ -46,15 +46,17 @@ const UpdateSupplier = () => {
         });
         setOptions(options);
       }
-      const supplier = supplierRes.data;
-      formik.setValues({
-        name: supplier.name,
-        contactName: supplier.contactName,
-        phone: supplier.phone,
-        email: supplier.email,
-        address: supplier.address,
-        province: supplier.province,
-      });
+      if (supplierRes.status === 'OK') {
+        const supplier = supplierRes.data;
+        formik.setValues({
+          name: supplier.name,
+          contactName: supplier.contactName,
+          phone: supplier.phone,
+          email: supplier.email,
+          address: supplier.address,
+          province: supplier.province,
+        });
+      }
     };
 
     fetchData();
@@ -75,8 +77,8 @@ const UpdateSupplier = () => {
             formik={formik}
           />
           <Input
-            labelName='Tên giao dịch'
-            placeholder='Nhập tên giao dịch'
+            labelName='Tên liên hệ'
+            placeholder='Nhập tên liên hệ'
             required
             name='contactName'
             formik={formik}

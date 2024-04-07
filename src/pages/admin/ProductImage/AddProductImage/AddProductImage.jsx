@@ -1,4 +1,5 @@
 import { useFormik } from 'formik';
+import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import Box from '~/components/Admin/Box/Box';
@@ -7,27 +8,43 @@ import HeadingBreadCrumb from '~/components/Admin/HeadingBreadCrumb/HeadingBread
 import Input from '~/components/FormGroup/Input/Input';
 import InputFile from '~/components/FormGroup/InputFile/InputFile';
 import InputNumber from '~/components/FormGroup/InputNumber/InputNumber';
-import SelectOptions from '~/components/Select/Select';
-import ShipperService from '~/services/ShipperService';
+import ProductImageService from '~/services/ProductImageService';
 import { addProductImageSchema } from '~/validate/YupSchema';
 
 const AddProductImage = () => {
   const location = useLocation();
+  const productID = location.state;
   const dispatch = useDispatch();
-  console.log(location);
   const formik = useFormik({
     initialValues: {
+      productID: productID,
       image: '',
       description: '',
       displayOrder: 0,
-      isHidden: false,
     },
     validationSchema: addProductImageSchema,
-    onSubmit: async (payload, actions) => {
-      await ShipperService.createShipper(payload, dispatch);
-      actions.resetForm();
+    onSubmit: async (payload, { setFieldValue, resetForm, setSubmitting }) => {
+      const res = await ProductImageService.createProductImage(payload, dispatch);
+      if (res.status === 'OK') {
+        resetForm();
+        setSubmitting(false);
+        setFieldValue('image', '');
+        fetchData();
+      }
     },
   });
+
+  const fetchData = async () => {
+    const res = await ProductImageService.getMaxOrder(productID, dispatch);
+    if (res.status === 'OK') {
+      formik.setFieldValue('displayOrder', res.data + 1);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div>
@@ -40,33 +57,13 @@ const AddProductImage = () => {
           <InputNumber
             labelName='Thứ tự hiển thị'
             placeholder='Nhập số điện thoại ảnh'
-            required
             name='displayOrder'
             formik={formik}
             min={0}
           />
-          <SelectOptions
-            labelName='Ẩn ảnh'
-            required
-            options={[
-              {
-                id: 1,
-                name: 'Không',
-                value: false,
-              },
-              {
-                id: 2,
-                name: 'Có',
-                value: true,
-              },
-            ]}
-            name='isHidden'
-            formik={formik}
-            value='value'
-          />
 
           <ButtonAction
-            to='/admin/product/'
+            to={`/admin/product/update/${productID}`}
             handleSave={formik.handleSubmit}
             isSubmitting={formik.isSubmitting}
           />

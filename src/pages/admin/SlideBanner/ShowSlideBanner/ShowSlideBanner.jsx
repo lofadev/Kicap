@@ -9,7 +9,6 @@ import DataTable from '~/components/DataTable/DataTable';
 import ModalDialog from '~/components/ModalDialog/ModalDialog';
 import Pagination from '~/components/Pagination/Pagination';
 import { useDebounce } from '~/hooks/useDebounce';
-import ShipperService from '~/services/ShipperService';
 import SliderService from '~/services/SliderService';
 
 const ShowSlideBanner = () => {
@@ -34,6 +33,8 @@ const ShowSlideBanner = () => {
         return {
           id: e._id,
           image: e.image,
+          description: e.description,
+          displayOrder: e.displayOrder,
         };
       });
       setRows(rows);
@@ -52,7 +53,7 @@ const ShowSlideBanner = () => {
 
   const handleDelete = async () => {
     setOpen(false);
-    const res = await ShipperService.deleteShipper(id, dispatch);
+    const res = await SliderService.deleteSlider(id, dispatch);
     if (res.status === 'OK') fetchData({ page, search: searchDebounce });
   };
 
@@ -61,7 +62,7 @@ const ShowSlideBanner = () => {
   };
 
   return (
-    <div className='shippers'>
+    <div className='slide-banners'>
       <HeadingBreadCrumb>Quản lý slide banner</HeadingBreadCrumb>
       <Box title='Danh sách slide banner'>
         <div className='search-head'>
@@ -72,12 +73,12 @@ const ShowSlideBanner = () => {
             disabled={!searchDebounce}
             name='search'
           />
-          <Button secondary className='btn-add' to='/admin/shipper/add'>
+          <Button secondary className='btn-add' to='/admin/slide/add'>
             Bổ sung
           </Button>
         </div>
         <TextQuantity
-          quantity={response.totalShippers ?? 0}
+          quantity={response.totalSliders ?? 0}
           text='slide banner'
           totalPage={response.totalPage ?? 0}
           page={page}
@@ -86,9 +87,10 @@ const ShowSlideBanner = () => {
 
         <DataTable
           rows={rows}
-          head={['Ảnh']}
-          keys={['image']}
+          head={['Ảnh', 'Mô tả', 'Thứ tự hiển thị']}
+          keys={['image', 'description', 'displayOrder']}
           handleOpenDelete={handleOpenDelete}
+          updateTo={'slide'}
         />
         <Pagination
           pageCount={response.totalPage ?? 0}

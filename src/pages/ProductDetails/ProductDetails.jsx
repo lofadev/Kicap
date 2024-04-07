@@ -16,7 +16,7 @@ import SwatchSelect from '~/components/SwatchSelect/SwatchSelect';
 import ProductDetailsImage from '../ProductDetailsImage/ProductDetailsImage';
 import './ProductDetails.scss';
 
-const ProductDetails = () => {
+const ProductDetails = ({ productID }) => {
   const { title } = useParams();
   const handleFillterProduct = useCallback(() => {
     return products.find((product) => {

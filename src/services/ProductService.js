@@ -6,6 +6,7 @@ const createProduct = (data, dispatch) => {
   return handleAPICall(
     axiosJWT.post('/product/create', data, {
       headers: {
+        'Content-Type': 'multipart/form-data',
         Authorization: `Bearer ${token}`,
       },
     }),
@@ -34,11 +35,14 @@ const getProduct = (id, dispatch) => {
   );
 };
 
-const updateProduct = (id, data, dispatch) => {
+const updateProduct = (id, payload, dispatch) => {
   const token = getToken();
   return handleAPICall(
-    axiosJWT.put(`/product/update/${id}`, data, {
-      headers: { Authorization: `Bearer ${token}` },
+    axiosJWT.put(`/product/update/${id}`, payload, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'multipart/form-data',
+      },
     }),
     dispatch
   );

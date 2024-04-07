@@ -10,6 +10,7 @@ import ModalDialog from '~/components/ModalDialog/ModalDialog';
 import Pagination from '~/components/Pagination/Pagination';
 import { useDebounce } from '~/hooks/useDebounce';
 import ProductService from '~/services/ProductService';
+import { formatPriceToVND } from '~/utils';
 
 const ShowProduct = () => {
   const dispatch = useDispatch();
@@ -32,10 +33,10 @@ const ShowProduct = () => {
         id: product._id,
         image: product.image,
         name: product.name,
-        phone: product.phone,
-        email: product.email,
-        address: product.address,
-        province: product.province,
+        brand: product.brand,
+        supplier: product.supplier,
+        category: product.category,
+        price: formatPriceToVND(product.price),
       }));
       setRows(rows);
     }
@@ -54,7 +55,6 @@ const ShowProduct = () => {
   const handleDelete = async () => {
     setOpen(false);
     const res = await ProductService.deleteProduct(id, dispatch);
-    console.log(res);
     if (res.status === 'OK') fetchData({ page, search: searchDebounce });
   };
 
@@ -74,7 +74,7 @@ const ShowProduct = () => {
           </Button>
         </div>
         <TextQuantity
-          quantity={response.totalSuppliers ?? 0}
+          quantity={response.totalProducts ?? 0}
           text='sản phẩm'
           totalPage={response.totalPage ?? 0}
           page={page}
@@ -83,8 +83,8 @@ const ShowProduct = () => {
 
         <DataTable
           rows={rows}
-          head={['Ảnh', 'Tên sản phẩm', 'Số điện thoại', 'Email', 'Địa chỉ', 'Tỉnh/thành phố']}
-          keys={['image', 'name', 'phone', 'email', 'address', 'province']}
+          head={['Ảnh', 'Tên sản phẩm', 'Thương hiệu', 'Loại sản phẩm', 'Nhà cung cấp', 'Giá']}
+          keys={['image', 'name', 'brand', 'category', 'supplier', 'price']}
           handleOpenDelete={handleOpenDelete}
           updateTo={'product'}
         />

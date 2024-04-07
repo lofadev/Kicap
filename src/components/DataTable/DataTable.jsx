@@ -10,7 +10,15 @@ import { FaCheck, FaEdit, FaTimes } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import './DataTable.scss';
 
-export default function DataTable({ head, rows, keys, handleOpenDelete, action, updateTo }) {
+export default function DataTable({
+  head,
+  rows,
+  keys,
+  handleOpenDelete,
+  action,
+  updateTo,
+  gobackID,
+}) {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label='simple table'>
@@ -39,7 +47,7 @@ export default function DataTable({ head, rows, keys, handleOpenDelete, action, 
                 else if (key === 'image') {
                   return (
                     <TableCell key={index}>
-                      <img style={{ height: '100px' }} src={row[key]} alt='' />
+                      <img className='image-cell' src={row[key]} alt='' />
                     </TableCell>
                   );
                 } else return <TableCell key={index}>{row[key]}</TableCell>;
@@ -48,6 +56,7 @@ export default function DataTable({ head, rows, keys, handleOpenDelete, action, 
                 <Link
                   to={`/admin/${updateTo}/update/${row.id}`}
                   style={{ color: 'var(--blue)', display: 'inline-block' }}
+                  state={gobackID}
                 >
                   <FaEdit />
                 </Link>
@@ -60,7 +69,7 @@ export default function DataTable({ head, rows, keys, handleOpenDelete, action, 
           {!rows.length && (
             <TableRow>
               <TableCell sx={{ textAlign: 'center' }} colSpan={head.length + 1}>
-                Không tìm kết kết quả phù hợp hoặc dữ liệu không tồn tại.
+                Không tìm thấy kết quả phù hợp hoặc dữ liệu không tồn tại.
               </TableCell>
             </TableRow>
           )}

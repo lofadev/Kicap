@@ -68,6 +68,7 @@
       &:hover .dropdown-logout {
         display: flex;
         transform: translateX(0);
+        z-index: 10;
       }
 
       &:hover svg:last-of-type {

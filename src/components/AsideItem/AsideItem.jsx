@@ -4,9 +4,7 @@ import './AsideItem.scss';
 const AsideItem = ({ data }) => {
   const { title, choices } = data;
 
-  const handleToogleFilter = (e) => {
-    console.log(e.target.value);
-  };
+  const handleToogleFilter = (e) => {};
 
   return (
     <aside className='aside-item'>

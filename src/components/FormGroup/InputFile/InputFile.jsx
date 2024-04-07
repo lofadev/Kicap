@@ -1,35 +1,38 @@
 import PropTypes from 'prop-types';
 import { useEffect, useRef, useState } from 'react';
 import { MdDeleteForever } from 'react-icons/md';
-import { v4 as uuidv4 } from 'uuid';
 import '../FormGroup.scss';
 
-const InputFile = ({ labelName = '', required = false, name = '', formik }) => {
+const InputFile = ({ labelName = '', required = false, name = '', formik, imageURL }) => {
   const { errors, handleBlur, setFieldValue } = formik;
   const error = errors[name];
   const hasError = Boolean(error);
-  const [image, setImage] = useState();
+  const [image, setImage] = useState(imageURL ?? '');
   const [key, setKey] = useState(1);
   const inputRef = useRef();
 
   useEffect(() => {
-    console.log(image?.fileUrl);
     return () => {
-      image && URL.revokeObjectURL(image.fileUrl);
+      if (image) {
+        setImage('');
+        URL.revokeObjectURL(image);
+      }
     };
-  }, [image]);
+  }, [image, imageURL]);
 
   const handleChangeFile = (e) => {
     const file = e.target.files[0];
-    setFieldValue('image', file);
-    if (file?.type.includes('image')) {
-      setImage({ id: uuidv4(), fileUrl: URL.createObjectURL(file) });
+    if (file) {
+      setFieldValue('image', file);
+      if (file?.type.includes('image')) {
+        setImage(URL.createObjectURL(file));
+      }
     }
   };
 
   const handleDeleteImage = () => {
     setFieldValue('image', '');
-    setImage();
+    setImage('');
     setKey((key) => key + 1);
   };
 
@@ -60,12 +63,14 @@ const InputFile = ({ labelName = '', required = false, name = '', formik }) => {
         />
       </div>
 
-      {image && (
+      {(image || imageURL) && (
         <div className='preview-image'>
-          <button onClick={() => handleDeleteImage(image.id)}>
-            <MdDeleteForever />
-          </button>
-          <img src={image.fileUrl} alt='' />
+          {image && (
+            <button onClick={() => handleDeleteImage()}>
+              <MdDeleteForever />
+            </button>
+          )}
+          <img src={image || imageURL} alt='' />
         </div>
       )}
 
