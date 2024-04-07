@@ -1,5 +1,5 @@
 import { jwtDecode } from 'jwt-decode';
-import { validate } from './constant';
+import { validate } from './validate/constant';
 
 /* eslint-disable no-useless-escape */
 export const isEmail = (email) => {
@@ -70,3 +70,6 @@ export const getDecodedRfToken = () => {
   const decoded = jwtDecode(rfToken);
   return decoded;
 };
+
+export const formatPriceToVND = (price) =>
+  price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.') + 'đ';

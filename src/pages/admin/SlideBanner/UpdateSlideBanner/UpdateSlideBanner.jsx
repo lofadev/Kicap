@@ -1,20 +1,18 @@
 import { useFormik } from 'formik';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useLocation, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Box from '~/components/Admin/Box/Box';
 import ButtonAction from '~/components/Admin/ButtonAction/ButtonAction';
 import HeadingBreadCrumb from '~/components/Admin/HeadingBreadCrumb/HeadingBreadCrumb';
 import Input from '~/components/FormGroup/Input/Input';
 import InputFile from '~/components/FormGroup/InputFile/InputFile';
 import InputNumber from '~/components/FormGroup/InputNumber/InputNumber';
-import SelectOptions from '~/components/Select/Select';
-import ProductImageService from '~/services/ProductImageService';
-import { updateProductImageSchema } from '~/validate/YupSchema';
+import SliderService from '~/services/SliderService';
+import { updateSlideSchema } from '~/validate/YupSchema';
 
-const UpdateProductImage = () => {
+const UpdateSlideBanner = () => {
   const { id } = useParams();
-  const location = useLocation();
   const dispatch = useDispatch();
   const [imageURL, setImageURL] = useState('');
   const formik = useFormik({
@@ -22,27 +20,31 @@ const UpdateProductImage = () => {
       image: '',
       description: '',
       displayOrder: 0,
-      isHidden: false,
+      toProduct: '',
     },
-    validationSchema: updateProductImageSchema,
-    onSubmit: async (payload, actions) => {
-      const res = await ProductImageService.updateProductImage(id, payload, dispatch);
+    validationSchema: updateSlideSchema,
+    onSubmit: async (payload, { setFieldValue, resetForm, setSubmitting }) => {
+      const res = await SliderService.updateSlider(id, payload, dispatch);
+      if (res.status === 'OK') {
+        resetForm();
+        setSubmitting(false);
+        setFieldValue('image', '');
+      }
     },
   });
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await ProductImageService.getProductImage(id, dispatch);
+      const res = await SliderService.getSlider(id, dispatch);
       if (res.status === 'OK') {
-        const productImage = res.data;
+        const slider = res.data;
         formik.setValues({
-          description: productImage.description,
-          displayOrder: productImage.displayOrder,
-          isHidden: productImage.isHidden,
+          description: slider.description,
+          displayOrder: slider.displayOrder,
+          toProduct: slider.toProduct,
         });
-        setImageURL(productImage.image);
+        setImageURL(slider.image);
       }
-      setImageURL;
     };
 
     fetchData();
@@ -51,42 +53,22 @@ const UpdateProductImage = () => {
 
   return (
     <div>
-      <HeadingBreadCrumb>Bổ sung ảnh của sản phẩm</HeadingBreadCrumb>
+      <HeadingBreadCrumb>Cập nhật thông tin slide banner</HeadingBreadCrumb>
 
-      <Box title='Thông tin ảnh'>
+      <Box title='Thông tin slide banner'>
         <form>
           <InputFile labelName='Ảnh' name='image' required formik={formik} imageURL={imageURL} />
           <Input labelName='Mô tả' placeholder='Nhập mô tả' name='description' formik={formik} />
           <InputNumber
             labelName='Thứ tự hiển thị'
             placeholder='Nhập số điện thoại ảnh'
-            required
             name='displayOrder'
             formik={formik}
             min={0}
           />
-          <SelectOptions
-            labelName='Ẩn ảnh'
-            required
-            options={[
-              {
-                id: 1,
-                name: 'Không',
-                value: false,
-              },
-              {
-                id: 2,
-                name: 'Có',
-                value: true,
-              },
-            ]}
-            name='isHidden'
-            formik={formik}
-            value='value'
-          />
 
           <ButtonAction
-            to={`/admin/product/update/${location.state}`}
+            to={'/admin/slides'}
             handleSave={formik.handleSubmit}
             isSubmitting={formik.isSubmitting}
           />
@@ -96,4 +78,4 @@ const UpdateProductImage = () => {
   );
 };
 
-export default UpdateProductImage;
+export default UpdateSlideBanner;

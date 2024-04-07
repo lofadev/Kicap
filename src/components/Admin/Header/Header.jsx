@@ -1,8 +1,8 @@
 import { IoMdArrowDropdown } from 'react-icons/io';
 import { MdOutlineLogout } from 'react-icons/md';
 import { RiAdminFill } from 'react-icons/ri';
-import './Header.scss';
 import { Link } from 'react-router-dom';
+import './Header.scss';
 
 const Header = ({ isSmall }) => {
   const handleLogout = () => {

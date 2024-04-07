@@ -33,6 +33,10 @@ import ShowSupplier from '~/pages/admin/Supplier/ShowSupplier/ShowSupplier';
 import UpdateSupplier from '~/pages/admin/Supplier/UpdateSupplier/UpdateSupplier';
 import AddProductImage from '~/pages/admin/ProductImage/AddProductImage/AddProductImage';
 import UpdateProductImage from '~/pages/admin/ProductImage/UpdateProductImage/UpdateProductImage';
+import UpdateProduct from '~/pages/admin/Product/UpdateProduct/UpdateProduct';
+import AddProductVariant from '~/pages/admin/ProductVariant/AddProductVariant/AddProductVariant';
+import UpdateProductVariant from '~/pages/admin/ProductVariant/UpdateProductVariant/UpdateProductVariant';
+import UpdateSlideBanner from '~/pages/admin/SlideBanner/UpdateSlideBanner/UpdateSlideBanner';
 
 const publicRoutes = [
   {
@@ -127,6 +131,11 @@ const privateRoutes = [
     layout: AdminLayout,
   },
   {
+    path: config.routes.admin.slide.update,
+    component: UpdateSlideBanner,
+    layout: AdminLayout,
+  },
+  {
     path: config.routes.admin.slide.view,
     component: ShowSlideBanner,
     layout: AdminLayout,
@@ -194,6 +203,21 @@ const privateRoutes = [
   {
     path: config.routes.admin.product.image.update,
     component: UpdateProductImage,
+    layout: AdminLayout,
+  },
+  {
+    path: config.routes.admin.product.variant.add,
+    component: AddProductVariant,
+    layout: AdminLayout,
+  },
+  {
+    path: config.routes.admin.product.variant.update,
+    component: UpdateProductVariant,
+    layout: AdminLayout,
+  },
+  {
+    path: config.routes.admin.product.update,
+    component: UpdateProduct,
     layout: AdminLayout,
   },
 ];

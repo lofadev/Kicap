@@ -20,25 +20,26 @@ const AddProduct = () => {
   const [value, setValue] = useState('');
   const [categories, setCategories] = useState([]);
   const [suppliers, setSuppliers] = useState([]);
+  const [, setReload] = useState(false);
   const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: {
       name: '',
       description: '',
       brand: '',
-      categoryID: '',
-      supplierID: '',
-      stock: 1,
+      category: '',
+      supplier: '',
       price: 0,
-      discount: 0,
       image: '',
     },
     validationSchema: ProductSchema,
-    onSubmit: async (payload, { setSubmitting, resetForm }) => {
+    onSubmit: async (payload, { setSubmitting, resetForm, setFieldValue }) => {
       const res = await ProductService.createProduct(payload, dispatch);
       if (res.status === 'OK') {
         setSubmitting(false);
         resetForm();
+        setFieldValue('image', '');
+        setReload(true);
       }
     },
   });
@@ -72,7 +73,6 @@ const AddProduct = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  console.log(formik.values);
   return (
     <div className='product-add'>
       <HeadingBreadCrumb>Bổ sung sản phẩm</HeadingBreadCrumb>
@@ -97,20 +97,20 @@ const AddProduct = () => {
           required
           options={categories}
           optionDefault='--- Chọn loại hàng ---'
-          name='categoryID'
+          name='category'
           formik={formik}
+          value='name'
         ></SelectOptions>
         <SelectOptions
           labelName='Nhà cung cấp'
           required
           options={suppliers}
           optionDefault='--- Chọn nhà cung cấp ---'
-          name='supplierID'
+          name='supplier'
           formik={formik}
+          value='name'
         ></SelectOptions>
-        <InputNumber labelName='Số lượng' required formik={formik} name='stock' min={1} />
         <InputNumber labelName='Giá' required formik={formik} name='price' min={0} />
-        <InputNumber labelName='Giảm giá (%)' required formik={formik} name='discount' min={0} />
         <FormGroup labelName='Mô tả' name='description'>
           <ReactQuill
             placeholder='Nhập mô tả sản phẩm'

@@ -2,7 +2,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import Button from '~/components/Button/Button';
 import Input from '~/components/FormGroup/Input/Input';
-import { regex, validate } from '~/constant';
+import { regex, validate } from '~/validate/constant';
 import UserService from '~/services/UserService';
 import './Login.scss';
 
@@ -22,9 +22,10 @@ const Login = () => {
     validationSchema: schema,
     onSubmit: async (payload, { setSubmitting, resetForm }) => {
       const res = await UserService.loginUser(payload);
-      console.log(res);
-      setSubmitting(false);
-      resetForm();
+      if (res.status === 'OK') {
+        setSubmitting(false);
+        resetForm();
+      }
     },
   });
 

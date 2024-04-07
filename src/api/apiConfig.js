@@ -14,13 +14,15 @@ export const handleAPICall = async (apiCall, dispatch) => {
   try {
     dispatch(setLoading(true));
     const res = await apiCall;
-    dispatch(
-      updateToast({
-        status: 'ok',
-        message: res.data.message,
-      })
-    );
-    return res.data;
+    if (res.status === 200) {
+      dispatch(
+        updateToast({
+          status: 'ok',
+          message: res.data.message,
+        })
+      );
+      return res.data;
+    }
   } catch (error) {
     dispatch(
       updateToast({

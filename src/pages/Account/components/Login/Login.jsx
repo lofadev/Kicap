@@ -2,23 +2,15 @@ import { useFormik } from 'formik';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import * as Yup from 'yup';
 import Button from '~/components/Button/Button';
 import Input from '~/components/FormGroup/Input/Input';
 import SectionBreadCrumb from '~/components/SectionBreadCrumb/SectionBreadCrumb';
-import { regex, validate } from '~/constant';
 import { updateUser } from '~/redux/slides/UserSlide';
 import UserService from '~/services/UserService';
 import { getDecodedToken, getRfToken, getToken } from '~/utils';
+import { loginSchema } from '~/validate/YupSchema';
 import SocialLogin from '../SocialLogin/SocialLogin';
 import './Login.scss';
-
-const schema = Yup.object().shape({
-  email: Yup.string().required(validate.NOT_EMPTY).email(validate.INVALID_EMAIL),
-  password: Yup.string()
-    .required(validate.NOT_EMPTY)
-    .matches(regex.password, validate.INVALID_PASSWORD),
-});
 
 const Login = () => {
   const navigate = useNavigate();
@@ -29,11 +21,11 @@ const Login = () => {
       email: '',
       password: '',
     },
-    validationSchema: schema,
+    validationSchema: loginSchema,
     onSubmit: async (payload) => {
       const res = await UserService.loginUser(payload, dispatch);
-      const data = res.data;
-      if (data) {
+      if (res.status === 'OK') {
+        const data = res.data;
         navigate('/');
         localStorage.setItem('accessToken', JSON.stringify(data?.accessToken));
         localStorage.setItem('refreshToken', JSON.stringify(data?.refreshToken));
@@ -54,7 +46,7 @@ const Login = () => {
 
   const handleGetDetailsUser = async (id) => {
     const res = await UserService.getDetailsUser(id, dispatch);
-    if (res.data) {
+    if (res.status === 'OK') {
       const accessToken = getToken();
       const refreshToken = getRfToken();
       dispatch(updateUser({ ...res?.data, accessToken, refreshToken }));

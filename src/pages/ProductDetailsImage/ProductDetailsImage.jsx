@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { lazy, useEffect, useRef, useState } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
 import { MdNavigateBefore, MdNavigateNext } from 'react-icons/md';
 import { Autoplay, EffectFade, FreeMode, Keyboard, Navigation, Thumbs } from 'swiper/modules';
@@ -94,6 +94,8 @@ const ProductDetailsImage = ({ productState }) => {
             })}
           </Swiper>
         </div>
+
+        <button onClick={() => swiperRef.current.swiper.slideTo(7, 300)}>hello</button>
 
         <div className='product-image-select'>
           <Swiper {...settings2} className={totalImage < 4 ? 'center' : ''}>

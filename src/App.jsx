@@ -52,7 +52,6 @@ function App() {
   const handleGetDetailsUser = async (id) => {
     const refreshToken = getRfToken();
     const res = await UserService.getDetailsUser(id, dispatch);
-    console.log(res.data);
     if (res.data) dispatch(updateUser({ ...res.data, refreshToken }));
   };
 

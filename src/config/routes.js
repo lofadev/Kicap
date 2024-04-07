@@ -16,6 +16,7 @@ const routes = {
     dashboard: 'admin/dashboard',
     product: {
       add: '/admin/product/add',
+      update: '/admin/product/update/:id',
       view: '/admin/products',
       image: {
         add: '/admin/product/image/add',

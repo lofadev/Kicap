@@ -2,7 +2,7 @@ export const validate = {
   NOT_EMPTY: 'Không được bỏ trống.',
   INVALID_EMAIL: 'Email không hợp lệ.',
   INVALID_PHONE: 'Số điện thoại này phải thuộc vùng Việt Nam.',
-  INVALID_NUMBER: 'Vui lòng nhập giá trị dương.',
+  INVALID_NUMBER: 'Vui lòng nhập giá trị > 0.',
   INVALID_PASSWORD:
     'Mật khẩu phải chứa ít nhất (8 kí tự, 1 chữ số, 1 chữ thường, 1 chữ hoa) và không có kí tự đặc biệt.',
   NOT_MATCH_PASSWORD: 'Mật khẩu không trùng khớp.',
