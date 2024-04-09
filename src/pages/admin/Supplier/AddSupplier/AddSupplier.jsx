@@ -5,7 +5,7 @@ import Box from '~/components/Admin/Box/Box';
 import ButtonAction from '~/components/Admin/ButtonAction/ButtonAction';
 import HeadingBreadCrumb from '~/components/Admin/HeadingBreadCrumb/HeadingBreadCrumb';
 import Input from '~/components/FormGroup/Input/Input';
-import SelectOptions from '~/components/Select/Select';
+import SelectOptions from '~/components/SelectOptions/SelectOptions';
 import ProvinceService from '~/services/ProvinceService';
 import SupplierService from '~/services/SupplierService';
 import { supplierSchema } from '~/validate/YupSchema';

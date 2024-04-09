@@ -10,7 +10,7 @@ import FormGroup from '~/components/FormGroup/FormGroup';
 import Input from '~/components/FormGroup/Input/Input';
 import InputFile from '~/components/FormGroup/InputFile/InputFile';
 import InputNumber from '~/components/FormGroup/InputNumber/InputNumber';
-import SelectOptions from '~/components/Select/Select';
+import SelectOptions from '~/components/SelectOptions/SelectOptions';
 import CategoryService from '~/services/CategoryService';
 import ProductService from '~/services/ProductService';
 import SupplierService from '~/services/SupplierService';

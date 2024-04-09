@@ -7,7 +7,7 @@ import ButtonAction from '~/components/Admin/ButtonAction/ButtonAction';
 import HeadingBreadCrumb from '~/components/Admin/HeadingBreadCrumb/HeadingBreadCrumb';
 import Input from '~/components/FormGroup/Input/Input';
 import InputNumber from '~/components/FormGroup/InputNumber/InputNumber';
-import SelectOptions from '~/components/Select/Select';
+import SelectOptions from '~/components/SelectOptions/SelectOptions';
 import AttributeService from '~/services/AttributeService';
 import ProductVariantService from '~/services/ProductVariantService';
 import { addProductVariantSchema } from '~/validate/YupSchema';

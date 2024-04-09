@@ -8,7 +8,7 @@ import HeadingBreadCrumb from '~/components/Admin/HeadingBreadCrumb/HeadingBread
 import Input from '~/components/FormGroup/Input/Input';
 import InputFile from '~/components/FormGroup/InputFile/InputFile';
 import InputNumber from '~/components/FormGroup/InputNumber/InputNumber';
-import SelectOptions from '~/components/Select/Select';
+import SelectOptions from '~/components/SelectOptions/SelectOptions';
 import ProductImageService from '~/services/ProductImageService';
 import { updateProductImageSchema } from '~/validate/YupSchema';
 
