@@ -1,0 +1,14 @@
+.admin {
+  .MuiStack-root {
+    font-size: 1.6rem !important;
+  }
+}
+
+.MuiDateCalendar-root {
+  span,
+  button,
+  svg,
+  .MuiPickersCalendarHeader-label {
+    font-size: 1.6rem !important;
+  }
+}
