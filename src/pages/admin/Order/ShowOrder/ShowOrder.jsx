@@ -8,11 +8,17 @@ import DatePickerValue from '~/components/DatePicker/DatePicker';
 import './ShowOrder.scss';
 import OrderStatusService from '~/services/OrderStatusService';
 import { useDispatch } from 'react-redux';
+import TextQuantity from '~/components/Admin/TextQuantity/TextQuantity';
+import DataTable from '~/components/DataTable/DataTable';
+import Pagination from '~/components/Pagination/Pagination';
 
 const ShowOrder = () => {
   const dispatch = useDispatch();
   const [orderStatus, setOrderStatus] = useState(0);
   const [orderStatuses, setOrderStatuses] = useState([]);
+  const [page, setPage] = useState(1);
+  const [response, setResponse] = useState({});
+  const [rows, setRows] = useState([]);
 
   const handleChangeOrderStatus = (e) => {
     setOrderStatus(e.target.value);
@@ -57,6 +63,34 @@ const ShowOrder = () => {
           <span>Đến ngày</span>
           <DatePickerValue></DatePickerValue>
         </div>
+
+        <TextQuantity
+          quantity={response.totalShippers ?? 0}
+          text='đơn đặt hàng'
+          totalPage={response.totalPage ?? 0}
+          page={page}
+          pageSize={response.limit ?? 0}
+        />
+
+        <DataTable
+          rows={rows}
+          head={[
+            'Khách hàng',
+            'Ngày lập',
+            'Thời điểm duyệt',
+            'Người giao hàng',
+            'Ngày nhận giao hàng',
+            'Thời điểm kết thúc',
+            'Trạng thái',
+          ]}
+          keys={['name', 'phone']}
+          updateTo='shipper'
+          isDetails
+        />
+        <Pagination
+          pageCount={response.totalPage ?? 0}
+          onClickPageItem={(value) => setPage(value.selected + 1)}
+        ></Pagination>
       </Box>
     </div>
   );
