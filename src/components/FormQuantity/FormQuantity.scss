@@ -1,0 +1,22 @@
+.form-quantity {
+  --height: 35px;
+
+  display: inline-flex;
+  width: auto;
+  min-height: unset;
+  padding: 0;
+
+  .btn-cts {
+    width: var(--height);
+    height: var(--height);
+    border: 1px solid #ccc;
+  }
+
+  input {
+    width: var(--height);
+    height: var(--height);
+    text-align: center;
+    border: 1px solid #e6e6e6;
+    padding: 0;
+  }
+}

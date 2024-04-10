@@ -51,7 +51,7 @@ const deleteUser = (id, dispatch) => {
 };
 
 const refreshToken = (refreshToken, dispatch) =>
-  handleAPICall(
+  handleAPICallWithoutToast(
     axiosInstance.post(
       '/user/refresh-token',
       {},

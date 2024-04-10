@@ -110,7 +110,7 @@ const AddProduct = () => {
           formik={formik}
           value='name'
         ></SelectOptions>
-        <InputNumber labelName='Giá' required formik={formik} name='price' min={0} />
+        <InputNumber labelName='Giá' required formik={formik} name='price' min={0} isPrice />
         <FormGroup labelName='Mô tả' name='description'>
           <ReactQuill
             placeholder='Nhập mô tả sản phẩm'

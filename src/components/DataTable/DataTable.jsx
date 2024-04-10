@@ -7,6 +7,8 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import PropTypes from 'prop-types';
 import { FaCheck, FaEdit, FaTimes } from 'react-icons/fa';
+import { IoMdRemoveCircle } from 'react-icons/io';
+import { TfiMenuAlt } from 'react-icons/tfi';
 import { Link } from 'react-router-dom';
 import './DataTable.scss';
 
@@ -18,6 +20,9 @@ export default function DataTable({
   action,
   updateTo,
   gobackID,
+  isDetails,
+  isOrder,
+  handleRemoveOrder,
 }) {
   return (
     <TableContainer component={Paper}>
@@ -53,16 +58,40 @@ export default function DataTable({
                 } else return <TableCell key={index}>{row[key]}</TableCell>;
               })}
               <TableCell className='btn-actions'>
-                <Link
-                  to={`/admin/${updateTo}/update/${row.id}`}
-                  style={{ color: 'var(--blue)', display: 'inline-block' }}
-                  state={gobackID}
-                >
-                  <FaEdit />
-                </Link>
-                <button onClick={() => handleOpenDelete(row.id)} style={{ color: 'var(--red)' }}>
-                  <FaTimes />
-                </button>
+                {isDetails && (
+                  <Link
+                    to={`/admin/${updateTo}/${row.id}`}
+                    style={{ color: 'var(--blue)', display: 'inline-block' }}
+                    state={gobackID}
+                  >
+                    <TfiMenuAlt />
+                  </Link>
+                )}
+                {isOrder && (
+                  <button
+                    onClick={handleRemoveOrder}
+                    style={{ color: 'var(--red)', width: '50px' }}
+                  >
+                    <IoMdRemoveCircle />
+                  </button>
+                )}
+                {!isDetails && !isOrder && (
+                  <>
+                    <Link
+                      to={`/admin/${updateTo}/update/${row.id}`}
+                      style={{ color: 'var(--blue)', display: 'inline-block' }}
+                      state={gobackID}
+                    >
+                      <FaEdit />
+                    </Link>
+                    <button
+                      onClick={() => handleOpenDelete(row.id)}
+                      style={{ color: 'var(--red)' }}
+                    >
+                      <FaTimes />
+                    </button>
+                  </>
+                )}
               </TableCell>
             </TableRow>
           ))}
