@@ -10,6 +10,7 @@ import './AddOrder.scss';
 const AddOrder = () => {
   const dispatch = useDispatch();
   const [inputSearch, setInputSearch] = useState('');
+  const [cart, setCart] = useState([]);
 
   const handleChangeInputSearch = (e) => {
     setInputSearch(e.target.value);

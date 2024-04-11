@@ -3,7 +3,7 @@ import './ProductItem.scss';
 import FormQuantity from '~/components/FormQuantity/FormQuantity';
 import { useState } from 'react';
 
-const ProductItem = () => {
+const ProductItem = ({ handleAddProductToCart }) => {
   const [quantity, setQuantity] = useState(1);
 
   const handleDecreaseQuantity = () => {
@@ -24,7 +24,7 @@ const ProductItem = () => {
     <div className='product-items'>
       <div className='product-image'>
         <img
-          src='https://firebasestorage.googleapis.com/v0/b/kicap-c7161.appspot.com/o/images%2F1712477377585?alt=media&token=6c845e81-5be8-4a6b-a90d-55258200f0dc'
+          src='https://firebasestorage.googleapis.com/v0/b/kicap-c7161.appspot.com/o/images%2F1712477833812?alt=media&token=d5ebc47e-aa06-4feb-ab7e-64071298cdc2'
           alt=''
         />
       </div>
@@ -42,7 +42,7 @@ const ProductItem = () => {
           </span>
         </div>
       </div>
-      <button className='product-btn-add'>
+      <button className='product-btn-add' onClick={handleAddProductToCart}>
         <BiSolidCartAdd />
       </button>
     </div>
