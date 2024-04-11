@@ -1,6 +1,6 @@
 import { Fragment, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import './App.scss';
 import { axiosJWT } from './api/apiConfig';
 import DefaultLayout from './layouts/DefaultLayout';
@@ -14,6 +14,7 @@ import { getDecodedRfToken, getDecodedToken, getRfToken, getToken } from './util
 function App() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(resetToast());
@@ -42,6 +43,7 @@ function App() {
         } else {
           localStorage.clear();
           dispatch(resetUser());
+          navigate('/account/login');
         }
       }
       return config;

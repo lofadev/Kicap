@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
-import '../FormGroup.scss';
 import { formatPriceToVND } from '~/utils';
+import '../FormGroup.scss';
 
 const InputNumber = ({ labelName, required = false, name = '', formik, min, isPrice }) => {
   const { errors, handleChange, handleBlur, values, touched } = formik;
@@ -25,6 +25,7 @@ const InputNumber = ({ labelName, required = false, name = '', formik, min, isPr
           onBlur={handleBlur}
           autoComplete='off'
           min={min}
+          onWheel={(e) => e.target.blur()}
         />
         {isPrice && <div className='format-price'>{formatPriceToVND(values[name])}</div>}
       </div>
