@@ -137,13 +137,19 @@ const SideBar = ({ isSmall }) => {
     if (itemActive === index) setItemActive(-1);
     else if (menu[index].children) setItemActive(index);
   };
+
+  const handleToggleActive = (e) => {};
   return (
     <div className={`sidebar ${isSmall ? 'small' : ''}`}>
       <ul className='sidebar-menu'>
         {menu.map((item, index) => {
           const Icon = item.icon;
           return (
-            <li key={item.name} className={`sidebar-items ${itemActive === index ? 'active' : ''}`}>
+            <li
+              key={item.name}
+              className={`sidebar-items ${itemActive === index ? 'active' : ''}`}
+              onClick={handleToggleActive}
+            >
               {item.to ? (
                 <NavLink
                   to={item.to}

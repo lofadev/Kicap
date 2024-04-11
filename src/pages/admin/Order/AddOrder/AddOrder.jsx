@@ -1,10 +1,11 @@
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import Box from '~/components/Admin/Box/Box';
-import HeadingBreadCrumb from '~/components/Admin/HeadingBreadCrumb/HeadingBreadCrumb';
-import './AddOrder.scss';
 import FormSearch from '~/components/Admin/FormSearch/FormSearch';
-import { useState } from 'react';
+import HeadingBreadCrumb from '~/components/Admin/HeadingBreadCrumb/HeadingBreadCrumb';
 import DataTable from '~/components/DataTable/DataTable';
+import ProductItem from '../components/ProductItem/ProductItem';
+import './AddOrder.scss';
 
 const AddOrder = () => {
   const dispatch = useDispatch();
@@ -31,6 +32,13 @@ const AddOrder = () => {
               handleOnChange={handleChangeInputSearch}
               handleSearch={handleSearch}
             ></FormSearch>
+            <div className='product-list'>
+              <ProductItem />
+              <ProductItem />
+              <ProductItem />
+              <ProductItem />
+              <ProductItem />
+            </div>
           </div>
           <div className='cart'>
             <div className='cart-list'>

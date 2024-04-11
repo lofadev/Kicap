@@ -124,12 +124,6 @@
       padding: 0;
       margin-bottom: 15px;
     }
-    .form-quantity {
-      display: inline-flex;
-      width: auto;
-      min-height: unset;
-      padding: 0;
-    }
 
     .custom-btn-number {
       margin-bottom: 15px;
@@ -138,6 +132,13 @@
     label {
       display: inline-block;
       width: 100px;
+    }
+
+    .form-quantity {
+      display: inline-flex;
+      width: auto;
+      min-height: unset;
+      padding: 0;
     }
 
     .btn-cts {
