@@ -24,6 +24,8 @@ const ShowProductVariant = ({ productID }) => {
             name: variant.name,
             value: variant.value,
             price: formatPriceToVND(variant.price),
+            stock: variant.stock,
+            discount: variant.discount,
             displayOrder: variant.displayOrder,
             toImageOrder: variant.toImageOrder,
           };
@@ -56,11 +58,13 @@ const ShowProductVariant = ({ productID }) => {
             'Tên thuộc tính',
             'Giá trị thuộc tính',
             'Giá',
+            'Tồn kho',
+            'Giảm giá',
             'Thứ tự hiển thị',
             'Đi đến thứ tự hình ảnh',
           ]}
           rows={productVariants}
-          keys={['name', 'value', 'price', 'displayOrder', 'toImageOrder']}
+          keys={['name', 'value', 'price', 'stock', 'discount', 'displayOrder', 'toImageOrder']}
           action={
             <Link to='/admin/product/variant/add' state={productID} className='btn-add'>
               <FaPlus />

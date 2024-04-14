@@ -9,8 +9,6 @@ import './DatePicker.scss';
 export default function DatePickerValue({ date }) {
   const [value, setValue] = useState(dayjs(date));
 
-  console.log(value);
-
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DemoContainer components={['DatePicker']}>
