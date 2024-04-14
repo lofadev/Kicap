@@ -22,6 +22,8 @@ const AddProductVariant = () => {
       name: '',
       value: '',
       price: 0,
+      stock: 1,
+      discount: 0,
       displayOrder: 0,
       toImageOrder: 0,
     },
@@ -81,6 +83,22 @@ const AddProductVariant = () => {
             placeholder='Nhập giá'
             required
             name='price'
+            formik={formik}
+            min={0}
+            isPrice
+          />
+          <InputNumber
+            labelName='Tồn kho'
+            placeholder='Nhập số lượng hàng tồn kho'
+            required
+            name='stock'
+            formik={formik}
+            min={1}
+          />
+          <InputNumber
+            labelName='Giảm giá'
+            placeholder='Nhập giá trị giảm giá'
+            name='discount'
             formik={formik}
             min={0}
           />

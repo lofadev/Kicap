@@ -30,6 +30,7 @@ const AddProduct = () => {
       category: '',
       supplier: '',
       price: 0,
+      stock: 1,
       image: '',
     },
     validationSchema: ProductSchema,
@@ -111,6 +112,7 @@ const AddProduct = () => {
           value='name'
         ></SelectOptions>
         <InputNumber labelName='Giá' required formik={formik} name='price' min={0} isPrice />
+        <InputNumber labelName='Tồn kho' required formik={formik} name='stock' min={1} />
         <FormGroup labelName='Mô tả' name='description'>
           <ReactQuill
             placeholder='Nhập mô tả sản phẩm'
