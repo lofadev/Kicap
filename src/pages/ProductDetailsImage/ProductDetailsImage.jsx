@@ -1,16 +1,16 @@
-import { lazy, useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
 import { MdNavigateBefore, MdNavigateNext } from 'react-icons/md';
 import { Autoplay, EffectFade, FreeMode, Keyboard, Navigation, Thumbs } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import './ProductDetailsImage.scss';
 
-const ProductDetailsImage = ({ productState }) => {
+const ProductDetailsImage = ({ images }) => {
+  const totalImage = images.length;
   const swiperRef = useRef();
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const [photoIndex, setPhotoIndex] = useState(0);
-  const [totalImage, setTotalImage] = useState(() => productState.images.length);
 
   const handleViewImage = (e) => {
     swiperRef.current.swiper.autoplay.stop();
@@ -18,10 +18,6 @@ const ProductDetailsImage = ({ productState }) => {
     const index = parseInt(e.target.dataset.index);
     setPhotoIndex(index);
   };
-
-  useEffect(() => {
-    setTotalImage(productState.images.length);
-  }, [productState]);
 
   const handlePrevImg = () => {
     if (photoIndex > 0) {
@@ -67,7 +63,7 @@ const ProductDetailsImage = ({ productState }) => {
           <AiOutlineClose />
         </div>
         <div className='modal-image'>
-          <img src={productState.images[photoIndex]} alt='' />
+          <img src={images[photoIndex].image} alt='' />
         </div>
 
         <button className={`btn-prev ${photoIndex == 0 ? 'disabled' : ''}`} onClick={handlePrevImg}>
@@ -83,11 +79,11 @@ const ProductDetailsImage = ({ productState }) => {
       <div className='product-image-block'>
         <div className='product-image-big'>
           <Swiper {...settings1} ref={swiperRef}>
-            {productState.images.map((img, index) => {
+            {images.map((img, index) => {
               return (
-                <SwiperSlide key={index}>
+                <SwiperSlide key={img._id}>
                   <div onClick={handleViewImage}>
-                    <img data-index={index} loading='lazy' src={img} alt='' />
+                    <img data-index={index} loading='lazy' src={img.image} alt='' />
                   </div>
                 </SwiperSlide>
               );
@@ -95,15 +91,15 @@ const ProductDetailsImage = ({ productState }) => {
           </Swiper>
         </div>
 
-        <button onClick={() => swiperRef.current.swiper.slideTo(7, 300)}>hello</button>
+        {/* <button onClick={() => swiperRef.current.swiper.slideTo(7, 300)}>hello</button> */}
 
         <div className='product-image-select'>
           <Swiper {...settings2} className={totalImage < 4 ? 'center' : ''}>
-            {productState.images.map((img, index) => {
+            {images.map((img) => {
               return (
-                <SwiperSlide key={index}>
+                <SwiperSlide key={img._id}>
                   <div>
-                    <img loading='lazy' src={img} alt='' />
+                    <img loading='lazy' src={img.image} alt='' />
                   </div>
                 </SwiperSlide>
               );

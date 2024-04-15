@@ -48,6 +48,18 @@ const updateProduct = (id, payload, dispatch) => {
   );
 };
 
+const updateProductMoreImage = (id, payload, dispatch) => {
+  const token = getToken();
+  return handleAPICallWithoutToast(
+    axiosJWT.put(`/product/update/${id}`, payload, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }),
+    dispatch
+  );
+};
+
 const deleteProduct = (id, dispatch) => {
   const token = getToken();
   return handleAPICall(
@@ -63,6 +75,7 @@ const ProductService = {
   getProducts,
   updateProduct,
   deleteProduct,
+  updateProductMoreImage,
 };
 
 export default ProductService;

@@ -9,6 +9,7 @@ import Input from '~/components/FormGroup/Input/Input';
 import InputFile from '~/components/FormGroup/InputFile/InputFile';
 import InputNumber from '~/components/FormGroup/InputNumber/InputNumber';
 import ProductImageService from '~/services/ProductImageService';
+import ProductService from '~/services/ProductService';
 import { addProductImageSchema } from '~/validate/YupSchema';
 
 const AddProductImage = () => {
@@ -30,6 +31,14 @@ const AddProductImage = () => {
         setSubmitting(false);
         setFieldValue('image', '');
         fetchData();
+        const data = res.data;
+        if (data.displayOrder === 1) {
+          const res = await ProductService.updateProduct(
+            productID,
+            { more_image: data.image },
+            dispatch
+          );
+        }
       }
     },
   });

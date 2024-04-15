@@ -9,11 +9,11 @@ import Button from '../Button/Button';
 import ProductCard from '../ProductCard/ProductCard';
 import './SectionProduct.scss';
 
-const SectionProduct = ({ products, title, strongTitle, max, navigate }) => {
+const SectionProduct = ({ products, title, strongTitle, navigate }) => {
   const swiperSettings = {
     slidesPerView: 2,
     spaceBetween: 10,
-    navigation: max > 4,
+    navigation: products.length > 4,
     modules: [Navigation],
     breakpoints: {
       991: {
@@ -25,7 +25,6 @@ const SectionProduct = ({ products, title, strongTitle, max, navigate }) => {
     },
   };
 
-  const maxLen = parseInt(max);
   const txtButton = title && strongTitle ? `Xem tất cả . ${title} ${strongTitle}` : 'Xem tất cả';
 
   return (
@@ -38,14 +37,12 @@ const SectionProduct = ({ products, title, strongTitle, max, navigate }) => {
         </h2>
         <div className='product_block'>
           <Swiper {...swiperSettings} className={products.length < 4 ? 'center' : ''}>
-            {products.map((item, index) => {
-              if (index < maxLen) {
-                return (
-                  <SwiperSlide key={item.id}>
-                    <ProductCard product={item}></ProductCard>
-                  </SwiperSlide>
-                );
-              }
+            {products.map((item) => {
+              return (
+                <SwiperSlide key={item._id}>
+                  <ProductCard product={item}></ProductCard>
+                </SwiperSlide>
+              );
             })}
           </Swiper>
         </div>

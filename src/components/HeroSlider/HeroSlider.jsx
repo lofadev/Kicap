@@ -1,32 +1,16 @@
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import Img1 from '~/assets/imgs/slider_1.jpg';
-import Img2 from '~/assets/imgs/slider_2.jpg';
-import Img3 from '~/assets/imgs/slider_3.jpg';
+import SliderService from '~/services/SliderService';
 import './HeroSlider.scss';
 
-const sliderData = [
-  {
-    id: 1,
-    image: Img1,
-    url: '/product/bo-keycap-p5-persona5',
-  },
-  {
-    id: 2,
-    image: Img2,
-    url: '/product/bo-keycap-silent-forest',
-  },
-  {
-    id: 3,
-    image: Img3,
-    url: '/',
-  },
-];
-
 const HeroSlider = () => {
+  const dispatch = useDispatch();
+  const [sliders, setSliders] = useState([]);
   const swiperSettings = {
     slidesPerView: 1,
     pagination: true,
@@ -34,20 +18,32 @@ const HeroSlider = () => {
     loop: true,
   };
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await SliderService.getSliders({}, dispatch);
+      if (res.status === 'OK') {
+        setSliders(res.data);
+      }
+    };
+    fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <section className='hero_slider'>
       <Swiper {...swiperSettings}>
-        {sliderData.map((item) => {
-          return (
-            <SwiperSlide key={item.id}>
-              <Link to={item.url}>
-                <div className='hero_slider-items'>
-                  <img src={item.image} alt='' className='hero_slider-img' />
-                </div>
-              </Link>
-            </SwiperSlide>
-          );
-        })}
+        {sliders &&
+          sliders.map((item) => {
+            return (
+              <SwiperSlide key={item._id}>
+                <Link to={item.toProduct}>
+                  <div className='hero_slider-items'>
+                    <img src={item.image} alt='' className='hero_slider-img' />
+                  </div>
+                </Link>
+              </SwiperSlide>
+            );
+          })}
       </Swiper>
     </section>
   );
