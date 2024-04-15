@@ -1,18 +1,9 @@
 import PropTypes from 'prop-types';
 import { FaAngleRight } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import unidecode from 'unidecode';
 import './SectionBreadCrumb.scss';
 
-const SectionBreadCrumb = ({ parent = null, child = null }) => {
-  const parentParam =
-    parent &&
-    unidecode(parent.toLowerCase())
-      .split(' ')
-      .map((word) => word.replace(/[^\w\s-]/g, ''))
-      .filter((word) => word !== '-')
-      .join('-');
-
+const SectionBreadCrumb = ({ parent, slug, child }) => {
   return (
     <div className='bread-crumb'>
       <div className='container'>
@@ -24,7 +15,7 @@ const SectionBreadCrumb = ({ parent = null, child = null }) => {
             <FaAngleRight />
           </span>
           {parent && (
-            <Link to={`/${parentParam}`}>
+            <Link to={`/${slug}`}>
               <span className='bread-crumb-group text-hover-primary'>{parent}</span>
               {child && (
                 <span className='arrow-right'>

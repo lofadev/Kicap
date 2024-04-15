@@ -15,9 +15,8 @@ const Policy = () => {
   const [policyState, setPolicy] = useState(handleFindPolicy);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
     setPolicy(handleFindPolicy);
-  }, [title, handleFindPolicy]);
+  }, [handleFindPolicy]);
   return (
     <section className='policy-page'>
       <EvoBlogHeader

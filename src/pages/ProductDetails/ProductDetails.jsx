@@ -1,55 +1,70 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FaCartArrowDown, FaHeart, FaRegStar } from 'react-icons/fa';
-import { useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 import 'swiper/css';
 import 'swiper/css/effect-fade';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
-import unidecode from 'unidecode';
-import { products } from '~/../data';
 import ImgService1 from '~/assets/imgs/policy_images_2.svg';
 import ImgService2 from '~/assets/imgs/policy_images_3.svg';
 import ImgService3 from '~/assets/imgs/policy_images_4.svg';
 import SectionBreadCrumb from '~/components/SectionBreadCrumb/SectionBreadCrumb';
 import SectionProduct from '~/components/SectionProduct/SectionProduct';
-import SwatchSelect from '~/components/SwatchSelect/SwatchSelect';
+import ProductImageService from '~/services/ProductImageService';
+import ProductService from '~/services/ProductService';
+import ProductVariantService from '~/services/ProductVariantService';
 import ProductDetailsImage from '../ProductDetailsImage/ProductDetailsImage';
 import './ProductDetails.scss';
+import { formatPriceToVND } from '~/utils';
 
-const ProductDetails = ({ productID }) => {
-  const { title } = useParams();
-  const handleFillterProduct = useCallback(() => {
-    return products.find((product) => {
-      const productTitleParams = unidecode(product.title.toLowerCase())
-        .split(' ')
-        .map((word) => word.replace(/[^\w\s-]/g, ''))
-        .filter((word) => word !== '-')
-        .join('-');
-      return productTitleParams === title;
-    });
-  }, [title]);
-  const [productState, setProductState] = useState(handleFillterProduct());
-  const handleFillterRelatedProduct = useCallback(() => {
-    return products.filter(
-      (product) => product.type === productState.type && product.id !== productState.id
-    );
-  }, [productState]);
-  const [relatedProduct, setRelatedProduct] = useState(handleFillterRelatedProduct());
-
-  const [skuState, setSkuState] = useState(productState.sku[0] || '(Đang cập nhật...)');
-  const handleCalculatorPrice = useCallback(
-    (index) => {
-      return (
-        productState.price[index] - (productState.price[index] * productState.discount[index]) / 100
-      );
-    },
-    [productState]
-  );
-  const [specialPrice, setSpecialPrice] = useState(handleCalculatorPrice(0));
-  const [oldPrice, setOldPrice] = useState(productState.price[0]);
-  const [discount, setDiscount] = useState(productState.discount[0]);
-  const [status, setStatus] = useState(productState.status[0]);
+const ProductDetails = () => {
+  const dispatch = useDispatch();
+  const location = useLocation();
+  const productID = location.state.id;
+  const [product, setProduct] = useState({});
+  const [productImages, setProductImages] = useState([]);
+  const [productVariants, setProductVariants] = useState([]);
+  const [relatedProduct, setRelatedProduct] = useState([]);
+  const [salePrice, setSalePridce] = useState(0);
+  const [price, setPrice] = useState(0);
+  const [savePrice, setSavePrice] = useState(0);
+  const [discount, setDiscount] = useState(0);
+  const [stock, setStock] = useState(0);
   const [quantity, setQuantity] = useState(1);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const [product, productImages, productVariants] = await Promise.all([
+        ProductService.getProduct(productID, dispatch),
+        ProductImageService.getProductImages(productID, dispatch),
+        ProductVariantService.getProductVariants(productID, dispatch),
+      ]);
+      const relatedProduct = await ProductService.getProducts(
+        { type: product.data.category },
+        dispatch
+      );
+      if (product.status === 'OK') {
+        const data = product.data;
+        document.title = product.name + ' | Kicap';
+        const price = data.price;
+        const salePrice = price - (data.price * data.discount) / 100;
+        const savedPrice = price - salePrice;
+        setProduct(data);
+        setPrice(price);
+        setSalePridce(salePrice);
+        setSavePrice(savedPrice);
+        setDiscount(data.discount);
+        setStock(data.stock);
+      }
+      if (productImages.status === 'OK') setProductImages(productImages.data);
+      if (productVariants.status === 'OK') setProductVariants(productVariants.data);
+      if (relatedProduct.status === 'OK') setRelatedProduct(relatedProduct.data);
+    };
+
+    fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [productID]);
 
   const handleDecreaseQuantity = () => {
     if (quantity > 1) {
@@ -59,60 +74,29 @@ const ProductDetails = ({ productID }) => {
   const handleIncreaseQuantity = () => setQuantity(quantity + 1);
   const handleOnChangeQuantity = (event) => {
     let value = event.target.value;
-    if (value != '') value = parseInt(value);
+    if (value) value = parseInt(value);
     setQuantity(value);
   };
 
-  const fomattedOldPrice = useMemo(
-    () => oldPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.') + 'đ',
-    [oldPrice]
-  );
-  const roundedSpecialPrice = useMemo(() => Math.round(specialPrice / 1000) * 1000, [specialPrice]);
-  const formattedSpecialPrice = useMemo(
-    () => roundedSpecialPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.') + 'đ',
-    [roundedSpecialPrice]
-  );
-  const savePrice = useMemo(() => oldPrice - roundedSpecialPrice, [roundedSpecialPrice, oldPrice]);
-  const fomattedSavePrice = useMemo(
-    () => savePrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.') + 'đ',
-    [savePrice]
-  );
-
-  useEffect(() => {
-    document.title = productState.title + ' | Kicap';
-    const newProduct = handleFillterProduct();
-    setProductState(newProduct);
-    setRelatedProduct(handleFillterRelatedProduct());
-    setSkuState(productState.sku[0] || '(Đang cập nhật...)');
-    setSpecialPrice(handleCalculatorPrice(0));
-    setOldPrice(productState.price[0]);
-    setDiscount(productState.discount[0]);
-    setStatus(productState.status[0]);
-  }, [
-    title,
-    productState,
-    handleFillterProduct,
-    handleFillterRelatedProduct,
-    handleCalculatorPrice,
-  ]);
-
   return (
     <>
-      <SectionBreadCrumb parent={productState.type} child={productState.title} />
+      {product.name && (
+        <SectionBreadCrumb parent={product.category} slug={product.slug} child={product.name} />
+      )}
       <section className='product'>
         <div className='container'>
           <div className='product-details'>
             <div className='product-main'>
-              <ProductDetailsImage productState={productState} />
+              {productImages.length && <ProductDetailsImage images={productImages} />}
 
               <div className='product-details-pro'>
                 <div className='product-top'>
-                  <h1 className='title-head'>{productState.title}</h1>
+                  <h1 className='title-head'>{product.name}</h1>
                   <div className='product-sku'>
-                    SKU: <span className='variant-sku'>{skuState}</span>
+                    SKU: <span className='variant-sku'>{product.sku}</span>
                   </div>
                   <div className='product-vendor'>
-                    Thương hiệu: <span className='vendor'>{productState.brand}</span>
+                    Thương hiệu: <span className='vendor'>{product.brand}</span>
                   </div>
 
                   <div className='product-reviews'>
@@ -129,27 +113,29 @@ const ProductDetails = ({ productID }) => {
                   </div>
 
                   <div className='price-box'>
-                    <span className='special-price'>{formattedSpecialPrice}</span>
+                    <span className='special-price'>{formatPriceToVND(salePrice)}</span>
                     {discount > 0 && (
                       <span className='old-price'>
-                        Giá thị trường: <del className='product-price-old'>{fomattedOldPrice}</del>
+                        Giá thị trường:{' '}
+                        <del className='product-price-old'>{formatPriceToVND(price)}</del>
                       </span>
                     )}
                   </div>
 
                   {discount > 0 && (
                     <span className='save-price'>
-                      Tiết kiệm: <span className='product-price-save'>{fomattedSavePrice}</span>
+                      Tiết kiệm:{' '}
+                      <span className='product-price-save'>{formatPriceToVND(savePrice)}</span>
                     </span>
                   )}
 
                   <div className='inventory_quantity'>
                     <span className='stock-brand-title'>Tình trạng: </span>
                     <span className='a-stock'>
-                      {status === 0
+                      {stock === 0
                         ? 'Hết hàng'
-                        : status > 0
-                        ? `${status} sản phẩm có sẵn`
+                        : stock > 0
+                        ? `${stock} sản phẩm có sẵn`
                         : 'Hàng order'}
                     </span>
                   </div>
@@ -158,7 +144,7 @@ const ProductDetails = ({ productID }) => {
                     <div id='add-to-cart-form'>
                       {/* chọn mẫu */}
                       <div className='select-swatch'>
-                        {productState.layout && (
+                        {/* {productState.layout && (
                           <SwatchSelect product={productState} field='layout' />
                         )}
                         {productState.species && (
@@ -169,12 +155,12 @@ const ProductDetails = ({ productID }) => {
                         )}
                         {productState.switch && (
                           <SwatchSelect product={productState} field='switch' />
-                        )}
+                        )} */}
                       </div>
 
                       <div className='form-group'>
                         {/* số lượng */}
-                        {status !== 0 && (
+                        {stock !== 0 && (
                           <div className='custom-btn-number'>
                             <label htmlFor='quantity'>Số lượng:</label>
                             <div className='form-quantity'>
@@ -195,7 +181,7 @@ const ProductDetails = ({ productID }) => {
                         )}
 
                         {/* hết hàng */}
-                        {status === 0 && (
+                        {stock === 0 && (
                           <div className='btn-buy'>
                             <button className='btn-cart disabled'>
                               <span className='txt-main'>
@@ -207,12 +193,10 @@ const ProductDetails = ({ productID }) => {
                         )}
 
                         {/* còn hàng */}
-                        {(status === null || status > 0) && (
+                        {(stock === null || stock > 0) && (
                           <div className='btn-buy'>
                             <button className='btn-cart add_to_cart'>
-                              <span className='txt-main'>
-                                Mua ngay với giá {formattedSpecialPrice}
-                              </span>
+                              <span className='txt-main'>Mua ngay với giá {salePrice}</span>
                               <span className='txt-add'>Giao hỏa tốc nội thành Hà Nội</span>
                             </button>
                           </div>
@@ -262,13 +246,14 @@ const ProductDetails = ({ productID }) => {
           </div>
         </div>
 
-        <SectionProduct
-          max='4'
-          products={relatedProduct}
-          title='sản phẩm'
-          strongTitle='liên quan'
-          navigate={productState.type}
-        ></SectionProduct>
+        {product.category && (
+          <SectionProduct
+            products={relatedProduct}
+            title='sản phẩm'
+            strongTitle='liên quan'
+            navigate={product.slug}
+          ></SectionProduct>
+        )}
       </section>
     </>
   );

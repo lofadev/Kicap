@@ -10,11 +10,13 @@ import InputFile from '~/components/FormGroup/InputFile/InputFile';
 import InputNumber from '~/components/FormGroup/InputNumber/InputNumber';
 import SelectOptions from '~/components/SelectOptions/SelectOptions';
 import ProductImageService from '~/services/ProductImageService';
+import ProductService from '~/services/ProductService';
 import { updateProductImageSchema } from '~/validate/YupSchema';
 
 const UpdateProductImage = () => {
   const { id } = useParams();
   const location = useLocation();
+  const productID = location.state;
   const dispatch = useDispatch();
   const [imageURL, setImageURL] = useState('');
   const formik = useFormik({
@@ -27,6 +29,16 @@ const UpdateProductImage = () => {
     validationSchema: updateProductImageSchema,
     onSubmit: async (payload, actions) => {
       const res = await ProductImageService.updateProductImage(id, payload, dispatch);
+      if (res.status === 'OK') {
+        const data = res.data;
+        if (data.displayOrder === 1) {
+          await ProductService.updateProductMoreImage(
+            productID,
+            { more_image: data.image },
+            dispatch
+          );
+        }
+      }
     },
   });
 
@@ -86,7 +98,7 @@ const UpdateProductImage = () => {
           />
 
           <ButtonAction
-            to={`/admin/product/update/${location.state}`}
+            to={`/admin/product/update/${productID}`}
             handleSave={formik.handleSubmit}
             isSubmitting={formik.isSubmitting}
           />

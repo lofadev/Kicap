@@ -1,68 +1,52 @@
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import unidecode from 'unidecode';
 import Button from '../Button/Button';
 import './ProductCard.scss';
+import { formatPriceToVND } from '~/utils';
 
 const ProductCard = ({ product }) => {
-  const formattedPrice = product.price[0].toLocaleString('vi-VN', {
-    style: 'currency',
-    currency: 'VND',
-  });
-  const discount = product.price[0] - (product.price[0] * product.discount[0]) / 100;
-  const roundedDiscount = Math.ceil(discount / 1000) * 1000;
-
-  const formattedDiscount = roundedDiscount.toLocaleString('vi-VN', {
-    style: 'currency',
-    currency: 'VND',
-  });
-
-  const productTitleParams = unidecode(product.title.toLowerCase())
-    .split(' ')
-    .map((word) => word.replace(/[^\w\s-]/g, ''))
-    .filter((word) => word !== '-')
-    .join('-');
-
+  const price = formatPriceToVND(product.price);
+  const salePrice = formatPriceToVND(product.price - (product.price * product.discount) / 100);
   return (
-    <div className='product_card' key={product.id}>
+    <div className='product_card'>
       <Link
         to={{
-          pathname: `/product/${productTitleParams}`,
-          state: { id: product.id },
+          pathname: `/product/${product.slug}`,
         }}
+        state={{ id: product._id }}
         className='product_url'
       >
-        {product.discount[0] > 0 && <span className='sale_box'>{`- ${product.discount[0]}%`}</span>}
+        {product.discount > 0 && <span className='sale_box'>{`- ${product.discount}%`}</span>}
         <div className='product_card-inner'>
           <div className='product_card-image'>
             <img
               loading='lazy'
               className={'product_card-image-front'}
-              src={product.images[0]}
-              alt={product.images[0]}
+              src={product.image}
+              alt={product.image}
             />
             <img
               loading='lazy'
               className={'product_card-image-back'}
-              src={product.images[1]}
-              alt={product.images[1]}
+              src={product.more_image}
+              alt={product.more_image}
             />
           </div>
 
           <div className='product-card-main'>
-            <h4 className='product_card-type'>{product.type}</h4>
-            <h3 className='product_card-title'>{product.title}</h3>
+            <h4 className='product_card-type'>{product.category}</h4>
+            <h3 className='product_card-title'>{product.name}</h3>
             <div className='product_card-price'>
-              <strong>{formattedDiscount}</strong>
-              {product.discount[0] > 0 && <span>{formattedPrice}</span>}
+              <strong>{salePrice}</strong>
+              {product.discount > 0 && <span>{price}</span>}
             </div>
           </div>
 
           <div className='product_card-actions'>
             <Button secondary className='product_card-button'>
-              {product.status[0] === null
+              {product.stock === null
                 ? 'Tùy chọn'
-                : product.status[0] === 0
+                : product.stock === 0
                 ? 'Hết hàng'
                 : 'Thêm vào giỏ hàng'}
             </Button>
