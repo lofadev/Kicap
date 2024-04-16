@@ -1,4 +1,4 @@
-import { axiosJWT, handleAPICall, handleAPICallWithoutToast } from '~/api/apiConfig';
+import { axiosInstance, axiosJWT, handleAPICall, handleAPICallWithoutToast } from '~/api/apiConfig';
 import { getToken } from '~/utils';
 
 const createProductVariant = (data, dispatch) => {
@@ -25,16 +25,13 @@ const getProductVariant = (id, dispatch) => {
   );
 };
 
-const getProductVariants = (id, dispatch) => {
-  const token = getToken();
-  return handleAPICallWithoutToast(
-    axiosJWT.get('/product-variant/get-all', {
+const getProductVariants = (id, dispatch) =>
+  handleAPICallWithoutToast(
+    axiosInstance.get('/product-variant/get-all', {
       params: { id },
-      headers: { Authorization: `Bearer ${token}` },
     }),
     dispatch
   );
-};
 
 const updateProductVariant = (id, data, dispatch) => {
   const token = getToken();

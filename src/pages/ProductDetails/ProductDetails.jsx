@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { FaCartArrowDown, FaHeart, FaRegStar } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import 'swiper/css';
 import 'swiper/css/effect-fade';
 import 'swiper/css/navigation';
@@ -11,12 +11,13 @@ import ImgService2 from '~/assets/imgs/policy_images_3.svg';
 import ImgService3 from '~/assets/imgs/policy_images_4.svg';
 import SectionBreadCrumb from '~/components/SectionBreadCrumb/SectionBreadCrumb';
 import SectionProduct from '~/components/SectionProduct/SectionProduct';
+import SwatchSelect from '~/components/SwatchSelect/SwatchSelect';
 import ProductImageService from '~/services/ProductImageService';
 import ProductService from '~/services/ProductService';
 import ProductVariantService from '~/services/ProductVariantService';
+import { formatPriceToVND } from '~/utils';
 import ProductDetailsImage from '../ProductDetailsImage/ProductDetailsImage';
 import './ProductDetails.scss';
-import { formatPriceToVND } from '~/utils';
 
 const ProductDetails = () => {
   const dispatch = useDispatch();
@@ -25,63 +26,76 @@ const ProductDetails = () => {
   const [product, setProduct] = useState({});
   const [productImages, setProductImages] = useState([]);
   const [productVariants, setProductVariants] = useState([]);
+  const [variants, setVariants] = useState([]);
   const [relatedProduct, setRelatedProduct] = useState([]);
-  const [salePrice, setSalePridce] = useState(0);
-  const [price, setPrice] = useState(0);
-  const [savePrice, setSavePrice] = useState(0);
-  const [discount, setDiscount] = useState(0);
-  const [stock, setStock] = useState(0);
   const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
     const fetchData = async () => {
-      const [product, productImages, productVariants] = await Promise.all([
+      const [productRes, productImagesRes, productVariantsRes] = await Promise.all([
         ProductService.getProduct(productID, dispatch),
         ProductImageService.getProductImages(productID, dispatch),
         ProductVariantService.getProductVariants(productID, dispatch),
       ]);
-      const relatedProduct = await ProductService.getProducts(
-        { type: product.data.category },
+      const relatedProductRes = await ProductService.getProducts(
+        { type: productRes.data.category },
         dispatch
       );
-      if (product.status === 'OK') {
-        const data = product.data;
+      if (productRes.status === 'OK') {
+        const product = productRes.data;
         document.title = product.name + ' | Kicap';
-        const price = data.price;
-        const salePrice = price - (data.price * data.discount) / 100;
-        const savedPrice = price - salePrice;
-        setProduct(data);
-        setPrice(price);
-        setSalePridce(salePrice);
-        setSavePrice(savedPrice);
-        setDiscount(data.discount);
-        setStock(data.stock);
+        product.title = product.name;
+        setProduct(product);
       }
-      if (productImages.status === 'OK') setProductImages(productImages.data);
-      if (productVariants.status === 'OK') setProductVariants(productVariants.data);
-      if (relatedProduct.status === 'OK') setRelatedProduct(relatedProduct.data);
+      if (productImagesRes.status === 'OK') setProductImages(productImagesRes.data);
+      if (productVariantsRes.status === 'OK') {
+        const variants = productVariantsRes.data.reduce((acc, current) => {
+          const existingItem = acc.find((item) => item.name === current.name);
+          if (existingItem) {
+            existingItem.values.push({ id: current._id, value: current.value });
+          } else {
+            acc.push({ name: current.name, values: [{ id: current._id, value: current.value }] });
+          }
+          return acc;
+        }, []);
+        setProductVariants(productVariantsRes.data);
+        setVariants(variants);
+      }
+      if (relatedProductRes.status === 'OK') {
+        const newRelatedProduct = relatedProductRes.data.filter(
+          (item) => item._id !== productRes.data._id
+        );
+        setRelatedProduct(newRelatedProduct);
+      }
     };
 
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [productID]);
 
+  const handleGetVariant = (value) => {
+    const variant = productVariants.find((variant) => variant._id === value.id);
+    setProduct({ ...product, ...variant });
+  };
+
   const handleDecreaseQuantity = () => {
-    if (quantity > 1) {
-      setQuantity(quantity - 1);
-    }
+    if (quantity > 1) setQuantity(quantity - 1);
   };
   const handleIncreaseQuantity = () => setQuantity(quantity + 1);
-  const handleOnChangeQuantity = (event) => {
-    let value = event.target.value;
+  const handleOnChangeQuantity = (e) => {
+    let value = e.target.value;
     if (value) value = parseInt(value);
     setQuantity(value);
   };
 
+  const handleAddToCart = () => {
+    console.log(product, quantity);
+  };
+
   return (
     <>
-      {product.name && (
-        <SectionBreadCrumb parent={product.category} slug={product.slug} child={product.name} />
+      {product.title && (
+        <SectionBreadCrumb parent={product?.category} slug={product?.slug} child={product?.title} />
       )}
       <section className='product'>
         <div className='container'>
@@ -91,12 +105,12 @@ const ProductDetails = () => {
 
               <div className='product-details-pro'>
                 <div className='product-top'>
-                  <h1 className='title-head'>{product.name}</h1>
+                  <h1 className='title-head'>{product?.title}</h1>
                   <div className='product-sku'>
-                    SKU: <span className='variant-sku'>{product.sku}</span>
+                    SKU: <span className='variant-sku'>{product?.sku}</span>
                   </div>
                   <div className='product-vendor'>
-                    Thương hiệu: <span className='vendor'>{product.brand}</span>
+                    Thương hiệu: <span className='vendor'>{product?.brand}</span>
                   </div>
 
                   <div className='product-reviews'>
@@ -113,30 +127,28 @@ const ProductDetails = () => {
                   </div>
 
                   <div className='price-box'>
-                    <span className='special-price'>{formatPriceToVND(salePrice)}</span>
-                    {discount > 0 && (
+                    <span className='special-price'>{formatPriceToVND(product?.salePrice)}</span>
+                    {product?.discount > 0 && (
                       <span className='old-price'>
                         Giá thị trường:{' '}
-                        <del className='product-price-old'>{formatPriceToVND(price)}</del>
+                        <del className='product-price-old'>{formatPriceToVND(product?.price)}</del>
                       </span>
                     )}
                   </div>
 
-                  {discount > 0 && (
+                  {product?.discount > 0 && (
                     <span className='save-price'>
                       Tiết kiệm:{' '}
-                      <span className='product-price-save'>{formatPriceToVND(savePrice)}</span>
+                      <span className='product-price-save'>
+                        {formatPriceToVND(product?.price - product?.salePrice)}
+                      </span>
                     </span>
                   )}
 
                   <div className='inventory_quantity'>
                     <span className='stock-brand-title'>Tình trạng: </span>
                     <span className='a-stock'>
-                      {stock === 0
-                        ? 'Hết hàng'
-                        : stock > 0
-                        ? `${stock} sản phẩm có sẵn`
-                        : 'Hàng order'}
+                      {!product?.stock ? 'Hết hàng' : `${product?.stock} sản phẩm có sẵn`}
                     </span>
                   </div>
 
@@ -144,23 +156,19 @@ const ProductDetails = () => {
                     <div id='add-to-cart-form'>
                       {/* chọn mẫu */}
                       <div className='select-swatch'>
-                        {/* {productState.layout && (
-                          <SwatchSelect product={productState} field='layout' />
-                        )}
-                        {productState.species && (
-                          <SwatchSelect product={productState} field='species' />
-                        )}
-                        {productState.color && (
-                          <SwatchSelect product={productState} field='color' />
-                        )}
-                        {productState.switch && (
-                          <SwatchSelect product={productState} field='switch' />
-                        )} */}
+                        {variants &&
+                          variants.map((variant, index) => (
+                            <SwatchSelect
+                              key={index}
+                              variant={variant}
+                              handleGetVariant={handleGetVariant}
+                            />
+                          ))}
                       </div>
 
                       <div className='form-group'>
                         {/* số lượng */}
-                        {stock !== 0 && (
+                        {product.stock !== 0 && (
                           <div className='custom-btn-number'>
                             <label htmlFor='quantity'>Số lượng:</label>
                             <div className='form-quantity'>
@@ -181,34 +189,30 @@ const ProductDetails = () => {
                         )}
 
                         {/* hết hàng */}
-                        {stock === 0 && (
+                        {!product?.stock ? (
                           <div className='btn-buy'>
                             <button className='btn-cart disabled'>
                               <span className='txt-main'>
                                 <FaCartArrowDown></FaCartArrowDown> Hết hàng
                               </span>
-                              <span className='txt-add'>Nhắn tin cho Kicap để đặt hàng trước</span>
                             </button>
                           </div>
-                        )}
-
-                        {/* còn hàng */}
-                        {(stock === null || stock > 0) && (
+                        ) : (
                           <div className='btn-buy'>
-                            <button className='btn-cart add_to_cart'>
-                              <span className='txt-main'>Mua ngay với giá {salePrice}</span>
-                              <span className='txt-add'>Giao hỏa tốc nội thành Hà Nội</span>
+                            <button className='btn-cart add_to_cart' onClick={handleAddToCart}>
+                              <span className='txt-main'>Thêm vào giỏ hàng</span>
+                              <span className='txt-add'>Giao hàng toàn quốc</span>
                             </button>
                           </div>
                         )}
                       </div>
 
-                      <a href='#' className='i-wish-add'>
+                      <Link to='' className='i-wish-add'>
                         <span className='i-wish-add-child'>
                           <FaHeart />
                         </span>
                         <span className='i-wish-add-child'>Thêm vào yêu thích</span>
-                      </a>
+                      </Link>
 
                       <div className='hotline-product'>
                         Gọi đặt mua{' '}

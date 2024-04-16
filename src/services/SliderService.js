@@ -1,4 +1,4 @@
-import { axiosJWT, handleAPICall, handleAPICallWithoutToast } from '~/api/apiConfig';
+import { axiosInstance, axiosJWT, handleAPICall, handleAPICallWithoutToast } from '~/api/apiConfig';
 import { getToken } from '~/utils';
 
 const createSlider = (data, dispatch) => {
@@ -15,11 +15,9 @@ const createSlider = (data, dispatch) => {
 };
 
 const getSliders = (payload, dispatch) => {
-  const token = getToken();
   return handleAPICallWithoutToast(
-    axiosJWT.get('/slider/get-all', {
+    axiosInstance.get('/slider/get-all', {
       params: payload,
-      headers: { Authorization: `Bearer ${token}` },
     }),
     dispatch
   );

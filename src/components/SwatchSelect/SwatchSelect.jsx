@@ -1,35 +1,39 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import SwatchCheck from '~/assets/imgs/select-pro.jpg';
 import './SwatchSelect.scss';
 
-const SwatchSelect = ({ product, field }) => {
-  const [checked, setChecked] = useState(0);
-  const fieldName =
-    field === 'layout'
-      ? 'Layout'
-      : field === 'species'
-      ? 'Loại'
-      : field === 'color'
-      ? 'Màu sắc'
-      : 'Switch';
+const SwatchSelect = ({ variant, handleGetVariant }) => {
+  // const [checked, setChecked] = useState(variant.values[0]);
+
+  const [checked, setChecked] = useState(variant.values[0].id);
+
+  useEffect(() => {
+    handleGetVariant({ name: variant.name, id: checked });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [checked]);
+
+  const handleChangeVariant = (id) => {
+    setChecked(id);
+  };
+
   return (
     <div className='select-swatch-items'>
-      <span className='field-name'>{fieldName}:</span>
+      <span className='field-name'>{variant.name}:</span>
       <div className='select-swap'>
-        {product[field].map((item, index) => {
-          const labelName = item.toLowerCase().split(' ').join('-');
+        {variant.values.map((item) => {
+          const labelName = item.value.toLowerCase().split(' ').join('-');
           return (
-            <div key={index} className='swatch-element'>
+            <div key={item.id} className='swatch-element'>
               <input
                 type='radio'
-                name={`option-${field}`}
+                // name={`option-${field}`}
                 id={`swatch-${labelName}`}
-                checked={index === checked}
-                onChange={() => setChecked(index)}
+                checked={item.id === checked}
+                onChange={() => handleChangeVariant(item.id)}
               />
               <label htmlFor={`swatch-${labelName}`} className='has-thumb'>
-                <span className='label-name'>{item}</span>
+                <span className='label-name'>{item.value}</span>
                 <img src={SwatchCheck} alt='' />
               </label>
             </div>
@@ -41,8 +45,7 @@ const SwatchSelect = ({ product, field }) => {
 };
 
 SwatchSelect.propTypes = {
-  product: PropTypes.object.isRequired,
-  field: PropTypes.string.isRequired,
+  variant: PropTypes.object.isRequired,
 };
 
 export default SwatchSelect;

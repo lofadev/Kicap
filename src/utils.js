@@ -1,5 +1,6 @@
 import { jwtDecode } from 'jwt-decode';
 import { validate } from './validate/constant';
+import unidecode from 'unidecode';
 
 /* eslint-disable no-useless-escape */
 export const isEmail = (email) => {
@@ -71,5 +72,15 @@ export const getDecodedRfToken = () => {
   return decoded;
 };
 
-export const formatPriceToVND = (price) =>
+export const formatPriceToVND = (price = 0) =>
   price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.') + 'đ';
+
+export const convertToSlug = (value = '') => {
+  const valueLower = value.trim().toLowerCase();
+  const unidecodeValue = unidecode(valueLower);
+  const valueWithoutSpecialChar = unidecodeValue.replace(/[^a-z0-9]+/g, '-');
+  const result = valueWithoutSpecialChar.replace(/^-+|-+$/g, '');
+  return result;
+};
+
+export const roundedPrice = (price) => Math.round(price / 1000) * 1000;

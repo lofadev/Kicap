@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { FaBars } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { menu } from '~/../data';
 import Cart from '~/assets/imgs/add-to-basket.svg';
 import Logo from '~/assets/imgs/logo.png';
@@ -13,6 +13,7 @@ import './Header.scss';
 import Dropdown from './components/Dropdown/Dropdown';
 
 const Header = () => {
+  const navigate = useNavigate();
   const [isActiveSearch, setIsActiveSearch] = useState(false);
   const [isActiveOverlay, setIsActiveOverlay] = useState(false);
   const [isActiveMenubar, setIsActiveMenubar] = useState(false);
@@ -28,6 +29,7 @@ const Header = () => {
     await UserService.logoutUser(dispatch);
     dispatch(resetUser());
     localStorage.clear();
+    navigate('/account/login');
   };
 
   const handleToggleOverlay = (e) => {
@@ -183,7 +185,32 @@ const Header = () => {
                 )}
               </li>
             ))}
-            {isActiveMenubar && (
+            {isActiveMenubar && user.name && (
+              <>
+                <li
+                  className='nav-items hidden-lg'
+                  style={{ marginTop: '20px', paddingTop: '10px', borderTop: '1px solid' }}
+                >
+                  <Link className='nav-link' to={'/account'} onClick={handleToggleOverlay}>
+                    {user.name}
+                  </Link>
+                </li>
+                <li className='nav-items hidden-lg'>
+                  <Link
+                    className='nav-link'
+                    title='Đăng xuất'
+                    onClick={() => {
+                      handleLogout();
+                      setIsActiveOverlay((prev) => !prev);
+                      setIsActiveMenubar((prev) => !prev);
+                    }}
+                  >
+                    Đăng xuất
+                  </Link>
+                </li>
+              </>
+            )}
+            {isActiveMenubar && !user.name && (
               <>
                 <li className='nav-items hidden-lg'>
                   <Link className='nav-link' to={'/account/login'} onClick={handleToggleOverlay}>
