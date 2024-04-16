@@ -1,18 +1,20 @@
 import { useEffect, useState } from 'react';
 import { FaFilter, FaTimes } from 'react-icons/fa';
-import { products } from '~/../data';
+import { useDispatch } from 'react-redux';
 import AsideCategory from '~/components/AsideCategory/AsideCategory';
 import AsideFilter from '~/components/AsideFilter/AsideFilter';
 import EvoBlogHeader from '~/components/EvoBlogHeader/EvoBlogHeader';
 import Pagination from '~/components/Pagination/Pagination';
 import ProductCard from '~/components/ProductCard/ProductCard';
 import SortCate from '~/components/SortCate/SortCate';
+import ProductService from '~/services/ProductService';
 import './ProductCategory.scss';
 
 const ProductCategory = () => {
-  const [listProducts, setListProducts] = useState([]);
-  const [totalProduct] = useState(() => products.length);
-  const [pageCount] = useState(() => Math.ceil(totalProduct / 12));
+  const dispatch = useDispatch();
+  const [products, setProducts] = useState([]);
+  const [totalProduct, setTotalProduct] = useState(0);
+  // const [pageCount] = useState(() => Math.ceil(totalProduct / 12));
   const [page, setPage] = useState(1);
   const [openFilters, setOpenFilters] = useState(false);
 
@@ -25,13 +27,18 @@ const ProductCategory = () => {
   };
 
   useEffect(() => {
-    const temp = [];
-    products.forEach((product, index) => {
-      if (index >= (page - 1) * 12 && index < page * 12) {
-        temp.push(product);
+    window.scrollTo(0, 0);
+    const payload = { page, limit: 12 };
+    const fetchData = async (payload) => {
+      const res = await ProductService.getProducts(payload, dispatch);
+      if (res.status === 'OK') {
+        const products = res.data;
+        setProducts(products);
+        setTotalProduct(res.totalProducts);
       }
-    });
-    setListProducts(temp);
+    };
+    fetchData(payload);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page]);
 
   return (
@@ -74,12 +81,15 @@ const ProductCategory = () => {
               <SortCate />
 
               <div className='products-view'>
-                {listProducts.map((product) => {
-                  return <ProductCard key={product.id} product={product}></ProductCard>;
+                {products.map((product) => {
+                  return <ProductCard key={product._id} product={product}></ProductCard>;
                 })}
               </div>
 
-              <Pagination pageCount={pageCount} onClickPageItem={doSearch}></Pagination>
+              <Pagination
+                pageCount={Math.ceil(totalProduct / 12)}
+                onClickPageItem={doSearch}
+              ></Pagination>
             </div>
           </section>
         </div>

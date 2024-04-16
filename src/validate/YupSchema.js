@@ -64,6 +64,10 @@ export const updateProductSchema = Yup.object().shape({
   category: Yup.string().required(validate.NOT_EMPTY),
   supplier: Yup.string().required(validate.NOT_EMPTY),
   price: Yup.number().test('Số dương?', validate.INVALID_NUMBER, (value) => value > 0),
+  stock: Yup.number()
+    .required(validate.NOT_EMPTY)
+    .test('Số dương?', validate.INVALID_NUMBER, (value) => value > 0),
+  discount: Yup.number().required(validate.NOT_EMPTY),
   image: Yup.mixed().test('fileSize', validate.FIZE_SIZE, (value) => {
     if (value) {
       return value.size <= 2097152;

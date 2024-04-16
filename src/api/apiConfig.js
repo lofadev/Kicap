@@ -24,6 +24,7 @@ export const handleAPICall = async (apiCall, dispatch) => {
       return res.data;
     }
   } catch (error) {
+    console.log(error);
     dispatch(
       updateToast({
         status: 'error',
@@ -40,8 +41,11 @@ export const handleAPICallWithoutToast = async (apiCall, dispatch) => {
   try {
     dispatch(setLoading(true));
     const res = await apiCall;
-    return res.data;
+    if (res.status === 200) {
+      return res.data;
+    }
   } catch (error) {
+    console.log(error);
     dispatch(
       updateToast({
         status: 'error',

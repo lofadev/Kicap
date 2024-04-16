@@ -1,11 +1,21 @@
 import PropTypes from 'prop-types';
-import { formatPriceToVND } from '~/utils';
+import { formatPriceToVND, roundedPrice } from '~/utils';
 import '../FormGroup.scss';
 
-const InputNumber = ({ labelName, required = false, name = '', formik, min, isPrice }) => {
+const InputNumber = ({
+  labelName,
+  required = false,
+  name = '',
+  formik,
+  min,
+  isPrice,
+  isSalePrice,
+}) => {
   const { errors, handleChange, handleBlur, values, touched } = formik;
   const error = errors[name];
   const hasError = touched[name] && error;
+
+  const salePrice = roundedPrice(values['price'] - (values[name] * values['price']) / 100);
 
   return (
     <div className='form-group'>
@@ -28,6 +38,7 @@ const InputNumber = ({ labelName, required = false, name = '', formik, min, isPr
           onWheel={(e) => e.target.blur()}
         />
         {isPrice && <div className='format-price'>{formatPriceToVND(values[name])}</div>}
+        {isSalePrice && <div className='format-price'>{formatPriceToVND(salePrice)}</div>}
       </div>
 
       {hasError && <span className='form-error'>{error}</span>}

@@ -2,8 +2,10 @@ import PropTypes from 'prop-types';
 import { FaAngleRight } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import './SectionBreadCrumb.scss';
+import { convertToSlug } from '~/utils';
 
-const SectionBreadCrumb = ({ parent, slug, child }) => {
+const SectionBreadCrumb = ({ parent, child }) => {
+  const slug = convertToSlug(parent);
   return (
     <div className='bread-crumb'>
       <div className='container'>
@@ -15,7 +17,7 @@ const SectionBreadCrumb = ({ parent, slug, child }) => {
             <FaAngleRight />
           </span>
           {parent && (
-            <Link to={`/${slug}`}>
+            <Link to={`/${slug}`} state={{ type: parent }}>
               <span className='bread-crumb-group text-hover-primary'>{parent}</span>
               {child && (
                 <span className='arrow-right'>

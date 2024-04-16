@@ -37,6 +37,7 @@ const UpdateProduct = () => {
       stock: 1,
       discount: 0,
       image: '',
+      salePrice: 0,
     },
     validationSchema: updateProductSchema,
     onSubmit: async (payload, { setFieldValue }) => {
@@ -84,6 +85,7 @@ const UpdateProduct = () => {
           price: product.price,
           stock: product.stock,
           discount: product.discount,
+          salePrice: product.salePrice,
         });
         setImageURL(product.image);
       }
@@ -133,7 +135,7 @@ const UpdateProduct = () => {
         ></SelectOptions>
         <InputNumber labelName='Giá' required formik={formik} name='price' min={0} isPrice />
         <InputNumber labelName='Tồn kho' required formik={formik} name='stock' min={1} />
-        <InputNumber labelName='Giảm giá (%)' formik={formik} name='discount' min={0} />
+        <InputNumber labelName='Giảm giá (%)' formik={formik} name='discount' min={0} isSalePrice />
         <FormGroup labelName='Mô tả' name='description'>
           <ReactQuill
             placeholder='Nhập mô tả sản phẩm'
