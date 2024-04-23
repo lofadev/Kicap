@@ -11,17 +11,22 @@ const FormSearch = ({ onClick: handleToggleInSearch, searchActive }) => {
     setInputValue('');
   }, [searchActive]);
 
+  const handleChangeInputSearch = (e) => {
+    const value = e.target.value;
+    setInputValue(value);
+  };
+
   return (
     <div className={`form-search ${searchActive ? 'active' : ''}`}>
       <form action='/search'>
         <div className='input-group'>
           <input
             type='text'
-            name='query'
+            name='search'
             className='form-control'
             placeholder='Bạn cần tìm gì hôm nay?'
             value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
+            onChange={handleChangeInputSearch}
           />
           <span className='input-group-search'>
             <button className='btn btn-default' type='submit'>

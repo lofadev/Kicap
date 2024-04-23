@@ -10,7 +10,13 @@ const routes = {
   product_category: '/:title',
   news: '/news/:title',
   policy: 'policy/:title',
-  account: '/account/:type',
+  account: {
+    register: '/account/register',
+    login: '/account/login',
+    index: '/account',
+    type: '/account/:type',
+  },
+  search: '/search',
   admin: {
     login: '/admin/login',
     dashboard: 'admin/dashboard',

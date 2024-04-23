@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import './SectionBreadCrumb.scss';
 import { convertToSlug } from '~/utils';
 
-const SectionBreadCrumb = ({ parent, child }) => {
+const SectionBreadCrumb = ({ parent, child, navigate }) => {
   const slug = convertToSlug(parent);
   return (
     <div className='bread-crumb'>
@@ -17,7 +17,7 @@ const SectionBreadCrumb = ({ parent, child }) => {
             <FaAngleRight />
           </span>
           {parent && (
-            <Link to={`/${slug}`} state={{ type: parent }}>
+            <Link to={`/${navigate ?? slug}`} state={{ type: parent }}>
               <span className='bread-crumb-group text-hover-primary'>{parent}</span>
               {child && (
                 <span className='arrow-right'>

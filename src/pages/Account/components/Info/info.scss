@@ -1,0 +1,16 @@
+.account-info {
+  .btn-edit-address {
+    padding: 4px 16px;
+    color: white;
+    background-color: var(--black);
+    border-radius: 4px;
+    margin-left: 10px;
+    border: 1px solid var(--black);
+    transition: all 0.2s linear;
+
+    &:hover {
+      background-color: transparent;
+      color: var(--black);
+    }
+  }
+}

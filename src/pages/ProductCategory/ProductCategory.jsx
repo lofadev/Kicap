@@ -9,13 +9,16 @@ import ProductCard from '~/components/ProductCard/ProductCard';
 import SortCate from '~/components/SortCate/SortCate';
 import ProductService from '~/services/ProductService';
 import './ProductCategory.scss';
+import useSetQuery from '~/hooks/useSetQuery';
+import useQuery from '~/hooks/useQuery';
 
 const ProductCategory = () => {
   const dispatch = useDispatch();
+  const query = useQuery();
+  const setQuery = useSetQuery();
   const [products, setProducts] = useState([]);
-  const [totalProduct, setTotalProduct] = useState(0);
-  // const [pageCount] = useState(() => Math.ceil(totalProduct / 12));
-  const [page, setPage] = useState(1);
+  const [pageCount, setPageCount] = useState(0);
+  const [page, setPage] = useState(query.page || 1);
   const [openFilters, setOpenFilters] = useState(false);
 
   const doSearch = (value) => {
@@ -29,12 +32,13 @@ const ProductCategory = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
     const payload = { page, limit: 12 };
+    setQuery({ page });
     const fetchData = async (payload) => {
       const res = await ProductService.getProducts(payload, dispatch);
       if (res.status === 'OK') {
         const products = res.data;
         setProducts(products);
-        setTotalProduct(res.totalProducts);
+        setPageCount(Math.ceil(res.totalProducts / 12));
       }
     };
     fetchData(payload);
@@ -87,8 +91,9 @@ const ProductCategory = () => {
               </div>
 
               <Pagination
-                pageCount={Math.ceil(totalProduct / 12)}
+                pageCount={pageCount}
                 onClickPageItem={doSearch}
+                currentPage={page}
               ></Pagination>
             </div>
           </section>

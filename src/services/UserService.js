@@ -64,6 +64,16 @@ const refreshToken = (refreshToken, dispatch) =>
     dispatch
   );
 
+const changePassword = (id, payload, dispatch) => {
+  const token = getToken();
+  return handleAPICall(
+    axiosJWT.put(`/user/change-password/${id}`, payload, {
+      headers: { Authorization: `Bearer ${token}` },
+    }),
+    dispatch
+  );
+};
+
 const UserService = {
   registerUser,
   loginUser,
@@ -73,6 +83,7 @@ const UserService = {
   getUsers,
   getDetailsUser,
   refreshToken,
+  changePassword,
 };
 
 export default UserService;

@@ -3036,44 +3036,6 @@ export const filters = [
     ],
   },
   {
-    id: 2,
-    title: 'Tags',
-    choices: [
-      {
-        text: 'cherry',
-        value: '(cherry)',
-      },
-      {
-        text: 'sa',
-        value: '(sa)',
-      },
-      {
-        text: 'oem',
-        value: '(oem)',
-      },
-      {
-        text: 'asa',
-        value: '(asa)',
-      },
-      {
-        text: 'dyesub',
-        value: '(dyesub)',
-      },
-      {
-        text: 'doubleshot',
-        value: '(doubleshot)',
-      },
-      {
-        text: 'pbt',
-        value: '(pbt)',
-      },
-      {
-        text: 'abs',
-        value: '(abs)',
-      },
-    ],
-  },
-  {
     id: 3,
     title: 'Thương hiệu',
     choices: [

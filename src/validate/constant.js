@@ -4,7 +4,7 @@ export const validate = {
   INVALID_PHONE: 'Số điện thoại này phải thuộc vùng Việt Nam.',
   INVALID_NUMBER: 'Vui lòng nhập giá trị > 0.',
   INVALID_PASSWORD:
-    'Mật khẩu phải chứa ít nhất (8 kí tự, 1 chữ số, 1 chữ thường, 1 chữ hoa) và không có kí tự đặc biệt.',
+    'Mật khẩu phải chứa ít nhất (8 kí tự, 1 chữ số, 1 chữ thường, 1 chữ hoa), không có kí tự đặc biệt và khoảng trắng.',
   NOT_MATCH_PASSWORD: 'Mật khẩu không trùng khớp.',
   FIZE_SIZE: 'Kích thước tệp không được lớn hơn 2MB.',
 };
