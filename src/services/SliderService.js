@@ -14,14 +14,13 @@ const createSlider = (data, dispatch) => {
   );
 };
 
-const getSliders = (payload, dispatch) => {
-  return handleAPICallWithoutToast(
+const getSliders = (payload, dispatch) =>
+  handleAPICallWithoutToast(
     axiosInstance.get('/slider/get-all', {
       params: payload,
     }),
     dispatch
   );
-};
 
 const getSlider = (id, dispatch) => {
   const token = getToken();

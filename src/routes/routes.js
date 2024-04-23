@@ -1,6 +1,8 @@
 import config from '~/config/index.js';
 import AdminLayout from '~/layouts/AdminLayout/AdminLayout';
 import Account from '~/pages/Account/Account';
+import LoginPage from '~/pages/Account/components/Login/Login';
+import RegisterPage from '~/pages/Account/components/Register/Register';
 import Blog from '~/pages/Blog/Blog';
 import Cart from '~/pages/Cart/Cart.jsx';
 import Contact from '~/pages/Contact/Contact.jsx';
@@ -11,6 +13,7 @@ import NotFound from '~/pages/NotFound/NotFound';
 import Policy from '~/pages/Policy/Policy.jsx';
 import ProductCategory from '~/pages/ProductCategory/ProductCategory.jsx';
 import ProductDetails from '~/pages/ProductDetails/ProductDetails.jsx';
+import Search from '~/pages/Search/Search';
 import AddCategory from '~/pages/admin/Category/AddCategory/AddCategory';
 import ShowCategory from '~/pages/admin/Category/ShowCategory/ShowCategory';
 import UpdateCategory from '~/pages/admin/Category/UpdateCategory/UpdateCategory';
@@ -22,21 +25,21 @@ import Login from '~/pages/admin/Login/Login';
 import AddOrder from '~/pages/admin/Order/AddOrder/AddOrder';
 import ShowOrder from '~/pages/admin/Order/ShowOrder/ShowOrder';
 import AddProduct from '~/pages/admin/Product/AddProduct/AddProduct';
+import ShowProduct from '~/pages/admin/Product/ShowProduct/ShowProduct';
+import UpdateProduct from '~/pages/admin/Product/UpdateProduct/UpdateProduct';
+import AddProductImage from '~/pages/admin/ProductImage/AddProductImage/AddProductImage';
+import UpdateProductImage from '~/pages/admin/ProductImage/UpdateProductImage/UpdateProductImage';
+import AddProductVariant from '~/pages/admin/ProductVariant/AddProductVariant/AddProductVariant';
+import UpdateProductVariant from '~/pages/admin/ProductVariant/UpdateProductVariant/UpdateProductVariant';
 import AddShipper from '~/pages/admin/Shipper/AddShipper/AddShipper';
 import ShowShipper from '~/pages/admin/Shipper/ShowShipper/ShowShipper';
 import UpdateShipper from '~/pages/admin/Shipper/UpdateShipper/UpdateShipper';
-import ShowProduct from '~/pages/admin/Product/ShowProduct/ShowProduct';
 import AddSlideBanner from '~/pages/admin/SlideBanner/AddSlideBanner/AddSlideBanner';
 import ShowSlideBanner from '~/pages/admin/SlideBanner/ShowSlideBanner/ShowSlideBanner';
+import UpdateSlideBanner from '~/pages/admin/SlideBanner/UpdateSlideBanner/UpdateSlideBanner';
 import AddSupplier from '~/pages/admin/Supplier/AddSupplier/AddSupplier';
 import ShowSupplier from '~/pages/admin/Supplier/ShowSupplier/ShowSupplier';
 import UpdateSupplier from '~/pages/admin/Supplier/UpdateSupplier/UpdateSupplier';
-import AddProductImage from '~/pages/admin/ProductImage/AddProductImage/AddProductImage';
-import UpdateProductImage from '~/pages/admin/ProductImage/UpdateProductImage/UpdateProductImage';
-import UpdateProduct from '~/pages/admin/Product/UpdateProduct/UpdateProduct';
-import AddProductVariant from '~/pages/admin/ProductVariant/AddProductVariant/AddProductVariant';
-import UpdateProductVariant from '~/pages/admin/ProductVariant/UpdateProductVariant/UpdateProductVariant';
-import UpdateSlideBanner from '~/pages/admin/SlideBanner/UpdateSlideBanner/UpdateSlideBanner';
 
 const publicRoutes = [
   {
@@ -76,9 +79,22 @@ const publicRoutes = [
     component: Blog,
   },
   {
-    path: config.routes.account,
+    path: config.routes.account.index,
     component: Account,
   },
+  {
+    path: config.routes.account.type,
+    component: Account,
+  },
+  {
+    path: config.routes.account.login,
+    component: LoginPage,
+  },
+  {
+    path: config.routes.account.register,
+    component: RegisterPage,
+  },
+
   {
     path: config.routes.cart,
     component: Cart,
@@ -91,6 +107,10 @@ const publicRoutes = [
     path: config.routes.admin.login,
     component: Login,
     layout: null,
+  },
+  {
+    path: config.routes.search,
+    component: Search,
   },
 ];
 

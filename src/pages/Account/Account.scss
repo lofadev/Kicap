@@ -1,33 +1,80 @@
 .account {
-  .title-head {
-    font-size: 2.6rem;
-    line-height: 28px;
-    text-transform: uppercase;
-    letter-spacing: 2.4px;
-  }
-
   &-main {
     max-width: 600px;
     width: 100%;
     margin: 0 auto;
+
+    .title-head {
+      font-size: 2.6rem;
+      line-height: 28px;
+      text-transform: uppercase;
+      letter-spacing: 2.4px;
+    }
+
+    .btn-login,
+    .btn-registor {
+      min-width: 290px;
+      height: 50px;
+      padding-top: 0;
+      padding-bottom: 0;
+      font-weight: 500;
+      font-size: 1.3rem;
+      letter-spacing: 1.2px;
+    }
+
+    .btn-recover-password,
+    .btn-register-login {
+      display: inline-block;
+      line-height: inherit;
+      margin: 15px 0;
+      font-weight: 500;
+    }
   }
 
-  .btn-login,
-  .btn-registor {
-    min-width: 290px;
-    height: 50px;
-    padding-top: 0;
-    padding-bottom: 0;
-    font-weight: 500;
-    font-size: 1.3rem;
-    letter-spacing: 1.2px;
+  &-content {
+    padding: 20px 0;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+
+    & > * {
+      padding: 0 10px;
+    }
   }
 
-  .btn-recover-password,
-  .btn-registor-login {
-    display: inline-block;
-    line-height: inherit;
-    margin: 15px 0;
-    font-weight: 500;
+  .title-account {
+    font-size: 1.9rem;
+    color: #212b25;
+    margin-bottom: 7px;
+    text-transform: uppercase;
+  }
+
+  &-sidebar {
+    & > p {
+      margin-bottom: 28px;
+      font-weight: bold;
+    }
+
+    &-items {
+      display: block;
+      margin-bottom: 10px;
+
+      &.active {
+        color: var(--light-gray);
+      }
+    }
+  }
+
+  &-info {
+    .title-account {
+      margin-bottom: 30px;
+    }
+
+    p {
+      margin-bottom: 10px;
+    }
+
+    strong {
+      font-weight: bold;
+    }
   }
 }

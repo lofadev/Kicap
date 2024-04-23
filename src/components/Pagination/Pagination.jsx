@@ -2,7 +2,7 @@ import { MdKeyboardDoubleArrowLeft, MdKeyboardDoubleArrowRight } from 'react-ico
 import ReactPaginate from 'react-paginate';
 import './Pagination.scss';
 
-const Pagination = ({ pageCount, onClickPageItem: handleClickPageItem }) => {
+const Pagination = ({ pageCount, onClickPageItem: handleClickPageItem, currentPage }) => {
   return (
     <div className='product-pagination'>
       <ReactPaginate
@@ -16,6 +16,7 @@ const Pagination = ({ pageCount, onClickPageItem: handleClickPageItem }) => {
         containerClassName='pagination'
         pageClassName='page-item'
         onPageChange={handleClickPageItem}
+        initialPage={(parseInt(currentPage) || 1) - 1}
       ></ReactPaginate>
     </div>
   );

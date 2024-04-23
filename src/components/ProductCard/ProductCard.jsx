@@ -6,7 +6,7 @@ import { formatPriceToVND } from '~/utils';
 
 const ProductCard = ({ product }) => {
   const price = formatPriceToVND(product.price);
-  const salePrice = formatPriceToVND(product.price - (product.price * product.discount) / 100);
+  const salePrice = formatPriceToVND(product.salePrice);
   return (
     <div className='product_card'>
       <Link

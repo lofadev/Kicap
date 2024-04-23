@@ -6,8 +6,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import './ProductDetailsImage.scss';
 
 const ProductDetailsImage = ({ images }) => {
-  const totalImage = images.length;
   const swiperRef = useRef();
+  const [totalImage] = useState(images.length);
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const [photoIndex, setPhotoIndex] = useState(0);
@@ -63,7 +63,7 @@ const ProductDetailsImage = ({ images }) => {
           <AiOutlineClose />
         </div>
         <div className='modal-image'>
-          <img src={images[photoIndex].image} alt='' />
+          <img src={images[photoIndex]?.image} alt='' />
         </div>
 
         <button className={`btn-prev ${photoIndex == 0 ? 'disabled' : ''}`} onClick={handlePrevImg}>
@@ -76,25 +76,28 @@ const ProductDetailsImage = ({ images }) => {
           <MdNavigateNext />
         </button>
       </div>
+
       <div className='product-image-block'>
         <div className='product-image-big'>
+          {!images.length && <div className='skeleton'></div>}
           <Swiper {...settings1} ref={swiperRef}>
-            {images.map((img, index) => {
-              return (
-                <SwiperSlide key={img._id}>
-                  <div onClick={handleViewImage}>
-                    <img data-index={index} loading='lazy' src={img.image} alt='' />
-                  </div>
-                </SwiperSlide>
-              );
-            })}
+            {images.length > 0 &&
+              images.map((img, index) => {
+                return (
+                  <SwiperSlide key={img._id}>
+                    <div onClick={handleViewImage}>
+                      <img data-index={index} loading='lazy' src={img.image} alt='' />
+                    </div>
+                  </SwiperSlide>
+                );
+              })}
           </Swiper>
         </div>
 
         {/* <button onClick={() => swiperRef.current.swiper.slideTo(7, 300)}>hello</button> */}
 
         <div className='product-image-select'>
-          <Swiper {...settings2} className={totalImage < 4 ? 'center' : ''}>
+          <Swiper {...settings2} className={images.length < 5 ? 'center' : ''}>
             {images.map((img) => {
               return (
                 <SwiperSlide key={img._id}>

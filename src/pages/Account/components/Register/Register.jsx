@@ -33,6 +33,8 @@ const Register = () => {
 
   useEffect(() => {
     document.title = 'Đăng ký tài khoản | Kicap';
+    if (localStorage.getItem('accessToken')) navigate('/');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -90,7 +92,7 @@ const Register = () => {
             </div>
           </form>
           <p className='text-center'>
-            <Link to='/account/login' className='btn-registor-login  text-color-primary'>
+            <Link to='/account/login' className='btn-register-login  text-color-primary'>
               Đăng nhập
             </Link>
           </p>

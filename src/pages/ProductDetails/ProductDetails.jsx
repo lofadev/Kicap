@@ -81,11 +81,15 @@ const ProductDetails = () => {
   const handleDecreaseQuantity = () => {
     if (quantity > 1) setQuantity(quantity - 1);
   };
-  const handleIncreaseQuantity = () => setQuantity(quantity + 1);
+  const handleIncreaseQuantity = () => {
+    if (quantity < product.stock) setQuantity(quantity + 1);
+  };
   const handleOnChangeQuantity = (e) => {
     let value = e.target.value;
-    if (value) value = parseInt(value);
-    setQuantity(value);
+    if (!isNaN(value)) {
+      if (value) value = parseInt(value);
+      if (value < product.stock) setQuantity(value);
+    }
   };
 
   const handleAddToCart = () => {
@@ -101,7 +105,7 @@ const ProductDetails = () => {
         <div className='container'>
           <div className='product-details'>
             <div className='product-main'>
-              {productImages.length && <ProductDetailsImage images={productImages} />}
+              {<ProductDetailsImage images={productImages} />}
 
               <div className='product-details-pro'>
                 <div className='product-top'>
@@ -178,7 +182,6 @@ const ProductDetails = () => {
                               <input
                                 value={quantity}
                                 id='quantity'
-                                type='text'
                                 onChange={handleOnChangeQuantity}
                               />
                               <button className='btn-cts' onClick={handleIncreaseQuantity}>

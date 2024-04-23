@@ -79,7 +79,7 @@ const Header = () => {
           <div className='top_header-right'>
             <ul className='top_header-features'>
               <li className='top_header-account'>
-                <Link to='/'>Tài khoản</Link>
+                <Link to='/account'>Tài khoản</Link>
                 <ul>
                   {user.name ? (
                     <>
