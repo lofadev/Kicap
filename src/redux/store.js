@@ -11,9 +11,10 @@ import {
   persistStore,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import toastReducer from './slides/ToastSlide.js';
-import userReducer from './slides/UserSlide.js';
-import loadingReducer from './slides/LoadingSlider.js';
+import toastReducer from './slices/ToastSlice.js';
+import userReducer from './slices/UserSlice.js';
+import loadingReducer from './slices/LoadingSlice.js';
+import cartReducer from './slices/CartSlice.js';
 
 const persistConfig = {
   key: 'root',
@@ -24,6 +25,7 @@ const rootReducer = combineReducers({
   loading: loadingReducer,
   toast: toastReducer,
   user: userReducer,
+  cart: cartReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

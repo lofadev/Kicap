@@ -1,12 +1,16 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import EmptyCart from '~/assets/imgs/empty-cart.png';
 import Button from '~/components/Button/Button';
 import SectionBreadCrumb from '~/components/SectionBreadCrumb/SectionBreadCrumb';
 import './Cart.scss';
+import CartItem from './CartItem/CartItem';
+import { formatPriceToVND } from '~/utils';
 
 const Cart = () => {
   // eslint-disable-next-line no-unused-vars
-  const [countItem, setCountItem] = useState(0);
+  const cart = useSelector((state) => state.cart);
+  const orderItemsCount = cart.orderItems.length;
   useEffect(() => {
     document.title = 'Giỏ hàng | Kicap';
   }, []);
@@ -18,18 +22,44 @@ const Cart = () => {
           <h1 className='shopping-cart-heading'>
             Giỏ hàng{' '}
             <span>
-              (<span className='count-item'>{countItem}</span> sản phẩm)
+              (<span className='count-item'>{orderItemsCount}</span> sản phẩm)
             </span>
           </h1>
-          {countItem == 0 && (
-            <div className='empty-cart'>
-              <img src={EmptyCart} alt='' />
-            </div>
+          {orderItemsCount == 0 && (
+            <>
+              <div className='empty-cart'>
+                <img src={EmptyCart} alt='' />
+              </div>
+              <Button secondary className='btn-continue' to={'/collections/all'}>
+                tiếp tục mua sắm
+              </Button>
+            </>
           )}
 
-          <Button secondary className='btn-continue' to={'/collections/all'}>
-            tiếp tục mua sắm
-          </Button>
+          <div className='cart-main'>
+            <div className='cart-items'>
+              {cart.orderItems?.map((item) => (
+                <CartItem key={item.title} cartItem={item} />
+              ))}
+            </div>
+
+            <div className='cart-info'>
+              <div className='cart-info-provisional'>
+                <span>Tạm tính:</span>
+                <span>{formatPriceToVND(cart.totalPrice)}</span>
+              </div>
+              <div className='cart-info-totalprice'>
+                <span>Thành tiền:</span>
+                <span>{formatPriceToVND(cart.totalPrice)}</span>
+              </div>
+              <Button primary className='btn-payment'>
+                Thanh toán ngay
+              </Button>
+              <Button secondary to={'/collections/all'} className='btn-continue-view'>
+                Tiếp tục mua hàng
+              </Button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

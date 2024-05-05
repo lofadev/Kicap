@@ -7,7 +7,7 @@ import GoToTop from '~/components/GoToTop/GoToTop';
 import Header from '~/components/Header/Header';
 import Loading from '~/components/Loading/Loading';
 import ToastMessage from '~/components/ToastMessage/ToastMessage';
-import { resetToast } from '~/redux/slides/ToastSlide';
+import { resetToast } from '~/redux/slices/ToastSlice';
 
 const DefaultLayout = ({ children }) => {
   const dispatch = useDispatch();

@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { setLoading } from '~/redux/slides/LoadingSlider';
-import { updateToast } from '~/redux/slides/ToastSlide';
+import { setLoading } from '~/redux/slices/LoadingSlice';
+import { updateToast } from '~/redux/slices/ToastSlice';
 
 export const axiosJWT = axios.create({
   baseURL: import.meta.env.VITE_REACT_APP_API_KEY,
