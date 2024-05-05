@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { FaPlus } from 'react-icons/fa6';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -14,26 +14,27 @@ const ShowProductVariant = ({ productID }) => {
   const [open, setOpen] = useState(false);
   const [id, setId] = useState(false);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const res = await ProductVariantService.getProductVariants(productID, dispatch);
-      if (res.status === 'OK') {
-        const productVariants = res.data.map((variant) => {
-          return {
-            id: variant._id,
-            name: variant.name,
-            value: variant.value,
-            price: formatPriceToVND(variant.price),
-            stock: variant.stock,
-            discount: variant.discount,
-            displayOrder: variant.displayOrder,
-            toImageOrder: variant.toImageOrder,
-          };
-        });
-        setProductVariants(productVariants);
-      }
-    };
+  const fetchData = useCallback(async () => {
+    const res = await ProductVariantService.getProductVariants(productID, dispatch);
+    if (res.status === 'OK') {
+      const productVariants = res.data.map((variant) => {
+        return {
+          id: variant._id,
+          name: variant.name,
+          value: variant.value,
+          price: formatPriceToVND(variant.price),
+          stock: variant.stock,
+          discount: variant.discount,
+          displayOrder: variant.displayOrder,
+          toImageOrder: variant.toImageOrder,
+        };
+      });
+      setProductVariants(productVariants);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
+  useEffect(() => {
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -46,9 +47,7 @@ const ShowProductVariant = ({ productID }) => {
   const handleDelete = async () => {
     setOpen(false);
     const res = await ProductVariantService.deleteProductVariant(id, dispatch);
-    if (res.status === 'OK') {
-      console.log(res.data);
-    }
+    if (res.status === 'OK') fetchData();
   };
   return (
     <>

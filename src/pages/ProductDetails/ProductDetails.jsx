@@ -18,6 +18,7 @@ import ProductVariantService from '~/services/ProductVariantService';
 import { formatPriceToVND } from '~/utils';
 import ProductDetailsImage from '../ProductDetailsImage/ProductDetailsImage';
 import './ProductDetails.scss';
+import { addOrderProduct } from '~/redux/slices/CartSlice';
 
 const ProductDetails = () => {
   const dispatch = useDispatch();
@@ -93,7 +94,15 @@ const ProductDetails = () => {
   };
 
   const handleAddToCart = () => {
-    console.log(product, quantity);
+    const { title, salePrice, image, hasVariant, name, value } = product;
+    const productItem = {
+      title,
+      price: salePrice,
+      image,
+      quantity,
+      variant: hasVariant ? `${name}/${value}` : '',
+    };
+    dispatch(addOrderProduct(productItem));
   };
 
   return (
@@ -125,9 +134,7 @@ const ProductDetails = () => {
                           <FaRegStar key={index} className='product-star' />
                         ))}
                     </div>
-                    <a href='#' className='product-reviews-scroll'>
-                      Viết đánh giá của bạn
-                    </a>
+                    <span className='product-reviews-scroll'>Viết đánh giá của bạn</span>
                   </div>
 
                   <div className='price-box'>

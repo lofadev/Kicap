@@ -4,7 +4,7 @@ import Header from '~/components/Admin/Header/Header';
 import SideBar from '~/components/Admin/SideBar/SideBar';
 import Loading from '~/components/Loading/Loading';
 import ToastMessage from '~/components/ToastMessage/ToastMessage';
-import { resetToast } from '~/redux/slides/ToastSlide';
+import { resetToast } from '~/redux/slices/ToastSlice';
 import './AdminLayout.scss';
 
 const AdminLayout = ({ children }) => {

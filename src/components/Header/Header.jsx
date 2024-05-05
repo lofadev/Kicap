@@ -6,7 +6,7 @@ import { menu } from '~/../data';
 import Cart from '~/assets/imgs/add-to-basket.svg';
 import Logo from '~/assets/imgs/logo.png';
 import Search from '~/assets/imgs/search.svg';
-import { resetUser } from '~/redux/slides/UserSlide';
+import { resetUser } from '~/redux/slices/UserSlice';
 import UserService from '~/services/UserService';
 import FormSearch from '../FormSearch/FormSearch';
 import './Header.scss';
@@ -18,6 +18,7 @@ const Header = () => {
   const [isActiveOverlay, setIsActiveOverlay] = useState(false);
   const [isActiveMenubar, setIsActiveMenubar] = useState(false);
   const user = useSelector((state) => state.user);
+  const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
 
   const handleToggleSearch = () => {
@@ -115,7 +116,7 @@ const Header = () => {
                 <Link to='/cart'>
                   <span className='top_header-cart-name'>Giỏ hàng </span>
                   <img src={Cart} alt='' />
-                  <span className='top_header-cart-count'>0</span>
+                  <span className='top_header-cart-count'>{cart.orderItems.length}</span>
                 </Link>
               </li>
 

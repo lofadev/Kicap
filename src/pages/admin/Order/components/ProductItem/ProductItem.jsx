@@ -35,9 +35,9 @@ const ProductItem = ({ handleAddProductToCart }) => {
           <span>
             <FormQuantity
               quantity={quantity}
-              handleDecreaseQuantity={handleDecreaseQuantity}
-              handleIncreaseQuantity={handleIncreaseQuantity}
-              handleOnChangeQuantity={handleOnChangeQuantity}
+              onDecreaseQuantity={handleDecreaseQuantity}
+              onIncreaseQuantity={handleIncreaseQuantity}
+              onChangeQuantity={handleOnChangeQuantity}
             />
           </span>
         </div>

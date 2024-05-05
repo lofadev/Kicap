@@ -5,7 +5,7 @@ import * as yup from 'yup';
 import Button from '~/components/Button/Button';
 import Input from '~/components/FormGroup/Input/Input';
 import SelectOptions from '~/components/SelectOptions/SelectOptions';
-import { updateUser } from '~/redux/slides/UserSlide';
+import { updateUser } from '~/redux/slices/UserSlice';
 import ProvinceService from '~/services/ProvinceService';
 import UserService from '~/services/UserService';
 import { validate } from '~/validate/constant';

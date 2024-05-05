@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Button from '~/components/Button/Button';
 import Input from '~/components/FormGroup/Input/Input';
 import SectionBreadCrumb from '~/components/SectionBreadCrumb/SectionBreadCrumb';
-import { updateUser } from '~/redux/slides/UserSlide';
+import { updateUser } from '~/redux/slices/UserSlice';
 import UserService from '~/services/UserService';
 import { getDecodedToken, getRfToken, getToken } from '~/utils';
 import { loginSchema } from '~/validate/YupSchema';

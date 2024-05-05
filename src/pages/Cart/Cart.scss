@@ -30,4 +30,39 @@
     transform: translateX(-50%);
     white-space: nowrap;
   }
+
+  .cart-main {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 20px;
+  }
+
+  .cart-info {
+    &-provisional,
+    &-totalprice {
+      padding: 20px 0;
+      font-weight: 700;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #ccc;
+    }
+
+    &-totalprice {
+      border: none;
+
+      span:nth-child(2) {
+        font-size: 2.2rem;
+        color: var(--light-gray);
+      }
+    }
+
+    .btn-payment,
+    .btn-continue-view {
+      width: 100%;
+      margin-top: 10px;
+      height: 50px;
+      font-size: 1.4rem;
+    }
+  }
 }

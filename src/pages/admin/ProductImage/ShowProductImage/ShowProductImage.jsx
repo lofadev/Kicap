@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { FaPlus } from 'react-icons/fa6';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -18,34 +18,34 @@ const ShowProductImage = ({ productID }) => {
     setId(id);
   };
 
+  const fetchData = useCallback(async () => {
+    const res = await ProductImageService.getProductImages(productID, dispatch);
+    if (res.status === 'OK') {
+      const productImages = res.data.map((image) => {
+        return {
+          id: image._id,
+          image: image.image,
+          description: image.description,
+          displayOrder: image.displayOrder,
+          isHidden: image.isHidden,
+        };
+      });
+      setProductImages(productImages);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const handleDelete = async () => {
     setOpen(false);
     const res = await ProductImageService.deleteProductImage(id, dispatch);
-    if (res.status === 'OK') {
-      console.log(res.data);
-    }
+    if (res.status === 'OK') fetchData();
   };
 
   useEffect(() => {
-    const fetchData = async () => {
-      const res = await ProductImageService.getProductImages(productID, dispatch);
-      if (res.status === 'OK') {
-        const productImages = res.data.map((image) => {
-          return {
-            id: image._id,
-            image: image.image,
-            description: image.description,
-            displayOrder: image.displayOrder,
-            isHidden: image.isHidden,
-          };
-        });
-        setProductImages(productImages);
-      }
-    };
-
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   return (
     <>
       <Box title='Thư mục ảnh'>
