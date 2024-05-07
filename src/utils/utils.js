@@ -1,5 +1,5 @@
 import { jwtDecode } from 'jwt-decode';
-import { validate } from './validate/constant';
+import { validate } from '../validate/constant';
 import unidecode from 'unidecode';
 
 /* eslint-disable no-useless-escape */
@@ -84,3 +84,5 @@ export const convertToSlug = (value = '') => {
 };
 
 export const roundedPrice = (price) => Math.round(price / 1000) * 1000;
+
+export const isStrNumber = (str) => /^[0-9]*$/.test(str);

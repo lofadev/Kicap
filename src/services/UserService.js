@@ -1,5 +1,5 @@
 import { axiosInstance, axiosJWT, handleAPICall, handleAPICallWithoutToast } from '~/api/apiConfig';
-import { getToken } from '~/utils';
+import { getToken } from '~/utils/utils';
 
 const registerUser = (data, dispatch) =>
   handleAPICall(axiosInstance.post('/user/sign-up', data), dispatch);

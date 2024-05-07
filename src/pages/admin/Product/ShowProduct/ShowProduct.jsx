@@ -10,7 +10,7 @@ import ModalDialog from '~/components/ModalDialog/ModalDialog';
 import Pagination from '~/components/Pagination/Pagination';
 import { useDebounce } from '~/hooks/useDebounce';
 import ProductService from '~/services/ProductService';
-import { formatPriceToVND } from '~/utils';
+import { formatPriceToVND } from '~/utils/utils';
 
 const ShowProduct = () => {
   const dispatch = useDispatch();

@@ -7,7 +7,7 @@ import Input from '~/components/FormGroup/Input/Input';
 import SectionBreadCrumb from '~/components/SectionBreadCrumb/SectionBreadCrumb';
 import { updateUser } from '~/redux/slices/UserSlice';
 import UserService from '~/services/UserService';
-import { getDecodedToken, getRfToken, getToken } from '~/utils';
+import { getDecodedToken, getRfToken, getToken } from '~/utils/utils';
 import { loginSchema } from '~/validate/YupSchema';
 import SocialLogin from '../SocialLogin/SocialLogin';
 import './Login.scss';

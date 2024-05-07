@@ -1,48 +1,40 @@
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { formatPriceToVND } from '~/utils';
-import Button from '../Button/Button';
-import './ProductCard.scss';
-import { useDispatch, useSelector } from 'react-redux';
 import { addOrderProduct } from '~/redux/slices/CartSlice';
 import { updateToast } from '~/redux/slices/ToastSlice';
+import { formatPriceToVND } from '~/utils/utils';
+import Button from '../Button/Button';
+import './ProductCard.scss';
 
 const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const price = formatPriceToVND(product.price);
   const salePrice = formatPriceToVND(product.salePrice);
-  const cart = useSelector((state) => state.cart);
 
   const handleAddToCart = () => {
     if (product.hasVariant) {
       navigate(`/product/${product.slug}`, { state: { id: product._id } });
     } else {
-      const { name, salePrice, image, stock } = product;
+      const { name, salePrice, image, _id, sku, slug } = product;
       const productItem = {
+        id: _id,
+        sku,
+        slug,
         title: name,
         price: salePrice,
         image,
         quantity: 1,
-        stock,
         variant: '',
       };
       dispatch(addOrderProduct(productItem));
-      if (cart.outOfStock) {
-        dispatch(
-          updateToast({
-            status: 'error',
-            message: 'Số lượng sản phẩm đã đạt giới hạn',
-          })
-        );
-      } else {
-        dispatch(
-          updateToast({
-            status: 'ok',
-            message: 'Thêm sản phẩm vào giỏ hàng thành công',
-          })
-        );
-      }
+      dispatch(
+        updateToast({
+          status: 'ok',
+          message: 'Thêm sản phẩm vào giỏ hàng thành công',
+        })
+      );
     }
   };
   return (

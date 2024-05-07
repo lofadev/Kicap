@@ -6,7 +6,7 @@ import Box from '~/components/Admin/Box/Box';
 import DataTable from '~/components/DataTable/DataTable';
 import ModalDialog from '~/components/ModalDialog/ModalDialog';
 import ProductVariantService from '~/services/ProductVariantService';
-import { formatPriceToVND } from '~/utils';
+import { formatPriceToVND } from '~/utils/utils';
 
 const ShowProductVariant = ({ productID }) => {
   const dispatch = useDispatch();

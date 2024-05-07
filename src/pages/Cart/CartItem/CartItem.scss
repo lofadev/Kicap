@@ -25,6 +25,16 @@
     color: #242424;
   }
 
+  &-link {
+    transition: all 0.2s linear;
+    cursor: pointer;
+    padding: 6px;
+
+    &:hover {
+      color: var(--light-gray);
+    }
+  }
+
   &-price {
     font-size: 1.6rem;
     color: var(--light-gray);

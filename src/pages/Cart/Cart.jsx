@@ -5,7 +5,7 @@ import Button from '~/components/Button/Button';
 import SectionBreadCrumb from '~/components/SectionBreadCrumb/SectionBreadCrumb';
 import './Cart.scss';
 import CartItem from './CartItem/CartItem';
-import { formatPriceToVND } from '~/utils';
+import { formatPriceToVND } from '~/utils/utils';
 
 const Cart = () => {
   // eslint-disable-next-line no-unused-vars
@@ -25,7 +25,7 @@ const Cart = () => {
               (<span className='count-item'>{orderItemsCount}</span> sản phẩm)
             </span>
           </h1>
-          {orderItemsCount == 0 && (
+          {orderItemsCount === 0 && (
             <>
               <div className='empty-cart'>
                 <img src={EmptyCart} alt='' />
@@ -36,30 +36,32 @@ const Cart = () => {
             </>
           )}
 
-          <div className='cart-main'>
-            <div className='cart-items'>
-              {cart.orderItems?.map((item) => (
-                <CartItem key={item.title} cartItem={item} />
-              ))}
-            </div>
+          {orderItemsCount !== 0 && (
+            <div className='cart-main'>
+              <div className='cart-items'>
+                {cart.orderItems?.map((item) => (
+                  <CartItem key={item.title} cartItem={item} />
+                ))}
+              </div>
 
-            <div className='cart-info'>
-              <div className='cart-info-provisional'>
-                <span>Tạm tính:</span>
-                <span>{formatPriceToVND(cart.totalPrice)}</span>
+              <div className='cart-info'>
+                <div className='cart-info-provisional'>
+                  <span>Tạm tính:</span>
+                  <span>{formatPriceToVND(cart.totalPrice)}</span>
+                </div>
+                <div className='cart-info-totalprice'>
+                  <span>Thành tiền:</span>
+                  <span>{formatPriceToVND(cart.totalPrice)}</span>
+                </div>
+                <Button primary className='btn-payment'>
+                  Thanh toán ngay
+                </Button>
+                <Button secondary to={'/collections/all'} className='btn-continue-view'>
+                  Tiếp tục mua hàng
+                </Button>
               </div>
-              <div className='cart-info-totalprice'>
-                <span>Thành tiền:</span>
-                <span>{formatPriceToVND(cart.totalPrice)}</span>
-              </div>
-              <Button primary className='btn-payment'>
-                Thanh toán ngay
-              </Button>
-              <Button secondary to={'/collections/all'} className='btn-continue-view'>
-                Tiếp tục mua hàng
-              </Button>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </div>

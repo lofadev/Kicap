@@ -3,10 +3,21 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   orderItems: [],
   shippingAddress: {},
-  outOfStock: false,
   paymentMethod: '',
   shippingPrice: 0,
   totalPrice: 0,
+};
+
+const getItemOrderBySku = (state, sku) => {
+  const itemOrder = state.orderItems?.find((item) => item.sku === sku);
+  return itemOrder;
+};
+
+const calcTotalPrice = (state) => {
+  const totalPrice = state.orderItems.reduce((acc, item) => {
+    return acc + item.quantity * item.price;
+  }, 0);
+  return totalPrice;
 };
 
 const cartSlice = createSlice({
@@ -15,21 +26,41 @@ const cartSlice = createSlice({
   reducers: {
     addOrderProduct(state, action) {
       const orderItem = action.payload;
-      const itemOrder = state.orderItems?.find(
-        (item) => item.title === orderItem.title && item.variant === orderItem.variant
-      );
+      const itemOrder = getItemOrderBySku(state, orderItem.sku);
       if (itemOrder) {
-        if (itemOrder.quantity < itemOrder.stock) {
-          itemOrder.quantity += orderItem.quantity;
-          state.outOfStock = false;
-        } else state.outOfStock = true;
+        itemOrder.quantity += orderItem.quantity;
       } else {
-        state.outOfStock = false;
         state.orderItems.push(orderItem);
       }
+      state.totalPrice = calcTotalPrice(state);
+    },
+    increaseAmount(state, action) {
+      const sku = action.payload;
+      const itemOrder = getItemOrderBySku(state, sku);
+      itemOrder.quantity++;
+      state.totalPrice = calcTotalPrice(state);
+    },
+    decreaseAmount(state, action) {
+      const sku = action.payload;
+      const itemOrder = getItemOrderBySku(state, sku);
+      if (itemOrder.quantity > 1) itemOrder.quantity--;
+      state.totalPrice = calcTotalPrice(state);
+    },
+    removeOrderProduct(state, action) {
+      const sku = action.payload;
+      const newItemOrders = state.orderItems.filter((item) => item.sku !== sku);
+      state.orderItems = newItemOrders;
+      state.totalPrice = calcTotalPrice(state);
+    },
+    setAmount(state, action) {
+      const { sku, quantity } = action.payload;
+      const itemOrder = getItemOrderBySku(state, sku);
+      itemOrder.quantity = quantity;
+      state.totalPrice = calcTotalPrice(state);
     },
   },
 });
 
-export const { addOrderProduct } = cartSlice.actions;
+export const { addOrderProduct, increaseAmount, decreaseAmount, removeOrderProduct, setAmount } =
+  cartSlice.actions;
 export default cartSlice.reducer;

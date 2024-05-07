@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { formatPriceToVND, roundedPrice } from '~/utils';
+import { formatPriceToVND, roundedPrice } from '~/utils/utils';
 import '../FormGroup.scss';
 
 const InputNumber = ({

@@ -1,5 +1,5 @@
 import { axiosJWT, handleAPICall, handleAPICallWithoutToast } from '~/api/apiConfig';
-import { getToken } from '~/utils';
+import { getToken } from '~/utils/utils';
 
 const createSupplier = (data, dispatch) => {
   const token = getToken();
