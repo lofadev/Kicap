@@ -15,10 +15,12 @@ import SwatchSelect from '~/components/SwatchSelect/SwatchSelect';
 import ProductImageService from '~/services/ProductImageService';
 import ProductService from '~/services/ProductService';
 import ProductVariantService from '~/services/ProductVariantService';
-import { formatPriceToVND } from '~/utils';
+import { formatPriceToVND, isStrNumber } from '~/utils/utils';
 import ProductDetailsImage from '../ProductDetailsImage/ProductDetailsImage';
 import './ProductDetails.scss';
 import { addOrderProduct } from '~/redux/slices/CartSlice';
+import { updateToast } from '~/redux/slices/ToastSlice';
+import FormQuantity from '~/components/FormQuantity/FormQuantity';
 
 const ProductDetails = () => {
   const dispatch = useDispatch();
@@ -76,7 +78,9 @@ const ProductDetails = () => {
 
   const handleGetVariant = (value) => {
     const variant = productVariants.find((variant) => variant._id === value.id);
-    setProduct({ ...product, ...variant });
+    // eslint-disable-next-line no-unused-vars
+    const { _id, ...restVariant } = variant;
+    setProduct({ ...product, ...restVariant });
   };
 
   const handleDecreaseQuantity = () => {
@@ -86,16 +90,18 @@ const ProductDetails = () => {
     if (quantity < product.stock) setQuantity(quantity + 1);
   };
   const handleOnChangeQuantity = (e) => {
-    let value = e.target.value;
-    if (!isNaN(value)) {
-      if (value) value = parseInt(value);
-      if (value < product.stock) setQuantity(value);
+    const value = e.target.value;
+    if (isStrNumber(value) && parseInt(value || 1) <= product.stock) {
+      setQuantity(value);
     }
   };
 
   const handleAddToCart = () => {
-    const { title, salePrice, image, hasVariant, name, value } = product;
+    const { sku, title, salePrice, image, hasVariant, name, value, _id, slug } = product;
     const productItem = {
+      id: _id,
+      slug,
+      sku,
       title,
       price: salePrice,
       image,
@@ -103,6 +109,12 @@ const ProductDetails = () => {
       variant: hasVariant ? `${name}/${value}` : '',
     };
     dispatch(addOrderProduct(productItem));
+    dispatch(
+      updateToast({
+        status: 'ok',
+        message: 'Thêm sản phẩm vào giỏ hàng thành công',
+      })
+    );
   };
 
   return (
@@ -182,19 +194,15 @@ const ProductDetails = () => {
                         {product.stock !== 0 && (
                           <div className='custom-btn-number'>
                             <label htmlFor='quantity'>Số lượng:</label>
-                            <div className='form-quantity'>
-                              <button className='btn-cts' onClick={handleDecreaseQuantity}>
-                                -
-                              </button>
-                              <input
-                                value={quantity}
-                                id='quantity'
-                                onChange={handleOnChangeQuantity}
-                              />
-                              <button className='btn-cts' onClick={handleIncreaseQuantity}>
-                                +
-                              </button>
-                            </div>
+                            <FormQuantity
+                              quantity={quantity}
+                              onDecreaseQuantity={handleDecreaseQuantity}
+                              onIncreaseQuantity={handleIncreaseQuantity}
+                              onChangeQuantity={handleOnChangeQuantity}
+                              onBlur={(e) => {
+                                if (e.target.value === '') setQuantity(1);
+                              }}
+                            />
                           </div>
                         )}
 

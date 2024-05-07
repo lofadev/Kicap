@@ -9,11 +9,11 @@ import { resetToast } from './redux/slices/ToastSlice';
 import { resetUser, updateUser } from './redux/slices/UserSlice';
 import { privateRoutes, publicRoutes } from './routes';
 import UserService from './services/UserService';
-import { getDecodedRfToken, getDecodedToken, getRfToken, getToken } from './utils';
+import { getDecodedRfToken, getDecodedToken, getRfToken, getToken } from './utils/utils';
 
 function App() {
-  const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {

@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { FaAngleRight } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import './SectionBreadCrumb.scss';
-import { convertToSlug } from '~/utils';
+import { convertToSlug } from '~/utils/utils';
 
 const SectionBreadCrumb = ({ parent, child, navigate }) => {
   const slug = convertToSlug(parent);

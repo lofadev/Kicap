@@ -1,5 +1,5 @@
 import { axiosInstance, axiosJWT, handleAPICall, handleAPICallWithoutToast } from '~/api/apiConfig';
-import { getToken } from '~/utils';
+import { getToken } from '~/utils/utils';
 
 const createProductImage = (payload, dispatch) => {
   const token = getToken();
