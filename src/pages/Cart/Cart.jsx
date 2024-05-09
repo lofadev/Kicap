@@ -53,7 +53,7 @@ const Cart = () => {
                   <span>Thành tiền:</span>
                   <span>{formatPriceToVND(cart.totalPrice)}</span>
                 </div>
-                <Button primary className='btn-payment'>
+                <Button primary className='btn-payment' to={'/checkout'}>
                   Thanh toán ngay
                 </Button>
                 <Button secondary to={'/collections/all'} className='btn-continue-view'>

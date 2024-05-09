@@ -1,0 +1,15 @@
+.checkout {
+  &-menu {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  &-items {
+    padding: 0 10px;
+    border-right: 1px solid #ccc;
+
+    &:last-child {
+      border: none;
+    }
+  }
+}
