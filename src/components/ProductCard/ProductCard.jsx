@@ -1,22 +1,29 @@
 import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { addOrderProduct } from '~/redux/slices/CartSlice';
 import { updateToast } from '~/redux/slices/ToastSlice';
-import { formatPriceToVND } from '~/utils/utils';
+import { formatPriceToVND, getToken } from '~/utils/utils';
 import Button from '../Button/Button';
 import './ProductCard.scss';
 
 const ProductCard = ({ product }) => {
+  const location = useLocation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const price = formatPriceToVND(product.price);
   const salePrice = formatPriceToVND(product.salePrice);
+  const user = useSelector((state) => state.user);
 
   const handleAddToCart = () => {
     if (product.hasVariant) {
       navigate(`/product/${product.slug}`, { state: { id: product._id } });
     } else {
+      const token = getToken();
+      if (!user.accessToken && !token) {
+        navigate('/account/login', { state: { to: location.pathname } });
+        return;
+      }
       const { name, salePrice, image, _id, sku, slug } = product;
       const productItem = {
         id: _id,

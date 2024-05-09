@@ -1,13 +1,13 @@
 import { Fragment, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
 import './App.scss';
 import { axiosJWT } from './api/apiConfig';
 import DefaultLayout from './layouts/DefaultLayout';
 import NotFound from './pages/NotFound/NotFound';
 import { resetToast } from './redux/slices/ToastSlice';
 import { resetUser, updateUser } from './redux/slices/UserSlice';
-import { privateRoutes, publicRoutes } from './routes';
+import { adminRoutes, privateRoutes, publicRoutes } from './routes';
 import UserService from './services/UserService';
 import { getDecodedRfToken, getDecodedToken, getRfToken, getToken } from './utils/utils';
 
@@ -60,14 +60,6 @@ function App() {
   return (
     <div className='app'>
       <Routes>
-        <Route
-          path='*'
-          element={
-            <DefaultLayout>
-              <NotFound />
-            </DefaultLayout>
-          }
-        />
         {publicRoutes.map((route, index) => {
           const Page = route.component;
           let Layout = DefaultLayout;
@@ -94,6 +86,7 @@ function App() {
         {privateRoutes.map((route, index) => {
           const Page = route.component;
           let Layout = DefaultLayout;
+          const token = getToken();
 
           if (route.layout) {
             Layout = route.layout;
@@ -105,14 +98,42 @@ function App() {
             <Route
               key={index}
               path={route.path}
-              element={
-                <Layout>
-                  <Page />
-                </Layout>
-              }
+              element={<Layout>{token ? <Page /> : <Navigate to={'/account/login'} />}</Layout>}
             />
           );
         })}
+
+        {user.isAdmin &&
+          adminRoutes.map((route, index) => {
+            const Page = route.component;
+            let Layout = DefaultLayout;
+
+            if (route.layout) {
+              Layout = route.layout;
+            } else if (route.layout === null) {
+              Layout = Fragment;
+            }
+
+            return (
+              <Route
+                key={index}
+                path={route.path}
+                element={
+                  <Layout>
+                    <Page />
+                  </Layout>
+                }
+              />
+            );
+          })}
+        <Route
+          path='*'
+          element={
+            <DefaultLayout>
+              <NotFound />
+            </DefaultLayout>
+          }
+        />
       </Routes>
     </div>
   );

@@ -1,45 +1,46 @@
-import config from '~/config/index.js';
-import AdminLayout from '~/layouts/AdminLayout/AdminLayout';
-import Account from '~/pages/Account/Account';
-import LoginPage from '~/pages/Account/components/Login/Login';
-import RegisterPage from '~/pages/Account/components/Register/Register';
-import Blog from '~/pages/Blog/Blog';
-import Cart from '~/pages/Cart/Cart.jsx';
-import Contact from '~/pages/Contact/Contact.jsx';
-import Home from '~/pages/Home/Home.jsx';
-import Introduce from '~/pages/Introduce/Introduce.jsx';
-import News from '~/pages/News/News.jsx';
-import NotFound from '~/pages/NotFound/NotFound';
-import Policy from '~/pages/Policy/Policy.jsx';
-import ProductCategory from '~/pages/ProductCategory/ProductCategory.jsx';
-import ProductDetails from '~/pages/ProductDetails/ProductDetails.jsx';
-import Search from '~/pages/Search/Search';
-import AddCategory from '~/pages/admin/Category/AddCategory/AddCategory';
-import ShowCategory from '~/pages/admin/Category/ShowCategory/ShowCategory';
-import UpdateCategory from '~/pages/admin/Category/UpdateCategory/UpdateCategory';
-import AddCustomer from '~/pages/admin/Customer/AddCustomer/AddCustomer';
-import ShowCustomer from '~/pages/admin/Customer/ShowCustomer/ShowCustomer';
-import UpdateCustomer from '~/pages/admin/Customer/UpdateCustomer/UpdateCustomer';
-import Dashboard from '~/pages/admin/Dashboard/Dashboard';
-import Login from '~/pages/admin/Login/Login';
-import AddOrder from '~/pages/admin/Order/AddOrder/AddOrder';
-import ShowOrder from '~/pages/admin/Order/ShowOrder/ShowOrder';
-import AddProduct from '~/pages/admin/Product/AddProduct/AddProduct';
-import ShowProduct from '~/pages/admin/Product/ShowProduct/ShowProduct';
-import UpdateProduct from '~/pages/admin/Product/UpdateProduct/UpdateProduct';
-import AddProductImage from '~/pages/admin/ProductImage/AddProductImage/AddProductImage';
-import UpdateProductImage from '~/pages/admin/ProductImage/UpdateProductImage/UpdateProductImage';
-import AddProductVariant from '~/pages/admin/ProductVariant/AddProductVariant/AddProductVariant';
-import UpdateProductVariant from '~/pages/admin/ProductVariant/UpdateProductVariant/UpdateProductVariant';
-import AddShipper from '~/pages/admin/Shipper/AddShipper/AddShipper';
-import ShowShipper from '~/pages/admin/Shipper/ShowShipper/ShowShipper';
-import UpdateShipper from '~/pages/admin/Shipper/UpdateShipper/UpdateShipper';
-import AddSlideBanner from '~/pages/admin/SlideBanner/AddSlideBanner/AddSlideBanner';
-import ShowSlideBanner from '~/pages/admin/SlideBanner/ShowSlideBanner/ShowSlideBanner';
-import UpdateSlideBanner from '~/pages/admin/SlideBanner/UpdateSlideBanner/UpdateSlideBanner';
-import AddSupplier from '~/pages/admin/Supplier/AddSupplier/AddSupplier';
-import ShowSupplier from '~/pages/admin/Supplier/ShowSupplier/ShowSupplier';
-import UpdateSupplier from '~/pages/admin/Supplier/UpdateSupplier/UpdateSupplier';
+import config from '~/config/index.js'
+import AdminLayout from '~/layouts/AdminLayout/AdminLayout'
+import Account from '~/pages/Account/Account'
+import LoginPage from '~/pages/Account/components/Login/Login'
+import RegisterPage from '~/pages/Account/components/Register/Register'
+import Blog from '~/pages/Blog/Blog'
+import Cart from '~/pages/Cart/Cart.jsx'
+import Checkout from '~/pages/Checkout/Checkout'
+import Contact from '~/pages/Contact/Contact.jsx'
+import Home from '~/pages/Home/Home.jsx'
+import Introduce from '~/pages/Introduce/Introduce.jsx'
+import News from '~/pages/News/News.jsx'
+import NotFound from '~/pages/NotFound/NotFound'
+import Policy from '~/pages/Policy/Policy.jsx'
+import ProductCategory from '~/pages/ProductCategory/ProductCategory.jsx'
+import ProductDetails from '~/pages/ProductDetails/ProductDetails.jsx'
+import Search from '~/pages/Search/Search'
+import AddCategory from '~/pages/admin/Category/AddCategory/AddCategory'
+import ShowCategory from '~/pages/admin/Category/ShowCategory/ShowCategory'
+import UpdateCategory from '~/pages/admin/Category/UpdateCategory/UpdateCategory'
+import AddCustomer from '~/pages/admin/Customer/AddCustomer/AddCustomer'
+import ShowCustomer from '~/pages/admin/Customer/ShowCustomer/ShowCustomer'
+import UpdateCustomer from '~/pages/admin/Customer/UpdateCustomer/UpdateCustomer'
+import Dashboard from '~/pages/admin/Dashboard/Dashboard'
+import Login from '~/pages/admin/Login/Login'
+import AddOrder from '~/pages/admin/Order/AddOrder/AddOrder'
+import ShowOrder from '~/pages/admin/Order/ShowOrder/ShowOrder'
+import AddProduct from '~/pages/admin/Product/AddProduct/AddProduct'
+import ShowProduct from '~/pages/admin/Product/ShowProduct/ShowProduct'
+import UpdateProduct from '~/pages/admin/Product/UpdateProduct/UpdateProduct'
+import AddProductImage from '~/pages/admin/ProductImage/AddProductImage/AddProductImage'
+import UpdateProductImage from '~/pages/admin/ProductImage/UpdateProductImage/UpdateProductImage'
+import AddProductVariant from '~/pages/admin/ProductVariant/AddProductVariant/AddProductVariant'
+import UpdateProductVariant from '~/pages/admin/ProductVariant/UpdateProductVariant/UpdateProductVariant'
+import AddShipper from '~/pages/admin/Shipper/AddShipper/AddShipper'
+import ShowShipper from '~/pages/admin/Shipper/ShowShipper/ShowShipper'
+import UpdateShipper from '~/pages/admin/Shipper/UpdateShipper/UpdateShipper'
+import AddSlideBanner from '~/pages/admin/SlideBanner/AddSlideBanner/AddSlideBanner'
+import ShowSlideBanner from '~/pages/admin/SlideBanner/ShowSlideBanner/ShowSlideBanner'
+import UpdateSlideBanner from '~/pages/admin/SlideBanner/UpdateSlideBanner/UpdateSlideBanner'
+import AddSupplier from '~/pages/admin/Supplier/AddSupplier/AddSupplier'
+import ShowSupplier from '~/pages/admin/Supplier/ShowSupplier/ShowSupplier'
+import UpdateSupplier from '~/pages/admin/Supplier/UpdateSupplier/UpdateSupplier'
 
 const publicRoutes = [
   {
@@ -79,6 +80,25 @@ const publicRoutes = [
     component: Blog,
   },
   {
+    path: config.routes.account.login,
+    component: LoginPage,
+  },
+  {
+    path: config.routes.account.register,
+    component: RegisterPage,
+  },
+  {
+    path: config.routes.notfound,
+    component: NotFound,
+  },
+  {
+    path: config.routes.search,
+    component: Search,
+  },
+]
+
+const privateRoutes = [
+  {
     path: config.routes.account.index,
     component: Account,
   },
@@ -87,21 +107,8 @@ const publicRoutes = [
     component: Account,
   },
   {
-    path: config.routes.account.login,
-    component: LoginPage,
-  },
-  {
-    path: config.routes.account.register,
-    component: RegisterPage,
-  },
-
-  {
     path: config.routes.cart,
     component: Cart,
-  },
-  {
-    path: config.routes.notfound,
-    component: NotFound,
   },
   {
     path: config.routes.admin.login,
@@ -109,12 +116,12 @@ const publicRoutes = [
     layout: null,
   },
   {
-    path: config.routes.search,
-    component: Search,
+    path: config.routes.checkout,
+    component: Checkout,
   },
-];
+]
 
-const privateRoutes = [
+const adminRoutes = [
   {
     path: config.routes.admin.dashboard,
     component: Dashboard,
@@ -240,6 +247,6 @@ const privateRoutes = [
     component: UpdateProduct,
     layout: AdminLayout,
   },
-];
+]
 
-export { privateRoutes, publicRoutes };
+export { adminRoutes, publicRoutes, privateRoutes }

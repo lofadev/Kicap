@@ -5,6 +5,7 @@ const routes = {
   contact: '/lien-he',
   blog: '/tin-tuc',
   notfound: '/not-found',
+  checkout: '/checkout',
   collections_all: '/collections/all',
   product_details: '/product/:title',
   product_category: '/:title',
