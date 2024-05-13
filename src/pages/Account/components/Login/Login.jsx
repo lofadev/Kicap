@@ -26,11 +26,9 @@ const Login = () => {
     onSubmit: async (payload) => {
       const res = await UserService.loginUser(payload, dispatch);
       if (res.status === 'OK') {
-        console.log(location);
         const data = res.data;
         localStorage.setItem('accessToken', JSON.stringify(data?.accessToken));
         localStorage.setItem('refreshToken', JSON.stringify(data?.refreshToken));
-
         const decoded = getDecodedToken();
         if (decoded?.id) {
           handleGetDetailsUser(decoded?.id);
@@ -51,6 +49,7 @@ const Login = () => {
       const accessToken = getToken();
       const refreshToken = getRfToken();
       dispatch(updateUser({ ...res?.data, accessToken, refreshToken }));
+      navigate('/');
     }
   };
 
