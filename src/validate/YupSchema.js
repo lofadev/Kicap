@@ -125,3 +125,12 @@ export const loginSchema = Yup.object().shape({
     .required(validate.NOT_EMPTY)
     .matches(regex.password, validate.INVALID_PASSWORD),
 });
+
+export const infoCheckoutSchema = Yup.object().shape({
+  email: Yup.string().email(validate.INVALID_EMAIL),
+  fullName: Yup.string().required(validate.NOT_EMPTY),
+  phone: Yup.string().required(validate.NOT_EMPTY).matches(regex.phone, validate.INVALID_PHONE),
+  address: Yup.string().required(validate.NOT_EMPTY),
+  province: Yup.string().required(validate.NOT_EMPTY),
+  note: Yup.string(),
+});

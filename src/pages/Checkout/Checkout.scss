@@ -1,7 +1,9 @@
 .checkout {
+  margin-top: 20px;
+
   &-menu {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 2fr 1.5fr;
   }
 
   &-items {
@@ -10,6 +12,52 @@
 
     &:last-child {
       border: none;
+    }
+
+    &-title {
+      font-size: 1.8rem;
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+
+    .title-order {
+      background-color: #f7f7f7;
+      padding: 20px;
+      text-align: center;
+      border-bottom: 1px solid #ccc;
+    }
+  }
+
+  .checkout-info {
+    padding-top: 10px;
+    border-top: 1px solid #ccc;
+
+    &-provisional,
+    &-totalprice,
+    &-shipping-fee {
+      padding: 10px 0;
+      font-weight: 700;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    &-totalprice {
+      border-top: 1px solid #ccc;
+      font-size: 2rem;
+
+      span:nth-child(2) {
+        font-size: 2.2rem;
+        color: var(--light-gray);
+      }
+    }
+
+    .btn-order,
+    .btn-goto-cart {
+      width: 100%;
+      margin-top: 10px;
+      height: 50px;
+      font-size: 1.4rem;
     }
   }
 }
