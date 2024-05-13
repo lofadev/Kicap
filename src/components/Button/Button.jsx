@@ -10,6 +10,7 @@ const Button = ({
   className = '',
   disabled,
   to,
+  ...props
 }) => {
   const navigator = useNavigate();
   const commonProps = {
@@ -19,7 +20,7 @@ const Button = ({
     disabled,
   };
 
-  return <button {...commonProps} onClick={() => navigator(to)}></button>;
+  return <button {...commonProps} onClick={() => navigator(to)} {...props}></button>;
 };
 
 Button.propTypes = {

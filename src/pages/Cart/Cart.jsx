@@ -3,9 +3,9 @@ import { useSelector } from 'react-redux';
 import EmptyCart from '~/assets/imgs/empty-cart.png';
 import Button from '~/components/Button/Button';
 import SectionBreadCrumb from '~/components/SectionBreadCrumb/SectionBreadCrumb';
+import { formatPriceToVND } from '~/utils/utils';
 import './Cart.scss';
 import CartItem from './CartItem/CartItem';
-import { formatPriceToVND } from '~/utils/utils';
 
 const Cart = () => {
   // eslint-disable-next-line no-unused-vars

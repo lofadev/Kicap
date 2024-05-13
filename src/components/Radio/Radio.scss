@@ -1,0 +1,23 @@
+.checkout {
+  #demo-radio-buttons-group-label {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--black);
+    font-family: 'SVN-Gotham', sans-serif;
+    margin-bottom: 5px;
+    letter-spacing: 1.5px;
+  }
+
+  .MuiFormControlLabel-label {
+    font-size: 1.4rem;
+    font-family: 'SVN-Gotham', sans-serif;
+  }
+
+  .form-group {
+    margin-bottom: 0px;
+    label {
+      margin-bottom: 5px;
+    }
+  }
+}
