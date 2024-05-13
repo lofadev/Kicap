@@ -98,12 +98,16 @@ function App() {
             <Route
               key={index}
               path={route.path}
-              element={<Layout>{token ? <Page /> : <Navigate to={'/account/login'} />}</Layout>}
+              element={
+                <Layout>
+                  {token ? <Page /> : <Navigate to={'/account/login'} replace={true} />}
+                </Layout>
+              }
             />
           );
         })}
 
-        {user.isAdmin &&
+        {user?.isAdmin &&
           adminRoutes.map((route, index) => {
             const Page = route.component;
             let Layout = DefaultLayout;

@@ -1,19 +1,21 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-export const userSlide = createSlice({
+const initialState = {
+  id: '',
+  name: '',
+  email: '',
+  phone: '',
+  address: '',
+  province: '',
+  avatar: '',
+  accessToken: '',
+  refreshToken: '',
+  isAdmin: '',
+};
+
+export const userSlice = createSlice({
   name: 'user',
-  initialState: {
-    id: '',
-    name: '',
-    email: '',
-    phone: '',
-    address: '',
-    province: '',
-    avatar: '',
-    accessToken: '',
-    refreshToken: '',
-    isAdmin: '',
-  },
+  initialState,
   reducers: {
     updateUser: (state, action) => {
       const {
@@ -54,6 +56,6 @@ export const userSlide = createSlice({
   },
 });
 
-export const { updateUser, resetUser } = userSlide.actions;
+export const { updateUser, resetUser } = userSlice.actions;
 
-export default userSlide.reducer;
+export default userSlice.reducer;
