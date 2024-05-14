@@ -3107,6 +3107,11 @@ unbox-primitive@^1.0.2:
     has-symbols "^1.0.3"
     which-boxed-primitive "^1.0.2"
 
+unidecode@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/unidecode/-/unidecode-1.0.1.tgz#d8aebc24c687f25795b70525618bf19a196bbd2d"
+  integrity sha512-9t2iq9jV5+FtXDDyNwMk6Tm0UjoOahc2aqA8B5gG0ED/DsFWHiMdKvEF/R+1gLGFHuzWaNZjbfj+Hf0KQYz+Yg==
+
 update-browserslist-db@^1.0.13:
   version "1.0.13"
   resolved "https://registry.yarnpkg.com/update-browserslist-db/-/update-browserslist-db-1.0.13.tgz#3c5e4f5c083661bd38ef64b6328c26ed6c8248c4"

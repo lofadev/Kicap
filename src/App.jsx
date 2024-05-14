@@ -1,13 +1,11 @@
-import { Fragment, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './App.scss';
 import { axiosJWT } from './api/apiConfig';
-import DefaultLayout from './layouts/DefaultLayout';
-import NotFound from './pages/NotFound/NotFound';
 import { resetToast } from './redux/slices/ToastSlice';
 import { resetUser, updateUser } from './redux/slices/UserSlice';
-import { adminRoutes, privateRoutes, publicRoutes } from './routes';
+import AppRoutes from './routes/AppRoutes';
 import UserService from './services/UserService';
 import { getDecodedRfToken, getDecodedToken, getRfToken, getToken } from './utils/utils';
 
@@ -52,93 +50,25 @@ function App() {
   );
 
   const handleGetDetailsUser = async (id) => {
-    const refreshToken = getRfToken();
-    const res = await UserService.getDetailsUser(id, dispatch);
-    if (res.data) dispatch(updateUser({ ...res.data, refreshToken }));
+    try {
+      const refreshToken = getRfToken();
+      const token = getToken();
+      const res = await axiosJWT.get(`/user/${id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (res.data.status === 'OK') {
+        dispatch(updateUser({ ...res.data.data, accessToken: token, refreshToken }));
+      }
+    } catch (error) {
+      localStorage.clear();
+      dispatch(resetUser());
+      navigate('/account/login');
+    }
   };
 
   return (
     <div className='app'>
-      <Routes>
-        {publicRoutes.map((route, index) => {
-          const Page = route.component;
-          let Layout = DefaultLayout;
-
-          if (route.layout) {
-            Layout = route.layout;
-          } else if (route.layout === null) {
-            Layout = Fragment;
-          }
-
-          return (
-            <Route
-              key={index}
-              path={route.path}
-              element={
-                <Layout>
-                  <Page />
-                </Layout>
-              }
-            />
-          );
-        })}
-
-        {privateRoutes.map((route, index) => {
-          const Page = route.component;
-          let Layout = DefaultLayout;
-          const token = getToken();
-
-          if (route.layout) {
-            Layout = route.layout;
-          } else if (route.layout === null) {
-            Layout = Fragment;
-          }
-
-          return (
-            <Route
-              key={index}
-              path={route.path}
-              element={
-                <Layout>
-                  {token ? <Page /> : <Navigate to={'/account/login'} replace={true} />}
-                </Layout>
-              }
-            />
-          );
-        })}
-
-        {user?.isAdmin &&
-          adminRoutes.map((route, index) => {
-            const Page = route.component;
-            let Layout = DefaultLayout;
-
-            if (route.layout) {
-              Layout = route.layout;
-            } else if (route.layout === null) {
-              Layout = Fragment;
-            }
-
-            return (
-              <Route
-                key={index}
-                path={route.path}
-                element={
-                  <Layout>
-                    <Page />
-                  </Layout>
-                }
-              />
-            );
-          })}
-        <Route
-          path='*'
-          element={
-            <DefaultLayout>
-              <NotFound />
-            </DefaultLayout>
-          }
-        />
-      </Routes>
+      <AppRoutes />
     </div>
   );
 }

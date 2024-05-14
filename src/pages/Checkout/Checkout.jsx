@@ -1,22 +1,29 @@
 import { useFormik } from 'formik';
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import AlertDialog from '~/components/AlertDialog/AlertDialog';
 import Button from '~/components/Button/Button';
 import Input from '~/components/FormGroup/Input/Input';
 import Radio from '~/components/Radio/Radio';
 import SelectOptions from '~/components/SelectOptions/SelectOptions';
+import { setAmount } from '~/redux/slices/CartSlice';
+import ProductService from '~/services/ProductService';
 import ProvinceService from '~/services/ProvinceService';
 import { formatPriceToVND } from '~/utils/utils';
 import { infoCheckoutSchema } from '~/validate/YupSchema';
 import './Checkout.scss';
 import CheckoutItem from './CheckoutItem/CheckoutItem';
-import { useNavigate } from 'react-router-dom';
 
 const Checkout = () => {
   const navigate = useNavigate();
   const [provinces, setProvinces] = useState([]);
   const user = useSelector((state) => state.user);
   const cart = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
+  const [openModal, setOpenModal] = useState(false);
+  const [checkAmounts, setCheckAmount] = useState([]);
+
   const formik = useFormik({
     initialValues: {
       email: user.email || '',
@@ -34,14 +41,37 @@ const Checkout = () => {
   });
 
   useEffect(() => {
+    const { setValues } = formik;
+    setValues({
+      email: user.email || '',
+      fullName: user.name || '',
+      phone: user.phone || '',
+      address: user.address || '',
+      province: user.province || '',
+      note: '',
+      paymentMethod: 'cod',
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user]);
+
+  useEffect(() => {
+    document.title = 'Thanh toán | Kicap';
     if (cart.orderItems.length === 0) {
       navigate('/cart');
       return;
     }
     const fetchData = async () => {
-      const res = await ProvinceService.getProvinces({});
-      if (res.status === 'OK') {
-        const options = res.data.map((province) => {
+      const ids = cart.orderItems.map((item) => {
+        const id = item.idVariant ?? item.id;
+        return id;
+      });
+      console.log(cart.orderItems);
+      const [provinces, checkAmount] = await Promise.all([
+        ProvinceService.getProvinces({}),
+        ProductService.checkAmount(ids, dispatch),
+      ]);
+      if (provinces.status === 'OK') {
+        const options = provinces.data.map((province) => {
           return {
             id: province.provinceId,
             name: province.provinceName,
@@ -49,13 +79,52 @@ const Checkout = () => {
         });
         setProvinces(options);
       }
+      if (checkAmount.status === 'OK') {
+        const checkAmounts = checkAmount.data;
+        setCheckAmount(checkAmounts);
+        const orderItemsLength = cart.orderItems.length;
+        let isOutOfStock = false;
+        for (let i = 0; i < orderItemsLength; i++) {
+          const item = cart.orderItems[i];
+          const id = item.idVariant ?? item.id;
+          const itemCheck = checkAmounts.find((i) => i.id === id);
+          if (itemCheck.stock < item.quantity) {
+            isOutOfStock = true;
+            break;
+          }
+        }
+        if (isOutOfStock) {
+          setOpenModal(true);
+        }
+      }
     };
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const handleAcceptDecreaseAmount = () => {
+    setOpenModal(false);
+    const orderItemsLength = cart.orderItems.length;
+    for (let i = 0; i < orderItemsLength; i++) {
+      const item = cart.orderItems[i];
+      const id = item.idVariant ?? item.id;
+      const itemCheck = checkAmounts.find((i) => i.id === id);
+      if (itemCheck.stock < item.quantity) {
+        dispatch(setAmount({ sku: item.sku, quantity: itemCheck.stock }));
+      }
+    }
+  };
+
   return (
     <div className='checkout'>
+      <AlertDialog
+        open={openModal}
+        handleOk={handleAcceptDecreaseAmount}
+        title={'Thông báo.'}
+        desc={
+          'Một số sản phẩm của bạn chọn đã vượt mức tồn khi của chúng tôi. Vì vậy chúng tôi đã cập nhật lại số lượng sản phẩm ở mức tối đa cho bạn. Mong bạn thông cảm cho chúng tôi về vấn đề này. Nếu có thắc mắc, xin vui lòng liên hệ admin: contact.lofa@gmail.com'
+        }
+      />
       <div className='container'>
         <div className='checkout-menu'>
           <div className='checkout-items'>
