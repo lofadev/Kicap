@@ -1,7 +1,7 @@
 import { useFormik } from 'formik';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Button from '~/components/Button/Button';
 import Input from '~/components/FormGroup/Input/Input';
 import SectionBreadCrumb from '~/components/SectionBreadCrumb/SectionBreadCrumb';
@@ -13,7 +13,6 @@ import SocialLogin from '../SocialLogin/SocialLogin';
 import './Login.scss';
 
 const Login = () => {
-  const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 

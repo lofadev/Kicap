@@ -60,6 +60,16 @@ const deleteProduct = (id, dispatch) => {
     dispatch
   );
 };
+
+const checkAmount = (ids, dispatch) => {
+  return handleAPICallWithoutToast(
+    axiosJWT.post('/product/check-quantity', {
+      ids,
+    }),
+    dispatch
+  );
+};
+
 const ProductService = {
   createProduct,
   getProduct,
@@ -67,6 +77,7 @@ const ProductService = {
   updateProduct,
   deleteProduct,
   updateProductMoreImage,
+  checkAmount,
 };
 
 export default ProductService;

@@ -79,8 +79,8 @@ const ProductDetails = () => {
   const handleGetVariant = (value) => {
     const variant = productVariants.find((variant) => variant._id === value.id);
     // eslint-disable-next-line no-unused-vars
-    const { _id, ...restVariant } = variant;
-    setProduct({ ...product, ...restVariant });
+    const { _id: idVariant, ...restVariant } = variant;
+    setProduct({ ...product, ...restVariant, idVariant });
   };
 
   const handleDecreaseQuantity = () => {
@@ -97,9 +97,10 @@ const ProductDetails = () => {
   };
 
   const handleAddToCart = () => {
-    const { sku, title, salePrice, image, hasVariant, name, value, _id, slug } = product;
+    const { sku, title, salePrice, image, hasVariant, name, value, _id, slug, idVariant } = product;
     const productItem = {
       id: _id,
+      idVariant,
       slug,
       sku,
       title,
