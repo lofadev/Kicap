@@ -2,12 +2,16 @@ import { useFormik } from 'formik';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
+
 import AlertDialog from '~/components/AlertDialog/AlertDialog';
 import Button from '~/components/Button/Button';
 import Input from '~/components/FormGroup/Input/Input';
 import Radio from '~/components/Radio/Radio';
 import SelectOptions from '~/components/SelectOptions/SelectOptions';
 import { setAmount } from '~/redux/slices/CartSlice';
+import CheckoutService from '~/services/CheckoutService';
+import OrderService from '~/services/OrderService';
 import ProductService from '~/services/ProductService';
 import ProvinceService from '~/services/ProvinceService';
 import { formatPriceToVND } from '~/utils/utils';
@@ -36,7 +40,47 @@ const Checkout = () => {
     },
     validationSchema: infoCheckoutSchema,
     onSubmit: async (data) => {
-      console.log(data);
+      const { paymentMethod, address, province, fullName, note, email, phone } = data;
+      const orderID = uuidv4();
+      const productItems = cart.orderItems.map((item) => {
+        return {
+          orderID,
+          name: item.title,
+          image: item.image,
+          quantity: item.quantity,
+          price: item.price,
+          variant: item.variant,
+        };
+      });
+      const payload = {
+        orderID,
+        userID: user.id,
+        deliveryAddress: address,
+        deliveryProvince: province,
+        email,
+        fullName,
+        phone,
+        note,
+        paymentMethod,
+        shippingPrice: cart.shippingPrice,
+        totalPrice: cart.totalPrice,
+        orderItems: productItems,
+      };
+      if (paymentMethod === 'cod') {
+        const res = await OrderService.createOrder(payload, dispatch);
+        if (res.status === 'OK') {
+          console.log(res);
+        }
+      } else {
+        const payloadPayment = {
+          orderID,
+          amount: cart.totalPrice + cart.shippingPrice,
+          bankCode: 'VNBANK',
+          orderDescription: 'Thanh toan hoa don',
+        };
+        const res = await CheckoutService.createPaymentUrl(payloadPayment);
+        window.open(res.paymentUrl);
+      }
     },
   });
 
@@ -65,7 +109,6 @@ const Checkout = () => {
         const id = item.idVariant ?? item.id;
         return id;
       });
-      console.log(cart.orderItems);
       const [provinces, checkAmount] = await Promise.all([
         ProvinceService.getProvinces({}),
         ProductService.checkAmount(ids, dispatch),
