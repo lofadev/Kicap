@@ -39,7 +39,8 @@ function App() {
           localStorage.setItem('accessToken', JSON.stringify(data?.accessToken));
           dispatch(updateUser({ ...user, accessToken: data?.accessToken }));
         } else {
-          localStorage.clear();
+          localStorage.removeItem('accessToken');
+          localStorage.removeItem('refreshToken');
           dispatch(resetUser());
           navigate('/account/login');
         }
@@ -60,7 +61,8 @@ function App() {
         dispatch(updateUser({ ...res.data.data, accessToken: token, refreshToken }));
       }
     } catch (error) {
-      localStorage.clear();
+      localStorage.removeItem('accessToken');
+      localStorage.removeItem('refreshToken');
       dispatch(resetUser());
       navigate('/account/login');
     }
