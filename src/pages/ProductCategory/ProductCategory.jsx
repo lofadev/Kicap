@@ -48,11 +48,10 @@ const ProductCategory = () => {
   return (
     <div className='product-category'>
       <EvoBlogHeader
-        title='Mods bàn phím cơ'
-        desc='Kicap với đội ngũ mods chuyên nghiệp luôn mong muốn mang đến trải nghiệm mods phím
-              tuyệt vời và đúng gu của khách hàng nhất có thể'
+        title='TẤT CẢ SẢN PHẨM'
+        desc='Khám phá thế giới keycap và phụ kiện bàn phím đa dạng nhưng cũng đầy chất lượng!'
         image={
-          'https://bizweb.dktcdn.net/100/436/596/collections/53820d484a9f88c1d18e.jpg?v=1658977734810'
+          'https://bizweb.dktcdn.net/100/436/596/themes/834446/assets/evo-col-banner.jpg?1709705396374'
         }
         height={360}
         color='white'

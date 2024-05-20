@@ -2,7 +2,9 @@ import config from '~/config/index.js';
 import AdminLayout from '~/layouts/AdminLayout/AdminLayout';
 import Account from '~/pages/Account/Account';
 import LoginPage from '~/pages/Account/components/Login/Login';
+import NewPassword from '~/pages/Account/components/NewPassword/NewPassword';
 import RegisterPage from '~/pages/Account/components/Register/Register';
+import ResetPassword from '~/pages/Account/components/ResetPassword/ResetPassword';
 import Blog from '~/pages/Blog/Blog';
 import Cart from '~/pages/Cart/Cart.jsx';
 import Checkout from '~/pages/Checkout/Checkout';
@@ -95,6 +97,14 @@ const publicRoutes = [
   {
     path: config.routes.search,
     component: Search,
+  },
+  {
+    path: config.routes.account.reset_password,
+    component: ResetPassword,
+  },
+  {
+    path: config.routes.account.new_password,
+    component: NewPassword,
   },
 ];
 

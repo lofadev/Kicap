@@ -84,7 +84,7 @@ const Login = () => {
             </div>
           </form>
           <p className='text-center'>
-            <Link to='' className='btn-recover-password  text-color-primary'>
+            <Link to='/account/reset_password' className='btn-recover-password  text-color-primary'>
               Quên mật khẩu?
             </Link>
           </p>

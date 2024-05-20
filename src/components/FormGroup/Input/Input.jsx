@@ -50,6 +50,7 @@ const Input = ({
 
 Input.propTypes = {
   name: PropTypes.string.isRequired,
+  formik: PropTypes.object.isRequired,
   labelName: PropTypes.string,
   placeholder: PropTypes.string,
   required: PropTypes.bool,
