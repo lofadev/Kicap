@@ -50,6 +50,7 @@ const Checkout = () => {
           quantity: item.quantity,
           price: item.price,
           variant: item.variant,
+          productID: item.idVariant ?? item.id,
         };
       });
       const payload = {
@@ -75,11 +76,19 @@ const Checkout = () => {
         const payloadPayment = {
           orderID,
           amount: cart.totalPrice + cart.shippingPrice,
-          bankCode: 'VNBANK',
+          // bankCode: 'VNBANK',
           orderDescription: 'Thanh toan hoa don',
         };
-        const res = await CheckoutService.createPaymentUrl(payloadPayment);
-        window.open(res.paymentUrl);
+        const [resUrl, resOrder] = await Promise.all([
+          CheckoutService.createPaymentUrl(payloadPayment),
+          OrderService.createOrderNoToast(payload, dispatch),
+        ]);
+        if (resUrl.paymentUrl) {
+          window.location.href = resUrl.paymentUrl;
+        }
+        if (resOrder.status === 'OK') {
+          console.log(resOrder);
+        }
       }
     },
   });

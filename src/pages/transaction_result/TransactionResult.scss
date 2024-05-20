@@ -1,0 +1,60 @@
+.transaction {
+  &-result {
+    .container:nth-child(2) {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+  }
+  &-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    display: inline-block;
+    padding: 20px 100px;
+    margin: 20px auto;
+    border-radius: 12px;
+
+    span {
+      margin: 20px 0;
+      font-size: 5rem;
+      display: inline-block;
+      text-align: center;
+
+      &.success {
+        color: #28a745;
+
+        + h3 {
+          color: #28a745;
+        }
+      }
+      &.error {
+        color: #dc3545;
+
+        + h3 {
+          color: #dc3545;
+        }
+      }
+    }
+    h2 {
+      font-size: 2.2rem;
+      font-weight: bold;
+    }
+
+    h3 {
+      font-size: 2rem;
+    }
+  }
+}
+
+// @media screen and (max-width: 991px) {
+//   .transaction {
+//     &-content {
+//       padding: 20px 10px;
+//     }
+//   }
+// }

@@ -11,6 +11,8 @@ const routes = {
   product_category: '/:title',
   news: '/news/:title',
   policy: 'policy/:title',
+  vnpay_result: '/vnpay_result',
+  transaction_result: '/transaction_result',
   account: {
     register: '/account/register',
     login: '/account/login',
