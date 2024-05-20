@@ -1,4 +1,4 @@
-import { axiosJWT, handleAPICallWithoutToast } from '~/api/apiConfig';
+import { axiosJWT } from '~/api/apiConfig';
 
 const createPaymentUrl = async (data) => {
   try {

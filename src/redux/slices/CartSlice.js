@@ -67,9 +67,18 @@ const cartSlice = createSlice({
       state.totalPrice = calcTotalPrice(state);
       state.shippingPrice = calcShippingPrice(state);
     },
+    resetCart(state) {
+      state.orderItems = [];
+    },
   },
 });
 
-export const { addOrderProduct, increaseAmount, decreaseAmount, removeOrderProduct, setAmount } =
-  cartSlice.actions;
+export const {
+  addOrderProduct,
+  increaseAmount,
+  decreaseAmount,
+  removeOrderProduct,
+  setAmount,
+  resetCart,
+} = cartSlice.actions;
 export default cartSlice.reducer;

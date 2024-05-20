@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import './App.scss';
@@ -8,11 +8,21 @@ import { resetUser, updateUser } from './redux/slices/UserSlice';
 import AppRoutes from './routes/AppRoutes';
 import UserService from './services/UserService';
 import { getDecodedRfToken, getDecodedToken, getRfToken, getToken } from './utils/utils';
+import LoadingApp from './components/LoadingApp/LoadingApp';
 
 function App() {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     dispatch(resetToast());
@@ -67,6 +77,10 @@ function App() {
       navigate('/account/login');
     }
   };
+
+  if (loading) {
+    return <LoadingApp />;
+  }
 
   return (
     <div className='app'>

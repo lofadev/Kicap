@@ -1,4 +1,4 @@
-import { axiosJWT, handleAPICall } from '~/api/apiConfig';
+import { axiosJWT, handleAPICall, handleAPICallWithoutToast } from '~/api/apiConfig';
 import { getToken } from '~/utils/utils';
 
 const createOrder = (data, dispatch) => {
@@ -13,5 +13,17 @@ const createOrder = (data, dispatch) => {
   );
 };
 
-const OrderService = { createOrder };
+const createOrderNoToast = (data, dispatch) => {
+  const token = getToken();
+  return handleAPICallWithoutToast(
+    axiosJWT.post('/order/create', data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }),
+    dispatch
+  );
+};
+
+const OrderService = { createOrder, createOrderNoToast };
 export default OrderService;
