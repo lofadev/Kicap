@@ -1,9 +1,18 @@
+import { useFormik } from 'formik';
 import Button from '~/components/Button/Button';
 import EvoBlogHeader from '~/components/EvoBlogHeader/EvoBlogHeader';
-import FormGroup from '~/components/FormGroup/FormGroup';
+import Input from '~/components/FormGroup/Input/Input';
 import './Contact.scss';
 
 const Contact = () => {
+  const formik = useFormik({
+    initialValues: {
+      fullName: '',
+      email: '',
+      phone: '',
+      content: '',
+    },
+  });
   return (
     <section className='contact'>
       <EvoBlogHeader
@@ -22,35 +31,36 @@ const Contact = () => {
           </p>
 
           <form action='POST'>
-            <FormGroup
-              type='input'
+            <Input
               labelName='Họ và tên'
               required
               placeholder='Nhập họ và tên'
-              labelFor='fullname'
+              name='fullName'
               className='w-half p-r-10'
+              formik={formik}
             />
-            <FormGroup
-              type='input'
+            <Input
               labelName='Email'
               required
               placeholder='Nhập địa chỉ email'
-              labelFor='email'
+              name='email'
               className='w-half p-l-10'
+              formik={formik}
             />
-            <FormGroup
-              type='input'
+            <Input
               labelName='Điện thoại'
               required
               placeholder='Nhập số điện thoại'
-              labelFor='phone-number'
+              name='phone'
+              formik={formik}
             />
-            <FormGroup
-              type='text'
+            <Input
+              textarea
               labelName='Nội dung'
               required
               placeholder='Nội dung liên hệ'
-              labelFor='content'
+              name='content'
+              formik={formik}
             />
             <Button primary className='btn-send-message'>
               Gửi tin nhắn

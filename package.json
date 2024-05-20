@@ -17,7 +17,7 @@
     "@reduxjs/toolkit": "^2.2.4",
     "axios": "^1.6.2",
     "dayjs": "^1.11.10",
-    "formik": "^2.4.5",
+    "formik": "^2.4.6",
     "jwt-decode": "^4.0.0",
     "query-string": "^9.0.0",
     "react": "^18.2.0",

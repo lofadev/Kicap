@@ -1,8 +1,19 @@
+import { useFormik } from 'formik';
 import Button from '../Button/Button';
-import FormGroup from '../FormGroup/FormGroup';
+import Input from '../FormGroup/Input/Input';
 import './FormComment.scss';
 
 const FormComment = () => {
+  const formik = useFormik({
+    initialValues: {
+      content: '',
+      fullname: '',
+      email: '',
+    },
+    onSubmit: async (payload) => {
+      console.log(payload);
+    },
+  });
   return (
     <div className='article-comment'>
       <form action='submit' className='form-cmt'>
@@ -13,10 +24,10 @@ const FormComment = () => {
         </p>
 
         <div className='form-main'>
-          <FormGroup type='text' labelName='Nội dung' required labelFor='content'></FormGroup>
+          <Input textarea labelName='Nội dung' required name='content' formik={formik}></Input>
           <div className='form-container'>
-            <FormGroup type='input' labelName='Họ tên' required labelFor='fullname'></FormGroup>
-            <FormGroup type='input' labelName='Email' required labelFor='email'></FormGroup>
+            <Input type='input' labelName='Họ tên' required name='fullname' formik={formik}></Input>
+            <Input type='input' labelName='Email' required name='email' formik={formik}></Input>
           </div>
           <div className='clear'></div>
         </div>
