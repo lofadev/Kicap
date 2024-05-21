@@ -1,6 +1,7 @@
 import { jwtDecode } from 'jwt-decode';
 import { validate } from '../validate/constant';
 import unidecode from 'unidecode';
+import dayjs from 'dayjs';
 
 /* eslint-disable no-useless-escape */
 export const isEmail = (email) => {
@@ -86,3 +87,10 @@ export const convertToSlug = (value = '') => {
 export const roundedPrice = (price) => Math.round(price / 1000) * 1000;
 
 export const isStrNumber = (str) => /^[0-9]*$/.test(str);
+
+export const DatePickToISODate = (value) => {
+  const dateString = value.$d;
+  const date = dayjs(dateString);
+  const formattedDate = date.format('YYYY-MM-DD');
+  return formattedDate;
+};

@@ -3,12 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import './App.scss';
 import { axiosJWT } from './api/apiConfig';
+import LoadingApp from './components/LoadingApp/LoadingApp';
 import { resetToast } from './redux/slices/ToastSlice';
 import { resetUser, updateUser } from './redux/slices/UserSlice';
 import AppRoutes from './routes/AppRoutes';
 import UserService from './services/UserService';
 import { getDecodedRfToken, getDecodedToken, getRfToken, getToken } from './utils/utils';
-import LoadingApp from './components/LoadingApp/LoadingApp';
 
 function App() {
   const user = useSelector((state) => state.user);

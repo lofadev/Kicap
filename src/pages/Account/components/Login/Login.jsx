@@ -1,5 +1,5 @@
 import { useFormik } from 'formik';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import Button from '~/components/Button/Button';
@@ -15,6 +15,8 @@ import './Login.scss';
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [isVerify, setIsVerify] = useState(true);
+  const [email, setEmail] = useState('');
 
   const formik = useFormik({
     initialValues: {
@@ -32,6 +34,9 @@ const Login = () => {
         if (decoded?.id) {
           handleGetDetailsUser(decoded?.id);
         }
+      } else {
+        setIsVerify(false);
+        setEmail(formik.values.email);
       }
     },
   });
@@ -50,6 +55,10 @@ const Login = () => {
       dispatch(updateUser({ ...res?.data, accessToken, refreshToken }));
       navigate('/');
     }
+  };
+
+  const handleSendVerifyEmail = async () => {
+    await UserService.sendVerifyEmail({ email }, dispatch);
   };
 
   return (
@@ -83,6 +92,11 @@ const Login = () => {
               </Button>
             </div>
           </form>
+          {!isVerify && (
+            <Button secondary className='btn-send' onClick={handleSendVerifyEmail}>
+              Gửi lại xác thực email
+            </Button>
+          )}
           <p className='text-center'>
             <Link to='/account/reset_password' className='btn-recover-password  text-color-primary'>
               Quên mật khẩu?

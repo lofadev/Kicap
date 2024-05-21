@@ -82,6 +82,14 @@ const resetPassword = (payload, dispatch) => {
   return handleAPICall(axiosInstance.post('/user/reset-password', payload), dispatch);
 };
 
+const sendVerifyEmail = (payload, dispatch) => {
+  return handleAPICall(axiosInstance.post('/user/send-verify-email', payload), dispatch);
+};
+
+const verifyEmail = (payload, dispatch) => {
+  return handleAPICall(axiosInstance.post('/user/verify-email', payload), dispatch);
+};
+
 const UserService = {
   registerUser,
   loginUser,
@@ -94,6 +102,8 @@ const UserService = {
   changePassword,
   getPassword,
   resetPassword,
+  sendVerifyEmail,
+  verifyEmail,
 };
 
 export default UserService;

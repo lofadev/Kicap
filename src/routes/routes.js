@@ -1,6 +1,7 @@
 import config from '~/config/index.js';
 import AdminLayout from '~/layouts/AdminLayout/AdminLayout';
 import Account from '~/pages/Account/Account';
+import VerifyEmail from '~/pages/Account/VerifyEmail/VerifyEmail';
 import LoginPage from '~/pages/Account/components/Login/Login';
 import NewPassword from '~/pages/Account/components/NewPassword/NewPassword';
 import RegisterPage from '~/pages/Account/components/Register/Register';
@@ -105,6 +106,10 @@ const publicRoutes = [
   {
     path: config.routes.account.new_password,
     component: NewPassword,
+  },
+  {
+    path: config.routes.account.verify_email,
+    component: VerifyEmail,
   },
 ];
 
@@ -264,4 +269,4 @@ const adminRoutes = [
   },
 ];
 
-export { adminRoutes, publicRoutes, privateRoutes };
+export { adminRoutes, privateRoutes, publicRoutes };
