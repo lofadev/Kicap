@@ -78,6 +78,10 @@ const getPassword = (payload, dispatch) => {
   return handleAPICall(axiosInstance.post('/user/get-password', payload), dispatch);
 };
 
+const resetPassword = (payload, dispatch) => {
+  return handleAPICall(axiosInstance.post('/user/reset-password', payload), dispatch);
+};
+
 const UserService = {
   registerUser,
   loginUser,
@@ -89,6 +93,7 @@ const UserService = {
   refreshToken,
   changePassword,
   getPassword,
+  resetPassword,
 };
 
 export default UserService;

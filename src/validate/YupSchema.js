@@ -1,51 +1,53 @@
 import * as Yup from 'yup';
 import { regex, validate } from '~/validate/constant';
 
+const schemaRequired = Yup.string().required(validate.NOT_EMPTY);
+const schemaEmail = schemaRequired.email(validate.INVALID_EMAIL);
+const schemaPhone = schemaRequired.matches(regex.phone, validate.INVALID_PHONE);
+const schemaPassword = Yup.string()
+  .required(validate.NOT_EMPTY)
+  .matches(regex.password, validate.INVALID_PASSWORD);
+
 export const categorySchema = Yup.object().shape({
-  categoryName: Yup.string().required(validate.NOT_EMPTY),
+  categoryName: schemaRequired,
   description: Yup.string(),
 });
 
 export const supplierSchema = Yup.object().shape({
-  name: Yup.string().required(validate.NOT_EMPTY),
-  contactName: Yup.string().required(validate.NOT_EMPTY),
-  phone: Yup.string().required(validate.NOT_EMPTY).matches(regex.phone, validate.INVALID_PHONE),
-  email: Yup.string().required(validate.NOT_EMPTY).email(validate.INVALID_EMAIL),
-  address: Yup.string().required(validate.NOT_EMPTY),
-  province: Yup.string().required(validate.NOT_EMPTY),
+  name: schemaRequired,
+  contactName: schemaRequired,
+  phone: schemaPhone,
+  email: schemaEmail,
+  address: schemaRequired,
+  province: schemaRequired,
 });
 
 export const shipperSchema = Yup.object().shape({
-  name: Yup.string().required(validate.NOT_EMPTY),
-  phone: Yup.string().required(validate.NOT_EMPTY).matches(regex.phone, validate.INVALID_PHONE),
+  name: schemaRequired,
+  phone: schemaPhone,
 });
 
 export const registerSchema = Yup.object().shape({
-  name: Yup.string().required(validate.NOT_EMPTY),
-  phone: Yup.string().required(validate.NOT_EMPTY).matches(regex.phone, validate.INVALID_PHONE),
-  email: Yup.string().required(validate.NOT_EMPTY).email(validate.INVALID_EMAIL),
-  password: Yup.string()
-    .required(validate.NOT_EMPTY)
-    .matches(regex.password, validate.INVALID_PASSWORD),
-  confirmPassword: Yup.string()
-    .required(validate.NOT_EMPTY)
-    .matches(regex.password, validate.INVALID_PASSWORD)
-    .oneOf([Yup.ref('password')], validate.NOT_MATCH_PASSWORD),
+  name: schemaRequired,
+  phone: schemaPhone,
+  email: schemaEmail,
+  password: schemaPassword,
+  confirmPassword: schemaPassword.oneOf([Yup.ref('password')], validate.NOT_MATCH_PASSWORD),
 });
 
 export const addCustomerSchema = Yup.object().shape({
-  name: Yup.string().required(validate.NOT_EMPTY),
-  phone: Yup.string().required(validate.NOT_EMPTY).matches(regex.phone, validate.INVALID_PHONE),
-  address: Yup.string().required(validate.NOT_EMPTY),
-  province: Yup.string().required(validate.NOT_EMPTY),
+  name: schemaRequired,
+  phone: schemaPhone,
+  address: schemaRequired,
+  province: schemaRequired,
 });
 
 export const ProductSchema = Yup.object().shape({
-  name: Yup.string().required(validate.NOT_EMPTY),
+  name: schemaRequired,
   description: Yup.string(),
-  brand: Yup.string().required(validate.NOT_EMPTY),
-  category: Yup.string().required(validate.NOT_EMPTY),
-  supplier: Yup.string().required(validate.NOT_EMPTY),
+  brand: schemaRequired,
+  category: schemaRequired,
+  supplier: schemaRequired,
   price: Yup.number().test('Số dương?', validate.INVALID_NUMBER, (value) => value > 0),
   image: Yup.mixed()
     .required(validate.NOT_EMPTY)
@@ -58,11 +60,11 @@ export const ProductSchema = Yup.object().shape({
 });
 
 export const updateProductSchema = Yup.object().shape({
-  name: Yup.string().required(validate.NOT_EMPTY),
+  name: schemaRequired,
   description: Yup.string(),
-  brand: Yup.string().required(validate.NOT_EMPTY),
-  category: Yup.string().required(validate.NOT_EMPTY),
-  supplier: Yup.string().required(validate.NOT_EMPTY),
+  brand: schemaRequired,
+  category: schemaRequired,
+  supplier: schemaRequired,
   price: Yup.number().test('Số dương?', validate.INVALID_NUMBER, (value) => value > 0),
   stock: Yup.number()
     .required(validate.NOT_EMPTY)
@@ -98,8 +100,8 @@ export const updateProductImageSchema = Yup.object().shape({
 });
 
 export const addProductVariantSchema = Yup.object().shape({
-  name: Yup.string().required(validate.NOT_EMPTY),
-  value: Yup.string().required(validate.NOT_EMPTY),
+  name: schemaRequired,
+  value: schemaRequired,
   price: Yup.number().test('Số dương?', validate.INVALID_NUMBER, (value) => value > 0),
   displayOrder: Yup.number().required(validate.NOT_EMPTY),
   toImageOrder: Yup.number(),
@@ -120,17 +122,20 @@ export const updateSlideSchema = Yup.object().shape({
 });
 
 export const loginSchema = Yup.object().shape({
-  email: Yup.string().required(validate.NOT_EMPTY).email(validate.INVALID_EMAIL),
-  password: Yup.string()
-    .required(validate.NOT_EMPTY)
-    .matches(regex.password, validate.INVALID_PASSWORD),
+  email: schemaEmail,
+  password: schemaPassword,
 });
 
 export const infoCheckoutSchema = Yup.object().shape({
   email: Yup.string().email(validate.INVALID_EMAIL),
-  fullName: Yup.string().required(validate.NOT_EMPTY),
-  phone: Yup.string().required(validate.NOT_EMPTY).matches(regex.phone, validate.INVALID_PHONE),
-  address: Yup.string().required(validate.NOT_EMPTY),
-  province: Yup.string().required(validate.NOT_EMPTY),
+  fullName: schemaRequired,
+  phone: schemaPhone,
+  address: schemaRequired,
+  province: schemaRequired,
   note: Yup.string(),
+});
+
+export const schemaResetPassword = Yup.object().shape({
+  newPassword: schemaPassword,
+  confirmPassword: schemaPassword.oneOf([Yup.ref('newPassword')], validate.NOT_MATCH_PASSWORD),
 });

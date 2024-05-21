@@ -21,10 +21,7 @@ const ResetPassword = () => {
     validateOnChange: true,
     validationSchema: schema,
     onSubmit: async (value) => {
-      const res = await UserService.getPassword(value, dispatch);
-      if (res) {
-        console.log(res);
-      }
+      await UserService.getPassword(value, dispatch);
     },
   });
 
@@ -34,7 +31,7 @@ const ResetPassword = () => {
       <div className='container'>
         <h2 className='title-head text-center mb-30'>Lấy lại mật khẩu</h2>
 
-        <form>
+        <form onSubmit={formik.handleSubmit}>
           <Input
             labelName='Email'
             placeholder='Nhập địa chỉ email'
@@ -43,7 +40,7 @@ const ResetPassword = () => {
             formik={formik}
           />
 
-          <Button primary className='btn-send' onClick={formik.handleSubmit}>
+          <Button primary className='btn-send' type='submit'>
             Gửi
           </Button>
         </form>
