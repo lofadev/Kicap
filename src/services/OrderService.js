@@ -25,5 +25,18 @@ const createOrderNoToast = (data, dispatch) => {
   );
 };
 
-const OrderService = { createOrder, createOrderNoToast };
+const gerOrders = (payload, dispatch) => {
+  const token = getToken();
+  return handleAPICallWithoutToast(
+    axiosJWT.get('/order/get-all', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      params: payload,
+    }),
+    dispatch
+  );
+};
+
+const OrderService = { createOrder, createOrderNoToast, gerOrders };
 export default OrderService;

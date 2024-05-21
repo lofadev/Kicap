@@ -1,67 +1,99 @@
-import FormControl from '@mui/material/FormControl';
-import MenuItem from '@mui/material/MenuItem';
-import Select from '@mui/material/Select';
+import dayjs from 'dayjs';
+import { useFormik } from 'formik';
 import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import Box from '~/components/Admin/Box/Box';
 import HeadingBreadCrumb from '~/components/Admin/HeadingBreadCrumb/HeadingBreadCrumb';
-import DatePickerValue from '~/components/DatePicker/DatePicker';
-import './ShowOrder.scss';
-import OrderStatusService from '~/services/OrderStatusService';
-import { useDispatch } from 'react-redux';
 import TextQuantity from '~/components/Admin/TextQuantity/TextQuantity';
+import Button from '~/components/Button/Button';
 import DataTable from '~/components/DataTable/DataTable';
+import DatePickerValue from '~/components/DatePicker/DatePicker';
 import Pagination from '~/components/Pagination/Pagination';
+import SelectOptions from '~/components/SelectOptions/SelectOptions';
+import OrderStatusService from '~/services/OrderStatusService';
+import { DatePickToISODate } from '~/utils/utils';
+import './ShowOrder.scss';
+import OrderService from '~/services/OrderService';
 
 const ShowOrder = () => {
   const dispatch = useDispatch();
-  const [orderStatus, setOrderStatus] = useState(0);
   const [orderStatuses, setOrderStatuses] = useState([]);
   const [page, setPage] = useState(1);
   const [response, setResponse] = useState({});
   const [rows, setRows] = useState([]);
+  const [fromDate, setFromDate] = useState(dayjs(new Date().setMonth(new Date().getMonth() - 1)));
+  const [toDate, setToDate] = useState(dayjs(Date.now()));
 
-  const handleChangeOrderStatus = (e) => {
-    setOrderStatus(e.target.value);
-  };
+  const formik = useFormik({
+    initialValues: {
+      status: '',
+    },
+  });
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchOrderStatuses = async () => {
       const res = await OrderStatusService.getOrderStatuses({}, dispatch);
       if (res.status === 'OK') {
-        setOrderStatuses(res.data);
+        const data = res.data.map((i) => {
+          return {
+            id: i._id,
+            name: i.description,
+            value: i.status,
+          };
+        });
+        setOrderStatuses(data);
       }
     };
 
-    fetchData();
+    fetchOrderStatuses();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    const fetchOrders = async () => {
+      const res = await OrderService.gerOrders(
+        { status: formik.values.status, fromDate: fromDate.$d, toDate: toDate.$d },
+        dispatch
+      );
+    };
+
+    fetchOrders();
+  }, []);
+
+  const handleFilter = () => {
+    console.log(DatePickToISODate(fromDate), DatePickToISODate(toDate), page, formik.values.status);
+  };
 
   return (
     <div className='show-order'>
       <HeadingBreadCrumb>Quản lý đơn đặt hàng</HeadingBreadCrumb>
       <Box title='Danh sách đơn đặt hàng'>
         <div className='order-status'>
-          <FormControl fullWidth>
-            <Select
-              value={orderStatus}
-              onChange={handleChangeOrderStatus}
-              defaultValue={orderStatus}
-            >
-              <MenuItem value={0}>--- Trạng thái đơn hàng ---</MenuItem>
-              {orderStatuses &&
-                orderStatuses.map((orderStatus) => (
-                  <MenuItem key={orderStatus._id} value={orderStatus.status}>
-                    {orderStatus.description}
-                  </MenuItem>
-                ))}
-            </Select>
-          </FormControl>
+          <SelectOptions
+            labelName={'Trạng thái đơn hàng'}
+            options={orderStatuses}
+            formik={formik}
+            name={'status'}
+            optionDefault={'--- Chọn trạng thái đơn hàng ---'}
+            value='value'
+          />
         </div>
-        <div className='date-picker'>
-          <span>Từ ngày</span>
-          <DatePickerValue date={new Date().setMonth(new Date().getMonth() - 1)}></DatePickerValue>
-          <span>Đến ngày</span>
-          <DatePickerValue></DatePickerValue>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <div className='date-picker'>
+            <span>Từ ngày</span>
+            <DatePickerValue
+              value={fromDate}
+              onChange={(newFromDate) => setFromDate(newFromDate)}
+            ></DatePickerValue>
+            <span>Đến ngày</span>
+            <DatePickerValue
+              value={toDate}
+              onChange={(newToDate) => setToDate(newToDate)}
+            ></DatePickerValue>
+          </div>
+          <Button secondary onClick={handleFilter}>
+            Áp dụng
+          </Button>
         </div>
 
         <TextQuantity

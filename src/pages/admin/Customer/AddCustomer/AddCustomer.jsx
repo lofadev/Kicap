@@ -86,6 +86,7 @@ const AddCustomer = () => {
             optionDefault='--- Chọn Tỉnh/thành ---'
             name='province'
             formik={formik}
+            required
           ></SelectOptions>
 
           <ButtonAction to='/admin/customers' handleSave={formik.handleSubmit} />

@@ -18,6 +18,7 @@ const routes = {
     login: '/account/login',
     reset_password: '/account/reset_password',
     new_password: '/account/new_password',
+    verify_email: '/account/verify_email',
     index: '/account',
     type: '/account/:type',
   },

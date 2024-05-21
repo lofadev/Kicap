@@ -80,7 +80,11 @@ const ProductCard = ({ product }) => {
           </div>
         </Link>
         <div className='product_card-actions' onClick={handleAddToCart}>
-          <Button secondary className='product_card-button' disabled={!product.stock}>
+          <Button
+            secondary
+            className='product_card-button'
+            disabled={!product.stock && !product.hasVariant}
+          >
             {product.hasVariant
               ? 'Tùy chọn'
               : product.stock === 0
