@@ -1,25 +1,24 @@
 import dayjs from 'dayjs';
 import { useFormik } from 'formik';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import Box from '~/components/Admin/Box/Box';
 import HeadingBreadCrumb from '~/components/Admin/HeadingBreadCrumb/HeadingBreadCrumb';
 import TextQuantity from '~/components/Admin/TextQuantity/TextQuantity';
-import Button from '~/components/Button/Button';
 import DataTable from '~/components/DataTable/DataTable';
 import DatePickerValue from '~/components/DatePicker/DatePicker';
 import Pagination from '~/components/Pagination/Pagination';
 import SelectOptions from '~/components/SelectOptions/SelectOptions';
-import OrderStatusService from '~/services/OrderStatusService';
-import { DatePickToISODate } from '~/utils/utils';
-import './ShowOrder.scss';
 import OrderService from '~/services/OrderService';
+import OrderStatusService from '~/services/OrderStatusService';
+import { formatPriceToVND, timestampsToDate } from '~/utils/utils';
+import './ShowOrder.scss';
 
 const ShowOrder = () => {
   const dispatch = useDispatch();
   const [orderStatuses, setOrderStatuses] = useState([]);
   const [page, setPage] = useState(1);
-  const [response, setResponse] = useState({});
+  const [pagination, setPagination] = useState({});
   const [rows, setRows] = useState([]);
   const [fromDate, setFromDate] = useState(dayjs(new Date().setMonth(new Date().getMonth() - 1)));
   const [toDate, setToDate] = useState(dayjs(Date.now()));
@@ -30,39 +29,55 @@ const ShowOrder = () => {
     },
   });
 
-  useEffect(() => {
-    const fetchOrderStatuses = async () => {
-      const res = await OrderStatusService.getOrderStatuses({}, dispatch);
-      if (res.status === 'OK') {
-        const data = res.data.map((i) => {
-          return {
-            id: i._id,
-            name: i.description,
-            value: i.status,
-          };
-        });
-        setOrderStatuses(data);
-      }
-    };
+  const fetchOrderStatuses = useCallback(async () => {
+    const res = await OrderStatusService.getOrderStatuses({}, dispatch);
+    if (res.status === 'OK') {
+      const data = res.data.map((i) => {
+        return {
+          id: i._id,
+          name: i.description,
+          value: i.status,
+        };
+      });
+      setOrderStatuses(data);
+      return res.data;
+    }
+  }, []);
 
+  useEffect(() => {
     fetchOrderStatuses();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     const fetchOrders = async () => {
+      const orderStatuses = await fetchOrderStatuses();
       const res = await OrderService.gerOrders(
-        { status: formik.values.status, fromDate: fromDate.$d, toDate: toDate.$d },
+        { status: formik.values.status, fromDate: fromDate.$d, toDate: toDate.$d, page },
         dispatch
       );
+      if (res.status === 'OK') {
+        const orders = res.data.map((order) => {
+          const { _id, fullName, orderTime, shipper, totalPrice, isPaid, status } = order;
+          const statusString = orderStatuses.find((st) => st.status === status).description;
+          return {
+            id: _id,
+            fullName,
+            orderTime: timestampsToDate(orderTime),
+            shipper,
+            totalPrice: formatPriceToVND(totalPrice),
+            isPaid: isPaid ? 'Đã thanh toán' : 'Chưa thanh toán',
+            status: statusString,
+          };
+        });
+        const pagination = res.pagination;
+        setPagination(pagination);
+        setRows(orders);
+      }
     };
 
     fetchOrders();
-  }, []);
-
-  const handleFilter = () => {
-    console.log(DatePickToISODate(fromDate), DatePickToISODate(toDate), page, formik.values.status);
-  };
+  }, [page, fromDate, toDate, formik.values.status]);
 
   return (
     <div className='show-order'>
@@ -80,6 +95,7 @@ const ShowOrder = () => {
         </div>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <div className='date-picker'>
+            <span style={{ textTransform: 'uppercase' }}>Ngày lập đơn hàng: </span>
             <span>Từ ngày</span>
             <DatePickerValue
               value={fromDate}
@@ -91,17 +107,14 @@ const ShowOrder = () => {
               onChange={(newToDate) => setToDate(newToDate)}
             ></DatePickerValue>
           </div>
-          <Button secondary onClick={handleFilter}>
-            Áp dụng
-          </Button>
         </div>
 
         <TextQuantity
-          quantity={response.totalShippers ?? 0}
+          quantity={pagination?.totalOrders ?? 0}
           text='đơn đặt hàng'
-          totalPage={response.totalPage ?? 0}
+          totalPage={pagination?.totalPage ?? 0}
           page={page}
-          pageSize={response.limit ?? 0}
+          pageSize={pagination?.limit ?? 0}
         />
 
         <DataTable
@@ -109,18 +122,17 @@ const ShowOrder = () => {
           head={[
             'Khách hàng',
             'Ngày lập',
-            'Thời điểm duyệt',
             'Người giao hàng',
-            'Ngày nhận giao hàng',
-            'Thời điểm kết thúc',
-            'Trạng thái',
+            'Tổng tiền',
+            'Trạng thái thanh toán',
+            'Trạng thái đơn hàng',
           ]}
-          keys={['name', 'phone']}
-          updateTo='shipper'
+          keys={['fullName', 'orderTime', 'shipper', 'totalPrice', 'isPaid', 'status']}
+          updateTo='order'
           isDetails
         />
         <Pagination
-          pageCount={response.totalPage ?? 0}
+          pageCount={pagination?.totalPage ?? 0}
           onClickPageItem={(value) => setPage(value.selected + 1)}
         ></Pagination>
       </Box>

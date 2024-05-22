@@ -15,4 +15,11 @@
     line-height: 1;
     margin-top: 15px;
   }
+
+  &-filter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+  }
 }

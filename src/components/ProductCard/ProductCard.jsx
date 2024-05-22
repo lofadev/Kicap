@@ -87,7 +87,7 @@ const ProductCard = ({ product }) => {
           >
             {product.hasVariant
               ? 'Tùy chọn'
-              : product.stock === 0
+              : product.stock <= 0
               ? 'Hết hàng'
               : 'Thêm vào giỏ hàng'}
           </Button>

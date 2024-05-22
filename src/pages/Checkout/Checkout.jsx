@@ -9,7 +9,7 @@ import Button from '~/components/Button/Button';
 import Input from '~/components/FormGroup/Input/Input';
 import Radio from '~/components/Radio/Radio';
 import SelectOptions from '~/components/SelectOptions/SelectOptions';
-import { setAmount } from '~/redux/slices/CartSlice';
+import { resetCart, setAmount } from '~/redux/slices/CartSlice';
 import CheckoutService from '~/services/CheckoutService';
 import OrderService from '~/services/OrderService';
 import ProductService from '~/services/ProductService';
@@ -70,7 +70,8 @@ const Checkout = () => {
       if (paymentMethod === 'cod') {
         const res = await OrderService.createOrder(payload, dispatch);
         if (res.status === 'OK') {
-          console.log(res);
+          dispatch(resetCart());
+          navigate('/cart');
         }
       } else {
         const payloadPayment = {

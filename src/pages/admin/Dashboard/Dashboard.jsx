@@ -1,19 +1,24 @@
+import { useEffect, useState } from 'react';
 import { BiSolidCategory } from 'react-icons/bi';
 import { FaArrowAltCircleRight, FaUser } from 'react-icons/fa';
 import { FaBarsProgress, FaCartFlatbed } from 'react-icons/fa6';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import DashboardBox from '~/components/Admin/DashboardBox/DashboardBox';
 import Revenue from '~/components/Admin/Revenue/Revenue';
-import DataTable from '~/components/DataTable/DataTable';
+import DashboardService from '~/services/DashboardService';
 import './Dashboard.scss';
+import OrderService from '~/services/OrderService';
+import { formatPriceToVND, timestampsToDate } from '~/utils/utils';
+import DataTable from '~/components/DataTable/DataTable';
 
 const dashboard = [
   {
     id: 1,
     name: 'Quản lý sản phẩm',
     icon: FaBarsProgress,
-    quantity: 2000,
-    to: '/admin/dashboard',
+    quantity: 0,
+    to: '/admin/products',
     color: 'var(--blue)',
   },
   {
@@ -21,7 +26,7 @@ const dashboard = [
     name: 'Quản lý khách hàng',
     icon: FaUser,
     quantity: 0,
-    to: '/admin/dashboard',
+    to: '/admin/customers',
     color: 'var(--green)',
   },
   {
@@ -29,7 +34,7 @@ const dashboard = [
     name: 'Quản lý danh mục sản phẩm',
     icon: BiSolidCategory,
     quantity: 0,
-    to: '/admin/dashboard',
+    to: '/admin/categories',
     color: 'var(--yellow)',
   },
   {
@@ -37,16 +42,55 @@ const dashboard = [
     name: 'Quản lý đơn đặt hàng',
     icon: FaCartFlatbed,
     quantity: 0,
-    to: '/admin/dashboard',
+    to: '/admin/orders',
     color: 'var(--red)',
   },
 ];
 
 const Dashboard = () => {
+  const dispatch = useDispatch();
+  const [dashboardCount, setDashboardCount] = useState(dashboard);
+  const [orders, setOrders] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const [resDash, resOrder] = await Promise.all([
+        DashboardService.getDashBoard(dispatch),
+        OrderService.gerOrders({ limit: 5 }, dispatch),
+      ]);
+      if (resDash.status === 'OK') {
+        const { product, user, category, order } = resDash.data;
+        const counts = [product, user, category, order];
+        const newDashboard = dashboardCount.map((item, index) => {
+          return {
+            ...item,
+            quantity: counts[index],
+          };
+        });
+        setDashboardCount(newDashboard);
+      }
+      if (resOrder.status === 'OK') {
+        const orders = resOrder.data.map((order) => {
+          return {
+            id: order._id,
+            fullName: order.fullName,
+            orderTime: timestampsToDate(order.orderTime),
+            totalPrice: formatPriceToVND(order.totalPrice),
+            isPaid: order.isPaid ? 'Đã thanh toán' : 'Chưa thanh toán',
+          };
+        });
+        setOrders(orders);
+      }
+    };
+
+    fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <div className='dashboard'>
       <div className='dashboard-menu'>
-        {dashboard.map((item) => (
+        {dashboardCount.map((item) => (
           <DashboardBox
             key={item.id}
             icon={item.icon}
@@ -66,12 +110,18 @@ const Dashboard = () => {
             <FaCartFlatbed /> Đơn hàng mới
           </span>
 
-          <Link to={''} className='new-orders-link'>
-            Xem tất cả các đơn đặt hàng mới <FaArrowAltCircleRight />
+          <Link to={'/admin/orders'} className='new-orders-link'>
+            Xem tất cả các đơn đặt hàng <FaArrowAltCircleRight />
           </Link>
         </div>
       </div>
-      {/* <DataTable /> */}
+      <DataTable
+        rows={orders}
+        head={['Khách hàng', 'Ngày lập', 'Tổng tiền', 'Trạng thái thanh toán']}
+        keys={['fullName', 'orderTime', 'totalPrice', 'isPaid']}
+        updateTo='order'
+        isDetails
+      />
     </div>
   );
 };

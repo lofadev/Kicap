@@ -70,6 +70,10 @@ const checkAmount = (ids, dispatch) => {
   );
 };
 
+const getBrands = (dispatch) => {
+  return handleAPICallWithoutToast(axiosInstance.get('/product/get-brand'), dispatch);
+};
+
 const ProductService = {
   createProduct,
   getProduct,
@@ -78,6 +82,7 @@ const ProductService = {
   deleteProduct,
   updateProductMoreImage,
   checkAmount,
+  getBrands,
 };
 
 export default ProductService;
