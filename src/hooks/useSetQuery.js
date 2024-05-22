@@ -1,14 +1,12 @@
 import queryString from 'query-string';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const useSetQuery = () => {
   const navigate = useNavigate();
-  const location = useLocation();
 
   const setQuery = (params) => {
-    const currentSearch = queryString.parse(location.search);
-    const newSearch = queryString.stringify({ ...currentSearch, ...params });
-    navigate(`?${newSearch}`);
+    const searchParams = queryString.stringify(params, { encode: false });
+    navigate(`?${searchParams}`);
   };
 
   return setQuery;

@@ -18,10 +18,10 @@
     position: relative;
 
     .btn-toggle-sidebar {
-      position: fixed;
+      position: absolute;
       width: 20px;
       height: 40px;
-      left: var(--admin-sidebar-width);
+      left: 0;
       top: calc(100vh / 2);
       transform: translateY(-50%);
       transition: all 0.2s linear;
@@ -57,8 +57,6 @@
       }
 
       &.hide-sidebar {
-        left: 70px;
-
         span {
           --left: -3px;
         }

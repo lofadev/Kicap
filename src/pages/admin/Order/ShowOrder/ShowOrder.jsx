@@ -11,8 +11,8 @@ import Pagination from '~/components/Pagination/Pagination';
 import SelectOptions from '~/components/SelectOptions/SelectOptions';
 import OrderService from '~/services/OrderService';
 import OrderStatusService from '~/services/OrderStatusService';
-import './ShowOrder.scss';
 import { formatPriceToVND, timestampsToDate } from '~/utils/utils';
+import './ShowOrder.scss';
 
 const ShowOrder = () => {
   const dispatch = useDispatch();

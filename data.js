@@ -2031,9 +2031,10 @@ export const filters = [
   {
     id: 1,
     title: 'Trạng thái tồn kho',
+    field: 'stock',
     choices: [
       {
-        text: 'Hàng có sẵn',
+        name: 'Hàng có sẵn',
         value: '(>0)',
       },
     ],
@@ -2041,251 +2042,36 @@ export const filters = [
   {
     id: 3,
     title: 'Thương hiệu',
-    choices: [
-      {
-        text: '15Cables',
-        value: '(15Cables)',
-      },
-      {
-        text: 'Aifei',
-        value: '(Aifei)',
-      },
-      {
-        text: 'Aifei SA',
-        value: '(Aifei SA)',
-      },
-      {
-        text: 'Akko',
-        value: '(Akko)',
-      },
-      {
-        text: 'Cat Keys',
-        value: '(Cat Keys)',
-      },
-      {
-        text: 'Cherry',
-        value: '(Cherry)',
-      },
-      {
-        text: 'Cidoo',
-        value: '(Cidoo)',
-      },
-      {
-        text: 'CIY',
-        value: '(CIY)',
-      },
-      {
-        text: 'CMK',
-        value: '(CMK)',
-      },
-      {
-        text: 'DAGK',
-        value: '(DAGK)',
-      },
-      {
-        text: 'DPS Creation',
-        value: '(DPS Creation)',
-      },
-      {
-        text: 'Fantasy Labs',
-        value: '(Fantasy Labs)',
-      },
-      {
-        text: 'FBB',
-        value: '(FBB)',
-      },
-      {
-        text: 'Finalkey',
-        value: '(Finalkey)',
-      },
-      {
-        text: 'FL - Esports',
-        value: '(FL - Esports)',
-      },
-      {
-        text: 'Gateron',
-        value: '(Gateron)',
-      },
-      {
-        text: 'Gmk Clone',
-        value: '(Gmk Clone)',
-      },
-      {
-        text: 'Infiverse',
-        value: '(Infiverse)',
-      },
-      {
-        text: 'Jamesdonkey',
-        value: '(Jamesdonkey)',
-      },
-      {
-        text: 'JX',
-        value: '(JX)',
-      },
-      {
-        text: 'Kailh Box',
-        value: '(Kailh Box)',
-      },
-      {
-        text: 'Kelowna',
-        value: '(Kelowna)',
-      },
-      {
-        text: 'Keydous',
-        value: '(Keydous)',
-      },
-      {
-        text: 'Keystone',
-        value: '(Keystone)',
-      },
-      {
-        text: 'Kicap',
-        value: '(Kicap)',
-      },
-      {
-        text: 'KTT',
-        value: '(KTT)',
-      },
-      {
-        text: 'Loops',
-        value: '(Loops)',
-      },
-      {
-        text: 'M7',
-        value: '(M7)',
-      },
-      {
-        text: 'Melodic',
-        value: '(Melodic)',
-      },
-      {
-        text: 'MG',
-        value: '(MG)',
-      },
-      {
-        text: 'Mini Led',
-        value: '(Mini Led)',
-      },
-      {
-        text: 'Mintcaps',
-        value: '(Mintcaps)',
-      },
-      {
-        text: 'Monsgeek',
-        value: '(Monsgeek)',
-      },
-      {
-        text: 'MZ Studio',
-        value: '(MZ Studio)',
-      },
-      {
-        text: 'OSIRIS',
-        value: '(OSIRIS)',
-      },
-      {
-        text: 'PH Studio',
-        value: '(PH Studio)',
-      },
-      {
-        text: 'SA PBT',
-        value: '(SA PBT)',
-      },
-      {
-        text: 'Shark Studio',
-        value: '(Shark Studio)',
-      },
-      {
-        text: 'Soy Sauce',
-        value: '(Soy Sauce)',
-      },
-      {
-        text: 'Stooges',
-        value: '(Stooges)',
-      },
-      {
-        text: 'Titan Nation',
-        value: '(Titan Nation)',
-      },
-      {
-        text: 'TUT',
-        value: '(TUT)',
-      },
-      {
-        text: 'Weikav',
-        value: '(Weikav)',
-      },
-      {
-        text: 'Wu Liqi Keycap',
-        value: '(Wu Liqi Keycap)',
-      },
-      {
-        text: 'Wukds',
-        value: '(Wukds)',
-      },
-      {
-        text: 'Wuque Studio',
-        value: '(Wuque Studio)',
-      },
-      {
-        text: 'XCSTORE',
-        value: '(XCSTORE)',
-      },
-      {
-        text: 'Xinmeng',
-        value: '(Xinmeng)',
-      },
-      {
-        text: 'XM',
-        value: '(XM)',
-      },
-      {
-        text: 'XT-Design',
-        value: '(XT-Design)',
-      },
-      {
-        text: 'Yiwu',
-        value: '(Yiwu)',
-      },
-      {
-        text: 'Zomo',
-        value: '(Zomo)',
-      },
-      {
-        text: 'Zouya',
-        value: '(Zouya)',
-      },
-      {
-        text: 'Zuoya',
-        value: '(Zuoya)',
-      },
-    ],
+    field: 'brand',
+    choices: [],
   },
   {
     id: 4,
     title: 'Giá sản phẩm',
+    field: 'price',
     choices: [
       {
-        text: 'Giá dưới 100.000đ',
-        value: '(<100000)',
+        name: 'Giá dưới 100.000đ',
+        value: '0,100000',
       },
       {
-        text: '100.000đ - 200.000đ',
-        value: '(>=100000 AND <=200000)',
+        name: '100.000đ - 200.000đ',
+        value: '100000,200000',
       },
       {
-        text: '200.000đ - 300.000đ',
-        value: '(>=200000 AND <=300000)',
+        name: '200.000đ - 300.000đ',
+        value: '200000,300000',
       },
       {
-        text: '300.000đ - 500.000đ',
-        value: '(>=300000 AND <=500000)',
+        name: '300.000đ - 500.000đ',
+        value: '300000,500000',
       },
       {
-        text: '500.000đ - 1.000.000đ',
-        value: '(>=500000 AND <=1000000)',
+        name: '500.000đ - 1.000.000đ',
+        value: '500000,1000000',
       },
       {
-        text: 'Giá trên 1.000.000đ',
+        name: 'Giá trên 1.000.000đ',
         value: '(>=1000000)',
       },
     ],
@@ -2293,59 +2079,7 @@ export const filters = [
   {
     id: 5,
     title: 'Loại',
-    choices: [
-      {
-        text: 'Bàn phím cơ',
-        value: '(Bàn phím cơ)',
-      },
-      {
-        text: 'Combo',
-        value: '(Combo)',
-      },
-      {
-        text: 'Custom Cable',
-        value: '(Custom Cable)',
-      },
-      {
-        text: 'Decor',
-        value: '(Decor)',
-      },
-      {
-        text: 'Đèn',
-        value: '(Đèn)',
-      },
-      {
-        text: 'Keycap bộ',
-        value: '(Keycap bộ)',
-      },
-      {
-        text: 'Keycap lẻ',
-        value: '(Keycap lẻ)',
-      },
-      {
-        text: 'Khác',
-        value: '(Khác)',
-      },
-      {
-        text: 'Kit',
-        value: '(Kit)',
-      },
-      {
-        text: 'Mods',
-        value: '(Mods)',
-      },
-      {
-        text: 'Phụ kiện',
-        value: '(Phụ kiện)',
-      },
-      {
-        text: 'Phụ kiện bàn phím',
-        value: '(Phụ kiện bàn phím)',
-      },
-      {
-        text: 'Switch',
-        value: '(Switch)',
-      },
-    ],
+    field: 'category',
+    choices: [],
   },
 ];

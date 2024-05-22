@@ -93,3 +93,9 @@ export const timestampsToDate = (value) => {
   const formattedDate = date.format('DD/MM/YYYY');
   return formattedDate;
 };
+
+export const dateISOToTimestamps = (day, month, year) => {
+  let date = new Date(year, month - 1, day);
+  let isoDate = date.toISOString();
+  return isoDate;
+};
