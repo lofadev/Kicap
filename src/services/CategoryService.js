@@ -1,4 +1,4 @@
-import { axiosJWT, handleAPICall, handleAPICallWithoutToast } from '~/api/apiConfig';
+import { axiosInstance, axiosJWT, handleAPICall, handleAPICallWithoutToast } from '~/api/apiConfig';
 import { getToken } from '~/utils/utils';
 
 const createCategory = (data, dispatch) => {
@@ -26,11 +26,9 @@ const getCategory = (id, dispatch) => {
 };
 
 const getCategorys = (payload, dispatch) => {
-  const token = getToken();
   return handleAPICallWithoutToast(
-    axiosJWT.get('/category/get-all', {
+    axiosInstance.get('/category/get-all', {
       params: payload,
-      headers: { Authorization: `Bearer ${token}` },
     }),
     dispatch
   );

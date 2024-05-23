@@ -21,10 +21,10 @@ const Home = () => {
     const fetchData = async () => {
       const [newProducts, keyboards, keycaps, switchs, accessorys] = await Promise.all([
         ProductService.getProducts({}, dispatch),
-        ProductService.getProducts({ limit: 6, type: 'Bàn phím cơ' }, dispatch),
-        ProductService.getProducts({ limit: 4, type: 'Keycap bộ' }, dispatch),
-        ProductService.getProducts({ limit: 4, type: 'Switch' }, dispatch),
-        ProductService.getProducts({ limit: 4, type: 'Phụ kiện' }, dispatch),
+        ProductService.getProducts({ limit: 6, category: 'Bàn phím cơ' }, dispatch),
+        ProductService.getProducts({ limit: 4, category: 'Keycap bộ' }, dispatch),
+        ProductService.getProducts({ limit: 4, category: 'Switch' }, dispatch),
+        ProductService.getProducts({ limit: 4, category: 'Phụ kiện' }, dispatch),
       ]);
       if (newProducts.status === 'OK') setNewProducts(newProducts.data);
       if (keyboards.status === 'OK') setKeyboardCustoms(keyboards.data);

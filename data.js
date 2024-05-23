@@ -1852,19 +1852,19 @@ export const menu = [
     hasChild: false,
     navigate: '/',
   },
-  {
-    id: 2,
-    name: 'Keycap bộ',
-    hasChild: true,
-    navigate: '/keycap-bo',
-    children: [
-      { id: 1, name: 'Keycap Cherry', navigate: '/keycap-cherry' },
-      { id: 2, name: 'Keycap xuyên led', navigate: '/keycap-xuyen-led' },
-      { id: 3, name: 'Keycap SA', navigate: '/keycap-sa' },
-      { id: 4, name: 'Keycap XDA', navigate: '/keycap-xda' },
-      { id: 5, name: 'Keycap OEM', navigate: '/keycap-oem' },
-    ],
-  },
+  // {
+  //   id: 2,
+  //   name: 'Keycap bộ',
+  //   hasChild: true,
+  //   navigate: '/keycap-bo',
+  //   children: [
+  //     { id: 1, name: 'Keycap Cherry', navigate: '/keycap-cherry' },
+  //     { id: 2, name: 'Keycap xuyên led', navigate: '/keycap-xuyen-led' },
+  //     { id: 3, name: 'Keycap SA', navigate: '/keycap-sa' },
+  //     { id: 4, name: 'Keycap XDA', navigate: '/keycap-xda' },
+  //     { id: 5, name: 'Keycap OEM', navigate: '/keycap-oem' },
+  //   ],
+  // },
   // {
   //   id: 3,
   //   name: 'Mods phím',
@@ -1886,7 +1886,7 @@ export const menu = [
   {
     id: 3,
     name: 'Sản phẩm',
-    navigate: '/collections/all',
+    navigate: '/products',
     hasMega: true,
     children: [
       {
@@ -2052,7 +2052,7 @@ export const filters = [
     choices: [
       {
         name: 'Giá dưới 100.000đ',
-        value: '0,100000',
+        value: '(<100000)',
       },
       {
         name: '100.000đ - 200.000đ',
@@ -2072,7 +2072,7 @@ export const filters = [
       },
       {
         name: 'Giá trên 1.000.000đ',
-        value: '(>=1000000)',
+        value: '(>1000000)',
       },
     ],
   },
