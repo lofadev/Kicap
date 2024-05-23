@@ -72,11 +72,7 @@ const publicRoutes = [
     component: Policy,
   },
   {
-    path: config.routes.product_category,
-    component: ProductCategory,
-  },
-  {
-    path: config.routes.collections_all,
+    path: config.routes.products,
     component: ProductCategory,
   },
   {

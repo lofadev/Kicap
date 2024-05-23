@@ -30,7 +30,7 @@ const Cart = () => {
               <div className='empty-cart'>
                 <img src={EmptyCart} alt='' />
               </div>
-              <Button secondary className='btn-continue' to={'/collections/all'}>
+              <Button secondary className='btn-continue' to={'/products'}>
                 tiếp tục mua sắm
               </Button>
             </>
@@ -56,7 +56,7 @@ const Cart = () => {
                 <Button primary className='btn-payment' to={'/checkout'}>
                   Thanh toán ngay
                 </Button>
-                <Button secondary to={'/collections/all'} className='btn-continue-view'>
+                <Button secondary to={'/products'} className='btn-continue-view'>
                   Tiếp tục mua hàng
                 </Button>
               </div>

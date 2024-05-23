@@ -7,10 +7,10 @@ import EvoBlogHeader from '~/components/EvoBlogHeader/EvoBlogHeader';
 import Pagination from '~/components/Pagination/Pagination';
 import ProductCard from '~/components/ProductCard/ProductCard';
 import SortCate from '~/components/SortCate/SortCate';
+import useQuery from '~/hooks/useQuery';
+import useSetQuery from '~/hooks/useSetQuery';
 import ProductService from '~/services/ProductService';
 import './ProductCategory.scss';
-import useSetQuery from '~/hooks/useSetQuery';
-import useQuery from '~/hooks/useQuery';
 
 const ProductCategory = () => {
   const dispatch = useDispatch();
@@ -18,7 +18,7 @@ const ProductCategory = () => {
   const setQuery = useSetQuery();
   const [products, setProducts] = useState([]);
   const [pageCount, setPageCount] = useState(0);
-  const [page, setPage] = useState(query.page || 1);
+  const [page, setPage] = useState(query.page ?? 1);
   const [openFilters, setOpenFilters] = useState(false);
 
   const doSearch = (value) => {
@@ -29,21 +29,30 @@ const ProductCategory = () => {
     setOpenFilters((prev) => !prev);
   };
 
+  const fetchData = async (params) => {
+    const res = await ProductService.getProducts(params, dispatch);
+    if (res.status === 'OK') {
+      const products = res.data;
+      setProducts(products);
+      setPageCount(res.totalPage);
+    }
+  };
+
   useEffect(() => {
-    window.scrollTo(0, 0);
-    const payload = { page, limit: 12 };
-    setQuery({ page });
-    const fetchData = async (payload) => {
-      const res = await ProductService.getProducts(payload, dispatch);
-      if (res.status === 'OK') {
-        const products = res.data;
-        setProducts(products);
-        setPageCount(Math.ceil(res.totalProducts / 12));
-      }
-    };
-    fetchData(payload);
+    setQuery({ limit: 12, ...query, page });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+
+    if (query.limit && query.page) {
+      fetchData({ ...query });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location.search]);
+
+  console.log(query.page);
 
   return (
     <div className='product-category'>
@@ -92,7 +101,7 @@ const ProductCategory = () => {
               <Pagination
                 pageCount={pageCount}
                 onClickPageItem={doSearch}
-                currentPage={page}
+                currentPage={query.page}
               ></Pagination>
             </div>
           </section>

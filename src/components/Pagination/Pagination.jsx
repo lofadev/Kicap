@@ -16,7 +16,7 @@ const Pagination = ({ pageCount, onClickPageItem: handleClickPageItem, currentPa
         containerClassName='pagination'
         pageClassName='page-item'
         onPageChange={handleClickPageItem}
-        initialPage={(parseInt(currentPage) || 1) - 1}
+        initialPage={(Number(currentPage) || 1) - 1}
       ></ReactPaginate>
     </div>
   );
