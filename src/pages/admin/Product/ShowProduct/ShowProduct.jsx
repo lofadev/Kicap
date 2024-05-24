@@ -6,11 +6,10 @@ import HeadingBreadCrumb from '~/components/Admin/HeadingBreadCrumb/HeadingBread
 import TextQuantity from '~/components/Admin/TextQuantity/TextQuantity';
 import Button from '~/components/Button/Button';
 import DataTable from '~/components/DataTable/DataTable';
-import ModalDialog from '~/components/ModalDialog/ModalDialog';
+import ModalConfirm from '~/components/ModalConfirm/ModalConfirm';
 import Pagination from '~/components/Pagination/Pagination';
 import { useDebounce } from '~/hooks/useDebounce';
 import ProductService from '~/services/ProductService';
-import { formatPriceToVND } from '~/utils/utils';
 
 const ShowProduct = () => {
   const dispatch = useDispatch();
@@ -36,7 +35,7 @@ const ShowProduct = () => {
         brand: product.brand,
         supplier: product.supplier,
         category: product.category,
-        price: formatPriceToVND(product.price),
+        price: product.price,
       }));
       setRows(rows);
     }
@@ -93,12 +92,12 @@ const ShowProduct = () => {
           onClickPageItem={(value) => setPage(value.selected + 1)}
         ></Pagination>
       </Box>
-      <ModalDialog
+      <ModalConfirm
         desc={'Bạn có muốn xoá sản phẩm này không ?'}
         handleClose={() => setOpen(false)}
         handleDelete={handleDelete}
         open={open}
-      ></ModalDialog>
+      ></ModalConfirm>
     </div>
   );
 };

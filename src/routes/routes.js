@@ -27,6 +27,7 @@ import UpdateCustomer from '~/pages/admin/Customer/UpdateCustomer/UpdateCustomer
 import Dashboard from '~/pages/admin/Dashboard/Dashboard';
 import Login from '~/pages/admin/Login/Login';
 import AddOrder from '~/pages/admin/Order/AddOrder/AddOrder';
+import DetailOrder from '~/pages/admin/Order/DetailOrder/DetailOrder';
 import ShowOrder from '~/pages/admin/Order/ShowOrder/ShowOrder';
 import AddProduct from '~/pages/admin/Product/AddProduct/AddProduct';
 import ShowProduct from '~/pages/admin/Product/ShowProduct/ShowProduct';
@@ -236,6 +237,11 @@ const adminRoutes = [
   {
     path: config.routes.admin.orders.view,
     component: ShowOrder,
+    layout: AdminLayout,
+  },
+  {
+    path: config.routes.admin.orders.detail,
+    component: DetailOrder,
     layout: AdminLayout,
   },
   {

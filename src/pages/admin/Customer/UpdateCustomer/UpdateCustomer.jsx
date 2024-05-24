@@ -114,7 +114,7 @@ const UpdateCustomer = () => {
             name='province'
             formik={formik}
             value='name'
-          ></SelectOptions>
+          />
           <SelectOptions
             labelName='Trạng thái khoá'
             required

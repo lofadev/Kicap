@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Box from '~/components/Admin/Box/Box';
 import DataTable from '~/components/DataTable/DataTable';
-import ModalDialog from '~/components/ModalDialog/ModalDialog';
+import ModalConfirm from '~/components/ModalConfirm/ModalConfirm';
 import ProductVariantService from '~/services/ProductVariantService';
 import { formatPriceToVND } from '~/utils/utils';
 
@@ -22,7 +22,7 @@ const ShowProductVariant = ({ productID }) => {
           id: variant._id,
           name: variant.name,
           value: variant.value,
-          price: formatPriceToVND(variant.price),
+          price: variant.price,
           stock: variant.stock,
           discount: variant.discount,
           displayOrder: variant.displayOrder,
@@ -74,12 +74,12 @@ const ShowProductVariant = ({ productID }) => {
           gobackID={productID}
         />
       </Box>
-      <ModalDialog
+      <ModalConfirm
         desc={'Bạn có muốn xoá ảnh này không ?'}
         handleClose={() => setOpen(false)}
         handleDelete={handleDelete}
         open={open}
-      ></ModalDialog>
+      ></ModalConfirm>
     </>
   );
 };

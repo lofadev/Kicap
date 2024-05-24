@@ -76,11 +76,9 @@ const AsideFilter = () => {
         currentChoices.push(...choicesCategory);
       }
       setChoices(currentChoices);
-      // const currentChoices = filterMenu.map((item) => {});
-      // console.log(filterMenu);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [filterMenu]);
+  }, [filterMenu, location.search]);
 
   useEffect(() => {
     const fetchData = async () => {

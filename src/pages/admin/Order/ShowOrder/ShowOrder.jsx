@@ -52,7 +52,7 @@ const ShowOrder = () => {
   useEffect(() => {
     const fetchOrders = async () => {
       const orderStatuses = await fetchOrderStatuses();
-      const res = await OrderService.gerOrders(
+      const res = await OrderService.getOrders(
         { status: formik.values.status, fromDate: fromDate.$d, toDate: toDate.$d, page },
         dispatch
       );
@@ -65,7 +65,7 @@ const ShowOrder = () => {
             fullName,
             orderTime: timestampsToDate(orderTime),
             shipper,
-            totalPrice: formatPriceToVND(totalPrice),
+            totalPrice: totalPrice,
             isPaid: isPaid ? 'Đã thanh toán' : 'Chưa thanh toán',
             status: statusString,
           };

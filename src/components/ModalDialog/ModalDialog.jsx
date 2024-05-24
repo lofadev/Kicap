@@ -1,31 +1,29 @@
-import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
-import './ModalDialog.scss';
+import Box from '@mui/material/Box';
+import Modal from '@mui/material/Modal';
 
-export default function ModalDialog({ open, handleClose, handleDelete, desc }) {
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 500,
+  bgcolor: 'background.paper',
+  boxShadow: 24,
+  p: 4,
+  borderRadius: '5px',
+};
+
+export default function ModalDialog({ open, handleCancel, children }) {
   return (
-    <>
-      <Dialog
+    <div>
+      <Modal
         open={open}
-        onClose={handleClose}
-        aria-labelledby='alert-dialog-title'
-        aria-describedby='alert-dialog-description'
+        onClose={handleCancel}
+        aria-labelledby='modal-modal-title'
+        aria-describedby='modal-modal-description'
       >
-        <DialogTitle id='alert-dialog-title'>Thông báo.</DialogTitle>
-        <DialogContent>
-          <DialogContentText id='alert-dialog-description'>{desc}</DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Huỷ</Button>
-          <Button onClick={handleDelete} autoFocus>
-            Xoá
-          </Button>
-        </DialogActions>
-      </Dialog>
-    </>
+        <Box sx={style}>{children}</Box>
+      </Modal>
+    </div>
   );
 }

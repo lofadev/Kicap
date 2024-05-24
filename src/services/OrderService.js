@@ -13,6 +13,30 @@ const createOrder = (data, dispatch) => {
   );
 };
 
+const deleteOrder = (id, dispatch) => {
+  const token = getToken();
+  return handleAPICall(
+    axiosJWT.delete('/order/delete/' + id, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }),
+    dispatch
+  );
+};
+
+const updateOrder = (id, payload, dispatch) => {
+  const token = getToken();
+  return handleAPICall(
+    axiosJWT.put('/order/update/' + id, payload, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }),
+    dispatch
+  );
+};
+
 const createOrderNoToast = (data, dispatch) => {
   const token = getToken();
   return handleAPICallWithoutToast(
@@ -25,7 +49,7 @@ const createOrderNoToast = (data, dispatch) => {
   );
 };
 
-const gerOrders = (payload, dispatch) => {
+const getOrders = (payload, dispatch) => {
   const token = getToken();
   return handleAPICallWithoutToast(
     axiosJWT.get('/order/get-all', {
@@ -38,5 +62,24 @@ const gerOrders = (payload, dispatch) => {
   );
 };
 
-const OrderService = { createOrder, createOrderNoToast, gerOrders };
+const getOrder = (id, dispatch) => {
+  const token = getToken();
+  return handleAPICallWithoutToast(
+    axiosJWT.get('/order/' + id, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }),
+    dispatch
+  );
+};
+
+const OrderService = {
+  createOrder,
+  createOrderNoToast,
+  getOrders,
+  getOrder,
+  deleteOrder,
+  updateOrder,
+};
 export default OrderService;

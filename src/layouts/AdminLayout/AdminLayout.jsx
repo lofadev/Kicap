@@ -36,8 +36,7 @@ const AdminLayout = ({ children }) => {
       <Header isSmall={isSmall}></Header>
 
       <div className='admin-container'>
-        <SideBar isSmall={isSmall}></SideBar>
-        <div className='admin-content'>
+        <SideBar isSmall={isSmall}>
           <button
             className={`btn-toggle-sidebar ${isSmall ? 'hide-sidebar' : ''}`}
             onClick={() => setIsSmall((prev) => !prev)}
@@ -45,8 +44,8 @@ const AdminLayout = ({ children }) => {
             <span></span>
             <span></span>
           </button>
-          {children}
-        </div>
+        </SideBar>
+        <div className='admin-content'>{children}</div>
       </div>
     </div>
   );
