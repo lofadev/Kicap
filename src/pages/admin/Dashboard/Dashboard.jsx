@@ -56,7 +56,7 @@ const Dashboard = () => {
     const fetchData = async () => {
       const [resDash, resOrder] = await Promise.all([
         DashboardService.getDashBoard(dispatch),
-        OrderService.gerOrders({ limit: 5 }, dispatch),
+        OrderService.getOrders({ limit: 5 }, dispatch),
       ]);
       if (resDash.status === 'OK') {
         const { product, user, category, order } = resDash.data;

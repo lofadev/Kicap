@@ -52,7 +52,7 @@ const ShowOrder = () => {
   useEffect(() => {
     const fetchOrders = async () => {
       const orderStatuses = await fetchOrderStatuses();
-      const res = await OrderService.gerOrders(
+      const res = await OrderService.getOrders(
         { status: formik.values.status, fromDate: fromDate.$d, toDate: toDate.$d, page },
         dispatch
       );

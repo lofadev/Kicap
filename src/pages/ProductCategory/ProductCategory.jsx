@@ -18,6 +18,7 @@ const ProductCategory = () => {
   const setQuery = useSetQuery();
   const [products, setProducts] = useState([]);
   const [pageCount, setPageCount] = useState(0);
+  const [totalProduct, setTotalProduct] = useState(0);
   const [page, setPage] = useState(query.page ?? 1);
   const [openFilters, setOpenFilters] = useState(false);
 
@@ -35,6 +36,7 @@ const ProductCategory = () => {
       const products = res.data;
       setProducts(products);
       setPageCount(res.totalPage);
+      setTotalProduct(res.totalProducts);
     }
   };
 
@@ -46,18 +48,16 @@ const ProductCategory = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
 
-    if (query.limit && query.page) {
-      fetchData({ ...query });
-    }
+    // if (query.limit && query.page) {
+    fetchData({ ...query });
+    // }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.search]);
-
-  console.log(query.page);
 
   return (
     <div className='product-category'>
       <EvoBlogHeader
-        title='TẤT CẢ SẢN PHẨM'
+        title='SẢN PHẨM'
         desc='Khám phá thế giới keycap và phụ kiện bàn phím đa dạng nhưng cũng đầy chất lượng!'
         image={
           'https://bizweb.dktcdn.net/100/436/596/themes/834446/assets/evo-col-banner.jpg?1709705396374'
@@ -98,11 +98,13 @@ const ProductCategory = () => {
                 })}
               </div>
 
-              <Pagination
-                pageCount={pageCount}
-                onClickPageItem={doSearch}
-                currentPage={query.page}
-              ></Pagination>
+              {totalProduct > query.limit && (
+                <Pagination
+                  pageCount={pageCount}
+                  onClickPageItem={doSearch}
+                  currentPage={query.page}
+                />
+              )}
             </div>
           </section>
         </div>

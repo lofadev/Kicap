@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FaBars } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
@@ -11,12 +11,14 @@ import UserService from '~/services/UserService';
 import FormSearch from '../FormSearch/FormSearch';
 import './Header.scss';
 import Dropdown from './components/Dropdown/Dropdown';
+import { axiosInstance } from '~/api/apiConfig';
 
 const Header = () => {
   const navigate = useNavigate();
   const [isActiveSearch, setIsActiveSearch] = useState(false);
   const [isActiveOverlay, setIsActiveOverlay] = useState(false);
   const [isActiveMenubar, setIsActiveMenubar] = useState(false);
+  const [menuState, setMenuState] = useState(menu);
   const user = useSelector((state) => state.user);
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
@@ -49,6 +51,27 @@ const Header = () => {
     setIsActiveMenubar(true);
     setIsActiveOverlay((prev) => !prev);
   };
+
+  useEffect(() => {
+    const fetchMenu = async () => {
+      const res = await axiosInstance.get('/product/get-menu');
+      if (res.data.status === 'OK') {
+        const newMenu = menuState.map((menu) => {
+          if (menu.id === 3) {
+            return {
+              ...menu,
+              children: res.data.data,
+            };
+          }
+          return menu;
+        });
+        setMenuState(newMenu);
+      }
+    };
+
+    fetchMenu();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <header className='header'>
@@ -129,7 +152,7 @@ const Header = () => {
 
         <nav className={`nav ${isActiveMenubar ? 'active' : ''}`}>
           <ul className='nav-menu'>
-            {menu.map((item) => (
+            {menuState.map((item) => (
               <li
                 key={item.id}
                 className={`nav-items ${
@@ -138,6 +161,7 @@ const Header = () => {
               >
                 <NavLink
                   className='nav-link text-hover-primary'
+                  // to={`/products?category=${item.name}`}
                   to={item.navigate}
                   onClick={handleToggleOverlay}
                 >
@@ -164,7 +188,7 @@ const Header = () => {
                     {item.children.map((submenu) => (
                       <div key={submenu.id} className='mega-items'>
                         <Link
-                          to={submenu.navigate}
+                          to={`/products?category=${submenu.name}`}
                           className='mega-title'
                           onClick={handleToggleOverlay}
                         >
@@ -174,7 +198,11 @@ const Header = () => {
                         <ul className='mega-submenu'>
                           {submenu.sub_children.map((subitem) => (
                             <li key={subitem.id}>
-                              <Link to={subitem.navigate} onClick={handleToggleOverlay}>
+                              <Link
+                                to={`/product/${subitem.slug}`}
+                                state={{ id: subitem.id }}
+                                onClick={handleToggleOverlay}
+                              >
                                 {subitem.name}
                               </Link>
                             </li>

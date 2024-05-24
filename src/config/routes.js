@@ -69,6 +69,7 @@ const routes = {
     },
     orders: {
       add: '/admin/order/add',
+      detail: '/admin/order/:id',
       view: '/admin/orders',
     },
     customers: {
