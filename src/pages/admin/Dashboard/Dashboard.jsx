@@ -75,7 +75,7 @@ const Dashboard = () => {
             id: order._id,
             fullName: order.fullName,
             orderTime: timestampsToDate(order.orderTime),
-            totalPrice: formatPriceToVND(order.totalPrice),
+            totalPrice: order.totalPrice,
             isPaid: order.isPaid ? 'Đã thanh toán' : 'Chưa thanh toán',
           };
         });

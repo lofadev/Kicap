@@ -6,7 +6,7 @@ import HeadingBreadCrumb from '~/components/Admin/HeadingBreadCrumb/HeadingBread
 import TextQuantity from '~/components/Admin/TextQuantity/TextQuantity';
 import Button from '~/components/Button/Button';
 import DataTable from '~/components/DataTable/DataTable';
-import ModalDialog from '~/components/ModalDialog/ModalDialog';
+import ModalConfirm from '~/components/ModalConfirm/ModalConfirm';
 import Pagination from '~/components/Pagination/Pagination';
 import { useDebounce } from '~/hooks/useDebounce';
 import SliderService from '~/services/SliderService';
@@ -97,12 +97,12 @@ const ShowSlideBanner = () => {
           onClickPageItem={handleChangePage}
         ></Pagination>
       </Box>
-      <ModalDialog
+      <ModalConfirm
         desc={'Bạn có muốn xoá slide banner này không ?'}
         handleClose={() => setOpen(false)}
         handleDelete={handleDelete}
         open={open}
-      ></ModalDialog>
+      ></ModalConfirm>
     </div>
   );
 };

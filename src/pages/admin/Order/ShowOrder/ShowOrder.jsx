@@ -65,7 +65,7 @@ const ShowOrder = () => {
             fullName,
             orderTime: timestampsToDate(orderTime),
             shipper,
-            totalPrice: formatPriceToVND(totalPrice),
+            totalPrice: totalPrice,
             isPaid: isPaid ? 'Đã thanh toán' : 'Chưa thanh toán',
             status: statusString,
           };

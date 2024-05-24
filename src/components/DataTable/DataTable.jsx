@@ -11,6 +11,7 @@ import { IoMdRemoveCircle } from 'react-icons/io';
 import { TfiMenuAlt } from 'react-icons/tfi';
 import { Link } from 'react-router-dom';
 import './DataTable.scss';
+import { formatPriceToVND } from '~/utils/utils';
 
 export default function DataTable({
   head,
@@ -23,6 +24,7 @@ export default function DataTable({
   isDetails,
   isOrder,
   handleRemoveOrder,
+  handleOpenUpdate = () => {},
 }) {
   return (
     <TableContainer component={Paper}>
@@ -55,6 +57,8 @@ export default function DataTable({
                       <img className='image-cell' src={row[key]} alt='' />
                     </TableCell>
                   );
+                } else if (key === 'price' || key === 'totalPrice') {
+                  return <TableCell key={index}>{formatPriceToVND(row[key])}</TableCell>;
                 } else return <TableCell key={index}>{row[key]}</TableCell>;
               })}
               <TableCell className='btn-actions'>
@@ -78,9 +82,10 @@ export default function DataTable({
                 {!isDetails && !isOrder && (
                   <>
                     <Link
-                      to={`/admin/${updateTo}/update/${row.id}`}
+                      to={updateTo ? `/admin/${updateTo}/update/${row.id}` : ''}
                       style={{ color: 'var(--blue)', display: 'inline-block' }}
                       state={gobackID}
+                      onClick={() => handleOpenUpdate(row.id)}
                     >
                       <FaEdit />
                     </Link>

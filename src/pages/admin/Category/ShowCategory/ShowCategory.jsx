@@ -6,7 +6,7 @@ import HeadingBreadCrumb from '~/components/Admin/HeadingBreadCrumb/HeadingBread
 import TextQuantity from '~/components/Admin/TextQuantity/TextQuantity';
 import Button from '~/components/Button/Button';
 import DataTable from '~/components/DataTable/DataTable';
-import ModalDialog from '~/components/ModalDialog/ModalDialog';
+import ModalConfirm from '~/components/ModalConfirm/ModalConfirm';
 import Pagination from '~/components/Pagination/Pagination';
 import { useDebounce } from '~/hooks/useDebounce';
 import CategoryService from '~/services/CategoryService';
@@ -89,12 +89,12 @@ const ShowCategory = () => {
           onClickPageItem={(value) => setPage(value.selected + 1)}
         ></Pagination>
       </Box>
-      <ModalDialog
+      <ModalConfirm
         desc={'Bạn có muốn xoá danh mục sản phẩm này không ?'}
         handleClose={() => setOpen(false)}
         handleDelete={handleDelete}
         open={open}
-      ></ModalDialog>
+      ></ModalConfirm>
     </div>
   );
 };

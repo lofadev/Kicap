@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Box from '~/components/Admin/Box/Box';
 import DataTable from '~/components/DataTable/DataTable';
-import ModalDialog from '~/components/ModalDialog/ModalDialog';
+import ModalConfirm from '~/components/ModalConfirm/ModalConfirm';
 import ProductImageService from '~/services/ProductImageService';
 
 const ShowProductImage = ({ productID }) => {
@@ -63,12 +63,12 @@ const ShowProductImage = ({ productID }) => {
           handleOpenDelete={handleOpenDeleteImage}
         ></DataTable>
       </Box>
-      <ModalDialog
+      <ModalConfirm
         desc={'Bạn có muốn xoá ảnh này không ?'}
         handleClose={() => setOpen(false)}
         handleDelete={handleDelete}
         open={open}
-      ></ModalDialog>
+      ></ModalConfirm>
     </>
   );
 };
