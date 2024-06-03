@@ -86,6 +86,7 @@ const ShowProduct = () => {
           keys={['image', 'name', 'brand', 'category', 'supplier', 'price']}
           handleOpenDelete={handleOpenDelete}
           updateTo={'product'}
+          isActions
         />
         <Pagination
           pageCount={response.totalPage ?? 0}

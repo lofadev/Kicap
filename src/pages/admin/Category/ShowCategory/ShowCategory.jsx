@@ -82,6 +82,7 @@ const ShowCategory = () => {
           head={['Tên danh mục sản phẩm', 'Mô tả']}
           keys={['categoryName', 'description']}
           handleOpenDelete={handleOpenDelete}
+          isActions
           updateTo={'category'}
         />
         <Pagination

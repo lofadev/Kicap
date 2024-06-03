@@ -38,5 +38,47 @@
         font-weight: 400;
       }
     }
+
+    .update-order {
+      position: relative;
+
+      &:hover {
+        .update-order-dropdown {
+          display: block;
+        }
+      }
+
+      &-dropdown {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        background-color: #fff;
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        border-radius: 4px;
+        display: none;
+
+        .next-step-order {
+          border-bottom: 1px solid #ccc;
+        }
+
+        span {
+          display: block;
+          white-space: nowrap;
+          padding: 4px 10px;
+          cursor: pointer;
+
+          &:hover {
+            background-color: #eee;
+          }
+        }
+      }
+    }
+
+    .btn-update-order {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 5px;
+    }
   }
 }

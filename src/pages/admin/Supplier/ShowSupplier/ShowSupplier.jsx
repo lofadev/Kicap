@@ -94,6 +94,7 @@ const ShowSupplier = () => {
           keys={['name', 'contactName', 'phone', 'email', 'address', 'province']}
           handleOpenDelete={handleOpenDelete}
           updateTo='supplier'
+          isActions
         />
         <Pagination
           pageCount={response.totalPage ?? 0}
