@@ -91,6 +91,7 @@ const ShowSlideBanner = () => {
           keys={['image', 'description', 'displayOrder']}
           handleOpenDelete={handleOpenDelete}
           updateTo={'slide'}
+          isActions
         />
         <Pagination
           pageCount={response.totalPage ?? 0}

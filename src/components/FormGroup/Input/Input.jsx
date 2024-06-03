@@ -11,6 +11,7 @@ const Input = ({
   formik,
   password,
   textarea,
+  ...props
 }) => {
   const [isShow, setIsShow] = useState(password);
   const { errors, handleChange, handleBlur, values, touched } = formik;
@@ -35,6 +36,7 @@ const Input = ({
         onChange={handleChange}
         onBlur={handleBlur}
         autoComplete='off'
+        {...props}
       />
 
       {password && (

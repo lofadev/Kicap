@@ -94,6 +94,7 @@ const ShowCustomer = () => {
           keys={['name', 'phone', 'email', 'address', 'province', 'isLocked']}
           handleOpenDelete={handleOpenDelete}
           updateTo={'customer'}
+          isActions
         />
         <Pagination
           pageCount={response.totalPage ?? 0}

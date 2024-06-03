@@ -10,8 +10,8 @@ import { FaCheck, FaEdit, FaTimes } from 'react-icons/fa';
 import { IoMdRemoveCircle } from 'react-icons/io';
 import { TfiMenuAlt } from 'react-icons/tfi';
 import { Link } from 'react-router-dom';
-import './DataTable.scss';
 import { formatPriceToVND } from '~/utils/utils';
+import './DataTable.scss';
 
 export default function DataTable({
   head,
@@ -21,8 +21,9 @@ export default function DataTable({
   action,
   updateTo,
   gobackID,
-  isDetails,
-  isOrder,
+  isDetails = false,
+  isOrder = false,
+  isActions = false,
   handleRemoveOrder,
   handleOpenUpdate = () => {},
 }) {
@@ -36,9 +37,11 @@ export default function DataTable({
                 {item}
               </TableCell>
             ))}
-            <TableCell sx={{ color: 'white', width: '100px', textAlign: 'center' }}>
-              {action}
-            </TableCell>
+            {(isActions || isDetails || isOrder) && (
+              <TableCell sx={{ color: 'white', width: '100px', textAlign: 'center' }}>
+                {action}
+              </TableCell>
+            )}
           </TableRow>
         </TableHead>
         <TableBody>
@@ -61,43 +64,45 @@ export default function DataTable({
                   return <TableCell key={index}>{formatPriceToVND(row[key])}</TableCell>;
                 } else return <TableCell key={index}>{row[key]}</TableCell>;
               })}
-              <TableCell className='btn-actions'>
-                {isDetails && (
-                  <Link
-                    to={`/admin/${updateTo}/${row.id}`}
-                    style={{ color: 'var(--blue)', display: 'inline-block' }}
-                    state={gobackID}
-                  >
-                    <TfiMenuAlt />
-                  </Link>
-                )}
-                {isOrder && (
-                  <button
-                    onClick={handleRemoveOrder}
-                    style={{ color: 'var(--red)', width: '50px' }}
-                  >
-                    <IoMdRemoveCircle />
-                  </button>
-                )}
-                {!isDetails && !isOrder && (
-                  <>
+              {(isActions || isOrder || isDetails) && (
+                <TableCell className='btn-actions'>
+                  {isDetails && (
                     <Link
-                      to={updateTo ? `/admin/${updateTo}/update/${row.id}` : ''}
+                      to={`/admin/${updateTo}/${row.id}`}
                       style={{ color: 'var(--blue)', display: 'inline-block' }}
                       state={gobackID}
-                      onClick={() => handleOpenUpdate(row.id)}
                     >
-                      <FaEdit />
+                      <TfiMenuAlt />
                     </Link>
+                  )}
+                  {isOrder && (
                     <button
-                      onClick={() => handleOpenDelete(row.id)}
-                      style={{ color: 'var(--red)' }}
+                      onClick={handleRemoveOrder}
+                      style={{ color: 'var(--red)', width: '50px' }}
                     >
-                      <FaTimes />
+                      <IoMdRemoveCircle />
                     </button>
-                  </>
-                )}
-              </TableCell>
+                  )}
+                  {isActions && (
+                    <>
+                      <Link
+                        to={updateTo ? `/admin/${updateTo}/update/${row.id}` : ''}
+                        style={{ color: 'var(--blue)', display: 'inline-block' }}
+                        state={gobackID}
+                        onClick={() => handleOpenUpdate(row.id)}
+                      >
+                        <FaEdit />
+                      </Link>
+                      <button
+                        onClick={() => handleOpenDelete(row.id)}
+                        style={{ color: 'var(--red)' }}
+                      >
+                        <FaTimes />
+                      </button>
+                    </>
+                  )}
+                </TableCell>
+              )}
             </TableRow>
           ))}
           {!rows.length && (

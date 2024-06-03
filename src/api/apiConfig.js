@@ -4,12 +4,10 @@ import { updateToast } from '~/redux/slices/ToastSlice';
 
 export const axiosJWT = axios.create({
   baseURL: import.meta.env.VITE_REACT_APP_API_KEY,
-  timeout: 10000,
 });
 
 export const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_REACT_APP_API_KEY,
-  timeout: 10000,
 });
 
 export const handleAPICall = async (apiCall, dispatch) => {

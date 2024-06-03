@@ -1,5 +1,6 @@
 import { useFormik } from 'formik';
 import { useEffect, useState } from 'react';
+import { FaAngleDown } from 'react-icons/fa6';
 import { useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import Box from '~/components/Admin/Box/Box';
@@ -10,13 +11,15 @@ import Input from '~/components/FormGroup/Input/Input';
 import InputNumber from '~/components/FormGroup/InputNumber/InputNumber';
 import ModalConfirm from '~/components/ModalConfirm/ModalConfirm';
 import ModalDialog from '~/components/ModalDialog/ModalDialog';
+import SelectOptions from '~/components/SelectOptions/SelectOptions';
 import OrderDetailsService from '~/services/OrderDetailsService';
 import OrderService from '~/services/OrderService';
 import OrderStatusService from '~/services/OrderStatusService';
+import ProvinceService from '~/services/ProvinceService';
+import ShipperService from '~/services/ShipperService';
 import { timestampsToDatetime } from '~/utils/utils';
 import './DetailOrder.scss';
-import SelectOptions from '~/components/SelectOptions/SelectOptions';
-import ProvinceService from '~/services/ProvinceService';
+import { schemaAddress, schemaOrderDetails, schemaShipper } from './schema';
 
 const DetailOrder = () => {
   const dispatch = useDispatch();
@@ -26,11 +29,13 @@ const DetailOrder = () => {
   const [rows, setRows] = useState([]);
   const [openModal, setOpenModal] = useState(false);
   const [openModalAddress, setOpenModalAddress] = useState(false);
+  const [openModalShipper, setOpenModalShipper] = useState(false);
   const [openModalConfirmDeleteOrderDetails, setOpenModalConfirmDeleteOrderDetails] =
     useState(false);
   const [openModalConfirmDeleteOrder, setOpenModalConfirmDeleteOrder] = useState(false);
   const [idItem, setIdItem] = useState();
   const [options, setOptions] = useState([]);
+  const [optionsShipper, setOptionsShipper] = useState([]);
 
   const formik = useFormik({
     initialValues: {
@@ -39,6 +44,7 @@ const DetailOrder = () => {
       quantity: 0,
       price: 0,
     },
+    validationSchema: schemaOrderDetails,
     onSubmit: async (payload) => {
       const res = await OrderDetailsService.updateOrderDetails(idItem, payload, dispatch);
       if (res.status === 'OK') {
@@ -53,10 +59,25 @@ const DetailOrder = () => {
       deliveryAddress: '',
       deliveryProvince: '',
     },
+    validationSchema: schemaAddress,
     onSubmit: async (payload) => {
       const res = await OrderService.updateOrder(id, payload, dispatch);
       if (res.status === 'OK') {
         handleCloseModalAddress();
+      }
+    },
+  });
+
+  const formikShipper = useFormik({
+    initialValues: {
+      shipper: '',
+    },
+    validationSchema: schemaShipper,
+    onSubmit: async (payload) => {
+      const resShipper = await OrderService.updateOrder(id, { ...payload, status: 2 }, dispatch);
+      if (resShipper.status === 'OK') {
+        handleCloseModalShipper();
+        await fetchOrder();
       }
     },
   });
@@ -94,21 +115,40 @@ const DetailOrder = () => {
     }
   };
 
+  const fetchOrder = async () => {
+    const [resOrder, resStatus] = await Promise.all([
+      OrderService.getOrder(id, dispatch),
+      OrderStatusService.getOrderStatuses({}, dispatch),
+    ]);
+    if (resOrder.status === 'OK') {
+      const status = resStatus.data.find((st) => st.status === resOrder.data.status).description;
+      const newOrder = { ...resOrder.data, statusDesc: status };
+      setOrder(newOrder);
+      return newOrder.orderID;
+    }
+  };
+
+  const fetchShipper = async () => {
+    const res = await ShipperService.getShippers({}, dispatch);
+    if (res.status === 'OK') {
+      const shippers = res.data.map((s) => {
+        return {
+          id: s._id,
+          name: s.name,
+          value: s.name,
+        };
+      });
+      setOptionsShipper(shippers);
+    }
+  };
+
   useEffect(() => {
-    const fetchOrder = async () => {
-      const [resOrder, resStatus] = await Promise.all([
-        OrderService.getOrder(id, dispatch),
-        OrderStatusService.getOrderStatuses({}, dispatch),
-      ]);
-      if (resOrder.status === 'OK') {
-        const status = resStatus.data.find((st) => st.status === resOrder.data.status).description;
-        const newOrder = { ...resOrder.data, status };
-        setOrder(newOrder);
-        await fetchOrderDetails(newOrder.orderID);
-      }
+    const fetchData = async () => {
+      const orderID = await fetchOrder();
+      if (orderID) await fetchOrderDetails(orderID);
     };
 
-    fetchOrder();
+    fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -129,6 +169,10 @@ const DetailOrder = () => {
     setOpenModalAddress(false);
   };
 
+  const handleCloseModalShipper = () => {
+    setOpenModalShipper(false);
+  };
+
   const handleOpenDelete = (id) => {
     setOpenModalConfirmDeleteOrderDetails(true);
     setIdItem(id);
@@ -138,7 +182,7 @@ const DetailOrder = () => {
     const res = await OrderDetailsService.deleteOrderDetails(idItem, dispatch);
     if (res.status === 'OK') {
       setOpenModalConfirmDeleteOrderDetails(false);
-      fetchOrderDetails(order.orderID);
+      await fetchOrderDetails(order.orderID);
     }
   };
 
@@ -158,19 +202,74 @@ const DetailOrder = () => {
     formikAddress.setValues(values);
   };
 
+  const handleAcceptOrder = async () => {
+    const result = confirm('Xác nhận duyệt chấp nhận đơn hàng này ?');
+    if (result) {
+      const res = await OrderService.updateOrder(id, { status: 1 }, dispatch);
+      if (res.status === 'OK') await fetchOrder();
+    }
+  };
+
+  const handleTransferShipper = async () => {
+    await fetchShipper();
+    setOpenModalShipper(true);
+    formikShipper.setFieldValue('shipper', order?.shipper);
+  };
+
+  const handleFinishedOrder = async () => {
+    const res = await OrderService.updateOrder(id, { status: 3 }, dispatch);
+    if (res.status === 'OK') await fetchOrder();
+  };
+
+  const handleCancelOrder = async () => {
+    const res = await OrderService.updateOrder(id, { status: -1 }, dispatch);
+    if (res.status === 'OK') await fetchOrder();
+  };
+
+  const handleRefuseOrder = async () => {
+    const res = await OrderService.updateOrder(id, { status: -2 }, dispatch);
+    if (res.status === 'OK') await fetchOrder();
+  };
+
   return (
     <div className='order-details'>
       <HeadingBreadCrumb>Chi tiết đơn hàng</HeadingBreadCrumb>
 
       <Box title='Thông tin đơn hàng'>
         <div className='order-actions'>
-          <Button secondary onClick={handleOpenModalAddress}>
-            Thay đổi địa chỉ
-          </Button>
-          <Button secondary>Cập nhật đơn hàng</Button>
-          <Button secondary onClick={() => setOpenModalConfirmDeleteOrder(true)}>
-            Xoá đơn hàng
-          </Button>
+          {order?.status >= 0 && order?.status < 2 && (
+            <Button secondary onClick={handleOpenModalAddress}>
+              Thay đổi địa chỉ
+            </Button>
+          )}
+          {order?.status >= 0 && order?.status !== 3 && (
+            <div className='update-order'>
+              <Button secondary className='btn-update-order'>
+                Xử lý đơn hàng <FaAngleDown />
+              </Button>
+
+              <div className='update-order-dropdown'>
+                <div className='next-step-order'>
+                  {order?.status === 0 && <span onClick={handleAcceptOrder}>Duyệt đơn hàng</span>}
+                  {(order?.status === 1 || order?.status === 2) && (
+                    <span onClick={handleTransferShipper}>Chuyển giao hàng</span>
+                  )}
+                  {order?.status === 2 && (
+                    <span onClick={handleFinishedOrder}>Xác nhận hoàn tất đơn hàng</span>
+                  )}
+                </div>
+                <div className='reject-order'>
+                  <span onClick={handleCancelOrder}>Huỷ đơn hàng</span>
+                  {order?.status < 2 && <span onClick={handleRefuseOrder}>Từ chối đơn hàng</span>}
+                </div>
+              </div>
+            </div>
+          )}
+          {order?.status <= 0 && (
+            <Button secondary onClick={() => setOpenModalConfirmDeleteOrder(true)}>
+              Xoá đơn hàng
+            </Button>
+          )}
           <Button secondary to={'/admin/orders'}>
             Quay lại
           </Button>
@@ -218,7 +317,7 @@ const DetailOrder = () => {
               <span>{order?.finishedTime ? timestampsToDatetime(order?.finishedTime) : ''}</span>
               <span>{order?.paymentMethod}</span>
               <span>{order?.isPaid ? 'Đã thanh toán' : 'Chưa thanh toán'}</span>
-              <span>{order?.status}</span>
+              <span>{order?.statusDesc}</span>
             </div>
           </div>
         </div>
@@ -231,8 +330,14 @@ const DetailOrder = () => {
                 Cập nhật thông tin mặt hàng
               </h2>
               <main>
-                <Input name='name' labelName={'Tên hàng'} formik={formik} required />
-                <Input name='variant' labelName={'Biến thể'} formik={formik} />
+                <Input
+                  name='name'
+                  labelName={'Tên hàng'}
+                  formik={formik}
+                  required
+                  disabled='disabled'
+                />
+                <Input name='variant' labelName={'Biến thể'} formik={formik} disabled='disabled' />
                 <InputNumber
                   name='quantity'
                   labelName={'Số lượng'}
@@ -290,6 +395,35 @@ const DetailOrder = () => {
           </ModalDialog>
         )}
 
+        {openModalShipper && (
+          <ModalDialog open={openModalShipper} handleCancel={handleCloseModalShipper}>
+            <div className='modal-order-shipper'>
+              <h2 style={{ fontSize: '1.8rem', marginBottom: '10px' }}>
+                Chuyển đơn hàng cho người giao hàng
+              </h2>
+              <main>
+                <SelectOptions
+                  labelName='Người giao hàng'
+                  required
+                  options={optionsShipper}
+                  optionDefault='--- Chọn người giao hàng ---'
+                  name='shipper'
+                  formik={formikShipper}
+                  value='name'
+                />
+              </main>
+              <div style={{ display: 'flex', justifyContent: 'end', gap: '20px' }}>
+                <Button secondary onClick={handleCloseModalShipper}>
+                  Huỷ
+                </Button>
+                <Button primary onClick={formikShipper.handleSubmit}>
+                  Cập nhật
+                </Button>
+              </div>
+            </div>
+          </ModalDialog>
+        )}
+
         {openModalConfirmDeleteOrderDetails && (
           <ModalConfirm
             desc={'Bạn có muốn xoá sản phẩm này khỏi đơn đặt hàng không ?'}
@@ -313,6 +447,7 @@ const DetailOrder = () => {
           keys={['index', 'image', 'name', 'variant', 'quantity', 'price', 'totalPrice']}
           handleOpenUpdate={handleOpenModal}
           handleOpenDelete={handleOpenDelete}
+          isActions={order?.status < 2}
         />
       </Box>
     </div>

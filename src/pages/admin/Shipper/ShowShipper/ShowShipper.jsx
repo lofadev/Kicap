@@ -90,6 +90,7 @@ const ShowShipper = () => {
           keys={['name', 'phone']}
           handleOpenDelete={handleOpenDelete}
           updateTo='shipper'
+          isActions
         />
         <Pagination
           pageCount={response.totalPage ?? 0}
