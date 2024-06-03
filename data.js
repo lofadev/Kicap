@@ -1888,124 +1888,125 @@ export const menu = [
     name: 'Sản phẩm',
     navigate: '/products',
     hasMega: true,
-    children: [
-      {
-        id: 1,
-        name: 'Keycap bộ',
-        navigate: '/keycap-bo',
-        sub_children: [
-          {
-            id: 1,
-            name: 'Silent forest',
-            navigate: '/product/bo-keycap-silent-forest',
-          },
-          {
-            id: 2,
-            name: 'SA Harry Potter',
-            navigate: '/product/bo-keycap-sa-harry-potter-snake',
-          },
-          {
-            id: 3,
-            name: 'Keycap Polar Day',
-            navigate: '/product/bo-keycap-polar-day-oem-xuyen-led',
-          },
-        ],
-      },
-      {
-        id: 2,
-        name: 'Keycap lẻ',
-        navigate: '/keycap-le',
-        sub_children: [
-          {
-            id: 1,
-            name: 'PIKACHU ALU',
-            navigate: '/product/keycap-pikachu-hop-kim-nhom',
-          },
-          {
-            id: 2,
-            name: 'CARD VGA',
-            navigate: '/product/keycap-phim-enter-card-vga',
-          },
-          {
-            id: 3,
-            name: 'CỜ ĐẢNG BÚA LIỀM',
-            navigate: '/product/keycap-bua-liem',
-          },
-        ],
-      },
-      {
-        id: 3,
-        name: 'Đèn decor',
-        navigate: '/keycap-le',
-        sub_children: [],
-      },
-      {
-        id: 4,
-        name: 'Bàn phím cơ',
-        navigate: '/ban-phim-co',
-        sub_children: [
-          {
-            id: 1,
-            name: 'Monsgeek M1W',
-            navigate: '/product/ban-phim-co-custom-monsgeek-m1w',
-          },
-          {
-            id: 2,
-            name: 'FL CMK75',
-            navigate: '/product/ban-phim-co-cmk75-fl-esports',
-          },
-          {
-            id: 3,
-            name: 'Finalkey V81 Plus',
-            navigate: '/product/ban-phim-co-kit-v81',
-          },
-        ],
-      },
-      {
-        id: 5,
-        name: 'Switch',
-        navigate: '/switch',
-        sub_children: [
-          {
-            id: 1,
-            name: 'WS Morandi',
-            navigate: '/product/switch-ws-morandi',
-          },
-          {
-            id: 2,
-            name: 'KTT Matcha',
-            navigate: '/product/switch-ktt-matcha-tactile',
-          },
-          {
-            id: 3,
-            name: 'Akko Cream Yellow Pro',
-            navigate: '/product/switch-akko-cream-yellow-v3-pro',
-          },
-        ],
-      },
-      {
-        id: 6,
-        name: 'Phụ kiện',
-        navigate: '/phu-kien',
-        sub_children: [
-          {
-            id: 1,
-            name: 'Túi đựng bàn phím',
-            navigate: '/product/tui-dung-ban-phim-chong-soc-chong-xuoc',
-          },
-          {
-            id: 2,
-            name: 'Dụng cụ thay keycap',
-            navigate: '/product/dung-cu-thay-keycap-va-switch-2-trong-1',
-          },
-          {
-            id: 3,
-            name: 'Chổi quét phím',
-            navigate: '/product/choi-ve-sinh-ban-phim-co',
-          },
-        ],
-      },
-    ],
+    // children: [
+    //   {
+    //     id: 1,
+    //     name: 'Keycap bộ',
+    //     navigate: '/keycap-bo',
+    //     sub_children: [
+    //       {
+    //         id: 1,
+    //         name: 'Silent forest',
+    //         navigate: '/product/bo-keycap-silent-forest',
+    //       },
+    //       {
+    //         id: 2,
+    //         name: 'SA Harry Potter',
+    //         navigate: '/product/bo-keycap-sa-harry-potter-snake',
+    //       },
+    //       {
+    //         id: 3,
+    //         name: 'Keycap Polar Day',
+    //         navigate: '/product/bo-keycap-polar-day-oem-xuyen-led',
+    //       },
+    //     ],
+    //   },
+    //   {
+    //     id: 2,
+    //     name: 'Keycap lẻ',
+    //     navigate: '/keycap-le',
+    //     sub_children: [
+    //       {
+    //         id: 1,
+    //         name: 'PIKACHU ALU',
+    //         navigate: '/product/keycap-pikachu-hop-kim-nhom',
+    //       },
+    //       {
+    //         id: 2,
+    //         name: 'CARD VGA',
+    //         navigate: '/product/keycap-phim-enter-card-vga',
+    //       },
+    //       {
+    //         id: 3,
+    //         name: 'CỜ ĐẢNG BÚA LIỀM',
+    //         navigate: '/product/keycap-bua-liem',
+    //       },
+    //     ],
+    //   },
+    //   {
+    //     id: 3,
+    //     name: 'Đèn decor',
+    //     navigate: '/keycap-le',
+    //     sub_children: [],
+    //   },
+    //   {
+    //     id: 4,
+    //     name: 'Bàn phím cơ',
+    //     navigate: '/ban-phim-co',
+    //     sub_children: [
+    //       {
+    //         id: 1,
+    //         name: 'Monsgeek M1W',
+    //         navigate: '/product/ban-phim-co-custom-monsgeek-m1w',
+    //       },
+    //       {
+    //         id: 2,
+    //         name: 'FL CMK75',
+    //         navigate: '/product/ban-phim-co-cmk75-fl-esports',
+    //       },
+    //       {
+    //         id: 3,
+    //         name: 'Finalkey V81 Plus',
+    //         navigate: '/product/ban-phim-co-kit-v81',
+    //       },
+    //     ],
+    //   },
+    //   {
+    //     id: 5,
+    //     name: 'Switch',
+    //     navigate: '/switch',
+    //     sub_children: [
+    //       {
+    //         id: 1,
+    //         name: 'WS Morandi',
+    //         navigate: '/product/switch-ws-morandi',
+    //       },
+    //       {
+    //         id: 2,
+    //         name: 'KTT Matcha',
+    //         navigate: '/product/switch-ktt-matcha-tactile',
+    //       },
+    //       {
+    //         id: 3,
+    //         name: 'Akko Cream Yellow Pro',
+    //         navigate: '/product/switch-akko-cream-yellow-v3-pro',
+    //       },
+    //     ],
+    //   },
+    //   {
+    //     id: 6,
+    //     name: 'Phụ kiện',
+    //     navigate: '/phu-kien',
+    //     sub_children: [
+    //       {
+    //         id: 1,
+    //         name: 'Túi đựng bàn phím',
+    //         navigate: '/product/tui-dung-ban-phim-chong-soc-chong-xuoc',
+    //       },
+    //       {
+    //         id: 2,
+    //         name: 'Dụng cụ thay keycap',
+    //         navigate: '/product/dung-cu-thay-keycap-va-switch-2-trong-1',
+    //       },
+    //       {
+    //         id: 3,
+    //         name: 'Chổi quét phím',
+    //         navigate: '/product/choi-ve-sinh-ban-phim-co',
+    //       },
+    //     ],
+    //   },
+    // ],
+    children: [],
   },
   {
     id: 4,

@@ -2,8 +2,33 @@ import { Link } from 'react-router-dom';
 import { menu } from '~/../data';
 import CollapsiblePlus from '../CollapsiblePlus/CollapsiblePlus';
 import './AsideCategory.scss';
+import { useEffect, useState } from 'react';
+import { axiosInstance } from '~/api/apiConfig';
 
 const AsideCategory = () => {
+  const [menuState, setMenuState] = useState(menu);
+
+  useEffect(() => {
+    const fetchMenu = async () => {
+      const res = await axiosInstance.get('/product/get-menu');
+      if (res.data.status === 'OK') {
+        const newMenu = menuState.map((menu) => {
+          if (menu.id === 3) {
+            return {
+              ...menu,
+              children: res.data.data,
+            };
+          }
+          return menu;
+        });
+        setMenuState(newMenu);
+      }
+    };
+
+    fetchMenu();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <aside className='aside-category'>
       <div className='aside-title'>
@@ -11,7 +36,7 @@ const AsideCategory = () => {
       </div>
       <div className='aside-content'>
         <ul className='nav nav-category'>
-          {menu.map((item) => {
+          {menuState.map((item) => {
             return (
               <li key={item.id} className='nav-item'>
                 <Link to={item.navigate} className='nav-link'>
@@ -22,7 +47,7 @@ const AsideCategory = () => {
                   <ul className='dropdown-menu'>
                     {item.children.map((submenu) => (
                       <li className='nav-item' key={submenu.id}>
-                        <Link className='nav-link' to={submenu.navigate}>
+                        <Link className='nav-link' to={'?category=' + submenu.name}>
                           {submenu.name}
                         </Link>
                       </li>
@@ -33,7 +58,7 @@ const AsideCategory = () => {
                   <ul className='dropdown-menu'>
                     {item.children.map((submenu) => (
                       <li className='dropdown-submenu nav-item' key={submenu.id}>
-                        <Link className='nav-link' to={submenu.navigate}>
+                        <Link className='nav-link' to={`?category=${submenu.name}`}>
                           {submenu.name}
                         </Link>
                         {submenu.sub_children.length > 0 && <CollapsiblePlus />}

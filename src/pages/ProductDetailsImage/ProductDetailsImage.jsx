@@ -7,7 +7,7 @@ import './ProductDetailsImage.scss';
 
 const ProductDetailsImage = ({ images }) => {
   const swiperRef = useRef();
-  const [totalImage] = useState(images.length);
+  const totalImage = images.length;
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const [photoIndex, setPhotoIndex] = useState(0);

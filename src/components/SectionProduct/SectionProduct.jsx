@@ -48,7 +48,7 @@ const SectionProduct = ({ products, title, strongTitle, navigate }) => {
         </div>
 
         <div style={{ textAlign: 'center' }}>
-          <Button primary className='btn-more' to={navigate}>
+          <Button primary className='btn-more' to={`/${navigate}`}>
             {txtButton}
           </Button>
         </div>

@@ -6,7 +6,6 @@ import Box from '~/components/Admin/Box/Box';
 import DataTable from '~/components/DataTable/DataTable';
 import ModalConfirm from '~/components/ModalConfirm/ModalConfirm';
 import ProductVariantService from '~/services/ProductVariantService';
-import { formatPriceToVND } from '~/utils/utils';
 
 const ShowProductVariant = ({ productID }) => {
   const dispatch = useDispatch();
@@ -72,10 +71,11 @@ const ShowProductVariant = ({ productID }) => {
           updateTo={'product/variant'}
           handleOpenDelete={handleOpenDeleteVariant}
           gobackID={productID}
+          isActions
         />
       </Box>
       <ModalConfirm
-        desc={'Bạn có muốn xoá ảnh này không ?'}
+        desc={'Bạn có muốn xoá biến thể này không ?'}
         handleClose={() => setOpen(false)}
         handleDelete={handleDelete}
         open={open}

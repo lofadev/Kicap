@@ -11,7 +11,7 @@ import Pagination from '~/components/Pagination/Pagination';
 import SelectOptions from '~/components/SelectOptions/SelectOptions';
 import OrderService from '~/services/OrderService';
 import OrderStatusService from '~/services/OrderStatusService';
-import { formatPriceToVND, timestampsToDate } from '~/utils/utils';
+import { timestampsToDate } from '~/utils/utils';
 import './ShowOrder.scss';
 
 const ShowOrder = () => {
@@ -42,6 +42,7 @@ const ShowOrder = () => {
       setOrderStatuses(data);
       return res.data;
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -58,10 +59,11 @@ const ShowOrder = () => {
       );
       if (res.status === 'OK') {
         const orders = res.data.map((order) => {
-          const { _id, fullName, orderTime, shipper, totalPrice, isPaid, status } = order;
+          const { _id, fullName, orderTime, shipper, totalPrice, isPaid, status, orderID } = order;
           const statusString = orderStatuses.find((st) => st.status === status).description;
           return {
             id: _id,
+            orderID,
             fullName,
             orderTime: timestampsToDate(orderTime),
             shipper,
@@ -77,6 +79,7 @@ const ShowOrder = () => {
     };
 
     fetchOrders();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page, fromDate, toDate, formik.values.status]);
 
   return (
@@ -120,6 +123,7 @@ const ShowOrder = () => {
         <DataTable
           rows={rows}
           head={[
+            'Mã đơn hàng',
             'Khách hàng',
             'Ngày lập',
             'Người giao hàng',
@@ -127,7 +131,7 @@ const ShowOrder = () => {
             'Trạng thái thanh toán',
             'Trạng thái đơn hàng',
           ]}
-          keys={['fullName', 'orderTime', 'shipper', 'totalPrice', 'isPaid', 'status']}
+          keys={['orderID', 'fullName', 'orderTime', 'shipper', 'totalPrice', 'isPaid', 'status']}
           updateTo='order'
           isDetails
         />

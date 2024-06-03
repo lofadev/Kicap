@@ -23,6 +23,15 @@ const getProducts = (params, dispatch) => {
   );
 };
 
+const getProductsFilter = (params, dispatch) => {
+  return handleAPICallWithoutToast(
+    axiosInstance.get('/product/get-all-filter', {
+      params: params,
+    }),
+    dispatch
+  );
+};
+
 const getProduct = (id, dispatch) =>
   handleAPICallWithoutToast(axiosInstance.get(`/product/${id}`), dispatch);
 
@@ -83,6 +92,7 @@ const ProductService = {
   updateProductMoreImage,
   checkAmount,
   getBrands,
+  getProductsFilter,
 };
 
 export default ProductService;
