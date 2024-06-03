@@ -61,6 +61,7 @@ const ShowProductImage = ({ productID }) => {
           updateTo={'product/image'}
           gobackID={productID}
           handleOpenDelete={handleOpenDeleteImage}
+          isActions
         ></DataTable>
       </Box>
       <ModalConfirm

@@ -9,18 +9,18 @@ import 'swiper/css/thumbs';
 import ImgService1 from '~/assets/imgs/policy_images_2.svg';
 import ImgService2 from '~/assets/imgs/policy_images_3.svg';
 import ImgService3 from '~/assets/imgs/policy_images_4.svg';
+import FormQuantity from '~/components/FormQuantity/FormQuantity';
 import SectionBreadCrumb from '~/components/SectionBreadCrumb/SectionBreadCrumb';
 import SectionProduct from '~/components/SectionProduct/SectionProduct';
 import SwatchSelect from '~/components/SwatchSelect/SwatchSelect';
+import { addOrderProduct } from '~/redux/slices/CartSlice';
+import { updateToast } from '~/redux/slices/ToastSlice';
 import ProductImageService from '~/services/ProductImageService';
 import ProductService from '~/services/ProductService';
 import ProductVariantService from '~/services/ProductVariantService';
 import { formatPriceToVND, isStrNumber } from '~/utils/utils';
 import ProductDetailsImage from '../ProductDetailsImage/ProductDetailsImage';
 import './ProductDetails.scss';
-import { addOrderProduct } from '~/redux/slices/CartSlice';
-import { updateToast } from '~/redux/slices/ToastSlice';
-import FormQuantity from '~/components/FormQuantity/FormQuantity';
 
 const ProductDetails = () => {
   const dispatch = useDispatch();
@@ -121,7 +121,12 @@ const ProductDetails = () => {
   return (
     <>
       {product.title && (
-        <SectionBreadCrumb parent={product?.category} slug={product?.slug} child={product?.title} />
+        <SectionBreadCrumb
+          parent={product?.category}
+          slug={product?.slug}
+          child={product?.title}
+          navigate={'products?category=' + product.category}
+        />
       )}
       <section className='product'>
         <div className='container'>
@@ -274,7 +279,7 @@ const ProductDetails = () => {
             products={relatedProduct}
             title='sản phẩm'
             strongTitle='liên quan'
-            navigate={product.slug}
+            navigate={'products?category=' + product?.category}
           ></SectionProduct>
         )}
       </section>

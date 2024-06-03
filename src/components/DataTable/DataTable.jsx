@@ -19,13 +19,14 @@ export default function DataTable({
   keys,
   handleOpenDelete,
   action,
-  updateTo,
+  updateTo = '',
   gobackID,
   isDetails = false,
   isOrder = false,
   isActions = false,
   handleRemoveOrder,
   handleOpenUpdate = () => {},
+  onClickDetails,
 }) {
   return (
     <TableContainer component={Paper}>
@@ -66,7 +67,15 @@ export default function DataTable({
               })}
               {(isActions || isOrder || isDetails) && (
                 <TableCell className='btn-actions'>
-                  {isDetails && (
+                  {isDetails && !updateTo && (
+                    <span
+                      onClick={onClickDetails}
+                      style={{ color: 'var(--blue)', display: 'inline-block' }}
+                    >
+                      <TfiMenuAlt />
+                    </span>
+                  )}
+                  {isDetails && updateTo && (
                     <Link
                       to={`/admin/${updateTo}/${row.id}`}
                       style={{ color: 'var(--blue)', display: 'inline-block' }}

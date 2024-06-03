@@ -43,32 +43,32 @@ const Home = () => {
         products={newProducts}
         title='Sản phẩm'
         strongTitle='mới'
-        navigate='san-pham-moi'
+        navigate='products'
       ></SectionProduct>
       <SectionProduct
         products={keyboardCustoms}
         title='Bàn phím cơ'
         strongTitle='custom'
-        navigate='ban-phim-co'
+        navigate='products?category=Bàn phím cơ'
       ></SectionProduct>
       <SectionProduct
         products={keycaps}
         title='Bộ sưu tập keycap'
         strongTitle='Cherry'
-        navigate='keycap-cherry'
+        navigate='products?category=keycap'
       ></SectionProduct>
       <FeatureProductBlock></FeatureProductBlock>
       <SectionProduct
         products={switchs}
         title='Switch'
         strongTitle='Cho bàn phím cơ'
-        navigate='switch'
+        navigate='products?category=switch'
       ></SectionProduct>
       <SectionProduct
         products={accessorys}
         title='Phụ kiện cho'
         strongTitle='Bàn phím cơ'
-        navigate='phu-kien'
+        navigate='products?category=Phụ kiện'
       ></SectionProduct>
       <SectionNews
         news={newsState}

@@ -62,6 +62,18 @@ const getOrders = (payload, dispatch) => {
   );
 };
 
+const getOrdersByUserID = (id, dispatch) => {
+  const token = getToken();
+  return handleAPICallWithoutToast(
+    axiosJWT.get('/order/get-all/' + id, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }),
+    dispatch
+  );
+};
+
 const getOrder = (id, dispatch) => {
   const token = getToken();
   return handleAPICallWithoutToast(
@@ -81,5 +93,6 @@ const OrderService = {
   getOrder,
   deleteOrder,
   updateOrder,
+  getOrdersByUserID,
 };
 export default OrderService;

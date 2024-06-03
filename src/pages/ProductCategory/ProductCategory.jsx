@@ -31,7 +31,7 @@ const ProductCategory = () => {
   };
 
   const fetchData = async (params) => {
-    const res = await ProductService.getProducts(params, dispatch);
+    const res = await ProductService.getProductsFilter(params, dispatch);
     if (res.status === 'OK') {
       const products = res.data;
       setProducts(products);
@@ -48,9 +48,7 @@ const ProductCategory = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
 
-    // if (query.limit && query.page) {
-    fetchData({ ...query });
-    // }
+    fetchData(query);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.search]);
 
@@ -86,7 +84,7 @@ const ProductCategory = () => {
             </div>
             <div className='sidebar'>
               <AsideCategory />
-              <AsideFilter />
+              <AsideFilter page={page} />
             </div>
 
             <div className='product-category-main-container'>
@@ -98,7 +96,7 @@ const ProductCategory = () => {
                 })}
               </div>
 
-              {totalProduct > query.limit && (
+              {totalProduct > (query.limit || 12) && (
                 <Pagination
                   pageCount={pageCount}
                   onClickPageItem={doSearch}

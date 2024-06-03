@@ -78,7 +78,7 @@ const AsideFilter = () => {
       setChoices(currentChoices);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [filterMenu, location.search]);
+  }, [filterMenu]);
 
   useEffect(() => {
     const fetchData = async () => {
