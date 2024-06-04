@@ -53,8 +53,8 @@ const Home = () => {
       ></SectionProduct>
       <SectionProduct
         products={keycaps}
-        title='Bộ sưu tập keycap'
-        strongTitle='Cherry'
+        title='Bộ sưu tập'
+        strongTitle='keycap bộ'
         navigate='products?category=keycap'
       ></SectionProduct>
       <FeatureProductBlock></FeatureProductBlock>

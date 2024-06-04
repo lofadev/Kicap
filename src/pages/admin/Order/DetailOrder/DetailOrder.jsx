@@ -17,7 +17,7 @@ import OrderService from '~/services/OrderService';
 import OrderStatusService from '~/services/OrderStatusService';
 import ProvinceService from '~/services/ProvinceService';
 import ShipperService from '~/services/ShipperService';
-import { timestampsToDatetime } from '~/utils/utils';
+import { formatPriceToVND, timestampsToDatetime } from '~/utils/utils';
 import './DetailOrder.scss';
 import { schemaAddress, schemaOrderDetails, schemaShipper } from './schema';
 
@@ -50,6 +50,7 @@ const DetailOrder = () => {
       if (res.status === 'OK') {
         handleCloseModal();
         fetchOrderDetails(order.orderID);
+        fetchOrder();
       }
     },
   });
@@ -323,124 +324,6 @@ const DetailOrder = () => {
         </div>
       </Box>
       <Box title='Danh sách các mặt hàng thuộc đơn hàng'>
-        {openModal && (
-          <ModalDialog open={openModal} handleCancel={handleCloseModal}>
-            <div className='modal-order-details'>
-              <h2 style={{ fontSize: '1.8rem', marginBottom: '10px' }}>
-                Cập nhật thông tin mặt hàng
-              </h2>
-              <main>
-                <Input
-                  name='name'
-                  labelName={'Tên hàng'}
-                  formik={formik}
-                  required
-                  disabled='disabled'
-                />
-                <Input name='variant' labelName={'Biến thể'} formik={formik} disabled='disabled' />
-                <InputNumber
-                  name='quantity'
-                  labelName={'Số lượng'}
-                  formik={formik}
-                  required
-                  min={1}
-                />
-                <InputNumber name='price' labelName={'Giá'} formik={formik} required isPrice />
-              </main>
-              <div style={{ display: 'flex', justifyContent: 'end', gap: '20px' }}>
-                <Button secondary onClick={handleCloseModal}>
-                  Huỷ
-                </Button>
-                <Button primary onClick={formik.handleSubmit}>
-                  Cập nhật
-                </Button>
-              </div>
-            </div>
-          </ModalDialog>
-        )}
-
-        {openModalAddress && (
-          <ModalDialog open={openModalAddress} handleCancel={handleCloseModalAddress}>
-            <div className='modal-order-address'>
-              <h2 style={{ fontSize: '1.8rem', marginBottom: '10px' }}>
-                Thay đổi địa chỉ nhận hàng
-              </h2>
-              <main>
-                <Input
-                  labelName='Địa chỉ'
-                  placeholder='Nhập địa chỉ khách hàng'
-                  required
-                  name='deliveryAddress'
-                  formik={formikAddress}
-                />
-                <SelectOptions
-                  labelName='Tỉnh/thành'
-                  required
-                  options={options}
-                  optionDefault='--- Chọn Tỉnh/thành ---'
-                  name='deliveryProvince'
-                  formik={formikAddress}
-                  value='name'
-                />
-              </main>
-              <div style={{ display: 'flex', justifyContent: 'end', gap: '20px' }}>
-                <Button secondary onClick={handleCloseModalAddress}>
-                  Huỷ
-                </Button>
-                <Button primary onClick={formikAddress.handleSubmit}>
-                  Cập nhật
-                </Button>
-              </div>
-            </div>
-          </ModalDialog>
-        )}
-
-        {openModalShipper && (
-          <ModalDialog open={openModalShipper} handleCancel={handleCloseModalShipper}>
-            <div className='modal-order-shipper'>
-              <h2 style={{ fontSize: '1.8rem', marginBottom: '10px' }}>
-                Chuyển đơn hàng cho người giao hàng
-              </h2>
-              <main>
-                <SelectOptions
-                  labelName='Người giao hàng'
-                  required
-                  options={optionsShipper}
-                  optionDefault='--- Chọn người giao hàng ---'
-                  name='shipper'
-                  formik={formikShipper}
-                  value='name'
-                />
-              </main>
-              <div style={{ display: 'flex', justifyContent: 'end', gap: '20px' }}>
-                <Button secondary onClick={handleCloseModalShipper}>
-                  Huỷ
-                </Button>
-                <Button primary onClick={formikShipper.handleSubmit}>
-                  Cập nhật
-                </Button>
-              </div>
-            </div>
-          </ModalDialog>
-        )}
-
-        {openModalConfirmDeleteOrderDetails && (
-          <ModalConfirm
-            desc={'Bạn có muốn xoá sản phẩm này khỏi đơn đặt hàng không ?'}
-            handleClose={() => setOpenModalConfirmDeleteOrderDetails(false)}
-            handleDelete={handleDeleteItem}
-            open={openModalConfirmDeleteOrderDetails}
-          />
-        )}
-
-        {openModalConfirmDeleteOrder && (
-          <ModalConfirm
-            desc={'Bạn có muốn xoá đơn đặt hàng này không ?'}
-            handleClose={() => setOpenModalConfirmDeleteOrder(false)}
-            handleDelete={handleDeleteOrder}
-            open={openModalConfirmDeleteOrder}
-          />
-        )}
         <DataTable
           rows={rows}
           head={['STT', 'Ảnh', 'Tên hàng', 'Biến thể', 'Số lượng', 'Giá', 'Thành tiền']}
@@ -449,7 +332,129 @@ const DetailOrder = () => {
           handleOpenDelete={handleOpenDelete}
           isActions={order?.status < 2}
         />
+        <div className='total-price'>
+          <span className='order-total-price'>
+            Tổng tiền: {formatPriceToVND(order?.totalPrice)}
+          </span>
+          <span>Phí ship: {formatPriceToVND(order?.shippingPrice)}</span>
+        </div>
       </Box>
+      {openModal && (
+        <ModalDialog open={openModal} handleCancel={handleCloseModal}>
+          <div className='modal-order-details'>
+            <h2 style={{ fontSize: '1.8rem', marginBottom: '10px' }}>
+              Cập nhật thông tin mặt hàng
+            </h2>
+            <main>
+              <Input
+                name='name'
+                labelName={'Tên hàng'}
+                formik={formik}
+                required
+                disabled='disabled'
+              />
+              <Input name='variant' labelName={'Biến thể'} formik={formik} disabled='disabled' />
+              <InputNumber
+                name='quantity'
+                labelName={'Số lượng'}
+                formik={formik}
+                required
+                min={1}
+              />
+              <InputNumber name='price' labelName={'Giá'} formik={formik} required isPrice />
+            </main>
+            <div style={{ display: 'flex', justifyContent: 'end', gap: '20px' }}>
+              <Button secondary onClick={handleCloseModal}>
+                Huỷ
+              </Button>
+              <Button primary onClick={formik.handleSubmit}>
+                Cập nhật
+              </Button>
+            </div>
+          </div>
+        </ModalDialog>
+      )}
+
+      {openModalAddress && (
+        <ModalDialog open={openModalAddress} handleCancel={handleCloseModalAddress}>
+          <div className='modal-order-address'>
+            <h2 style={{ fontSize: '1.8rem', marginBottom: '10px' }}>Thay đổi địa chỉ nhận hàng</h2>
+            <main>
+              <Input
+                labelName='Địa chỉ'
+                placeholder='Nhập địa chỉ khách hàng'
+                required
+                name='deliveryAddress'
+                formik={formikAddress}
+              />
+              <SelectOptions
+                labelName='Tỉnh/thành'
+                required
+                options={options}
+                optionDefault='--- Chọn Tỉnh/thành ---'
+                name='deliveryProvince'
+                formik={formikAddress}
+                value='name'
+              />
+            </main>
+            <div style={{ display: 'flex', justifyContent: 'end', gap: '20px' }}>
+              <Button secondary onClick={handleCloseModalAddress}>
+                Huỷ
+              </Button>
+              <Button primary onClick={formikAddress.handleSubmit}>
+                Cập nhật
+              </Button>
+            </div>
+          </div>
+        </ModalDialog>
+      )}
+
+      {openModalShipper && (
+        <ModalDialog open={openModalShipper} handleCancel={handleCloseModalShipper}>
+          <div className='modal-order-shipper'>
+            <h2 style={{ fontSize: '1.8rem', marginBottom: '10px' }}>
+              Chuyển đơn hàng cho người giao hàng
+            </h2>
+            <main>
+              <SelectOptions
+                labelName='Người giao hàng'
+                required
+                options={optionsShipper}
+                optionDefault='--- Chọn người giao hàng ---'
+                name='shipper'
+                formik={formikShipper}
+                value='name'
+              />
+            </main>
+            <div style={{ display: 'flex', justifyContent: 'end', gap: '20px' }}>
+              <Button secondary onClick={handleCloseModalShipper}>
+                Huỷ
+              </Button>
+              <Button primary onClick={formikShipper.handleSubmit}>
+                Cập nhật
+              </Button>
+            </div>
+          </div>
+        </ModalDialog>
+      )}
+
+      {openModalConfirmDeleteOrderDetails && (
+        <ModalConfirm
+          desc={'Bạn có muốn xoá sản phẩm này khỏi đơn đặt hàng không ?'}
+          handleClose={() => setOpenModalConfirmDeleteOrderDetails(false)}
+          handleDelete={handleDeleteItem}
+          open={openModalConfirmDeleteOrderDetails}
+        />
+      )}
+
+      {openModalConfirmDeleteOrder && (
+        <ModalConfirm
+          desc={'Bạn có muốn xoá đơn đặt hàng này không ?'}
+          handleClose={() => setOpenModalConfirmDeleteOrder(false)}
+          handleDelete={handleDeleteOrder}
+          open={openModalConfirmDeleteOrder}
+        />
+      )}
     </div>
   );
 };

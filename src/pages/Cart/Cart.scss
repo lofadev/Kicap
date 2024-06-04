@@ -66,3 +66,16 @@
     }
   }
 }
+
+@media screen and (max-width: 991px) {
+  .shopping-cart {
+    .cart-main {
+      grid-template-columns: repeat(1, 1fr);
+    }
+
+    .cart-item-image {
+      width: 100px;
+      height: 100px;
+    }
+  }
+}

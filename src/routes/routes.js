@@ -18,6 +18,7 @@ import Policy from '~/pages/Policy/Policy.jsx';
 import ProductCategory from '~/pages/ProductCategory/ProductCategory.jsx';
 import ProductDetails from '~/pages/ProductDetails/ProductDetails.jsx';
 import Search from '~/pages/Search/Search';
+import Admin from '~/pages/admin/Admin';
 import AddCategory from '~/pages/admin/Category/AddCategory/AddCategory';
 import ShowCategory from '~/pages/admin/Category/ShowCategory/ShowCategory';
 import UpdateCategory from '~/pages/admin/Category/UpdateCategory/UpdateCategory';
@@ -139,6 +140,11 @@ const privateRoutes = [
 ];
 
 const adminRoutes = [
+  {
+    path: config.routes.admin.admin,
+    component: Admin,
+    layout: AdminLayout,
+  },
   {
     path: config.routes.admin.dashboard,
     component: Dashboard,

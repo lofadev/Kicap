@@ -76,7 +76,6 @@ const UpdateProduct = () => {
       }
       if (productRes.status === 'OK') {
         const product = productRes.data;
-        console.log(product);
         formik.setValues({
           name: product.name,
           description: product.description,

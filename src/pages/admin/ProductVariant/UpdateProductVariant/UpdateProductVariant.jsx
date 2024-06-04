@@ -23,6 +23,8 @@ const UpdateProductVariant = () => {
       name: '',
       value: '',
       price: 0,
+      stock: 0,
+      discount: 0,
       displayOrder: 0,
       toImageOrder: 0,
     },
@@ -98,7 +100,7 @@ const UpdateProductVariant = () => {
             isPrice
           />
           <InputNumber
-            labelName='Giá'
+            labelName='Tồn kho'
             placeholder='Tồn kho'
             required
             name='stock'

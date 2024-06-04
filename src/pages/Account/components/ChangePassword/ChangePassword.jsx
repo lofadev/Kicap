@@ -8,9 +8,10 @@ import '../../Account.scss';
 import UserService from '~/services/UserService';
 
 const schema = yup.object().shape({
-  oldPassword: yup.string().required(validate.NOT_EMPTY),
+  oldPassword: yup.string().trim().required(validate.NOT_EMPTY),
   newPassword: yup
     .string()
+    .trim()
     .required(validate.NOT_EMPTY)
     .matches(regex.password, validate.INVALID_PASSWORD),
   confirmPassword: yup

@@ -1,3 +1,4 @@
+import { useFormik } from 'formik';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import Box from '~/components/Admin/Box/Box';
@@ -8,7 +9,9 @@ import Button from '~/components/Button/Button';
 import DataTable from '~/components/DataTable/DataTable';
 import ModalConfirm from '~/components/ModalConfirm/ModalConfirm';
 import Pagination from '~/components/Pagination/Pagination';
+import SelectOptions from '~/components/SelectOptions/SelectOptions';
 import { useDebounce } from '~/hooks/useDebounce';
+import CategoryService from '~/services/CategoryService';
 import ProductService from '~/services/ProductService';
 
 const ShowProduct = () => {
@@ -19,13 +22,23 @@ const ShowProduct = () => {
   const [rows, setRows] = useState([]);
   const [open, setOpen] = useState(false);
   const [id, setId] = useState('');
+  const [categories, setCategories] = useState([]);
   const searchDebounce = useDebounce(search, 1000);
   const handleOnChangeSearch = (e) => {
     setSearch(e.target.value);
   };
 
+  const formik = useFormik({
+    initialValues: {
+      category: '',
+    },
+  });
+
   const fetchData = async (payload) => {
-    const res = await ProductService.getProducts(payload, dispatch);
+    const [res, resCategory] = await Promise.all([
+      ProductService.getProducts(payload, dispatch),
+      CategoryService.getCategorys({}, dispatch),
+    ]);
     if (res.status === 'OK') {
       setResponse(res);
       const rows = res.data.map((product) => ({
@@ -39,12 +52,22 @@ const ShowProduct = () => {
       }));
       setRows(rows);
     }
+    if (resCategory.status === 'OK') {
+      const categories = resCategory.data.map((data) => {
+        return {
+          id: data._id,
+          name: data.categoryName,
+          value: data.categoryName,
+        };
+      });
+      setCategories(categories);
+    }
   };
 
   useEffect(() => {
-    fetchData({ page, search: searchDebounce });
+    fetchData({ page, search: searchDebounce, category: formik.values.category });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page, searchDebounce]);
+  }, [page, searchDebounce, formik.values.category]);
 
   const handleOpenDelete = (id) => {
     setOpen(true);
@@ -61,6 +84,14 @@ const ShowProduct = () => {
     <div className='products'>
       <HeadingBreadCrumb>Quản lý sản phẩm</HeadingBreadCrumb>
       <Box title='Danh sách sản phẩm'>
+        <SelectOptions
+          labelName={'Danh mục sản phẩm'}
+          options={categories}
+          formik={formik}
+          name={'category'}
+          optionDefault={'--- Chọn danh mục sản phẩm ---'}
+          value='value'
+        />
         <div className='search-head'>
           <FormSearch
             placeholder='Nhập tên sản phẩm cần tìm kiếm'

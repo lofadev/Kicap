@@ -31,7 +31,7 @@ const FeatureProductBlock = () => {
         <div className='group-product-block'>
           <h2 className='product_title'>
             <Link href='' className='text-hover-primary'>
-              Bộ sưu tập <strong>Keycap Bộ</strong>
+              Bộ keycap <strong>mới nhất</strong>
             </Link>
           </h2>
           <Swiper slidesPerView={1} loop={true}>

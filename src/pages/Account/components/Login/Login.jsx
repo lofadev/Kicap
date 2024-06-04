@@ -34,7 +34,7 @@ const Login = () => {
         if (decoded?.id) {
           handleGetDetailsUser(decoded?.id);
         }
-      } else {
+      } else if (res.keyError === 'NOT_VERIFY') {
         setIsVerify(false);
         setEmail(formik.values.email);
       }
