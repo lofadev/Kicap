@@ -1,30 +1,25 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import Pagination from '~/components/Pagination/Pagination';
+import ProductCard from '~/components/ProductCard/ProductCard';
 import SectionBreadCrumb from '~/components/SectionBreadCrumb/SectionBreadCrumb';
 import useQuery from '~/hooks/useQuery';
 import ProductService from '~/services/ProductService';
 import './Search.scss';
-import ProductCard from '~/components/ProductCard/ProductCard';
-import Pagination from '~/components/Pagination/Pagination';
-import useSetQuery from '~/hooks/useSetQuery';
 
 const Search = () => {
-  let query = useQuery();
-  const setQuery = useSetQuery();
+  const query = useQuery();
   const dispatch = useDispatch();
   const [products, setProducts] = useState([]);
   const [totalPage, setTotalPage] = useState(0);
   const [page, setPage] = useState(query.page || 1);
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     window.scrollTo(0, 0);
     document.title = 'Tìm kiếm | Kicap';
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    query = { ...query, page, limit: 12 };
-    setQuery({ page });
+    // setQuery({ page });
     const fetchData = async () => {
-      const res = await ProductService.getProducts(query, dispatch);
+      const res = await ProductService.getProducts({ ...query, page, limit: 12 }, dispatch);
       if (res.status === 'OK') {
         const products = res.data;
         setProducts(products);

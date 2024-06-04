@@ -3,8 +3,10 @@ import { useEffect, useState } from 'react';
 import { FaXmark } from 'react-icons/fa6';
 import Search from '~/assets/imgs/search.svg';
 import './FormSearch.scss';
+import { useNavigate } from 'react-router-dom';
 
 const FormSearch = ({ onClick: handleToggleInSearch, searchActive }) => {
+  const navigate = useNavigate();
   const [inputValue, setInputValue] = useState('');
 
   useEffect(() => {
@@ -16,9 +18,14 @@ const FormSearch = ({ onClick: handleToggleInSearch, searchActive }) => {
     setInputValue(value);
   };
 
+  const handleSearch = () => {
+    navigate('/search?search=' + inputValue);
+    handleToggleInSearch();
+  };
+
   return (
     <div className={`form-search ${searchActive ? 'active' : ''}`}>
-      <form action='/search'>
+      <div>
         <div className='input-group'>
           <input
             type='text'
@@ -29,12 +36,12 @@ const FormSearch = ({ onClick: handleToggleInSearch, searchActive }) => {
             onChange={handleChangeInputSearch}
           />
           <span className='input-group-search'>
-            <button className='btn btn-default' type='submit'>
+            <button className='btn btn-default' onClick={handleSearch}>
               <img src={Search} alt='' />
             </button>
           </span>
         </div>
-      </form>
+      </div>
       <button className='close-search' title='Đóng tìm kiếm' onClick={handleToggleInSearch}>
         <FaXmark />
       </button>

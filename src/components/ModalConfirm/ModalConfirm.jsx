@@ -6,7 +6,14 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import './ModalConfirm.scss';
 
-export default function ModalConfirm({ open, handleClose, handleDelete, desc }) {
+export default function ModalConfirm({
+  open,
+  handleClose,
+  handleDelete,
+  desc,
+  textOk,
+  textCancel,
+}) {
   return (
     <>
       <Dialog
@@ -20,9 +27,11 @@ export default function ModalConfirm({ open, handleClose, handleDelete, desc }) 
           <DialogContentText id='alert-dialog-description'>{desc}</DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Huỷ</Button>
-          <Button onClick={handleDelete} autoFocus>
-            Xoá
+          <Button onClick={handleClose} style={{ color: 'var(--red)' }}>
+            {textCancel ?? 'Huỷ'}
+          </Button>
+          <Button onClick={handleDelete} autoFocus style={{ color: 'var(--blue)' }}>
+            {textOk ?? 'Xoá'}
           </Button>
         </DialogActions>
       </Dialog>

@@ -1,24 +1,24 @@
-import { useFormik } from 'formik'
-import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import * as yup from 'yup'
-import Button from '~/components/Button/Button'
-import Input from '~/components/FormGroup/Input/Input'
-import SelectOptions from '~/components/SelectOptions/SelectOptions'
-import { updateUser } from '~/redux/slices/UserSlice'
-import ProvinceService from '~/services/ProvinceService'
-import UserService from '~/services/UserService'
-import { validate } from '~/validate/constant'
+import { useFormik } from 'formik';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import * as yup from 'yup';
+import Button from '~/components/Button/Button';
+import Input from '~/components/FormGroup/Input/Input';
+import SelectOptions from '~/components/SelectOptions/SelectOptions';
+import { updateUser } from '~/redux/slices/UserSlice';
+import ProvinceService from '~/services/ProvinceService';
+import UserService from '~/services/UserService';
+import { validate } from '~/validate/constant';
 
 const schema = yup.object().shape({
-  address: yup.string().required(validate.NOT_EMPTY),
+  address: yup.string().trim().required(validate.NOT_EMPTY),
   province: yup.string().required(validate.NOT_EMPTY),
-})
+});
 
 const Address = () => {
-  const user = useSelector((state) => state.user)
-  const dispatch = useDispatch()
-  const [provinces, setProvinces] = useState([])
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const [provinces, setProvinces] = useState([]);
   const formik = useFormik({
     initialValues: {
       address: user.address,
@@ -26,28 +26,28 @@ const Address = () => {
     },
     validationSchema: schema,
     onSubmit: async (payload) => {
-      const res = await UserService.updateUser(user.id, payload, dispatch)
+      const res = await UserService.updateUser(user.id, payload, dispatch);
       if (res.status === 'OK') {
-        dispatch(updateUser({ ...user, address: res.data.address, provicne: res.data.province }))
+        dispatch(updateUser({ ...user, address: res.data.address, province: res.data.province }));
       }
     },
-  })
+  });
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await ProvinceService.getProvinces({})
+      const res = await ProvinceService.getProvinces({});
       if (res.status === 'OK') {
         const options = res.data.map((province) => {
           return {
             id: province.provinceId,
             name: province.provinceName,
-          }
-        })
-        setProvinces(options)
+          };
+        });
+        setProvinces(options);
       }
-    }
-    fetchData()
-  }, [])
+    };
+    fetchData();
+  }, []);
 
   return (
     <div>
@@ -74,7 +74,7 @@ const Address = () => {
         </Button>
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default Address
+export default Address;

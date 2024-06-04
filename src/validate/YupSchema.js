@@ -7,6 +7,7 @@ const schemaPhone = schemaRequired.matches(regex.phone, validate.INVALID_PHONE);
 const schemaPassword = Yup.string()
   .required(validate.NOT_EMPTY)
   .matches(regex.password, validate.INVALID_PASSWORD);
+// const hasTrim = Yup.string().trim();
 
 export const categorySchema = Yup.object().shape({
   categoryName: schemaRequired,
@@ -18,7 +19,7 @@ export const supplierSchema = Yup.object().shape({
   contactName: schemaRequired,
   phone: schemaPhone,
   email: schemaEmail,
-  address: schemaRequired,
+  address: schemaRequired.trim(),
   province: schemaRequired,
 });
 
@@ -28,7 +29,7 @@ export const shipperSchema = Yup.object().shape({
 });
 
 export const registerSchema = Yup.object().shape({
-  name: schemaRequired,
+  name: schemaRequired.trim().max(50, 'Họ và tên chỉ được tối đa là 50 kí tự.'),
   phone: schemaPhone,
   email: schemaEmail,
   password: schemaPassword,
@@ -103,6 +104,8 @@ export const addProductVariantSchema = Yup.object().shape({
   name: schemaRequired,
   value: schemaRequired,
   price: Yup.number().test('Số dương?', validate.INVALID_NUMBER, (value) => value > 0),
+  stock: Yup.number().test('Số dương?', validate.INVALID_NUMBER, (value) => value >= 0),
+  discount: Yup.number().test('Số dương?', validate.INVALID_NUMBER, (value) => value >= 0),
   displayOrder: Yup.number().required(validate.NOT_EMPTY),
   toImageOrder: Yup.number(),
 });
@@ -128,9 +131,9 @@ export const loginSchema = Yup.object().shape({
 
 export const infoCheckoutSchema = Yup.object().shape({
   email: Yup.string().email(validate.INVALID_EMAIL),
-  fullName: schemaRequired,
+  fullName: schemaRequired.trim(),
   phone: schemaPhone,
-  address: schemaRequired,
+  address: schemaRequired.trim(),
   province: schemaRequired,
   note: Yup.string(),
 });

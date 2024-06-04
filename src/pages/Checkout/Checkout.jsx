@@ -18,6 +18,7 @@ import { formatPriceToVND } from '~/utils/utils';
 import { infoCheckoutSchema } from '~/validate/YupSchema';
 import './Checkout.scss';
 import CheckoutItem from './CheckoutItem/CheckoutItem';
+import ModalConfirm from '~/components/ModalConfirm/ModalConfirm';
 
 const Checkout = () => {
   const navigate = useNavigate();
@@ -27,6 +28,7 @@ const Checkout = () => {
   const dispatch = useDispatch();
   const [openModal, setOpenModal] = useState(false);
   const [checkAmounts, setCheckAmount] = useState([]);
+  const [confirmCheckout, setConfirmCheckout] = useState(false);
 
   const formik = useFormik({
     initialValues: {
@@ -67,6 +69,7 @@ const Checkout = () => {
         totalPrice: cart.totalPrice,
         orderItems: productItems,
       };
+      await fetchData();
       if (paymentMethod === 'cod') {
         const res = await OrderService.createOrder(payload, dispatch);
         if (res.status === 'OK') {
@@ -108,49 +111,50 @@ const Checkout = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
+  const fetchData = async () => {
+    const ids = cart.orderItems.map((item) => {
+      const id = item.idVariant ?? item.id;
+      return id;
+    });
+    const [provinces, checkAmount] = await Promise.all([
+      ProvinceService.getProvinces({}),
+      ProductService.checkAmount(ids, dispatch),
+    ]);
+    if (provinces.status === 'OK') {
+      const options = provinces.data.map((province) => {
+        return {
+          id: province.provinceId,
+          name: province.provinceName,
+        };
+      });
+      setProvinces(options);
+    }
+    if (checkAmount.status === 'OK') {
+      const checkAmounts = checkAmount.data;
+      setCheckAmount(checkAmounts);
+      const orderItemsLength = cart.orderItems.length;
+      let isOutOfStock = false;
+      for (let i = 0; i < orderItemsLength; i++) {
+        const item = cart.orderItems[i];
+        const id = item.idVariant ?? item.id;
+        const itemCheck = checkAmounts.find((i) => i.id === id);
+        if (itemCheck.stock < item.quantity) {
+          isOutOfStock = true;
+          break;
+        }
+      }
+      if (isOutOfStock) {
+        setOpenModal(true);
+      }
+    }
+  };
   useEffect(() => {
     document.title = 'Thanh toán | Kicap';
     if (cart.orderItems.length === 0) {
       navigate('/cart');
       return;
     }
-    const fetchData = async () => {
-      const ids = cart.orderItems.map((item) => {
-        const id = item.idVariant ?? item.id;
-        return id;
-      });
-      const [provinces, checkAmount] = await Promise.all([
-        ProvinceService.getProvinces({}),
-        ProductService.checkAmount(ids, dispatch),
-      ]);
-      if (provinces.status === 'OK') {
-        const options = provinces.data.map((province) => {
-          return {
-            id: province.provinceId,
-            name: province.provinceName,
-          };
-        });
-        setProvinces(options);
-      }
-      if (checkAmount.status === 'OK') {
-        const checkAmounts = checkAmount.data;
-        setCheckAmount(checkAmounts);
-        const orderItemsLength = cart.orderItems.length;
-        let isOutOfStock = false;
-        for (let i = 0; i < orderItemsLength; i++) {
-          const item = cart.orderItems[i];
-          const id = item.idVariant ?? item.id;
-          const itemCheck = checkAmounts.find((i) => i.id === id);
-          if (itemCheck.stock < item.quantity) {
-            isOutOfStock = true;
-            break;
-          }
-        }
-        if (isOutOfStock) {
-          setOpenModal(true);
-        }
-      }
-    };
+
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -170,12 +174,19 @@ const Checkout = () => {
 
   return (
     <div className='checkout'>
+      <ModalConfirm
+        desc={'Bạn có muốn đặt đơn hàng này không ?'}
+        handleClose={() => setConfirmCheckout(false)}
+        handleDelete={formik.handleSubmit}
+        open={confirmCheckout}
+        textOk={'Xác nhận'}
+      />
       <AlertDialog
         open={openModal}
         handleOk={handleAcceptDecreaseAmount}
         title={'Thông báo.'}
         desc={
-          'Một số sản phẩm của bạn chọn đã vượt mức tồn khi của chúng tôi. Vì vậy chúng tôi đã cập nhật lại số lượng sản phẩm ở mức tối đa cho bạn. Mong bạn thông cảm cho chúng tôi về vấn đề này. Nếu có thắc mắc, xin vui lòng liên hệ admin: contact.lofa@gmail.com'
+          'Một số sản phẩm của bạn chọn đã vượt mức tồn kho của chúng tôi. Vì vậy chúng tôi đã cập nhật lại số lượng sản phẩm ở mức tối đa mà chúng tôi có thể đáp ứng được. Mong bạn thông cảm cho chúng tôi về vấn đề này. Nếu có thắc mắc, xin vui lòng liên hệ admin: contact.lofa@gmail.com'
         }
       />
       <div className='container'>
@@ -261,7 +272,7 @@ const Checkout = () => {
                 <span>Tổng cộng:</span>
                 <span>{formatPriceToVND(cart.totalPrice + cart.shippingPrice)}</span>
               </div>
-              <Button primary className='btn-order' onClick={formik.handleSubmit}>
+              <Button primary className='btn-order' onClick={() => setConfirmCheckout(true)}>
                 Đặt hàng
               </Button>
               <Button secondary to={'/cart'} className='btn-goto-cart'>

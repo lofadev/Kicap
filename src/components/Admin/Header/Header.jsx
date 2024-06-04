@@ -1,12 +1,15 @@
 import { IoMdArrowDropdown } from 'react-icons/io';
 import { MdOutlineLogout } from 'react-icons/md';
 import { RiAdminFill } from 'react-icons/ri';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Header.scss';
 
 const Header = ({ isSmall }) => {
+  const navigate = useNavigate();
   const handleLogout = () => {
-    alert('dang xuat');
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('refreshToken');
+    navigate('/account/login');
   };
 
   return (

@@ -23,6 +23,7 @@ const routes = {
   },
   search: '/search',
   admin: {
+    admin: '/admin',
     login: '/admin/login',
     dashboard: 'admin/dashboard',
     product: {

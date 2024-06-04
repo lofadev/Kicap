@@ -69,7 +69,7 @@ export default function DataTable({
                 <TableCell className='btn-actions'>
                   {isDetails && !updateTo && (
                     <span
-                      onClick={onClickDetails}
+                      onClick={() => onClickDetails(row.id)}
                       style={{ color: 'var(--blue)', display: 'inline-block' }}
                     >
                       <TfiMenuAlt />

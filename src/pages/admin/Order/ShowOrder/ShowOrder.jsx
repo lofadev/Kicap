@@ -1,6 +1,6 @@
 import dayjs from 'dayjs';
 import { useFormik } from 'formik';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import Box from '~/components/Admin/Box/Box';
 import HeadingBreadCrumb from '~/components/Admin/HeadingBreadCrumb/HeadingBreadCrumb';
@@ -29,38 +29,48 @@ const ShowOrder = () => {
     },
   });
 
-  const fetchOrderStatuses = useCallback(async () => {
-    const res = await OrderStatusService.getOrderStatuses({}, dispatch);
-    if (res.status === 'OK') {
-      const data = res.data.map((i) => {
-        return {
-          id: i._id,
-          name: i.description,
-          value: i.status,
-        };
-      });
-      setOrderStatuses(data);
-      return res.data;
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // const fetchOrderStatuses = useCallback(async () => {
+  //   const res = await OrderStatusService.getOrderStatuses({}, dispatch);
+  //   if (res.status === 'OK') {
+  //     const data = res.data.map((i) => {
+  //       return {
+  //         id: i._id,
+  //         name: i.description,
+  //         value: i.status,
+  //       };
+  //     });
+  //     setOrderStatuses(data);
+  //     return res.data;
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
-  useEffect(() => {
-    fetchOrderStatuses();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // useEffect(() => {
+  //   fetchOrderStatuses();
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
   useEffect(() => {
     const fetchOrders = async () => {
-      const orderStatuses = await fetchOrderStatuses();
-      const res = await OrderService.getOrders(
-        { status: formik.values.status, fromDate: fromDate.$d, toDate: toDate.$d, page },
-        dispatch
-      );
-      if (res.status === 'OK') {
+      const [res, resOrderStatuses] = await Promise.all([
+        OrderService.getOrders(
+          { status: formik.values.status, fromDate: fromDate.$d, toDate: toDate.$d, page },
+          dispatch
+        ),
+        OrderStatusService.getOrderStatuses({}, dispatch),
+      ]);
+      if (res.status === 'OK' && resOrderStatuses.status === 'OK') {
+        const orderStatuses = resOrderStatuses.data.map((i) => {
+          return {
+            id: i._id,
+            name: i.description,
+            value: i.status,
+          };
+        });
+        setOrderStatuses(orderStatuses);
         const orders = res.data.map((order) => {
           const { _id, fullName, orderTime, shipper, totalPrice, isPaid, status, orderID } = order;
-          const statusString = orderStatuses.find((st) => st.status === status).description;
+          const statusString = resOrderStatuses.data.find((st) => st.status === status).description;
           return {
             id: _id,
             orderID,
