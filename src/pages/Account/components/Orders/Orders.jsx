@@ -9,6 +9,7 @@ import OrderStatusService from '~/services/OrderStatusService';
 import { formatPriceToVND, timestampsToDate, timestampsToDatetime } from '~/utils/utils';
 import './Orders.scss';
 
+
 const Orders = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
@@ -16,6 +17,7 @@ const Orders = () => {
   const [openModalDetails, setOpenModalDetails] = useState(false);
   const [order, setOrder] = useState();
   const [orderDetails, setOrderDetails] = useState([]);
+
 
   useEffect(() => {
     const fetchOrders = async () => {
@@ -72,7 +74,6 @@ const Orders = () => {
     }
     setOpenModalDetails(true);
   };
-
   return (
     <div className='orders'>
       <DataTable
