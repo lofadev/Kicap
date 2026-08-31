@@ -15,7 +15,9 @@ const TransactionResult = () => {
 
   useEffect(() => {
     const fetch = async () => {
-      const res = await axiosInstance.post('/checkout/vnpay_ipn', querys);
+      // vnpay_ipn là endpoint VNPay gọi server-to-server bằng GET, không dành cho
+      // trình duyệt. vnpay_return xác minh chữ ký rồi trả về { code, message }.
+      const res = await axiosInstance.post('/checkout/vnpay_return', querys);
       setResult(res.data);
       if (res.data.code === '00') {
         dispatch(resetCart());
