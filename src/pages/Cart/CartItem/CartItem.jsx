@@ -7,6 +7,7 @@ import {
   removeOrderProduct,
   setAmount,
 } from '~/redux/slices/CartSlice';
+import { IMAGE_SIZE, resizedImage } from '~/utils/image';
 import { formatPriceToVND, isStrNumber } from '~/utils/utils';
 import './CartItem.scss';
 
@@ -40,7 +41,7 @@ const CartItem = ({ cartItem }) => {
   return (
     <div className='cart-item'>
       <div className='cart-item-image'>
-        <img src={image} alt='' />
+        <img src={resizedImage(image, IMAGE_SIZE.MEDIUM)} alt='' />
       </div>
 
       <div className='cart-item-content'>

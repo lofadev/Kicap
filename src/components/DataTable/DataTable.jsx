@@ -8,6 +8,7 @@ import TableRow from '@mui/material/TableRow';
 import PropTypes from 'prop-types';
 import { FaCheck, FaEdit, FaTimes } from 'react-icons/fa';
 import { IoMdRemoveCircle } from 'react-icons/io';
+import { IMAGE_SIZE, resizedImage } from '~/utils/image';
 import { TfiMenuAlt } from 'react-icons/tfi';
 import { Link } from 'react-router-dom';
 import { formatPriceToVND } from '~/utils/utils';
@@ -58,7 +59,7 @@ export default function DataTable({
                 else if (key === 'image') {
                   return (
                     <TableCell key={index}>
-                      <img className='image-cell' src={row[key]} alt='' />
+                      <img className='image-cell' src={resizedImage(row[key], IMAGE_SIZE.COMPACT)} alt='' />
                     </TableCell>
                   );
                 } else if (key === 'price' || key === 'totalPrice') {

@@ -3,6 +3,7 @@ import { AiOutlineClose } from 'react-icons/ai';
 import { MdNavigateBefore, MdNavigateNext } from 'react-icons/md';
 import { Autoplay, EffectFade, FreeMode, Keyboard, Navigation, Thumbs } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { IMAGE_SIZE, resizedImage } from '~/utils/image';
 import './ProductDetailsImage.scss';
 
 const ProductDetailsImage = ({ images }) => {
@@ -63,7 +64,7 @@ const ProductDetailsImage = ({ images }) => {
           <AiOutlineClose />
         </div>
         <div className='modal-image'>
-          <img src={images[photoIndex]?.image} alt='' />
+          <img src={resizedImage(images[photoIndex]?.image, IMAGE_SIZE.GRANDE)} alt='' />
         </div>
 
         <button className={`btn-prev ${photoIndex == 0 ? 'disabled' : ''}`} onClick={handlePrevImg}>
@@ -86,7 +87,12 @@ const ProductDetailsImage = ({ images }) => {
                 return (
                   <SwiperSlide key={img._id}>
                     <div onClick={handleViewImage}>
-                      <img data-index={index} loading='lazy' src={img.image} alt='' />
+                      <img
+                        data-index={index}
+                        loading='lazy'
+                        src={resizedImage(img.image, IMAGE_SIZE.COMPACT)}
+                        alt=''
+                      />
                     </div>
                   </SwiperSlide>
                 );
@@ -102,7 +108,7 @@ const ProductDetailsImage = ({ images }) => {
               return (
                 <SwiperSlide key={img._id}>
                   <div>
-                    <img loading='lazy' src={img.image} alt='' />
+                    <img loading='lazy' src={resizedImage(img.image, IMAGE_SIZE.COMPACT)} alt='' />
                   </div>
                 </SwiperSlide>
               );

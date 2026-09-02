@@ -1,3 +1,4 @@
+import { IMAGE_SIZE, resizedImage } from '~/utils/image';
 import { formatPriceToVND } from '~/utils/utils';
 import './CheckoutItem.scss';
 
@@ -7,7 +8,7 @@ const CheckoutItem = ({ item }) => {
     <div className='checkout-item'>
       <div className='checkout-item-main'>
         <div className='checkout-item-image'>
-          <img src={image} alt='' />
+          <img src={resizedImage(image, IMAGE_SIZE.COMPACT)} alt='' />
           <span className='checkout-item-quantity'>{quantity}</span>
         </div>
 

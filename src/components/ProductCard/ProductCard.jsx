@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { addOrderProduct } from '~/redux/slices/CartSlice';
 import { updateToast } from '~/redux/slices/ToastSlice';
+import { IMAGE_SIZE, resizedImage } from '~/utils/image';
 import { formatPriceToVND, getToken } from '~/utils/utils';
 import Button from '../Button/Button';
 import './ProductCard.scss';
@@ -59,14 +60,14 @@ const ProductCard = ({ product }) => {
             <img
               loading='lazy'
               className={'product_card-image-front'}
-              src={product.image}
-              alt={product.image}
+              src={resizedImage(product.image, IMAGE_SIZE.GRANDE)}
+              alt={product.name}
             />
             <img
               loading='lazy'
               className={'product_card-image-back'}
-              src={product.more_image}
-              alt={product.more_image}
+              src={resizedImage(product.more_image, IMAGE_SIZE.GRANDE)}
+              alt={product.name}
             />
           </div>
 
